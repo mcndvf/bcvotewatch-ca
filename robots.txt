@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://bcvotewatch.ca/sitemap.xml
