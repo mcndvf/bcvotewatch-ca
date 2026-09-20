@@ -4,14 +4,14 @@ Static, no-build HTML/CSS/JS starter designed for the same simple deployment mod
 
 ## Initial SEO pages
 - `/` — BC election watch hub
-- `/bc-election-2026.html` — early-election status + date scenarios
-- `/bc-election-candidates-2026.html` — candidate tracker contract
-- `/bc-election-ridings.html` — riding hub
-- `/bc-election-polls.html` — polling monitor stub
-- `/how-to-vote-bc.html` — official-source voting links
-- `/sources.html` — evidence/source rules
-- `/zh-cn/bc-election-2026.html`
-- `/zh-tw/bc-election-2026.html`
+- `/bc-election-2026` — early-election status + date scenarios
+- `/bc-election-candidates-2026` — candidate tracker contract
+- `/bc-election-ridings` — riding hub
+- `/bc-election-polls` — polling monitor stub
+- `/how-to-vote-bc` — official-source voting links
+- `/sources` — evidence/source rules
+- `/zh-cn/bc-election-2026`
+- `/zh-tw/bc-election-2026`
 
 ## Election status switch
 Update `data/election-status.json` when Elections BC formally changes the status. Do not mark the election called based only on media speculation.
