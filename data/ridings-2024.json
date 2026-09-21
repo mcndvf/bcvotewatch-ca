@@ -1,0 +1,3563 @@
+{
+ "source": "https://elections.bc.ca/docs/rpt/statement-of-votes-2024-provincial-election.pdf",
+ "title": "Statement of Votes, 43rd Provincial General Election, October 19, 2024",
+ "note": "Incumbent = member of the 42nd Parliament, as marked by Elections BC. Winner = most votes.",
+ "ridings": [
+  {
+   "name": "Abbotsford-Mission",
+   "ndp": 10894,
+   "cp": 13523,
+   "gp": 0,
+   "other": 0,
+   "valid": 24417,
+   "rejected": 98,
+   "voted": 24515,
+   "registered": 42692,
+   "turnout": 57.42,
+   "candidates": [
+    {
+     "name": "Reann Gasper",
+     "party": "Conservative Party",
+     "votes": 13523,
+     "pct": 55.38,
+     "incumbent": false
+    },
+    {
+     "name": "Pam Alexis",
+     "party": "BC NDP",
+     "votes": 10894,
+     "pct": 44.62,
+     "incumbent": true
+    }
+   ]
+  },
+  {
+   "name": "Abbotsford South",
+   "ndp": 7454,
+   "cp": 13053,
+   "gp": 0,
+   "other": 681,
+   "valid": 21188,
+   "rejected": 54,
+   "voted": 21242,
+   "registered": 41068,
+   "turnout": 51.72,
+   "candidates": [
+    {
+     "name": "Bruce Banman",
+     "party": "Conservative Party",
+     "votes": 13053,
+     "pct": 61.61,
+     "incumbent": true
+    },
+    {
+     "name": "Sarah Kooner",
+     "party": "BC NDP",
+     "votes": 7454,
+     "pct": 35.18,
+     "incumbent": false
+    },
+    {
+     "name": "Amandeep Singh",
+     "party": "Independent",
+     "votes": 681,
+     "pct": 3.21,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Abbotsford West",
+   "ndp": 7255,
+   "cp": 11483,
+   "gp": 0,
+   "other": 940,
+   "valid": 19678,
+   "rejected": 47,
+   "voted": 19725,
+   "registered": 37833,
+   "turnout": 52.14,
+   "candidates": [
+    {
+     "name": "Korky Neufeld",
+     "party": "Conservative Party",
+     "votes": 11483,
+     "pct": 58.35,
+     "incumbent": false
+    },
+    {
+     "name": "Graeme Hutchison",
+     "party": "BC NDP",
+     "votes": 7255,
+     "pct": 36.87,
+     "incumbent": false
+    },
+    {
+     "name": "James Davison",
+     "party": "Independent",
+     "votes": 940,
+     "pct": 4.78,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Boundary-Similkameen",
+   "ndp": 10497,
+   "cp": 11935,
+   "gp": 1454,
+   "other": 779,
+   "valid": 24665,
+   "rejected": 36,
+   "voted": 24701,
+   "registered": 39371,
+   "turnout": 62.74,
+   "candidates": [
+    {
+     "name": "Donegal Wilson",
+     "party": "Conservative Party",
+     "votes": 11935,
+     "pct": 48.39,
+     "incumbent": false
+    },
+    {
+     "name": "Roly Russell",
+     "party": "BC NDP",
+     "votes": 10497,
+     "pct": 42.56,
+     "incumbent": true
+    },
+    {
+     "name": "Kevin Eastwood",
+     "party": "BC Green Party",
+     "votes": 1454,
+     "pct": 5.89,
+     "incumbent": false
+    },
+    {
+     "name": "Sean Taylor",
+     "party": "Independent",
+     "votes": 779,
+     "pct": 3.16,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Bulkley Valley-Stikine",
+   "ndp": 3709,
+   "cp": 4992,
+   "gp": 604,
+   "other": 239,
+   "valid": 9544,
+   "rejected": 25,
+   "voted": 9569,
+   "registered": 14895,
+   "turnout": 64.24,
+   "candidates": [
+    {
+     "name": "Sharon L. Hartwell",
+     "party": "Conservative Party",
+     "votes": 4992,
+     "pct": 52.31,
+     "incumbent": false
+    },
+    {
+     "name": "Nathan Cullen",
+     "party": "BC NDP",
+     "votes": 3709,
+     "pct": 38.86,
+     "incumbent": true
+    },
+    {
+     "name": "Gamlakyeltxw Wilhelm Marsden",
+     "party": "BC Green Party",
+     "votes": 604,
+     "pct": 6.33,
+     "incumbent": false
+    },
+    {
+     "name": "Rod Taylor",
+     "party": "Christian Heritage Party of B.C.",
+     "votes": 239,
+     "pct": 2.5,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Burnaby Centre",
+   "ndp": 9780,
+   "cp": 7294,
+   "gp": 0,
+   "other": 0,
+   "valid": 17074,
+   "rejected": 108,
+   "voted": 17182,
+   "registered": 34290,
+   "turnout": 50.11,
+   "candidates": [
+    {
+     "name": "Anne Kang",
+     "party": "BC NDP",
+     "votes": 9780,
+     "pct": 57.28,
+     "incumbent": true
+    },
+    {
+     "name": "Dharam Kajal",
+     "party": "Conservative Party",
+     "votes": 7294,
+     "pct": 42.72,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Burnaby East",
+   "ndp": 10490,
+   "cp": 8198,
+   "gp": 1544,
+   "other": 0,
+   "valid": 20232,
+   "rejected": 41,
+   "voted": 20273,
+   "registered": 36896,
+   "turnout": 54.95,
+   "candidates": [
+    {
+     "name": "Reah Arora",
+     "party": "BC NDP",
+     "votes": 10490,
+     "pct": 51.85,
+     "incumbent": false
+    },
+    {
+     "name": "Simon Chandler",
+     "party": "Conservative Party",
+     "votes": 8198,
+     "pct": 40.52,
+     "incumbent": false
+    },
+    {
+     "name": "Tara Shushtarian",
+     "party": "BC Green Party",
+     "votes": 1544,
+     "pct": 7.63,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Burnaby-New Westminster",
+   "ndp": 10647,
+   "cp": 6161,
+   "gp": 0,
+   "other": 940,
+   "valid": 17748,
+   "rejected": 89,
+   "voted": 17837,
+   "registered": 34794,
+   "turnout": 51.26,
+   "candidates": [
+    {
+     "name": "Raj Chouhan",
+     "party": "BC NDP",
+     "votes": 10647,
+     "pct": 59.99,
+     "incumbent": true
+    },
+    {
+     "name": "Deepak Suri",
+     "party": "Conservative Party",
+     "votes": 6161,
+     "pct": 34.71,
+     "incumbent": false
+    },
+    {
+     "name": "Daniel Kofi Ampong",
+     "party": "Independent",
+     "votes": 940,
+     "pct": 5.3,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Burnaby North",
+   "ndp": 10724,
+   "cp": 8658,
+   "gp": 0,
+   "other": 754,
+   "valid": 20136,
+   "rejected": 47,
+   "voted": 20183,
+   "registered": 37785,
+   "turnout": 53.42,
+   "candidates": [
+    {
+     "name": "Janet Routledge",
+     "party": "BC NDP",
+     "votes": 10724,
+     "pct": 53.26,
+     "incumbent": true
+    },
+    {
+     "name": "Michael Wu",
+     "party": "Conservative Party",
+     "votes": 8658,
+     "pct": 43.0,
+     "incumbent": false
+    },
+    {
+     "name": "Martin Kendell",
+     "party": "Independent",
+     "votes": 754,
+     "pct": 3.74,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Burnaby South-Metrotown",
+   "ndp": 7560,
+   "cp": 6373,
+   "gp": 960,
+   "other": 432,
+   "valid": 15325,
+   "rejected": 32,
+   "voted": 15357,
+   "registered": 31434,
+   "turnout": 48.85,
+   "candidates": [
+    {
+     "name": "Paul Choi",
+     "party": "BC NDP",
+     "votes": 7560,
+     "pct": 49.33,
+     "incumbent": false
+    },
+    {
+     "name": "Han Lee",
+     "party": "Conservative Party",
+     "votes": 6373,
+     "pct": 41.59,
+     "incumbent": false
+    },
+    {
+     "name": "Carrie McLaren",
+     "party": "BC Green Party",
+     "votes": 960,
+     "pct": 6.26,
+     "incumbent": false
+    },
+    {
+     "name": "Meiling Chia",
+     "party": "Unaffiliated",
+     "votes": 290,
+     "pct": 1.89,
+     "incumbent": false
+    },
+    {
+     "name": "MichaelAngelo Abc Robinhood",
+     "party": "Independent",
+     "votes": 142,
+     "pct": 0.93,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Cariboo-Chilcotin",
+   "ndp": 5992,
+   "cp": 13714,
+   "gp": 0,
+   "other": 0,
+   "valid": 19706,
+   "rejected": 92,
+   "voted": 19798,
+   "registered": 32975,
+   "turnout": 60.04,
+   "candidates": [
+    {
+     "name": "Lorne Doerkson",
+     "party": "Conservative Party",
+     "votes": 13714,
+     "pct": 69.59,
+     "incumbent": true
+    },
+    {
+     "name": "Michael Moses",
+     "party": "BC NDP",
+     "votes": 5992,
+     "pct": 30.41,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Chilliwack-Cultus Lake",
+   "ndp": 11366,
+   "cp": 13656,
+   "gp": 0,
+   "other": 0,
+   "valid": 25022,
+   "rejected": 83,
+   "voted": 25105,
+   "registered": 41587,
+   "turnout": 60.37,
+   "candidates": [
+    {
+     "name": "A'aliya Warbus",
+     "party": "Conservative Party",
+     "votes": 13656,
+     "pct": 54.58,
+     "incumbent": false
+    },
+    {
+     "name": "Kelli Paddon",
+     "party": "BC NDP",
+     "votes": 11366,
+     "pct": 45.42,
+     "incumbent": true
+    }
+   ]
+  },
+  {
+   "name": "Chilliwack North",
+   "ndp": 8125,
+   "cp": 11776,
+   "gp": 1187,
+   "other": 487,
+   "valid": 21575,
+   "rejected": 26,
+   "voted": 21601,
+   "registered": 39227,
+   "turnout": 55.07,
+   "candidates": [
+    {
+     "name": "Heather Maahs",
+     "party": "Conservative Party",
+     "votes": 11776,
+     "pct": 54.58,
+     "incumbent": false
+    },
+    {
+     "name": "Dan Coulter",
+     "party": "BC NDP",
+     "votes": 8125,
+     "pct": 37.66,
+     "incumbent": true
+    },
+    {
+     "name": "Tim Cooper",
+     "party": "BC Green Party",
+     "votes": 1187,
+     "pct": 5.5,
+     "incumbent": false
+    },
+    {
+     "name": "Dan Grice",
+     "party": "Independent",
+     "votes": 487,
+     "pct": 2.26,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Columbia River-Revelstoke",
+   "ndp": 8098,
+   "cp": 8768,
+   "gp": 1430,
+   "other": 0,
+   "valid": 18296,
+   "rejected": 41,
+   "voted": 18337,
+   "registered": 31366,
+   "turnout": 58.46,
+   "candidates": [
+    {
+     "name": "Scott McInnis",
+     "party": "Conservative Party",
+     "votes": 8768,
+     "pct": 47.92,
+     "incumbent": false
+    },
+    {
+     "name": "Andrea Dunlop",
+     "party": "BC NDP",
+     "votes": 8098,
+     "pct": 44.26,
+     "incumbent": false
+    },
+    {
+     "name": "Calvin Beauchesne",
+     "party": "BC Green Party",
+     "votes": 1430,
+     "pct": 7.82,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Coquitlam-Burke Mountain",
+   "ndp": 11020,
+   "cp": 10652,
+   "gp": 0,
+   "other": 0,
+   "valid": 21672,
+   "rejected": 94,
+   "voted": 21766,
+   "registered": 39801,
+   "turnout": 54.69,
+   "candidates": [
+    {
+     "name": "Jodie Wickens",
+     "party": "BC NDP",
+     "votes": 11020,
+     "pct": 50.85,
+     "incumbent": false
+    },
+    {
+     "name": "Stephen Frolek",
+     "party": "Conservative Party",
+     "votes": 10652,
+     "pct": 49.15,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Coquitlam-Maillardville",
+   "ndp": 11972,
+   "cp": 9146,
+   "gp": 1461,
+   "other": 535,
+   "valid": 23114,
+   "rejected": 26,
+   "voted": 23140,
+   "registered": 40666,
+   "turnout": 56.9,
+   "candidates": [
+    {
+     "name": "Jennifer Blatherwick",
+     "party": "BC NDP",
+     "votes": 11972,
+     "pct": 51.8,
+     "incumbent": false
+    },
+    {
+     "name": "Hamed Najafi",
+     "party": "Conservative Party",
+     "votes": 9146,
+     "pct": 39.57,
+     "incumbent": false
+    },
+    {
+     "name": "Nicola Spurling",
+     "party": "BC Green Party",
+     "votes": 1461,
+     "pct": 6.32,
+     "incumbent": false
+    },
+    {
+     "name": "Ken Holowanky",
+     "party": "Independent",
+     "votes": 535,
+     "pct": 2.31,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Courtenay-Comox",
+   "ndp": 13388,
+   "cp": 13481,
+   "gp": 7202,
+   "other": 647,
+   "valid": 34718,
+   "rejected": 37,
+   "voted": 34755,
+   "registered": 50583,
+   "turnout": 68.71,
+   "candidates": [
+    {
+     "name": "Brennan Day",
+     "party": "Conservative Party",
+     "votes": 13481,
+     "pct": 38.83,
+     "incumbent": false
+    },
+    {
+     "name": "Ronna-Rae Leonard",
+     "party": "BC NDP",
+     "votes": 13388,
+     "pct": 38.56,
+     "incumbent": true
+    },
+    {
+     "name": "Arzeena Hamir",
+     "party": "BC Green Party",
+     "votes": 7202,
+     "pct": 20.74,
+     "incumbent": false
+    },
+    {
+     "name": "John Hedican",
+     "party": "Independent",
+     "votes": 504,
+     "pct": 1.45,
+     "incumbent": false
+    },
+    {
+     "name": "Devin Howell",
+     "party": "Independent",
+     "votes": 143,
+     "pct": 0.41,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Cowichan Valley",
+   "ndp": 11795,
+   "cp": 10946,
+   "gp": 5773,
+   "other": 604,
+   "valid": 29118,
+   "rejected": 39,
+   "voted": 29157,
+   "registered": 45901,
+   "turnout": 63.52,
+   "candidates": [
+    {
+     "name": "Debra Toporowski",
+     "party": "BC NDP",
+     "votes": 11795,
+     "pct": 40.51,
+     "incumbent": false
+    },
+    {
+     "name": "John Koury",
+     "party": "Conservative Party",
+     "votes": 10946,
+     "pct": 37.59,
+     "incumbent": false
+    },
+    {
+     "name": "Cammy Lockwood",
+     "party": "BC Green Party",
+     "votes": 5773,
+     "pct": 19.83,
+     "incumbent": false
+    },
+    {
+     "name": "Eden Haythornthwaite",
+     "party": "Independent",
+     "votes": 341,
+     "pct": 1.17,
+     "incumbent": false
+    },
+    {
+     "name": "Jon Coleman",
+     "party": "Unaffiliated",
+     "votes": 263,
+     "pct": 0.9,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Delta North",
+   "ndp": 10988,
+   "cp": 8381,
+   "gp": 1292,
+   "other": 177,
+   "valid": 20838,
+   "rejected": 38,
+   "voted": 20876,
+   "registered": 36062,
+   "turnout": 57.89,
+   "candidates": [
+    {
+     "name": "Ravi Kahlon",
+     "party": "BC NDP",
+     "votes": 10988,
+     "pct": 52.73,
+     "incumbent": true
+    },
+    {
+     "name": "Raj Veauli",
+     "party": "Conservative Party",
+     "votes": 8381,
+     "pct": 40.22,
+     "incumbent": false
+    },
+    {
+     "name": "Nick Dickinson-Wilde",
+     "party": "BC Green Party",
+     "votes": 1292,
+     "pct": 6.2,
+     "incumbent": false
+    },
+    {
+     "name": "Manqoosh Khan",
+     "party": "Freedom Party of BC",
+     "votes": 177,
+     "pct": 0.85,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Delta South",
+   "ndp": 11822,
+   "cp": 14491,
+   "gp": 0,
+   "other": 0,
+   "valid": 26313,
+   "rejected": 101,
+   "voted": 26414,
+   "registered": 40611,
+   "turnout": 65.04,
+   "candidates": [
+    {
+     "name": "Ian Paton",
+     "party": "Conservative Party",
+     "votes": 14491,
+     "pct": 55.07,
+     "incumbent": true
+    },
+    {
+     "name": "Jason McCormick",
+     "party": "BC NDP",
+     "votes": 11822,
+     "pct": 44.93,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Esquimalt-Colwood",
+   "ndp": 15238,
+   "cp": 8652,
+   "gp": 5716,
+   "other": 0,
+   "valid": 29606,
+   "rejected": 37,
+   "voted": 29643,
+   "registered": 46799,
+   "turnout": 63.34,
+   "candidates": [
+    {
+     "name": "Darlene Rotchford",
+     "party": "BC NDP",
+     "votes": 15238,
+     "pct": 51.47,
+     "incumbent": false
+    },
+    {
+     "name": "John Wilson",
+     "party": "Conservative Party",
+     "votes": 8652,
+     "pct": 29.22,
+     "incumbent": false
+    },
+    {
+     "name": "Camille Currie",
+     "party": "BC Green Party",
+     "votes": 5716,
+     "pct": 19.31,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Fraser-Nicola",
+   "ndp": 6917,
+   "cp": 10326,
+   "gp": 1761,
+   "other": 0,
+   "valid": 19004,
+   "rejected": 27,
+   "voted": 19031,
+   "registered": 33542,
+   "turnout": 56.74,
+   "candidates": [
+    {
+     "name": "Tony Luck",
+     "party": "Conservative Party",
+     "votes": 10326,
+     "pct": 54.34,
+     "incumbent": false
+    },
+    {
+     "name": "Francyne Joe",
+     "party": "BC NDP",
+     "votes": 6917,
+     "pct": 36.4,
+     "incumbent": false
+    },
+    {
+     "name": "Jonah Timms",
+     "party": "BC Green Party",
+     "votes": 1761,
+     "pct": 9.27,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Juan de Fuca-Malahat",
+   "ndp": 9308,
+   "cp": 9167,
+   "gp": 5522,
+   "other": 0,
+   "valid": 23997,
+   "rejected": 32,
+   "voted": 24029,
+   "registered": 37078,
+   "turnout": 64.81,
+   "candidates": [
+    {
+     "name": "Dana Lajeunesse",
+     "party": "BC NDP",
+     "votes": 9308,
+     "pct": 38.79,
+     "incumbent": false
+    },
+    {
+     "name": "Marina Sapozhnikov",
+     "party": "Conservative Party",
+     "votes": 9167,
+     "pct": 38.2,
+     "incumbent": false
+    },
+    {
+     "name": "David Evans",
+     "party": "BC Green Party",
+     "votes": 5522,
+     "pct": 23.01,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Kamloops Centre",
+   "ndp": 10369,
+   "cp": 12372,
+   "gp": 2597,
+   "other": 0,
+   "valid": 25338,
+   "rejected": 36,
+   "voted": 25374,
+   "registered": 44059,
+   "turnout": 57.59,
+   "candidates": [
+    {
+     "name": "Peter Milobar",
+     "party": "Conservative Party",
+     "votes": 12372,
+     "pct": 48.83,
+     "incumbent": true
+    },
+    {
+     "name": "Kamal Grewal",
+     "party": "BC NDP",
+     "votes": 10369,
+     "pct": 40.92,
+     "incumbent": false
+    },
+    {
+     "name": "Randy Sunderman",
+     "party": "BC Green Party",
+     "votes": 2597,
+     "pct": 10.25,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Kamloops-North Thompson",
+   "ndp": 9874,
+   "cp": 17930,
+   "gp": 2209,
+   "other": 0,
+   "valid": 30013,
+   "rejected": 51,
+   "voted": 30064,
+   "registered": 48598,
+   "turnout": 61.86,
+   "candidates": [
+    {
+     "name": "Ward Stamer",
+     "party": "Conservative Party",
+     "votes": 17930,
+     "pct": 59.74,
+     "incumbent": false
+    },
+    {
+     "name": "Maddi Genn",
+     "party": "BC NDP",
+     "votes": 9874,
+     "pct": 32.9,
+     "incumbent": false
+    },
+    {
+     "name": "Tristan Cavers",
+     "party": "BC Green Party",
+     "votes": 2209,
+     "pct": 7.36,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Kelowna Centre",
+   "ndp": 10993,
+   "cp": 11033,
+   "gp": 1111,
+   "other": 2613,
+   "valid": 25750,
+   "rejected": 33,
+   "voted": 25783,
+   "registered": 45642,
+   "turnout": 56.49,
+   "candidates": [
+    {
+     "name": "Kristina Loewen",
+     "party": "Conservative Party",
+     "votes": 11033,
+     "pct": 42.85,
+     "incumbent": false
+    },
+    {
+     "name": "Loyal Wooldridge",
+     "party": "BC NDP",
+     "votes": 10993,
+     "pct": 42.69,
+     "incumbent": false
+    },
+    {
+     "name": "Michael Humer",
+     "party": "Unaffiliated",
+     "votes": 2613,
+     "pct": 10.15,
+     "incumbent": false
+    },
+    {
+     "name": "Bryce Tippe",
+     "party": "BC Green Party",
+     "votes": 1111,
+     "pct": 4.31,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Kelowna-Lake Country-Coldstream",
+   "ndp": 9350,
+   "cp": 14303,
+   "gp": 1151,
+   "other": 1724,
+   "valid": 26528,
+   "rejected": 32,
+   "voted": 26560,
+   "registered": 45598,
+   "turnout": 58.25,
+   "candidates": [
+    {
+     "name": "Tara Armstrong",
+     "party": "Conservative Party",
+     "votes": 14303,
+     "pct": 53.92,
+     "incumbent": false
+    },
+    {
+     "name": "Anna Warwick Sears",
+     "party": "BC NDP",
+     "votes": 9350,
+     "pct": 35.25,
+     "incumbent": false
+    },
+    {
+     "name": "Kevin Kraft",
+     "party": "Independent",
+     "votes": 1724,
+     "pct": 6.5,
+     "incumbent": false
+    },
+    {
+     "name": "Andrew Rose",
+     "party": "BC Green Party",
+     "votes": 1151,
+     "pct": 4.34,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Kelowna-Mission",
+   "ndp": 8913,
+   "cp": 14071,
+   "gp": 1349,
+   "other": 2996,
+   "valid": 27329,
+   "rejected": 43,
+   "voted": 27372,
+   "registered": 45617,
+   "turnout": 60.0,
+   "candidates": [
+    {
+     "name": "Gavin Dew",
+     "party": "Conservative Party",
+     "votes": 14071,
+     "pct": 51.49,
+     "incumbent": false
+    },
+    {
+     "name": "Harpreet Badohal",
+     "party": "BC NDP",
+     "votes": 8913,
+     "pct": 32.61,
+     "incumbent": false
+    },
+    {
+     "name": "Ashley Ramsay",
+     "party": "Unaffiliated",
+     "votes": 2996,
+     "pct": 10.96,
+     "incumbent": false
+    },
+    {
+     "name": "Billy Young",
+     "party": "BC Green Party",
+     "votes": 1349,
+     "pct": 4.94,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Kootenay Central",
+   "ndp": 8716,
+   "cp": 6967,
+   "gp": 4123,
+   "other": 2190,
+   "valid": 21996,
+   "rejected": 38,
+   "voted": 22034,
+   "registered": 34278,
+   "turnout": 64.28,
+   "candidates": [
+    {
+     "name": "Brittny Anderson",
+     "party": "BC NDP",
+     "votes": 8716,
+     "pct": 39.63,
+     "incumbent": true
+    },
+    {
+     "name": "Kelly Vandenberghe",
+     "party": "Conservative Party",
+     "votes": 6967,
+     "pct": 31.67,
+     "incumbent": false
+    },
+    {
+     "name": "Nicole Charlwood",
+     "party": "BC Green Party",
+     "votes": 4123,
+     "pct": 18.74,
+     "incumbent": false
+    },
+    {
+     "name": "Corinne Mori",
+     "party": "Independent",
+     "votes": 2190,
+     "pct": 9.96,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Kootenay-Monashee",
+   "ndp": 10202,
+   "cp": 7616,
+   "gp": 1785,
+   "other": 0,
+   "valid": 19603,
+   "rejected": 43,
+   "voted": 19646,
+   "registered": 32732,
+   "turnout": 60.02,
+   "candidates": [
+    {
+     "name": "Steve Morissette",
+     "party": "BC NDP",
+     "votes": 10202,
+     "pct": 52.04,
+     "incumbent": false
+    },
+    {
+     "name": "Glen Byle",
+     "party": "Conservative Party",
+     "votes": 7616,
+     "pct": 38.85,
+     "incumbent": false
+    },
+    {
+     "name": "Donovan Cavers",
+     "party": "BC Green Party",
+     "votes": 1785,
+     "pct": 9.11,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Kootenay-Rockies",
+   "ndp": 4184,
+   "cp": 8217,
+   "gp": 996,
+   "other": 5844,
+   "valid": 19241,
+   "rejected": 21,
+   "voted": 19262,
+   "registered": 31684,
+   "turnout": 60.79,
+   "candidates": [
+    {
+     "name": "Pete Davis",
+     "party": "Conservative Party",
+     "votes": 8217,
+     "pct": 42.71,
+     "incumbent": false
+    },
+    {
+     "name": "Tom Shypitka",
+     "party": "Independent",
+     "votes": 5844,
+     "pct": 30.37,
+     "incumbent": true
+    },
+    {
+     "name": "Sam Atwal",
+     "party": "BC NDP",
+     "votes": 4184,
+     "pct": 21.75,
+     "incumbent": false
+    },
+    {
+     "name": "Kerri Wall",
+     "party": "BC Green Party",
+     "votes": 996,
+     "pct": 5.18,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Ladysmith-Oceanside",
+   "ndp": 14144,
+   "cp": 12097,
+   "gp": 2292,
+   "other": 5559,
+   "valid": 34092,
+   "rejected": 24,
+   "voted": 34116,
+   "registered": 49387,
+   "turnout": 69.08,
+   "candidates": [
+    {
+     "name": "Stephanie Higginson",
+     "party": "BC NDP",
+     "votes": 14144,
+     "pct": 41.49,
+     "incumbent": false
+    },
+    {
+     "name": "Brett Fee",
+     "party": "Conservative Party",
+     "votes": 12097,
+     "pct": 35.48,
+     "incumbent": false
+    },
+    {
+     "name": "Adam Walker",
+     "party": "Independent",
+     "votes": 5559,
+     "pct": 16.31,
+     "incumbent": true
+    },
+    {
+     "name": "Laura Ferreira",
+     "party": "BC Green Party",
+     "votes": 2292,
+     "pct": 6.72,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Langford-Highlands",
+   "ndp": 11444,
+   "cp": 8251,
+   "gp": 2368,
+   "other": 0,
+   "valid": 22063,
+   "rejected": 27,
+   "voted": 22090,
+   "registered": 37389,
+   "turnout": 59.08,
+   "candidates": [
+    {
+     "name": "Ravi Parmar",
+     "party": "BC NDP",
+     "votes": 11444,
+     "pct": 51.87,
+     "incumbent": true
+    },
+    {
+     "name": "Mike Harris",
+     "party": "Conservative Party",
+     "votes": 8251,
+     "pct": 37.4,
+     "incumbent": false
+    },
+    {
+     "name": "Erin Cassels",
+     "party": "BC Green Party",
+     "votes": 2368,
+     "pct": 10.73,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Langley-Abbotsford",
+   "ndp": 8691,
+   "cp": 14341,
+   "gp": 1434,
+   "other": 1304,
+   "valid": 25770,
+   "rejected": 66,
+   "voted": 25836,
+   "registered": 43448,
+   "turnout": 59.46,
+   "candidates": [
+    {
+     "name": "Harman Bhangu",
+     "party": "Conservative Party",
+     "votes": 14341,
+     "pct": 55.65,
+     "incumbent": false
+    },
+    {
+     "name": "John Aldag",
+     "party": "BC NDP",
+     "votes": 8691,
+     "pct": 33.73,
+     "incumbent": false
+    },
+    {
+     "name": "Melissa Snazell",
+     "party": "BC Green Party",
+     "votes": 1434,
+     "pct": 5.56,
+     "incumbent": false
+    },
+    {
+     "name": "Karen Long",
+     "party": "Independent",
+     "votes": 1104,
+     "pct": 4.28,
+     "incumbent": false
+    },
+    {
+     "name": "Alex Joehl",
+     "party": "Libertarian",
+     "votes": 200,
+     "pct": 0.78,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Langley-Walnut Grove",
+   "ndp": 10949,
+   "cp": 12121,
+   "gp": 1254,
+   "other": 134,
+   "valid": 24458,
+   "rejected": 27,
+   "voted": 24485,
+   "registered": 42213,
+   "turnout": 58.0,
+   "candidates": [
+    {
+     "name": "Misty Van Popta",
+     "party": "Conservative Party",
+     "votes": 12121,
+     "pct": 49.56,
+     "incumbent": false
+    },
+    {
+     "name": "Megan Dykeman",
+     "party": "BC NDP",
+     "votes": 10949,
+     "pct": 44.77,
+     "incumbent": true
+    },
+    {
+     "name": "Rylee Mac Lean",
+     "party": "BC Green Party",
+     "votes": 1254,
+     "pct": 5.13,
+     "incumbent": false
+    },
+    {
+     "name": "Carlos Suarez Rubio",
+     "party": "Independent",
+     "votes": 134,
+     "pct": 0.55,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Langley-Willowbrook",
+   "ndp": 10112,
+   "cp": 10979,
+   "gp": 1670,
+   "other": 0,
+   "valid": 22761,
+   "rejected": 18,
+   "voted": 22779,
+   "registered": 41088,
+   "turnout": 55.44,
+   "candidates": [
+    {
+     "name": "Jody Toor",
+     "party": "Conservative Party",
+     "votes": 10979,
+     "pct": 48.24,
+     "incumbent": false
+    },
+    {
+     "name": "Andrew Mercier",
+     "party": "BC NDP",
+     "votes": 10112,
+     "pct": 44.43,
+     "incumbent": true
+    },
+    {
+     "name": "Petrina Arnason",
+     "party": "BC Green Party",
+     "votes": 1670,
+     "pct": 7.34,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Maple Ridge East",
+   "ndp": 11961,
+   "cp": 12058,
+   "gp": 1626,
+   "other": 0,
+   "valid": 25645,
+   "rejected": 49,
+   "voted": 25694,
+   "registered": 44335,
+   "turnout": 57.95,
+   "candidates": [
+    {
+     "name": "Lawrence Mok",
+     "party": "Conservative Party",
+     "votes": 12058,
+     "pct": 47.02,
+     "incumbent": false
+    },
+    {
+     "name": "Bob D'Eith",
+     "party": "BC NDP",
+     "votes": 11961,
+     "pct": 46.64,
+     "incumbent": true
+    },
+    {
+     "name": "Kylee Williams",
+     "party": "BC Green Party",
+     "votes": 1626,
+     "pct": 6.34,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Maple Ridge-Pitt Meadows",
+   "ndp": 14480,
+   "cp": 11901,
+   "gp": 0,
+   "other": 0,
+   "valid": 26381,
+   "rejected": 94,
+   "voted": 26475,
+   "registered": 44850,
+   "turnout": 59.03,
+   "candidates": [
+    {
+     "name": "Lisa Beare",
+     "party": "BC NDP",
+     "votes": 14480,
+     "pct": 54.89,
+     "incumbent": true
+    },
+    {
+     "name": "Mike Morden",
+     "party": "Conservative Party",
+     "votes": 11901,
+     "pct": 45.11,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Mid Island-Pacific Rim",
+   "ndp": 14042,
+   "cp": 11366,
+   "gp": 3402,
+   "other": 0,
+   "valid": 28810,
+   "rejected": 58,
+   "voted": 28868,
+   "registered": 47816,
+   "turnout": 60.37,
+   "candidates": [
+    {
+     "name": "Josie Osborne",
+     "party": "BC NDP",
+     "votes": 14042,
+     "pct": 48.74,
+     "incumbent": true
+    },
+    {
+     "name": "Adam Hayduk",
+     "party": "Conservative Party",
+     "votes": 11366,
+     "pct": 39.45,
+     "incumbent": false
+    },
+    {
+     "name": "Ross Reid",
+     "party": "BC Green Party",
+     "votes": 3402,
+     "pct": 11.81,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Nanaimo-Gabriola Island",
+   "ndp": 14663,
+   "cp": 9633,
+   "gp": 3502,
+   "other": 0,
+   "valid": 27798,
+   "rejected": 57,
+   "voted": 27855,
+   "registered": 46454,
+   "turnout": 59.96,
+   "candidates": [
+    {
+     "name": "Sheila Malcolmson",
+     "party": "BC NDP",
+     "votes": 14663,
+     "pct": 52.75,
+     "incumbent": true
+    },
+    {
+     "name": "Dale Parker",
+     "party": "Conservative Party",
+     "votes": 9633,
+     "pct": 34.65,
+     "incumbent": false
+    },
+    {
+     "name": "Shirley Lambrecht",
+     "party": "BC Green Party",
+     "votes": 3502,
+     "pct": 12.6,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Nanaimo-Lantzville",
+   "ndp": 15307,
+   "cp": 11687,
+   "gp": 2586,
+   "other": 0,
+   "valid": 29580,
+   "rejected": 40,
+   "voted": 29620,
+   "registered": 44879,
+   "turnout": 66.0,
+   "candidates": [
+    {
+     "name": "George Anderson",
+     "party": "BC NDP",
+     "votes": 15307,
+     "pct": 51.75,
+     "incumbent": false
+    },
+    {
+     "name": "Gwen O'Mahony",
+     "party": "Conservative Party",
+     "votes": 11687,
+     "pct": 39.51,
+     "incumbent": false
+    },
+    {
+     "name": "Lia Versaevel",
+     "party": "BC Green Party",
+     "votes": 2586,
+     "pct": 8.74,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Nechako Lakes",
+   "ndp": 3167,
+   "cp": 7851,
+   "gp": 622,
+   "other": 0,
+   "valid": 11640,
+   "rejected": 25,
+   "voted": 11665,
+   "registered": 18407,
+   "turnout": 63.37,
+   "candidates": [
+    {
+     "name": "John Rustad",
+     "party": "Conservative Party",
+     "votes": 7851,
+     "pct": 67.45,
+     "incumbent": true
+    },
+    {
+     "name": "Murphy Abraham",
+     "party": "BC NDP",
+     "votes": 3167,
+     "pct": 27.21,
+     "incumbent": false
+    },
+    {
+     "name": "Douglas Gook",
+     "party": "BC Green Party",
+     "votes": 622,
+     "pct": 5.34,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "New Westminster-Coquitlam",
+   "ndp": 12757,
+   "cp": 6438,
+   "gp": 2380,
+   "other": 0,
+   "valid": 21575,
+   "rejected": 56,
+   "voted": 21631,
+   "registered": 40020,
+   "turnout": 54.05,
+   "candidates": [
+    {
+     "name": "Jennifer Whiteside",
+     "party": "BC NDP",
+     "votes": 12757,
+     "pct": 59.13,
+     "incumbent": true
+    },
+    {
+     "name": "Ndellie Massey",
+     "party": "Conservative Party",
+     "votes": 6438,
+     "pct": 29.84,
+     "incumbent": false
+    },
+    {
+     "name": "Maureen Curran",
+     "party": "BC Green Party",
+     "votes": 2380,
+     "pct": 11.03,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "North Coast-Haida Gwaii",
+   "ndp": 4863,
+   "cp": 2628,
+   "gp": 0,
+   "other": 0,
+   "valid": 7491,
+   "rejected": 51,
+   "voted": 7542,
+   "registered": 15518,
+   "turnout": 48.6,
+   "candidates": [
+    {
+     "name": "Tamara Davidson",
+     "party": "BC NDP",
+     "votes": 4863,
+     "pct": 64.92,
+     "incumbent": false
+    },
+    {
+     "name": "Christopher Jason Sankey",
+     "party": "Conservative Party",
+     "votes": 2628,
+     "pct": 35.08,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "North Island",
+   "ndp": 13461,
+   "cp": 14100,
+   "gp": 2397,
+   "other": 0,
+   "valid": 29958,
+   "rejected": 31,
+   "voted": 29989,
+   "registered": 48249,
+   "turnout": 62.15,
+   "candidates": [
+    {
+     "name": "Anna Kindy",
+     "party": "Conservative Party",
+     "votes": 14100,
+     "pct": 47.07,
+     "incumbent": false
+    },
+    {
+     "name": "Michele Babchuk",
+     "party": "BC NDP",
+     "votes": 13461,
+     "pct": 44.93,
+     "incumbent": true
+    },
+    {
+     "name": "Nic Dedeluk",
+     "party": "BC Green Party",
+     "votes": 2397,
+     "pct": 8.0,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "North Vancouver-Lonsdale",
+   "ndp": 16759,
+   "cp": 9073,
+   "gp": 0,
+   "other": 0,
+   "valid": 25832,
+   "rejected": 107,
+   "voted": 25939,
+   "registered": 44034,
+   "turnout": 58.91,
+   "candidates": [
+    {
+     "name": "Bowinn Ma",
+     "party": "BC NDP",
+     "votes": 16759,
+     "pct": 64.88,
+     "incumbent": true
+    },
+    {
+     "name": "David Splett",
+     "party": "Conservative Party",
+     "votes": 9073,
+     "pct": 35.12,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "North Vancouver-Seymour",
+   "ndp": 16210,
+   "cp": 10995,
+   "gp": 1722,
+   "other": 1794,
+   "valid": 30721,
+   "rejected": 39,
+   "voted": 30760,
+   "registered": 46159,
+   "turnout": 66.64,
+   "candidates": [
+    {
+     "name": "Susie Chant",
+     "party": "BC NDP",
+     "votes": 16210,
+     "pct": 52.77,
+     "incumbent": true
+    },
+    {
+     "name": "Sam Chandola",
+     "party": "Conservative Party",
+     "votes": 10995,
+     "pct": 35.79,
+     "incumbent": false
+    },
+    {
+     "name": "Mitchell Baker",
+     "party": "Independent",
+     "votes": 1794,
+     "pct": 5.84,
+     "incumbent": false
+    },
+    {
+     "name": "Subhadarshi Tripathy",
+     "party": "BC Green Party",
+     "votes": 1722,
+     "pct": 5.61,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Oak Bay-Gordon Head",
+   "ndp": 14519,
+   "cp": 8542,
+   "gp": 6509,
+   "other": 0,
+   "valid": 29570,
+   "rejected": 55,
+   "voted": 29625,
+   "registered": 42442,
+   "turnout": 69.8,
+   "candidates": [
+    {
+     "name": "Diana Gibson",
+     "party": "BC NDP",
+     "votes": 14519,
+     "pct": 49.1,
+     "incumbent": false
+    },
+    {
+     "name": "Stephen Andrew",
+     "party": "Conservative Party",
+     "votes": 8542,
+     "pct": 28.89,
+     "incumbent": false
+    },
+    {
+     "name": "Lisa Gunderson",
+     "party": "BC Green Party",
+     "votes": 6509,
+     "pct": 22.01,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Peace River North",
+   "ndp": 828,
+   "cp": 11213,
+   "gp": 0,
+   "other": 3038,
+   "valid": 15079,
+   "rejected": 18,
+   "voted": 15097,
+   "registered": 26413,
+   "turnout": 57.16,
+   "candidates": [
+    {
+     "name": "Jordan Kealy",
+     "party": "Conservative Party",
+     "votes": 11213,
+     "pct": 74.36,
+     "incumbent": false
+    },
+    {
+     "name": "Dan Davies",
+     "party": "Independent",
+     "votes": 3038,
+     "pct": 20.15,
+     "incumbent": true
+    },
+    {
+     "name": "Ian McMahon",
+     "party": "BC NDP",
+     "votes": 828,
+     "pct": 5.49,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Peace River South",
+   "ndp": 576,
+   "cp": 7182,
+   "gp": 0,
+   "other": 2525,
+   "valid": 10283,
+   "rejected": 15,
+   "voted": 10298,
+   "registered": 18206,
+   "turnout": 56.56,
+   "candidates": [
+    {
+     "name": "Larry Neufeld",
+     "party": "Conservative Party",
+     "votes": 7182,
+     "pct": 69.84,
+     "incumbent": false
+    },
+    {
+     "name": "Mike Bernier",
+     "party": "Unaffiliated",
+     "votes": 2525,
+     "pct": 24.56,
+     "incumbent": true
+    },
+    {
+     "name": "Marshall Bigsby",
+     "party": "BC NDP",
+     "votes": 576,
+     "pct": 5.6,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Penticton-Summerland",
+   "ndp": 11298,
+   "cp": 11615,
+   "gp": 1472,
+   "other": 3691,
+   "valid": 28076,
+   "rejected": 29,
+   "voted": 28105,
+   "registered": 45707,
+   "turnout": 61.49,
+   "candidates": [
+    {
+     "name": "Amelia Boultbee",
+     "party": "Conservative Party",
+     "votes": 11615,
+     "pct": 41.37,
+     "incumbent": false
+    },
+    {
+     "name": "Tina Lee",
+     "party": "BC NDP",
+     "votes": 11298,
+     "pct": 40.24,
+     "incumbent": false
+    },
+    {
+     "name": "Tracy St Claire",
+     "party": "Unaffiliated",
+     "votes": 2720,
+     "pct": 9.69,
+     "incumbent": false
+    },
+    {
+     "name": "Bradley Bartsch",
+     "party": "BC Green Party",
+     "votes": 1472,
+     "pct": 5.24,
+     "incumbent": false
+    },
+    {
+     "name": "Roger Harrington",
+     "party": "Independent",
+     "votes": 827,
+     "pct": 2.95,
+     "incumbent": false
+    },
+    {
+     "name": "Anna Paddon",
+     "party": "Independent",
+     "votes": 144,
+     "pct": 0.51,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Port Coquitlam",
+   "ndp": 13843,
+   "cp": 9967,
+   "gp": 1644,
+   "other": 244,
+   "valid": 25698,
+   "rejected": 38,
+   "voted": 25736,
+   "registered": 44601,
+   "turnout": 57.7,
+   "candidates": [
+    {
+     "name": "Mike Farnworth",
+     "party": "BC NDP",
+     "votes": 13843,
+     "pct": 53.87,
+     "incumbent": true
+    },
+    {
+     "name": "Keenan Adams",
+     "party": "Conservative Party",
+     "votes": 9967,
+     "pct": 38.79,
+     "incumbent": false
+    },
+    {
+     "name": "Adam Bremner-Akins",
+     "party": "BC Green Party",
+     "votes": 1644,
+     "pct": 6.4,
+     "incumbent": false
+    },
+    {
+     "name": "Lewis Dahlby",
+     "party": "Libertarian",
+     "votes": 244,
+     "pct": 0.95,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Port Moody-Burquitlam",
+   "ndp": 13488,
+   "cp": 10493,
+   "gp": 1927,
+   "other": 0,
+   "valid": 25908,
+   "rejected": 45,
+   "voted": 25953,
+   "registered": 44199,
+   "turnout": 58.72,
+   "candidates": [
+    {
+     "name": "Rick Glumac",
+     "party": "BC NDP",
+     "votes": 13488,
+     "pct": 52.06,
+     "incumbent": true
+    },
+    {
+     "name": "Kerry van Aswegen",
+     "party": "Conservative Party",
+     "votes": 10493,
+     "pct": 40.5,
+     "incumbent": false
+    },
+    {
+     "name": "Samantha Agtarap",
+     "party": "BC Green Party",
+     "votes": 1927,
+     "pct": 7.44,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Powell River-Sunshine Coast",
+   "ndp": 14474,
+   "cp": 10409,
+   "gp": 3932,
+   "other": 356,
+   "valid": 29171,
+   "rejected": 27,
+   "voted": 29198,
+   "registered": 44009,
+   "turnout": 66.35,
+   "candidates": [
+    {
+     "name": "Randene Neill",
+     "party": "BC NDP",
+     "votes": 14474,
+     "pct": 49.62,
+     "incumbent": false
+    },
+    {
+     "name": "Chris Moore",
+     "party": "Conservative Party",
+     "votes": 10409,
+     "pct": 35.68,
+     "incumbent": false
+    },
+    {
+     "name": "Chris Hergesheimer",
+     "party": "BC Green Party",
+     "votes": 3932,
+     "pct": 13.48,
+     "incumbent": false
+    },
+    {
+     "name": "Greg Reid",
+     "party": "Independent",
+     "votes": 356,
+     "pct": 1.22,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Prince George-Mackenzie",
+   "ndp": 5242,
+   "cp": 11307,
+   "gp": 1576,
+   "other": 435,
+   "valid": 18560,
+   "rejected": 28,
+   "voted": 18588,
+   "registered": 31239,
+   "turnout": 59.5,
+   "candidates": [
+    {
+     "name": "Kiel Giddens",
+     "party": "Conservative Party",
+     "votes": 11307,
+     "pct": 60.92,
+     "incumbent": false
+    },
+    {
+     "name": "Shar McCrory",
+     "party": "BC NDP",
+     "votes": 5242,
+     "pct": 28.24,
+     "incumbent": false
+    },
+    {
+     "name": "James Steidle",
+     "party": "BC Green Party",
+     "votes": 1576,
+     "pct": 8.49,
+     "incumbent": false
+    },
+    {
+     "name": "Rachael Weber",
+     "party": "Unaffiliated",
+     "votes": 435,
+     "pct": 2.34,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Prince George-North Cariboo",
+   "ndp": 3426,
+   "cp": 11430,
+   "gp": 866,
+   "other": 4394,
+   "valid": 20116,
+   "rejected": 18,
+   "voted": 20134,
+   "registered": 33572,
+   "turnout": 59.97,
+   "candidates": [
+    {
+     "name": "Sheldon Clare",
+     "party": "Conservative Party",
+     "votes": 11430,
+     "pct": 56.82,
+     "incumbent": false
+    },
+    {
+     "name": "Coralee Oakes",
+     "party": "Independent",
+     "votes": 4394,
+     "pct": 21.84,
+     "incumbent": true
+    },
+    {
+     "name": "Denice Bardua",
+     "party": "BC NDP",
+     "votes": 3426,
+     "pct": 17.03,
+     "incumbent": false
+    },
+    {
+     "name": "Randy Thompson",
+     "party": "BC Green Party",
+     "votes": 866,
+     "pct": 4.31,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Prince George-Valemount",
+   "ndp": 5709,
+   "cp": 9018,
+   "gp": 1612,
+   "other": 0,
+   "valid": 16339,
+   "rejected": 43,
+   "voted": 16382,
+   "registered": 30564,
+   "turnout": 53.6,
+   "candidates": [
+    {
+     "name": "Rosalyn Bird",
+     "party": "Conservative Party",
+     "votes": 9018,
+     "pct": 55.19,
+     "incumbent": false
+    },
+    {
+     "name": "Clay Pountney",
+     "party": "BC NDP",
+     "votes": 5709,
+     "pct": 34.94,
+     "incumbent": false
+    },
+    {
+     "name": "Gwen Johansson",
+     "party": "BC Green Party",
+     "votes": 1612,
+     "pct": 9.87,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Richmond-Bridgeport",
+   "ndp": 5921,
+   "cp": 9908,
+   "gp": 547,
+   "other": 651,
+   "valid": 17027,
+   "rejected": 54,
+   "voted": 17081,
+   "registered": 35127,
+   "turnout": 48.63,
+   "candidates": [
+    {
+     "name": "Teresa Wat",
+     "party": "Conservative Party",
+     "votes": 9908,
+     "pct": 58.19,
+     "incumbent": true
+    },
+    {
+     "name": "Linda Li",
+     "party": "BC NDP",
+     "votes": 5921,
+     "pct": 34.77,
+     "incumbent": false
+    },
+    {
+     "name": "Tamás Revóczi",
+     "party": "BC Green Party",
+     "votes": 547,
+     "pct": 3.21,
+     "incumbent": false
+    },
+    {
+     "name": "Glynnis Hoi Sum Chan",
+     "party": "Independent",
+     "votes": 519,
+     "pct": 3.05,
+     "incumbent": false
+    },
+    {
+     "name": "Charlie Smith",
+     "party": "Independent",
+     "votes": 132,
+     "pct": 0.78,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Richmond Centre",
+   "ndp": 5961,
+   "cp": 8426,
+   "gp": 0,
+   "other": 1821,
+   "valid": 16208,
+   "rejected": 61,
+   "voted": 16269,
+   "registered": 33153,
+   "turnout": 49.07,
+   "candidates": [
+    {
+     "name": "Hon Chan",
+     "party": "Conservative Party",
+     "votes": 8426,
+     "pct": 51.99,
+     "incumbent": false
+    },
+    {
+     "name": "Henry Yao",
+     "party": "BC NDP",
+     "votes": 5961,
+     "pct": 36.78,
+     "incumbent": true
+    },
+    {
+     "name": "Wendy Yuan",
+     "party": "Unaffiliated",
+     "votes": 1028,
+     "pct": 6.34,
+     "incumbent": false
+    },
+    {
+     "name": "Dickens Cheung",
+     "party": "Independent",
+     "votes": 556,
+     "pct": 3.43,
+     "incumbent": false
+    },
+    {
+     "name": "Sunny Ho",
+     "party": "Independent",
+     "votes": 237,
+     "pct": 1.46,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Richmond-Queensborough",
+   "ndp": 8713,
+   "cp": 10052,
+   "gp": 0,
+   "other": 979,
+   "valid": 19744,
+   "rejected": 63,
+   "voted": 19807,
+   "registered": 37364,
+   "turnout": 53.01,
+   "candidates": [
+    {
+     "name": "Steve Kooner",
+     "party": "Conservative Party",
+     "votes": 10052,
+     "pct": 50.91,
+     "incumbent": false
+    },
+    {
+     "name": "Aman Singh",
+     "party": "BC NDP",
+     "votes": 8713,
+     "pct": 44.13,
+     "incumbent": true
+    },
+    {
+     "name": "Cindy Wu",
+     "party": "Independent",
+     "votes": 721,
+     "pct": 3.65,
+     "incumbent": false
+    },
+    {
+     "name": "Errol E. Povah",
+     "party": "Independent",
+     "votes": 258,
+     "pct": 1.31,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Richmond-Steveston",
+   "ndp": 10332,
+   "cp": 9848,
+   "gp": 803,
+   "other": 2354,
+   "valid": 23337,
+   "rejected": 52,
+   "voted": 23389,
+   "registered": 39067,
+   "turnout": 59.87,
+   "candidates": [
+    {
+     "name": "Kelly Greene",
+     "party": "BC NDP",
+     "votes": 10332,
+     "pct": 44.27,
+     "incumbent": true
+    },
+    {
+     "name": "Michelle Mollineaux",
+     "party": "Conservative Party",
+     "votes": 9848,
+     "pct": 42.2,
+     "incumbent": false
+    },
+    {
+     "name": "Jackie Lee",
+     "party": "Unaffiliated",
+     "votes": 2354,
+     "pct": 10.09,
+     "incumbent": false
+    },
+    {
+     "name": "Elodie Vaudandaine",
+     "party": "BC Green Party",
+     "votes": 803,
+     "pct": 3.44,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Saanich North and the Islands",
+   "ndp": 10958,
+   "cp": 10145,
+   "gp": 12308,
+   "other": 635,
+   "valid": 34046,
+   "rejected": 41,
+   "voted": 34087,
+   "registered": 49437,
+   "turnout": 68.95,
+   "candidates": [
+    {
+     "name": "Rob Botterell",
+     "party": "BC Green Party",
+     "votes": 12308,
+     "pct": 36.15,
+     "incumbent": false
+    },
+    {
+     "name": "Sarah Riddell",
+     "party": "BC NDP",
+     "votes": 10958,
+     "pct": 32.19,
+     "incumbent": false
+    },
+    {
+     "name": "David Busch",
+     "party": "Conservative Party",
+     "votes": 10145,
+     "pct": 29.8,
+     "incumbent": false
+    },
+    {
+     "name": "Amy Haysom",
+     "party": "Independent",
+     "votes": 635,
+     "pct": 1.87,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Saanich South",
+   "ndp": 15338,
+   "cp": 10003,
+   "gp": 5485,
+   "other": 0,
+   "valid": 30826,
+   "rejected": 44,
+   "voted": 30870,
+   "registered": 45655,
+   "turnout": 67.62,
+   "candidates": [
+    {
+     "name": "Lana Popham",
+     "party": "BC NDP",
+     "votes": 15338,
+     "pct": 49.76,
+     "incumbent": true
+    },
+    {
+     "name": "Adam Kubel",
+     "party": "Conservative Party",
+     "votes": 10003,
+     "pct": 32.45,
+     "incumbent": false
+    },
+    {
+     "name": "Ned Taylor",
+     "party": "BC Green Party",
+     "votes": 5485,
+     "pct": 17.79,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Salmon Arm-Shuswap",
+   "ndp": 9677,
+   "cp": 16566,
+   "gp": 2250,
+   "other": 3295,
+   "valid": 31788,
+   "rejected": 31,
+   "voted": 31819,
+   "registered": 51806,
+   "turnout": 61.42,
+   "candidates": [
+    {
+     "name": "David L. Williams",
+     "party": "Conservative Party",
+     "votes": 16566,
+     "pct": 52.11,
+     "incumbent": false
+    },
+    {
+     "name": "Sylvia Lindgren",
+     "party": "BC NDP",
+     "votes": 9677,
+     "pct": 30.44,
+     "incumbent": false
+    },
+    {
+     "name": "Greg McCune",
+     "party": "Independent",
+     "votes": 2922,
+     "pct": 9.19,
+     "incumbent": false
+    },
+    {
+     "name": "Jed Wiebe",
+     "party": "BC Green Party",
+     "votes": 2250,
+     "pct": 7.08,
+     "incumbent": false
+    },
+    {
+     "name": "Sherry Roy",
+     "party": "Independent",
+     "votes": 373,
+     "pct": 1.17,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Skeena",
+   "ndp": 5419,
+   "cp": 6243,
+   "gp": 406,
+   "other": 126,
+   "valid": 12194,
+   "rejected": 23,
+   "voted": 12217,
+   "registered": 21885,
+   "turnout": 55.82,
+   "candidates": [
+    {
+     "name": "Claire Rattée",
+     "party": "Conservative Party",
+     "votes": 6243,
+     "pct": 51.2,
+     "incumbent": false
+    },
+    {
+     "name": "Sarah Zimmerman",
+     "party": "BC NDP",
+     "votes": 5419,
+     "pct": 44.44,
+     "incumbent": false
+    },
+    {
+     "name": "Teri Young",
+     "party": "BC Green Party",
+     "votes": 406,
+     "pct": 3.33,
+     "incumbent": false
+    },
+    {
+     "name": "Irwin Jeffrey",
+     "party": "Christian Heritage Party of B.C.",
+     "votes": 126,
+     "pct": 1.03,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Surrey City Centre",
+   "ndp": 6726,
+   "cp": 6494,
+   "gp": 877,
+   "other": 307,
+   "valid": 14404,
+   "rejected": 26,
+   "voted": 14430,
+   "registered": 32195,
+   "turnout": 44.82,
+   "candidates": [
+    {
+     "name": "Amna Shah",
+     "party": "BC NDP",
+     "votes": 6726,
+     "pct": 46.7,
+     "incumbent": false
+    },
+    {
+     "name": "Zeeshan Wahla",
+     "party": "Conservative Party",
+     "votes": 6494,
+     "pct": 45.08,
+     "incumbent": false
+    },
+    {
+     "name": "Colin Boyd",
+     "party": "BC Green Party",
+     "votes": 877,
+     "pct": 6.09,
+     "incumbent": false
+    },
+    {
+     "name": "Saeed Naguib",
+     "party": "Independent",
+     "votes": 160,
+     "pct": 1.11,
+     "incumbent": false
+    },
+    {
+     "name": "Ryan Abbott",
+     "party": "Communist Party of BC",
+     "votes": 147,
+     "pct": 1.02,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Surrey-Cloverdale",
+   "ndp": 9682,
+   "cp": 10268,
+   "gp": 1150,
+   "other": 153,
+   "valid": 21253,
+   "rejected": 16,
+   "voted": 21269,
+   "registered": 38069,
+   "turnout": 55.87,
+   "candidates": [
+    {
+     "name": "Elenore Sturko",
+     "party": "Conservative Party",
+     "votes": 10268,
+     "pct": 48.31,
+     "incumbent": true
+    },
+    {
+     "name": "Mike Starchuk",
+     "party": "BC NDP",
+     "votes": 9682,
+     "pct": 45.56,
+     "incumbent": true
+    },
+    {
+     "name": "Pat McCutcheon",
+     "party": "BC Green Party",
+     "votes": 1150,
+     "pct": 5.41,
+     "incumbent": false
+    },
+    {
+     "name": "Judy Meilleur",
+     "party": "Freedom Party of BC",
+     "votes": 153,
+     "pct": 0.72,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Surrey-Fleetwood",
+   "ndp": 9923,
+   "cp": 9170,
+   "gp": 1321,
+   "other": 0,
+   "valid": 20414,
+   "rejected": 26,
+   "voted": 20440,
+   "registered": 37753,
+   "turnout": 54.14,
+   "candidates": [
+    {
+     "name": "Jagrup Brar",
+     "party": "BC NDP",
+     "votes": 9923,
+     "pct": 48.61,
+     "incumbent": true
+    },
+    {
+     "name": "Avtar Gill",
+     "party": "Conservative Party",
+     "votes": 9170,
+     "pct": 44.92,
+     "incumbent": false
+    },
+    {
+     "name": "Tim Binnema",
+     "party": "BC Green Party",
+     "votes": 1321,
+     "pct": 6.47,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Surrey-Guildford",
+   "ndp": 8947,
+   "cp": 8925,
+   "gp": 824,
+   "other": 370,
+   "valid": 19066,
+   "rejected": 24,
+   "voted": 19090,
+   "registered": 37612,
+   "turnout": 50.76,
+   "candidates": [
+    {
+     "name": "Garry Begg",
+     "party": "BC NDP",
+     "votes": 8947,
+     "pct": 46.93,
+     "incumbent": true
+    },
+    {
+     "name": "Honveer Singh Randhawa",
+     "party": "Conservative Party",
+     "votes": 8925,
+     "pct": 46.81,
+     "incumbent": false
+    },
+    {
+     "name": "Manjeet Singh Sahota",
+     "party": "BC Green Party",
+     "votes": 824,
+     "pct": 4.32,
+     "incumbent": false
+    },
+    {
+     "name": "Kabir Qurban",
+     "party": "Independent",
+     "votes": 370,
+     "pct": 1.94,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Surrey-Newton",
+   "ndp": 7924,
+   "cp": 6658,
+   "gp": 0,
+   "other": 904,
+   "valid": 15486,
+   "rejected": 36,
+   "voted": 15522,
+   "registered": 30549,
+   "turnout": 50.81,
+   "candidates": [
+    {
+     "name": "Jessie Sunner",
+     "party": "BC NDP",
+     "votes": 7924,
+     "pct": 51.17,
+     "incumbent": false
+    },
+    {
+     "name": "Tegjot Bal",
+     "party": "Conservative Party",
+     "votes": 6658,
+     "pct": 42.99,
+     "incumbent": false
+    },
+    {
+     "name": "Amrit Birring",
+     "party": "Freedom Party of BC",
+     "votes": 371,
+     "pct": 2.4,
+     "incumbent": false
+    },
+    {
+     "name": "Japreet Lehal",
+     "party": "Unaffiliated",
+     "votes": 344,
+     "pct": 2.22,
+     "incumbent": false
+    },
+    {
+     "name": "Joginder Singh Randhawa",
+     "party": "Independent",
+     "votes": 189,
+     "pct": 1.22,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Surrey North",
+   "ndp": 6795,
+   "cp": 7954,
+   "gp": 662,
+   "other": 287,
+   "valid": 15698,
+   "rejected": 33,
+   "voted": 15731,
+   "registered": 31511,
+   "turnout": 49.92,
+   "candidates": [
+    {
+     "name": "Mandeep Dhaliwal",
+     "party": "Conservative Party",
+     "votes": 7954,
+     "pct": 50.67,
+     "incumbent": false
+    },
+    {
+     "name": "Rachna Singh",
+     "party": "BC NDP",
+     "votes": 6795,
+     "pct": 43.29,
+     "incumbent": true
+    },
+    {
+     "name": "Sim Sandhu",
+     "party": "BC Green Party",
+     "votes": 662,
+     "pct": 4.22,
+     "incumbent": false
+    },
+    {
+     "name": "Kiran Hundal",
+     "party": "Freedom Party of BC",
+     "votes": 162,
+     "pct": 1.03,
+     "incumbent": false
+    },
+    {
+     "name": "Hobby Nijjar",
+     "party": "Independent",
+     "votes": 125,
+     "pct": 0.8,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Surrey-Panorama",
+   "ndp": 8472,
+   "cp": 8735,
+   "gp": 0,
+   "other": 404,
+   "valid": 17611,
+   "rejected": 41,
+   "voted": 17652,
+   "registered": 32742,
+   "turnout": 53.91,
+   "candidates": [
+    {
+     "name": "Bryan Tepper",
+     "party": "Conservative Party",
+     "votes": 8735,
+     "pct": 49.6,
+     "incumbent": false
+    },
+    {
+     "name": "Jinny Sims",
+     "party": "BC NDP",
+     "votes": 8472,
+     "pct": 48.11,
+     "incumbent": true
+    },
+    {
+     "name": "Paramjit Rai",
+     "party": "Freedom Party of BC",
+     "votes": 404,
+     "pct": 2.29,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Surrey-Serpentine River",
+   "ndp": 9347,
+   "cp": 9782,
+   "gp": 0,
+   "other": 554,
+   "valid": 19683,
+   "rejected": 39,
+   "voted": 19722,
+   "registered": 36196,
+   "turnout": 54.49,
+   "candidates": [
+    {
+     "name": "Linda Hepner",
+     "party": "Conservative Party",
+     "votes": 9782,
+     "pct": 49.7,
+     "incumbent": false
+    },
+    {
+     "name": "Baltej Singh Dhillon",
+     "party": "BC NDP",
+     "votes": 9347,
+     "pct": 47.49,
+     "incumbent": false
+    },
+    {
+     "name": "Jim McMurtry",
+     "party": "Independent",
+     "votes": 554,
+     "pct": 2.81,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Surrey South",
+   "ndp": 9136,
+   "cp": 13056,
+   "gp": 0,
+   "other": 0,
+   "valid": 22192,
+   "rejected": 119,
+   "voted": 22311,
+   "registered": 39633,
+   "turnout": 56.29,
+   "candidates": [
+    {
+     "name": "Brent Chapman",
+     "party": "Conservative Party",
+     "votes": 13056,
+     "pct": 58.83,
+     "incumbent": false
+    },
+    {
+     "name": "Haroon Ghaffar",
+     "party": "BC NDP",
+     "votes": 9136,
+     "pct": 41.17,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Surrey-White Rock",
+   "ndp": 12698,
+   "cp": 14667,
+   "gp": 0,
+   "other": 671,
+   "valid": 28036,
+   "rejected": 106,
+   "voted": 28142,
+   "registered": 45467,
+   "turnout": 61.9,
+   "candidates": [
+    {
+     "name": "Trevor Halford",
+     "party": "Conservative Party",
+     "votes": 14667,
+     "pct": 52.31,
+     "incumbent": true
+    },
+    {
+     "name": "Darryl Walker",
+     "party": "BC NDP",
+     "votes": 12698,
+     "pct": 45.29,
+     "incumbent": false
+    },
+    {
+     "name": "Damyn Tassie",
+     "party": "Libertarian",
+     "votes": 671,
+     "pct": 2.39,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Vancouver-Fraserview",
+   "ndp": 11896,
+   "cp": 7618,
+   "gp": 1290,
+   "other": 0,
+   "valid": 20804,
+   "rejected": 61,
+   "voted": 20865,
+   "registered": 39801,
+   "turnout": 52.42,
+   "candidates": [
+    {
+     "name": "George Chow",
+     "party": "BC NDP",
+     "votes": 11896,
+     "pct": 57.18,
+     "incumbent": true
+    },
+    {
+     "name": "Jag S Sanghera",
+     "party": "Conservative Party",
+     "votes": 7618,
+     "pct": 36.62,
+     "incumbent": false
+    },
+    {
+     "name": "Francoise Raunet",
+     "party": "BC Green Party",
+     "votes": 1290,
+     "pct": 6.2,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Vancouver-Hastings",
+   "ndp": 14237,
+   "cp": 5391,
+   "gp": 2409,
+   "other": 157,
+   "valid": 22194,
+   "rejected": 52,
+   "voted": 22246,
+   "registered": 41189,
+   "turnout": 54.01,
+   "candidates": [
+    {
+     "name": "Niki Sharma",
+     "party": "BC NDP",
+     "votes": 14237,
+     "pct": 64.15,
+     "incumbent": true
+    },
+    {
+     "name": "Jacob Burdge",
+     "party": "Conservative Party",
+     "votes": 5391,
+     "pct": 24.29,
+     "incumbent": false
+    },
+    {
+     "name": "Bridget Burns",
+     "party": "BC Green Party",
+     "votes": 2409,
+     "pct": 10.85,
+     "incumbent": false
+    },
+    {
+     "name": "Zsolt Kiss",
+     "party": "Independent",
+     "votes": 157,
+     "pct": 0.71,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Vancouver-Kensington",
+   "ndp": 11713,
+   "cp": 6061,
+   "gp": 1458,
+   "other": 0,
+   "valid": 19232,
+   "rejected": 53,
+   "voted": 19285,
+   "registered": 37396,
+   "turnout": 51.57,
+   "candidates": [
+    {
+     "name": "Mable Elmore",
+     "party": "BC NDP",
+     "votes": 11713,
+     "pct": 60.9,
+     "incumbent": true
+    },
+    {
+     "name": "Syed Mohsin",
+     "party": "Conservative Party",
+     "votes": 6061,
+     "pct": 31.52,
+     "incumbent": false
+    },
+    {
+     "name": "Amy Fox",
+     "party": "BC Green Party",
+     "votes": 1458,
+     "pct": 7.58,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Vancouver-Langara",
+   "ndp": 8506,
+   "cp": 8087,
+   "gp": 969,
+   "other": 0,
+   "valid": 17562,
+   "rejected": 39,
+   "voted": 17601,
+   "registered": 33961,
+   "turnout": 51.83,
+   "candidates": [
+    {
+     "name": "Sunita Dhir",
+     "party": "BC NDP",
+     "votes": 8506,
+     "pct": 48.43,
+     "incumbent": false
+    },
+    {
+     "name": "Bryan Breguet",
+     "party": "Conservative Party",
+     "votes": 8087,
+     "pct": 46.05,
+     "incumbent": false
+    },
+    {
+     "name": "Scottford Price",
+     "party": "BC Green Party",
+     "votes": 969,
+     "pct": 5.52,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Vancouver-Little Mountain",
+   "ndp": 15636,
+   "cp": 7704,
+   "gp": 1833,
+   "other": 0,
+   "valid": 25173,
+   "rejected": 61,
+   "voted": 25234,
+   "registered": 41259,
+   "turnout": 61.16,
+   "candidates": [
+    {
+     "name": "Christine Boyle",
+     "party": "BC NDP",
+     "votes": 15636,
+     "pct": 62.11,
+     "incumbent": false
+    },
+    {
+     "name": "John Coupar",
+     "party": "Conservative Party",
+     "votes": 7704,
+     "pct": 30.6,
+     "incumbent": false
+    },
+    {
+     "name": "Wendy Hayko",
+     "party": "BC Green Party",
+     "votes": 1833,
+     "pct": 7.28,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Vancouver-Point Grey",
+   "ndp": 12538,
+   "cp": 7622,
+   "gp": 1925,
+   "other": 0,
+   "valid": 22085,
+   "rejected": 40,
+   "voted": 22125,
+   "registered": 34880,
+   "turnout": 63.43,
+   "candidates": [
+    {
+     "name": "David Eby",
+     "party": "BC NDP",
+     "votes": 12538,
+     "pct": 56.77,
+     "incumbent": true
+    },
+    {
+     "name": "Paul Ratchford",
+     "party": "Conservative Party",
+     "votes": 7622,
+     "pct": 34.51,
+     "incumbent": false
+    },
+    {
+     "name": "Devyani Singh",
+     "party": "BC Green Party",
+     "votes": 1925,
+     "pct": 8.72,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Vancouver-Quilchena",
+   "ndp": 8649,
+   "cp": 11464,
+   "gp": 1729,
+   "other": 385,
+   "valid": 22227,
+   "rejected": 32,
+   "voted": 22259,
+   "registered": 38080,
+   "turnout": 58.45,
+   "candidates": [
+    {
+     "name": "Dallas Brodie",
+     "party": "Conservative Party",
+     "votes": 11464,
+     "pct": 51.58,
+     "incumbent": false
+    },
+    {
+     "name": "Callista Ryan",
+     "party": "BC NDP",
+     "votes": 8649,
+     "pct": 38.91,
+     "incumbent": false
+    },
+    {
+     "name": "Michael Barkusky",
+     "party": "BC Green Party",
+     "votes": 1729,
+     "pct": 7.78,
+     "incumbent": false
+    },
+    {
+     "name": "Caroline Ying-Mei Wang",
+     "party": "Independent",
+     "votes": 385,
+     "pct": 1.73,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Vancouver-Renfrew",
+   "ndp": 10983,
+   "cp": 5327,
+   "gp": 1064,
+   "other": 0,
+   "valid": 17374,
+   "rejected": 47,
+   "voted": 17421,
+   "registered": 36116,
+   "turnout": 48.24,
+   "candidates": [
+    {
+     "name": "Adrian Dix",
+     "party": "BC NDP",
+     "votes": 10983,
+     "pct": 63.22,
+     "incumbent": true
+    },
+    {
+     "name": "Tom Ikonomou",
+     "party": "Conservative Party",
+     "votes": 5327,
+     "pct": 30.66,
+     "incumbent": false
+    },
+    {
+     "name": "Lawrence Taylor",
+     "party": "BC Green Party",
+     "votes": 1064,
+     "pct": 6.12,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Vancouver-South Granville",
+   "ndp": 17208,
+   "cp": 6678,
+   "gp": 2872,
+   "other": 0,
+   "valid": 26758,
+   "rejected": 55,
+   "voted": 26813,
+   "registered": 42014,
+   "turnout": 63.82,
+   "candidates": [
+    {
+     "name": "Brenda Bailey",
+     "party": "BC NDP",
+     "votes": 17208,
+     "pct": 64.31,
+     "incumbent": true
+    },
+    {
+     "name": "Aron Lageri",
+     "party": "Conservative Party",
+     "votes": 6678,
+     "pct": 24.96,
+     "incumbent": false
+    },
+    {
+     "name": "Adam Hawk",
+     "party": "BC Green Party",
+     "votes": 2872,
+     "pct": 10.73,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Vancouver-Strathcona",
+   "ndp": 13673,
+   "cp": 3430,
+   "gp": 2618,
+   "other": 336,
+   "valid": 20057,
+   "rejected": 64,
+   "voted": 20121,
+   "registered": 39177,
+   "turnout": 51.36,
+   "candidates": [
+    {
+     "name": "Joan Phillip",
+     "party": "BC NDP",
+     "votes": 13673,
+     "pct": 68.17,
+     "incumbent": true
+    },
+    {
+     "name": "Scott Muller",
+     "party": "Conservative Party",
+     "votes": 3430,
+     "pct": 17.1,
+     "incumbent": false
+    },
+    {
+     "name": "Simon de Weerdt",
+     "party": "BC Green Party",
+     "votes": 2618,
+     "pct": 13.05,
+     "incumbent": false
+    },
+    {
+     "name": "Kimball Cariou",
+     "party": "Communist Party of BC",
+     "votes": 336,
+     "pct": 1.68,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Vancouver-West End",
+   "ndp": 13143,
+   "cp": 5677,
+   "gp": 1893,
+   "other": 144,
+   "valid": 20857,
+   "rejected": 37,
+   "voted": 20894,
+   "registered": 39011,
+   "turnout": 53.56,
+   "candidates": [
+    {
+     "name": "Spencer Chandra Herbert",
+     "party": "BC NDP",
+     "votes": 13143,
+     "pct": 63.01,
+     "incumbent": true
+    },
+    {
+     "name": "Jon Ellacott",
+     "party": "Conservative Party",
+     "votes": 5677,
+     "pct": 27.22,
+     "incumbent": false
+    },
+    {
+     "name": "Eoin O'Dwyer",
+     "party": "BC Green Party",
+     "votes": 1893,
+     "pct": 9.08,
+     "incumbent": false
+    },
+    {
+     "name": "Carl Turnbull",
+     "party": "Independent",
+     "votes": 144,
+     "pct": 0.69,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Vancouver-Yaletown",
+   "ndp": 9018,
+   "cp": 7857,
+   "gp": 1248,
+   "other": 0,
+   "valid": 18123,
+   "rejected": 32,
+   "voted": 18155,
+   "registered": 36210,
+   "turnout": 50.14,
+   "candidates": [
+    {
+     "name": "Terry Yung",
+     "party": "BC NDP",
+     "votes": 9018,
+     "pct": 49.76,
+     "incumbent": false
+    },
+    {
+     "name": "Melissa De Genova",
+     "party": "Conservative Party",
+     "votes": 7857,
+     "pct": 43.35,
+     "incumbent": false
+    },
+    {
+     "name": "Dana-Lyn Mackenzie",
+     "party": "BC Green Party",
+     "votes": 1248,
+     "pct": 6.89,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Vernon-Lumby",
+   "ndp": 11837,
+   "cp": 11361,
+   "gp": 0,
+   "other": 4531,
+   "valid": 27729,
+   "rejected": 56,
+   "voted": 27785,
+   "registered": 45810,
+   "turnout": 60.65,
+   "candidates": [
+    {
+     "name": "Harwinder Sandhu",
+     "party": "BC NDP",
+     "votes": 11837,
+     "pct": 42.69,
+     "incumbent": true
+    },
+    {
+     "name": "Dennis Giesbrecht",
+     "party": "Conservative Party",
+     "votes": 11361,
+     "pct": 40.97,
+     "incumbent": false
+    },
+    {
+     "name": "Kevin Acton",
+     "party": "Unaffiliated",
+     "votes": 4266,
+     "pct": 15.38,
+     "incumbent": false
+    },
+    {
+     "name": "Robert Johnson",
+     "party": "Libertarian",
+     "votes": 265,
+     "pct": 0.96,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Victoria-Beacon Hill",
+   "ndp": 13634,
+   "cp": 5514,
+   "gp": 9644,
+   "other": 0,
+   "valid": 28792,
+   "rejected": 54,
+   "voted": 28846,
+   "registered": 43860,
+   "turnout": 65.77,
+   "candidates": [
+    {
+     "name": "Grace Lore",
+     "party": "BC NDP",
+     "votes": 13634,
+     "pct": 47.35,
+     "incumbent": true
+    },
+    {
+     "name": "Sonia Furstenau",
+     "party": "BC Green Party",
+     "votes": 9644,
+     "pct": 33.5,
+     "incumbent": true
+    },
+    {
+     "name": "Tim Thielmann",
+     "party": "Conservative Party",
+     "votes": 5514,
+     "pct": 19.15,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "Victoria-Swan Lake",
+   "ndp": 14273,
+   "cp": 5146,
+   "gp": 5899,
+   "other": 156,
+   "valid": 25474,
+   "rejected": 51,
+   "voted": 25525,
+   "registered": 40752,
+   "turnout": 62.63,
+   "candidates": [
+    {
+     "name": "Nina Krieger",
+     "party": "BC NDP",
+     "votes": 14273,
+     "pct": 56.03,
+     "incumbent": false
+    },
+    {
+     "name": "Christina Winter",
+     "party": "BC Green Party",
+     "votes": 5899,
+     "pct": 23.16,
+     "incumbent": false
+    },
+    {
+     "name": "Tim Taylor",
+     "party": "Conservative Party",
+     "votes": 5146,
+     "pct": 20.2,
+     "incumbent": false
+    },
+    {
+     "name": "Robert Crooks",
+     "party": "Communist Party of BC",
+     "votes": 156,
+     "pct": 0.61,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "West Kelowna-Peachland",
+   "ndp": 7394,
+   "cp": 13475,
+   "gp": 0,
+   "other": 5630,
+   "valid": 26499,
+   "rejected": 34,
+   "voted": 26533,
+   "registered": 45467,
+   "turnout": 58.36,
+   "candidates": [
+    {
+     "name": "Macklin McCall",
+     "party": "Conservative Party",
+     "votes": 13475,
+     "pct": 50.85,
+     "incumbent": false
+    },
+    {
+     "name": "Krystal Smith",
+     "party": "BC NDP",
+     "votes": 7394,
+     "pct": 27.9,
+     "incumbent": false
+    },
+    {
+     "name": "Stephen Johnston",
+     "party": "Unaffiliated",
+     "votes": 5630,
+     "pct": 21.25,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "West Vancouver-Capilano",
+   "ndp": 7006,
+   "cp": 12049,
+   "gp": 1435,
+   "other": 5326,
+   "valid": 25816,
+   "rejected": 42,
+   "voted": 25858,
+   "registered": 44114,
+   "turnout": 58.62,
+   "candidates": [
+    {
+     "name": "Lynne Block",
+     "party": "Conservative Party",
+     "votes": 12049,
+     "pct": 46.67,
+     "incumbent": false
+    },
+    {
+     "name": "Sara Eftekhar",
+     "party": "BC NDP",
+     "votes": 7006,
+     "pct": 27.14,
+     "incumbent": false
+    },
+    {
+     "name": "Karin Kirkpatrick",
+     "party": "Independent",
+     "votes": 5326,
+     "pct": 20.63,
+     "incumbent": true
+    },
+    {
+     "name": "Archie Kaario",
+     "party": "BC Green Party",
+     "votes": 1435,
+     "pct": 5.56,
+     "incumbent": false
+    }
+   ]
+  },
+  {
+   "name": "West Vancouver-Sea to Sky",
+   "ndp": 7213,
+   "cp": 9762,
+   "gp": 10438,
+   "other": 0,
+   "valid": 27413,
+   "rejected": 40,
+   "voted": 27453,
+   "registered": 44308,
+   "turnout": 61.96,
+   "candidates": [
+    {
+     "name": "Jeremy Valeriote",
+     "party": "BC Green Party",
+     "votes": 10438,
+     "pct": 38.08,
+     "incumbent": false
+    },
+    {
+     "name": "Yuri Fulmer",
+     "party": "Conservative Party",
+     "votes": 9762,
+     "pct": 35.61,
+     "incumbent": false
+    },
+    {
+     "name": "Jen Ford",
+     "party": "BC NDP",
+     "votes": 7213,
+     "pct": 26.31,
+     "incumbent": false
+    }
+   ]
+  }
+ ]
+}

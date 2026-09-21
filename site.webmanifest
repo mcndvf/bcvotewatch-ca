@@ -1,0 +1,29 @@
+{
+ "name": "BC Vote Watch",
+ "short_name": "BC Vote Watch",
+ "description": "Independent, source-backed tracking of British Columbia provincial elections.",
+ "start_url": "/",
+ "display": "browser",
+ "background_color": "#ffffff",
+ "theme_color": "#b5121b",
+ "icons": [
+  {
+   "src": "/icon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/icon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/icon-maskable-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "maskable"
+  }
+ ]
+}

@@ -58,6 +58,11 @@ def a(key, text):
 
 
 # ---------------------------------------------------------------- page shell
+ICONS = (
+    '<link rel="icon" href="/favicon.ico" sizes="48x48"><link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">'
+    '<link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest">'
+    '<meta name="theme-color" content="#b5121b">'
+)
 NAV_EN = [
     ("/bc-election-2026", "BC Election"),
     ("/bc-election-polls", "Polls"),
@@ -75,6 +80,7 @@ NAV_ZH = [
     ("bc-party-leaders", "党魁"),
     ("abbotsford-mission-by-election-2026", "补选"),
     ("bc-election-results-2024", "2024结果"),
+    ("bc-election-ridings", "选区"),
     ("how-to-vote-bc", "如何投票"),
 ]
 HREFLANG = {"en": "en-CA", "zh-cn": "zh-Hans", "zh-tw": "zh-Hant"}
@@ -155,6 +161,7 @@ def render(lang, slug, title, desc, body, group=None, schemas=(), og_image=None)
         f'<link rel="canonical" href="{canonical}">{alt}'
         f'<meta property="og:title" content="{html.escape(title)}"><meta property="og:description" content="{html.escape(desc)}">'
         f'<meta property="og:type" content="website"><meta property="og:url" content="{canonical}"><meta property="og:site_name" content="{site_name}">'
+        + ICONS +
         '<link rel="stylesheet" href="/assets/site.css"><script defer src="/assets/site.js"></script>'
         f"{schema_html}</head><body>"
         '<div class="topline"></div><header><div class="wrap nav"><a class="brand" href="/"><b>BC</b> VOTE WATCH</a>'
@@ -405,22 +412,6 @@ def page_candidates_en():
     return render("en", "bc-election-candidates-2026", title, desc, body, None, schemas)
 
 
-def page_ridings_en():
-    body = (
-        hero("Ridings", "BC electoral districts (ridings)",
-             "British Columbia elects 93 MLAs, one per electoral district (riding), by first-past-the-post. The riding-by-riding results and candidate pages will be published as the data is verified.")
-        + '<section class="section"><div class="wrap"><h2>How BC ridings work</h2>'
-        f"<p>Each of the 93 electoral districts elects one member of the Legislative Assembly; the candidate with the most votes wins. Official district maps and boundaries are published by {a('ebc_maps','Elections BC')}, and official past results by {a('ebc_results','Elections BC results')}.</p>"
-        "<p>The NDP won 47 of 93 ridings in 2024, a one-seat majority. Because seats are won riding by riding, a provincial poll lead does not translate directly into seats. See <a href=\"/bc-election-polls\">how to read the polls</a>.</p>"
-        "<p>Next: <a href=\"/bc-election-2026\">BC election 2026 guide</a> · <a href=\"/how-to-vote-bc\">How to vote</a>.</p></div></section>"
-    )
-    title = "BC Election Ridings: 93 Electoral Districts"
-    desc = "BC has 93 electoral districts (ridings), each electing one MLA. How ridings work, official Elections BC maps and results, and why polls do not equal seats."
-    schemas = [article_schema(title, desc, "en", "/bc-election-ridings"),
-               breadcrumb("en", [("Home", "/"), ("BC Ridings", "/bc-election-ridings")])]
-    return render("en", "bc-election-ridings", title, desc, body, None, schemas)
-
-
 def page_home_en():
     body = (
         hero("British Columbia · Provincial election", "BC election 2026: early election watch, polls and how to vote",
@@ -439,7 +430,7 @@ def page_home_en():
         '<a class="linkcard" href="/bc-election-results-2024"><strong>BC 2024 Election Results</strong><span>Official seats, votes and turnout from Elections BC.</span></a>'
         '<a class="linkcard" href="/how-to-vote-bc"><strong>How to Vote in BC</strong><span>Eligibility, ID, advance voting and vote by mail.</span></a>'
         '<a class="linkcard" href="/bc-election-candidates-2026"><strong>BC Election Candidates 2026</strong><span>How nominations work and where official records appear.</span></a>'
-        '<a class="linkcard" href="/bc-election-ridings"><strong>BC Ridings</strong><span>93 electoral districts and how they decide seats.</span></a>'
+        '<a class="linkcard" href="/bc-election-ridings"><strong>BC Ridings</strong><span>Official 2024 results for all 93 ridings, and the closest races.</span></a>'
         "</div></div></section>"
         '<section class="section"><div class="wrap"><h2>Official-source first</h2>'
         "<p>Election timing is not treated as confirmed until the writ is issued. Candidate status is not treated as final until it appears in the relevant Elections BC record. Polls are presented as measurements at the field dates, not as election results.</p>"
@@ -755,7 +746,7 @@ def page_results_en():
         '<div class="card"><div class="kicker">Registered voters</div><div class="big">3,609,288</div><p class="muted">As of the close of voting.</p></div>'
         '<div class="card"><div class="kicker">Turnout</div><div class="big">58.45%</div><p class="muted">Of registered voters.</p></div></div></div></section>'
         '<section class="section"><div class="wrap"><h2>How close it was</h2>'
-        "<p>Province-wide the NDP led the Conservatives by <strong>33,426 votes (1.59 percentage points)</strong>. The NDP won exactly the 47 seats needed for a majority in a 93-seat Legislature. Seats are won riding by riding, so a small vote lead can produce a very different seat margin. See <a href=\"/bc-election-ridings\">how ridings work</a>.</p>"
+        "<p>Province-wide the NDP led the Conservatives by <strong>33,426 votes (1.59 percentage points)</strong>. The NDP won exactly the 47 seats needed for a majority in a 93-seat Legislature. Seats are won riding by riding, so a small vote lead can produce a very different seat margin. See <a href=\"/bc-election-ridings\">results for all 93 ridings</a>.</p>"
         "<h2>When British Columbians voted</h2><ul>"
         "<li><strong>Advance voting:</strong> 47.5% of votes (45.17% in district, 2.32% out of district)</li>"
         "<li><strong>Final Voting Day:</strong> 44.0% (42.33% in district, 1.71% out of district)</li>"
@@ -791,7 +782,7 @@ def page_results_zh(lang):
         + L('<div class="card"><div class="kicker">投票率</div><div class="big">58.45%</div><p class="muted">占登记选民比例。</p></div>')
         + "</div></div></section>"
         + f'<section class="section"><div class="wrap"><h2>{L("结果有多接近")}</h2>'
-        + L(f"<p>全省得票上，NDP领先保守党<strong>33,426票（1.59个百分点）</strong>，恰好赢得93席立法会中组成多数所需的47席。议席是按选区逐个决定的，所以小幅的得票领先可能造成很不同的议席差距。</p>")
+        + L(f"<p>全省得票上，NDP领先保守党<strong>33,426票（1.59个百分点）</strong>，恰好赢得93席立法会中组成多数所需的47席。议席是按选区逐个决定的，所以小幅的得票领先可能造成很不同的议席差距。见<a href=\"{url_for(lang,'bc-election-ridings')}\">全部93个选区的结果</a>。</p>")
         + f"<h2>{L('大家什么时候投票')}</h2><ul>"
         + L("<li><strong>提前投票：</strong>47.5%的选票（选区内45.17%，选区外2.32%）</li>")
         + L("<li><strong>最终投票日：</strong>44.0%（选区内42.33%，选区外1.71%）</li>")
@@ -833,6 +824,202 @@ def page_leaders_zh(lang):
     return render(lang, "bc-party-leaders", title, desc, body, GROUPS["leaders"], schemas)
 
 
+# ================================================================ RIDINGS (93) + HUB
+RIDINGS = json.load(open(os.path.join(ROOT, "data", "ridings-2024.json"), encoding="utf8"))["ridings"]
+PROV_PCT = {"BC NDP": 44.87, "Conservative Party": 43.28, "BC Green Party": 8.24}
+PROV_TURNOUT = 58.45
+PARTY_EN = {"BC NDP": "NDP", "Conservative Party": "Conservative", "BC Green Party": "Green"}
+PARTY_ZH = {"BC NDP": "BC NDP", "Conservative Party": "保守党", "BC Green Party": "BC绿党", "Independent": "无党派候选人",
+            "Unaffiliated": "无所属", "Libertarian": "自由意志党", "Communist Party of BC": "BC共产党",
+            "Freedom Party of BC": "BC自由党", "Christian Heritage Party of B.C.": "BC基督教遗产党"}
+
+
+def slugify(name):
+    return re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
+
+
+def _prep():
+    for r in RIDINGS:
+        r["slug"] = slugify(r["name"])
+        w, ru = r["candidates"][0], r["candidates"][1]
+        r["winner"], r["runner"] = w, ru
+        r["margin"] = w["votes"] - ru["votes"]
+        r["margin_pts"] = round(w["pct"] - ru["pct"], 2)
+    for i, r in enumerate(sorted(RIDINGS, key=lambda r: r["margin_pts"])):
+        r["closest_rank"] = i + 1
+    assert len({r["slug"] for r in RIDINGS}) == 93
+
+
+_prep()
+SEATS = {}
+for _r in RIDINGS:
+    SEATS[_r["winner"]["party"]] = SEATS.get(_r["winner"]["party"], 0) + 1
+assert SEATS == {"BC NDP": 47, "Conservative Party": 44, "BC Green Party": 2}, SEATS
+
+
+def pname(lang, party):
+    return PARTY_EN.get(party, party) if lang == "en" else PARTY_ZH.get(party, party)
+
+
+def page_riding(lang, r):
+    L = lambda s: conv(lang, s)
+    en = lang == "en"
+    w, ru = r["winner"], r["runner"]
+    n = r["name"]
+    wp, rp = pname(lang, w["party"]), pname(lang, ru["party"])
+    flip = r["margin"] // 2 + 1
+    diff = round(r["turnout"] - PROV_TURNOUT, 2)
+    rank = r["closest_rank"]
+    hub = url_for(lang, "bc-election-ridings")
+    # candidate table
+    def inc_mark(c):
+        return " *" if c["incumbent"] else ""
+    rows = ""
+    for i, c in enumerate(r["candidates"]):
+        cn = html.escape(c["name"]) + inc_mark(c)
+        badge = ("Elected" if en else "当选") if i == 0 else ""
+        rows += f"<tr><td>{cn}</td><td>{pname(lang, c['party'])}</td><td>{c['votes']:,}</td><td>{c['pct']:.2f}%</td><td>{'<strong>'+badge+'</strong>' if badge else ''}</td></tr>"
+    if en:
+        lede = (f"{html.escape(w['name'])} ({wp}) won {n} in the October 19, 2024 BC election with {w['pct']:.2f}% of the vote, "
+                f"{r['margin']:,} votes ahead of {html.escape(ru['name'])} ({rp}). Turnout was {r['turnout']:.2f}%.")
+        head_th = "<th>Candidate</th><th>Party</th><th>Votes</th><th>Share</th><th></th>"
+        prov_line = ""
+        if w["party"] in PROV_PCT:
+            prov_line = f" Province-wide the {wp} took {PROV_PCT[w['party']]:.2f}% of the vote, compared with {w['pct']:.2f}% here."
+        close = (f"<p>{n} ranks <strong>{rank} of 93</strong> among the closest races in 2024 (1 is the closest). The winning margin was {r['margin']:,} votes "
+                 f"({r['margin_pts']:.2f} percentage points); it would have taken {flip:,} voters switching from {html.escape(w['name'])} to {html.escape(ru['name'])} to flip the result.{prov_line}</p>")
+        seat = ("<p>These are 2024 election results. The person who holds a seat can change between general elections through resignations, by-elections or a change of party, "
+                f"so use the Legislative Assembly’s {a('leg','member directory')} for the current MLA. ")
+        if n == "Abbotsford-Mission":
+            seat += "This seat has a by-election on September 26, 2026: see the <a href=\"/abbotsford-mission-by-election-2026\">Abbotsford-Mission by-election page</a>."
+        seat += "</p>"
+        faq = [
+            (f"Who won {n} in the 2024 BC election?", f"{w['name']} ({wp}) won {n} with {w['votes']:,} votes ({w['pct']:.2f}%), ahead of {ru['name']} ({rp}) with {ru['votes']:,} ({ru['pct']:.2f}%). Source: Elections BC Statement of Votes."),
+            (f"What was voter turnout in {n} in 2024?", f"{r['voted']:,} of {r['registered']:,} registered voters voted in {n}, a turnout of {r['turnout']:.2f}%, compared with {PROV_TURNOUT}% province-wide."),
+            (f"How close was the race in {n}?", f"The winning margin was {r['margin']:,} votes ({r['margin_pts']:.2f} percentage points), the {ordinal(rank)} closest of BC's 93 ridings."),
+        ]
+        body = (
+            hero("BC provincial riding", f"{n}", lede)
+            + f'<section class="section"><div class="wrap"><h2>2024 election results in {n}</h2><div class="tablewrap"><table><thead><tr>{head_th}</tr></thead><tbody>{rows}</tbody></table></div>'
+            f"<p class=\"source-note\">Source: {a('sov','Elections BC Statement of Votes')}, October 19, 2024. * Member of the 42nd Parliament (a sitting or former MLA at the time). The winner is the candidate with the most votes.</p></div></section>"
+            '<section class="section soft"><div class="wrap"><h2>Key numbers</h2><div class="grid">'
+            f'<div class="card"><div class="kicker">Registered voters</div><div class="big">{r["registered"]:,}</div><p class="muted">In {n} at the close of voting.</p></div>'
+            f'<div class="card"><div class="kicker">Votes cast</div><div class="big">{r["voted"]:,}</div><p class="muted">{r["valid"]:,} valid and {r["rejected"]:,} rejected ballots.</p></div>'
+            f'<div class="card"><div class="kicker">Turnout</div><div class="big">{r["turnout"]:.2f}%</div><p class="muted">{abs(diff):.2f} points {"above" if diff >= 0 else "below"} the province-wide {PROV_TURNOUT}%.</p></div>'
+            "</div></div></section>"
+            f'<section class="section"><div class="wrap"><h2>How close was it?</h2>{close}<h2>The seat after 2024</h2>{seat}'
+            f'<p>More: <a href="{hub}">all 93 BC ridings</a> · <a href="/bc-election-results-2024">2024 results</a> · <a href="/bc-election-polls">BC election polls</a> · <a href="/how-to-vote-bc">how to vote</a>.</p></div></section>'
+            + faq_html(faq, f"{n} FAQ")
+        )
+        title = f"{n} 2024 BC Election Results" if len(n) <= 24 else f"{n}: 2024 Results"
+        desc = f"{w['name']} ({wp}) won {n} in 2024 with {w['pct']:.2f}%. Riding results, turnout ({r['turnout']:.2f}%), margin ({r['margin']:,} votes) and how it compares."
+        if len(desc) > 160:
+            desc = f"{w['name']} ({wp}) won {n} in 2024 with {w['pct']:.2f}%. Results, turnout ({r['turnout']:.2f}%) and margin ({r['margin']:,} votes)."
+        crumbs = [("Home", "/"), ("BC Ridings", url_for(lang, "bc-election-ridings")), (n, url_for(lang, "ridings/" + r["slug"]))]
+    else:
+        lede = (f"{html.escape(w['name'])}（{wp}）在2024年10月19日的BC省选中以{w['pct']:.2f}%的得票赢得{n}选区，领先{html.escape(ru['name'])}（{rp}）{r['margin']:,}票。投票率为{r['turnout']:.2f}%。")
+        head_th = "<th>候选人</th><th>政党</th><th>得票</th><th>得票率</th><th></th>"
+        prov_line = ""
+        if w["party"] in PROV_PCT:
+            prov_line = f"全省范围内{wp}的得票率为{PROV_PCT[w['party']]:.2f}%，本选区为{w['pct']:.2f}%。"
+        close = (f"<p>在2024年最接近的选区中，{n}排第<strong>{rank}位（共93个）</strong>（1为最接近）。获胜差距为{r['margin']:,}票（{r['margin_pts']:.2f}个百分点）；"
+                 f"只要有{flip:,}名选民从{html.escape(w['name'])}改投{html.escape(ru['name'])}，结果就会逆转。{prov_line}</p>")
+        seat = ("<p>这是2024年的选举结果。议席持有人可能因辞职、补选或转党在两次大选之间发生变化，"
+                f"请查看立法会的{a('leg','议员名录')}了解现任议员。")
+        if n == "Abbotsford-Mission":
+            seat += f"该选区将于2026年9月26日举行补选：见<a href=\"{url_for(lang,'abbotsford-mission-by-election-2026')}\">Abbotsford-Mission补选页</a>。"
+        seat += "</p>"
+        faq = [
+            (f"2024年BC省选谁赢得了{n}？", f"{w['name']}（{wp}）以{w['votes']:,}票（{w['pct']:.2f}%）赢得{n}，领先{ru['name']}（{rp}）的{ru['votes']:,}票（{ru['pct']:.2f}%）。来源：Elections BC投票统计报告。"),
+            (f"2024年{n}的投票率是多少？", f"{n}的{r['registered']:,}名登记选民中有{r['voted']:,}人投票，投票率为{r['turnout']:.2f}%，全省为{PROV_TURNOUT}%。"),
+            (f"{n}的选情有多接近？", f"获胜差距为{r['margin']:,}票（{r['margin_pts']:.2f}个百分点），在BC省93个选区中最接近的排第{rank}位。"),
+        ]
+        body = (
+            hero("BC省选区", f"{n}", L(lede))
+            + f'<section class="section"><div class="wrap"><h2>{L("2024年选举结果")}：{n}</h2><div class="tablewrap"><table><thead><tr>{L(head_th)}</tr></thead><tbody>{L(rows)}</tbody></table></div>'
+            + L(f"<p class=\"source-note\">来源：{a('sov','Elections BC投票统计报告')}（2024年10月19日）。* 第42届省议会议员（当时的现任或前任议员）。得票最多者当选。</p></div></section>")
+            + f'<section class="section soft"><div class="wrap"><h2>{L("关键数字")}</h2><div class="grid">'
+            + L(f'<div class="card"><div class="kicker">登记选民</div><div class="big">{r["registered"]:,}</div><p class="muted">{n}选区投票结束时。</p></div>')
+            + L(f'<div class="card"><div class="kicker">投出选票</div><div class="big">{r["voted"]:,}</div><p class="muted">有效票{r["valid"]:,}张，废票{r["rejected"]:,}张。</p></div>')
+            + L(f'<div class="card"><div class="kicker">投票率</div><div class="big">{r["turnout"]:.2f}%</div><p class="muted">比全省{PROV_TURNOUT}%{"高" if diff >= 0 else "低"}{abs(diff):.2f}个百分点。</p></div>')
+            + f'</div></div></section><section class="section"><div class="wrap"><h2>{L("选情有多接近？")}</h2>{L(close)}<h2>{L("2024年之后的议席")}</h2>{L(seat)}'
+            + L(f'<p>更多：<a href="{hub}">全部93个BC选区</a> · <a href="{url_for(lang,"bc-election-results-2024")}">2024年结果</a> · <a href="{url_for(lang,"bc-election-polls")}">BC省选民调</a> · <a href="{url_for(lang,"how-to-vote-bc")}">如何投票</a>。</p></div></section>')
+            + L(faq_html(faq, f"{n}常见问题"))
+        )
+        title = L(f"{n}选区 2024年BC省选结果")
+        desc = L(f"{w['name']}（{wp}）在2024年以{w['pct']:.2f}%赢得{n}选区。附选区完整结果、投票率（{r['turnout']:.2f}%）、得票差距（{r['margin']:,}票）等。")
+        crumbs = [(L("首页"), "/"), (L("BC省选区"), url_for(lang, "bc-election-ridings")), (n, url_for(lang, "ridings/" + r["slug"]))]
+    path = url_for(lang, "ridings/" + r["slug"])
+    schemas = [article_schema(title, desc, lang, path), breadcrumb(lang, crumbs), faq_schema([(L(q), L(a_)) if not en else (q, a_) for q, a_ in faq])]
+    return render(lang, "ridings/" + r["slug"], title, desc, body, riding_group(r["slug"]), schemas)
+
+
+def ordinal(n):
+    return f"{n}{'th' if 10 <= n % 100 <= 20 else {1:'st',2:'nd',3:'rd'}.get(n % 10, 'th')}"
+
+
+def riding_group(slug):
+    return {"en": "ridings/" + slug, "zh-cn": "ridings/" + slug, "zh-tw": "ridings/" + slug}
+
+
+def page_ridings_hub(lang):
+    L = lambda s: conv(lang, s)
+    en = lang == "en"
+    all_rows = ""
+    for r in sorted(RIDINGS, key=lambda r: r["name"]):
+        w = r["winner"]
+        all_rows += (f'<tr><td><a href="{url_for(lang, "ridings/" + r["slug"])}">{r["name"]}</a></td><td>{html.escape(w["name"])}</td><td>{pname(lang, w["party"])}</td>'
+                     f'<td>{r["margin"]:,} ({r["margin_pts"]:.2f})</td><td>{r["turnout"]:.2f}%</td></tr>')
+    close_rows = ""
+    for r in sorted(RIDINGS, key=lambda r: r["margin_pts"])[:10]:
+        w, ru = r["winner"], r["runner"]
+        close_rows += (f'<tr><td><a href="{url_for(lang, "ridings/" + r["slug"])}">{r["name"]}</a></td><td>{html.escape(w["name"])} ({pname(lang, w["party"])})</td>'
+                       f'<td>{html.escape(ru["name"])} ({pname(lang, ru["party"])})</td><td>{r["margin"]:,}</td><td>{r["margin_pts"]:.2f}</td></tr>')
+    if en:
+        th_all = "<th>Riding</th><th>2024 winner</th><th>Party</th><th>Margin: votes (pts)</th><th>Turnout</th>"
+        th_close = "<th>Riding</th><th>Winner</th><th>Runner-up</th><th>Margin (votes)</th><th>Margin (pts)</th>"
+        body = (
+            hero("Ridings", "BC ridings: all 93 electoral districts",
+                 "British Columbia elects 93 MLAs, one per electoral district (riding), by first-past-the-post. Each riding page has the official 2024 results, turnout and how close the race was.")
+            + '<section class="section"><div class="wrap"><h2>2024 seats by party</h2><div class="grid">'
+            f'<div class="card"><div class="kicker">BC NDP</div><div class="big">{SEATS["BC NDP"]}</div><p class="muted">44.87% of the vote</p></div>'
+            f'<div class="card"><div class="kicker">Conservative</div><div class="big">{SEATS["Conservative Party"]}</div><p class="muted">43.28% of the vote</p></div>'
+            f'<div class="card"><div class="kicker">BC Green</div><div class="big">{SEATS["BC Green Party"]}</div><p class="muted">8.24% of the vote</p></div></div>'
+            f"<p class=\"source-note\">Election-night 2024 results from {a('sov','Elections BC')}; not the current standings of the Legislature (see <a href=\"/bc-party-leaders\">party leaders</a>). Maps and boundaries: {a('ebc_maps','Elections BC')}.</p></div></section>"
+            '<section class="section soft"><div class="wrap"><h2>The 10 closest ridings in 2024</h2><p>These are the ridings a small shift in votes would have changed.</p>'
+            f'<div class="tablewrap"><table><thead><tr>{th_close}</tr></thead><tbody>{close_rows}</tbody></table></div></div></section>'
+            '<section class="section"><div class="wrap"><h2>All 93 BC ridings</h2>'
+            '<p><input type="search" data-filter="#riding-table" placeholder="Filter by riding, candidate or party" aria-label="Filter ridings" style="width:100%;max-width:420px;padding:10px 12px;border:1px solid var(--line);border-radius:8px;font:inherit"></p>'
+            f'<div class="tablewrap"><table id="riding-table"><thead><tr>{th_all}</tr></thead><tbody>{all_rows}</tbody></table></div>'
+            '<p class="source-note">Next: <a href="/bc-election-2026">BC election 2026 guide</a> · <a href="/bc-election-results-2024">2024 results</a> · <a href="/how-to-vote-bc">how to vote</a>.</p></div></section>'
+        )
+        title = "BC Ridings: All 93 Electoral Districts and Results"
+        desc = "All 93 BC provincial ridings with official 2024 election results, winners, turnout and the 10 closest races. Find your riding."
+    else:
+        th_all = "<th>选区</th><th>2024年当选者</th><th>政党</th><th>差距：票数（百分点）</th><th>投票率</th>"
+        th_close = "<th>选区</th><th>当选者</th><th>亚军</th><th>差距（票）</th><th>差距（百分点）</th>"
+        body = (
+            hero("选区", L("BC省选区：全部93个选区"),
+                 L("BC省有93个选区，每个选区以得票最多者当选（first-past-the-post）产生一名省议员。每个选区页都有2024年官方结果、投票率以及选情有多接近。"))
+            + f'<section class="section"><div class="wrap"><h2>{L("2024年各党议席")}</h2><div class="grid">'
+            + L(f'<div class="card"><div class="kicker">BC NDP</div><div class="big">{SEATS["BC NDP"]}</div><p class="muted">得票率44.87%</p></div>')
+            + L(f'<div class="card"><div class="kicker">保守党</div><div class="big">{SEATS["Conservative Party"]}</div><p class="muted">得票率43.28%</p></div>')
+            + L(f'<div class="card"><div class="kicker">BC绿党</div><div class="big">{SEATS["BC Green Party"]}</div><p class="muted">得票率8.24%</p></div></div>')
+            + L(f"<p class=\"source-note\">2024年选举夜结果，来自{a('sov','Elections BC')}；并非立法会目前的议席分布（见<a href=\"{url_for(lang,'bc-party-leaders')}\">党魁页</a>）。地图与选区边界：{a('ebc_maps','Elections BC')}。</p></div></section>")
+            + f'<section class="section soft"><div class="wrap"><h2>{L("2024年最接近的10个选区")}</h2><p>{L("只要少量选票转向，这些选区的结果就会改变。")}</p>'
+            + f'<div class="tablewrap"><table><thead><tr>{L(th_close)}</tr></thead><tbody>{L(close_rows)}</tbody></table></div></div></section>'
+            + f'<section class="section"><div class="wrap"><h2>{L("全部93个BC选区")}</h2>'
+            + f'<p><input type="search" data-filter="#riding-table" placeholder="{L("按选区、候选人或政党筛选")}" aria-label="{L("筛选选区")}" style="width:100%;max-width:420px;padding:10px 12px;border:1px solid var(--line);border-radius:8px;font:inherit"></p>'
+            + f'<div class="tablewrap"><table id="riding-table"><thead><tr>{L(th_all)}</tr></thead><tbody>{L(all_rows)}</tbody></table></div>'
+            + L(f'<p class="source-note">继续：<a href="{url_for(lang,"bc-election-2026")}">BC省选2026指南</a> · <a href="{url_for(lang,"bc-election-results-2024")}">2024年结果</a> · <a href="{url_for(lang,"how-to-vote-bc")}">如何投票</a>。</p></div></section>')
+        )
+        title = L("BC省选区：全部93个选区与2024年结果")
+        desc = L("BC省全部93个选区的2024年官方选举结果、当选者、投票率和最接近的10个选区。")
+    path = url_for(lang, "bc-election-ridings")
+    schemas = [article_schema(title, desc, lang, path), breadcrumb(lang, [(L("首页") if not en else "Home", "/"), (L("BC省选区") if not en else "BC Ridings", path)])]
+    return render(lang, "bc-election-ridings", title, desc, body, GROUPS["ridings"], schemas)
+
+
 # ---------------------------------------------------------------- groups + sitemap
 GROUPS = {
     "hub": {"en": "bc-election-2026", "zh-cn": "bc-election-2026", "zh-tw": "bc-election-2026"},
@@ -840,9 +1027,10 @@ GROUPS = {
     "how": {"en": "how-to-vote-bc", "zh-cn": "how-to-vote-bc", "zh-tw": "how-to-vote-bc"},
     "leaders": {"en": "bc-party-leaders", "zh-cn": "bc-party-leaders", "zh-tw": "bc-party-leaders"},
     "byel": {"en": "abbotsford-mission-by-election-2026", "zh-cn": "abbotsford-mission-by-election-2026", "zh-tw": "abbotsford-mission-by-election-2026"},
+    "ridings": {"en": "bc-election-ridings", "zh-cn": "bc-election-ridings", "zh-tw": "bc-election-ridings"},
     "results": {"en": "bc-election-results-2024", "zh-cn": "bc-election-results-2024", "zh-tw": "bc-election-results-2024"},
 }
-EN_ONLY = ["", "bc-election-candidates-2026", "bc-election-ridings", "sources"]
+EN_ONLY = ["", "bc-election-candidates-2026", "sources"]
 
 
 def sitemap():
@@ -852,7 +1040,7 @@ def sitemap():
     entries = []
     for s in EN_ONLY:
         entries.append(f"<url><loc>{loc('en', s)}</loc><lastmod>{TODAY}</lastmod></url>")
-    for g in GROUPS.values():
+    for g in list(GROUPS.values()) + [riding_group(r["slug"]) for r in RIDINGS]:
         for l, s in g.items():
             links = "".join(
                 f'<xhtml:link rel="alternate" hreflang="{HREFLANG[ll]}" href="{loc(ll, ss)}"/>' for ll, ss in g.items()
@@ -874,6 +1062,8 @@ def patch_static():
         p = os.path.join(ROOT, name)
         s = open(p, encoding="utf8").read()
         s = re.sub(r"<nav>.*?</nav>", nav, s, count=1, flags=re.S)
+        if 'rel="icon"' not in s:
+            s = s.replace('<link rel="stylesheet"', ICONS + '<link rel="stylesheet"', 1)
         open(p, "w", encoding="utf8").write(s)
 
 
@@ -884,10 +1074,15 @@ if __name__ == "__main__":
     page_how_en()
     page_leaders_en()
     page_candidates_en()
-    page_ridings_en()
     page_byel_en()
     page_results_en()
+    page_ridings_hub("en")
+    for r in RIDINGS:
+        page_riding("en", r)
     for lang in ("zh-cn", "zh-tw"):
+        page_ridings_hub(lang)
+        for r in RIDINGS:
+            page_riding(lang, r)
         page_hub_zh(lang)
         page_polls_zh(lang)
         page_how_zh(lang)
