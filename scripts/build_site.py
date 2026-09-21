@@ -45,6 +45,11 @@ SRC = {
     "wiki_2024": "https://en.wikipedia.org/wiki/44th_British_Columbia_general_election",
     "wiki_43": "https://en.wikipedia.org/wiki/43rd_Parliament_of_British_Columbia",
     "leg": "https://www.leg.bc.ca/",
+    "sov": "https://elections.bc.ca/docs/rpt/statement-of-votes-2024-provincial-election.pdf",
+    "byel": "https://elections.bc.ca/2026-abbotsford-mission-by-election/",
+    "byel_cands": "https://elections.bc.ca/news/abbotsford-mission-by-election-candidates-confirmed/",
+    "byel_writ": "https://elections.bc.ca/news/writ-issued-for-2026-abbotsford-mission-by-election/",
+    "leger": "https://leger360.com/in-the-news-bc-politics-ndp-narrow-lead-april-2026-leger/",
 }
 
 
@@ -57,6 +62,8 @@ NAV_EN = [
     ("/bc-election-2026", "BC Election"),
     ("/bc-election-polls", "Polls"),
     ("/bc-party-leaders", "Party Leaders"),
+    ("/abbotsford-mission-by-election-2026", "By-election"),
+    ("/bc-election-results-2024", "2024 Results"),
     ("/bc-election-candidates-2026", "Candidates"),
     ("/bc-election-ridings", "Ridings"),
     ("/how-to-vote-bc", "How to Vote"),
@@ -65,6 +72,9 @@ NAV_EN = [
 NAV_ZH = [
     ("bc-election-2026", "省选2026"),
     ("bc-election-polls", "民调"),
+    ("bc-party-leaders", "党魁"),
+    ("abbotsford-mission-by-election-2026", "补选"),
+    ("bc-election-results-2024", "2024结果"),
     ("how-to-vote-bc", "如何投票"),
 ]
 HREFLANG = {"en": "en-CA", "zh-cn": "zh-Hans", "zh-tw": "zh-Hant"}
@@ -221,6 +231,7 @@ POLL_ROWS = [
     # pollster key, name, field, sample, ndp, con, grn, ctr, one, note
     ("ipsos", "Ipsos", "Sep 8–14, 2026 (released Sep 15)", "800 adults, online panel; ±4.0 credibility interval", 45, 35, 10, 4, 2, "Other 4%. 28% undecided or no preference."),
     ("research", "Research Co.", "Aug 12–14, 2026 (published Aug 18)", "801 adults, online; ±3.5", 44, 39, 10, 5, 1, "Decided voters. NDP regained the lead after trailing in June."),
+    ("leger", "Leger", "Apr 3–6, 2026 (published May 4)", "1,003 adults, online panel; comparable probability sample ±3.1", 44, 40, None, None, None, "Only NDP and Conservative figures shown here; see the release for other parties. 54% said the province is on the wrong track."),
 ]
 
 # =============================================================== ENGLISH PAGES
@@ -245,7 +256,7 @@ def page_hub_en():
         "<ul>"
         f"<li><strong>Sep 17, 2026</strong> — Premier David Eby said he had no election announcement to make, while saying the NDP and Elections BC have been told to be “election ready” ({a('tyee','The Tyee')}; {a('ctv','CTV News')}).</li>"
         f"<li><strong>Sep 15–17, 2026</strong> — New polls: Ipsos has the NDP at 45% and the Conservatives at 35% (Sept 8–14). {a('angus','Angus Reid')} published a survey on Sept 17. <a href=\"/bc-election-polls\">All polls</a>.</li>"
-        f"<li><strong>Sep 26, 2026</strong> — Abbotsford-Mission by-election. {a('ebc_byel','Elections BC lists it as scheduled')}; The Tyee gives the Sept 26 date.</li>"
+        f"<li><strong>Sep 26, 2026</strong> — Abbotsford-Mission by-election, with five candidates including Conservative leader Kerry-Lynne Findlay ({a('byel','Elections BC')}). Advance voting was Sept 18–23. <a href=\"/abbotsford-mission-by-election-2026\">Candidates and details</a>.</li>"
         f"<li><strong>May 30, 2026</strong> — Kerry-Lynne Findlay elected leader of the BC Conservatives ({a('wiki_lead','summary of the result')}). <a href=\"/bc-party-leaders\">Party leaders</a>.</li>"
         "</ul>"
     )
@@ -264,6 +275,8 @@ def page_hub_en():
         + '<section class="section"><div class="wrap"><h2>Keep going</h2><div class="linkgrid">'
         '<a class="linkcard" href="/bc-election-polls"><strong>BC election polls 2026</strong><span>NDP vs Conservatives with field dates and sample sizes.</span></a>'
         '<a class="linkcard" href="/bc-party-leaders"><strong>BC party leaders</strong><span>Who leads each party heading into a possible election.</span></a>'
+        '<a class="linkcard" href="/abbotsford-mission-by-election-2026"><strong>Abbotsford-Mission by-election</strong><span>Sept 26: five candidates, dates and deadlines.</span></a>'
+        '<a class="linkcard" href="/bc-election-results-2024"><strong>BC 2024 election results</strong><span>Official seats, votes and turnout.</span></a>'
         '<a class="linkcard" href="/how-to-vote-bc"><strong>How to vote in BC</strong><span>Eligibility, ID, advance voting and vote by mail.</span></a>'
         '<a class="linkcard" href="/bc-election-candidates-2026"><strong>BC election candidates 2026</strong><span>How nominations work and where official records will appear.</span></a>'
         "</div></div></section>"
@@ -279,7 +292,8 @@ def page_hub_en():
 def page_polls_en():
     def row(p):
         _, name, field, sample, n, c, g, ct, o, note = p
-        return f"<tr><td><strong>{name}</strong></td><td>{field}</td><td>{sample}</td><td>{n}%</td><td>{c}%</td><td>{g}%</td><td>{ct}%</td><td>{o}%</td><td>{note}</td></tr>"
+        pc = lambda v: f"{v}%" if v is not None else "—"
+        return f"<tr><td><strong>{name}</strong></td><td>{field}</td><td>{sample}</td><td>{pc(n)}</td><td>{pc(c)}</td><td>{pc(g)}</td><td>{pc(ct)}</td><td>{pc(o)}</td><td>{note}</td></tr>"
 
     rows = "".join(row(p) for p in POLL_ROWS)
     body = (
@@ -287,7 +301,7 @@ def page_polls_en():
              "Latest published BC provincial polls with field dates, sample sizes and methods. In the two most recent polls with full method details, the BC NDP leads the BC Conservatives by 5 to 10 points. A poll measures respondents at one point in time; it is not a forecast or a result.")
         + '<section class="section"><div class="wrap"><h2>Vote intention (decided voters)</h2><div class="tablewrap"><table><thead><tr><th>Pollster</th><th>Field dates</th><th>Sample</th><th>NDP</th><th>Cons.</th><th>Green</th><th>CentreBC</th><th>OneBC</th><th>Notes</th></tr></thead><tbody>'
         + rows
-        + f'</tbody></table></div><p class="source-note">Sources: {a("ipsos","Ipsos")} and {a("research","Research Co.")}. Ipsos reports the Conservatives down 8 points from their 2024 result (43.3% in 2024).</p></div></section>'
+        + f'</tbody></table></div><p class="source-note">Sources: {a("ipsos","Ipsos")}, {a("research","Research Co.")} and {a("leger","Leger")}. Ipsos reports the Conservatives down 8 points from their 2024 result (43.3% in 2024).</p></div></section>'
         + '<section class="section soft"><div class="wrap"><h2>Leader ratings</h2><div class="grid">'
         '<div class="card"><div class="kicker">Ipsos · favourable / unfavourable</div><p>David Eby (NDP): <strong>41% / 30%</strong><br>Kerry-Lynne Findlay (Cons.): <strong>17% / 46%</strong><br>Emily Lowan (Green): 12% / 15%<br>Dallas Brodie (OneBC): 10% / 24%<br>Mike Bernier (CentreBC): 9% / 19%</p></div>'
         '<div class="card"><div class="kicker">Research Co. · approval</div><p>Eby: <strong>49%</strong><br>Lowan: 38%<br>Findlay: 34%<br>Bernier: 24%<br>Brodie: 18%</p></div>'
@@ -301,7 +315,7 @@ def page_polls_en():
         '<p class="source-note">Polls are added only with pollster, field dates, sample and source link. Ridings, candidates and seat projections are not covered here. See <a href="/bc-election-2026">the election guide</a> for status and <a href="/sources">our sourcing rules</a>.</p></div></section>'
     )
     title = "BC Election Polls 2026: NDP vs Conservatives"
-    desc = "Latest BC provincial polls: Ipsos NDP 45, Conservatives 35; Research Co. NDP 44, Conservatives 39. Field dates, samples, margins and leader ratings."
+    desc = "Latest BC polls: Ipsos NDP 45, Conservatives 35; Research Co. 44–39; Leger 44–40. Field dates, samples, margins and leader ratings."
     schemas = [article_schema(title, desc, "en", "/bc-election-polls"),
                breadcrumb("en", [("Home", "/"), ("BC Election Polls", "/bc-election-polls")])]
     return render("en", "bc-election-polls", title, desc, body, GROUPS["polls"], schemas)
@@ -356,7 +370,7 @@ def page_leaders_en():
              "Who leads each party in British Columbia as a possible early election approaches, with the source for each claim.")
         + '<section class="section"><div class="wrap"><div class="tablewrap"><table><thead><tr><th>Party</th><th>Leader</th><th>Notes</th></tr></thead><tbody>'
         f"<tr><td><strong>BC NDP</strong></td><td>David Eby</td><td>Premier. Won a one-seat majority (47 of 93) in October 2024 ({a('wiki_2024','results summary')}).</td></tr>"
-        f"<tr><td><strong>Conservative Party of BC</strong></td><td>Kerry-Lynne Findlay</td><td>Elected leader on May 30, 2026 with 51.0% of weighted points in the fourth round over Caroline Elliott (49.0%). Not currently an MLA ({a('wiki_lead','summary')}).</td></tr>"
+        f"<tr><td><strong>Conservative Party of BC</strong></td><td>Kerry-Lynne Findlay</td><td>Elected leader on May 30, 2026 with 51.0% of weighted points in the fourth round over Caroline Elliott (49.0%). Not currently an MLA ({a('wiki_lead','summary')}); she is the Conservative candidate in the Sept 26 <a href=\"/abbotsford-mission-by-election-2026\">Abbotsford-Mission by-election</a>.</td></tr>"
         f"<tr><td><strong>BC Greens</strong></td><td>Emily Lowan</td><td>Named as Green leader in the {a('ipsos','Ipsos')} and {a('research','Research Co.')} polls. Two seats won in 2024.</td></tr>"
         f"<tr><td><strong>CentreBC</strong></td><td>Mike Bernier</td><td>New party that now appears in polling (4% Ipsos, 5% Research Co.).</td></tr>"
         f"<tr><td><strong>OneBC</strong></td><td>Dallas Brodie</td><td>New party that now appears in polling (2% Ipsos, 1% Research Co.).</td></tr>"
@@ -370,7 +384,7 @@ def page_leaders_en():
     desc = "Who leads the BC NDP, BC Conservatives, BC Greens, CentreBC and OneBC in 2026. Kerry-Lynne Findlay elected Conservative leader May 30, 2026; poll ratings."
     schemas = [article_schema(title, desc, "en", "/bc-party-leaders"),
                breadcrumb("en", [("Home", "/"), ("BC Party Leaders", "/bc-party-leaders")])]
-    return render("en", "bc-party-leaders", title, desc, body, None, schemas)
+    return render("en", "bc-party-leaders", title, desc, body, GROUPS["leaders"], schemas)
 
 
 def page_candidates_en():
@@ -421,6 +435,8 @@ def page_home_en():
         '<a class="linkcard" href="/bc-election-2026"><strong>BC Election 2026 Guide</strong><span>Is there an early election? Status, possible dates and latest news.</span></a>'
         '<a class="linkcard" href="/bc-election-polls"><strong>BC Election Polls</strong><span>NDP vs Conservatives with field dates, samples and margins.</span></a>'
         '<a class="linkcard" href="/bc-party-leaders"><strong>BC Party Leaders</strong><span>Eby, Findlay, Lowan, Bernier and Brodie.</span></a>'
+        '<a class="linkcard" href="/abbotsford-mission-by-election-2026"><strong>Abbotsford-Mission By-election</strong><span>Sept 26 vote with Conservative leader Findlay on the ballot.</span></a>'
+        '<a class="linkcard" href="/bc-election-results-2024"><strong>BC 2024 Election Results</strong><span>Official seats, votes and turnout from Elections BC.</span></a>'
         '<a class="linkcard" href="/how-to-vote-bc"><strong>How to Vote in BC</strong><span>Eligibility, ID, advance voting and vote by mail.</span></a>'
         '<a class="linkcard" href="/bc-election-candidates-2026"><strong>BC Election Candidates 2026</strong><span>How nominations work and where official records appear.</span></a>'
         '<a class="linkcard" href="/bc-election-ridings"><strong>BC Ridings</strong><span>93 electoral districts and how they decide seats.</span></a>'
@@ -459,7 +475,7 @@ def page_hub_zh(lang):
         "<ul>"
         f"<li><strong>2026年9月17日</strong> — 省长David Eby表示没有选举公告要宣布，同时说NDP和Elections BC已被告知要做好选举准备（{a('tyee','The Tyee')}；{a('ctv','CTV News')}）。</li>"
         f"<li><strong>2026年9月15至17日</strong> — 新民调：Ipsos显示NDP 45%、保守党35%（9月8至14日）；{a('angus','Angus Reid')}于9月17日发布调查。<a href=\"{url_for(lang,'bc-election-polls')}\">查看全部民调</a>。</li>"
-        f"<li><strong>2026年9月26日</strong> — Abbotsford-Mission补选。{a('ebc_byel','Elections BC列为已排定')}；The Tyee给出9月26日的日期。</li>"
+        f"<li><strong>2026年9月26日</strong> — Abbotsford-Mission补选，五名候选人包括保守党党魁Kerry-Lynne Findlay（{a('byel','Elections BC')}）；提前投票为9月18至23日。<a href=\"{url_for(lang,'abbotsford-mission-by-election-2026')}\">候选人与详情</a>。</li>"
         f"<li><strong>2026年5月30日</strong> — Kerry-Lynne Findlay当选BC保守党党魁（{a('wiki_lead','结果摘要')}）。</li>"
         "</ul>"
     )
@@ -496,15 +512,18 @@ def page_polls_zh(lang):
     for _, name, field, sample, n, c, g, ct, o, note in POLL_ROWS:
         if name == "Ipsos":
             f_, s_, nt = "2026年9月8至14日（9月15日发布）", "800名成年人，线上样本；可信区间±4.0", "其他4%；28%未决定或无偏好。"
+        elif name == "Leger":
+            f_, s_, nt = "2026年4月3至6日（5月4日发布）", "1,003名成年人，线上样本；相当于概率样本±3.1", "此处仅列NDP和保守党；其他政党见原报告。54%认为省份走错方向。"
         else:
             f_, s_, nt = "2026年8月12至14日（8月18日发布）", "801名成年人，线上；误差±3.5", "已决定选民；NDP在6月落后后重新领先。"
-        rows += f"<tr><td><strong>{name}</strong></td><td>{f_}</td><td>{s_}</td><td>{n}%</td><td>{c}%</td><td>{g}%</td><td>{ct}%</td><td>{o}%</td><td>{nt}</td></tr>"
+        pc = lambda v: f"{v}%" if v is not None else "—"
+        rows += f"<tr><td><strong>{name}</strong></td><td>{f_}</td><td>{s_}</td><td>{pc(n)}</td><td>{pc(c)}</td><td>{pc(g)}</td><td>{pc(ct)}</td><td>{pc(o)}</td><td>{nt}</td></tr>"
     body = (
         hero("民调追踪", L("BC省选民调 2026：NDP对保守党"),
              L("最新公开的BC省民调，附调查日期、样本量和方法。在两项方法细节完整的最新民调中，BC NDP领先BC保守党5至10个百分点。民调只反映某一时间点的受访者意见，不是预测，也不是选举结果。"))
         + f'<section class="section"><div class="wrap"><h2>{L("政党支持度（已决定选民）")}</h2><div class="tablewrap"><table><thead><tr><th>{L("调查机构")}</th><th>{L("调查日期")}</th><th>{L("样本")}</th><th>NDP</th><th>{L("保守党")}</th><th>{L("绿党")}</th><th>CentreBC</th><th>OneBC</th><th>{L("备注")}</th></tr></thead><tbody>'
         + L(rows)
-        + f'</tbody></table></div><p class="source-note">{L("来源：")}{a("ipsos","Ipsos")}、{a("research","Research Co.")}。{L("Ipsos指出保守党较2024年结果（43.3%）下降8个百分点。")}</p></div></section>'
+        + f'</tbody></table></div><p class="source-note">{L("来源：")}{a("ipsos","Ipsos")}、{a("research","Research Co.")}、{a("leger","Leger")}。{L("Ipsos指出保守党较2024年结果（43.3%）下降8个百分点。")}</p></div></section>'
         + f'<section class="section soft"><div class="wrap"><h2>{L("党魁评价")}</h2><div class="grid">'
         + L('<div class="card"><div class="kicker">Ipsos · 好感／反感</div><p>David Eby（NDP）：<strong>41%／30%</strong><br>Kerry-Lynne Findlay（保守党）：<strong>17%／46%</strong><br>Emily Lowan（绿党）：12%／15%<br>Dallas Brodie（OneBC）：10%／24%<br>Mike Bernier（CentreBC）：9%／19%</p></div>')
         + L('<div class="card"><div class="kicker">Research Co. · 支持率</div><p>Eby：<strong>49%</strong><br>Lowan：38%<br>Findlay：34%<br>Bernier：24%<br>Brodie：18%</p></div>')
@@ -518,7 +537,7 @@ def page_polls_zh(lang):
         + f'<p class="source-note">{L("民调只有在附上调查机构、调查日期、样本和来源链接后才会收录。查看")}<a href="{url_for(lang,"bc-election-2026")}">{L("省选指南")}</a>{L("了解选举状态。")}</p></div></section>'
     )
     title = L("BC省选民调 2026：NDP对保守党最新民调")
-    desc = L("BC省最新民调：Ipsos显示NDP 45%、保守党35%；Research Co.显示44%对39%。附调查日期、样本、误差和党魁评价。")
+    desc = L("BC省最新民调：Ipsos显示NDP 45%、保守党35%；Research Co. 44%对39%；Leger 44%对40%。附调查日期、样本、误差和党魁评价。")
     path = url_for(lang, "bc-election-polls")
     schemas = [article_schema(title, desc, lang, path), breadcrumb(lang, [(L("首页"), "/"), (L("BC省选民调"), path)])]
     return render(lang, "bc-election-polls", title, desc, body, GROUPS["polls"], schemas)
@@ -571,13 +590,259 @@ def page_how_zh(lang):
     return render(lang, "how-to-vote-bc", title, desc, body, GROUPS["how"], schemas)
 
 
+# ================================================================ BY-ELECTION
+BYEL_CANDS = [
+    ("Pam Alexis", "BC NDP", "NDP candidate in this riding in 2024 (44.62%, official result)."),
+    ("Kerry-Lynne Findlay", "Conservative Party", "Leader of the BC Conservatives since May 30, 2026; not currently an MLA."),
+    ("Stephen Fowler", "BC Green Party", ""),
+    ("Lakhwinder Jhaj", "CentreBC", ""),
+    ("Jeff Monds", "Libertarian", ""),
+]
+BYEL_FAQ_EN = [
+    ("When is the Abbotsford-Mission by-election?",
+     f"Saturday, September 26, 2026, with voting places open 8 a.m. to 8 p.m. Advance voting ran September 18–23 ({a('byel','Elections BC')})."),
+    ("Who is running in the Abbotsford-Mission by-election?",
+     f"Five candidates: Pam Alexis (BC NDP), Kerry-Lynne Findlay (Conservative Party), Stephen Fowler (BC Green Party), Lakhwinder Jhaj (CentreBC) and Jeff Monds (Libertarian) ({a('byel_cands','Elections BC candidate list')})."),
+    ("Why is there a by-election in Abbotsford-Mission?",
+     f"Elections BC says MLA Reann Gasper resigned on August 24, 2026 ({a('byel_writ','Elections BC')}). She had won the seat for the Conservatives in 2024."),
+    ("When will results be available?",
+     f"Elections BC says preliminary results are published after 8 p.m. on election day and the final count is announced October 1 ({a('byel','Elections BC')}). This page will be updated after the results are official."),
+    ("Who can vote in the by-election?",
+     "Canadian citizens aged 18 or older who live in the Abbotsford-Mission electoral district and have been BC residents since March 25, 2026, according to Elections BC. Eligible voters can register or update information online, by phone or in person on voting day."),
+]
+
+
+def page_byel_en():
+    rows = "".join(
+        f"<tr><td><strong>{n}</strong></td><td>{p_}</td><td>{note}</td></tr>" for n, p_, note in BYEL_CANDS
+    )
+    body = (
+        hero("By-election", "Abbotsford-Mission by-election 2026",
+             "Voters in Abbotsford-Mission choose a new MLA on Saturday, September 26, 2026. Five candidates are on the ballot, including Conservative Party leader Kerry-Lynne Findlay, who does not currently hold a seat in the Legislature.")
+        + '<section class="section"><div class="wrap"><h2>Key facts</h2><div class="tablewrap"><table><tbody>'
+        f"<tr><th>Election day</th><td>Saturday, September 26, 2026, 8 a.m. to 8 p.m. ({a('byel','Elections BC')})</td></tr>"
+        "<tr><th>Advance voting</th><td>September 18–23, 2026, 8 a.m. to 8 p.m.</td></tr>"
+        f"<tr><th>Why it is being held</th><td>MLA Reann Gasper resigned on August 24, 2026 ({a('byel_writ','Elections BC')}).</td></tr>"
+        "<tr><th>Nominations closed</th><td>September 5, 2026, 1 p.m.</td></tr>"
+        "<tr><th>Registration</th><td>Online registration closed at midnight September 14 and phone registration at 8 p.m. that day; Elections BC says eligible voters can also register or update information in person on voting day.</td></tr>"
+        "<tr><th>Vote by mail</th><td>The deadline to request a voting package was September 20, 8 p.m.</td></tr>"
+        "<tr><th>Results</th><td>Preliminary results after 8 p.m. on September 26; final results announced October 1.</td></tr>"
+        "</tbody></table></div></div></section>"
+        '<section class="section soft"><div class="wrap"><h2>Candidates</h2><div class="tablewrap"><table><thead><tr><th>Candidate</th><th>Party</th><th>Notes</th></tr></thead><tbody>'
+        + rows
+        + f'</tbody></table></div><p class="source-note">Candidate list: {a("byel_cands","Elections BC")}. Notes on Findlay are from {a("wiki_lead","this summary")} and <a href="/bc-party-leaders">BC party leaders</a>.</p></div></section>'
+        + '<section class="section"><div class="wrap"><h2>How Abbotsford-Mission voted in 2024</h2>'
+        f"<p>At the October 19, 2024 general election, Conservative Reann Gasper won Abbotsford-Mission with <strong>13,523 votes (55.38%)</strong>, ahead of NDP candidate Pam Alexis with <strong>10,894 votes (44.62%)</strong>. Source: {a('sov','Elections BC Statement of Votes')}. See also the province-wide <a href=\"/bc-election-results-2024\">2024 results</a>.</p>"
+        "<p>This is background, not a forecast: by-elections often differ from general elections in turnout and campaign focus, and BC Vote Watch does not publish riding-level predictions.</p></div></section>"
+        + faq_html(BYEL_FAQ_EN, "Abbotsford-Mission by-election FAQ")
+        + '<section class="section"><div class="wrap"><p class="source-note">Results will be added here after Elections BC publishes them. Next: <a href="/bc-election-2026">is there a BC election in 2026?</a> · <a href="/bc-election-polls">BC election polls</a> · <a href="/how-to-vote-bc">how to vote in BC</a>.</p></div></section>'
+    )
+    title = "Abbotsford-Mission By-election 2026: Candidates"
+    desc = "Abbotsford-Mission by-election Sept 26, 2026: five candidates including Conservative leader Kerry-Lynne Findlay, voting dates, deadlines and 2024 result."
+    path = "/abbotsford-mission-by-election-2026"
+    schemas = [article_schema(title, desc, "en", path),
+               breadcrumb("en", [("Home", "/"), ("Abbotsford-Mission By-election", path)]),
+               faq_schema(BYEL_FAQ_EN)]
+    return render("en", "abbotsford-mission-by-election-2026", title, desc, body, GROUPS["byel"], schemas)
+
+
+BYEL_FAQ_ZH = [
+    ("Abbotsford-Mission补选是什么时候？",
+     f"2026年9月26日（星期六），投票站开放时间为上午8点至晚上8点。提前投票为9月18至23日（{a('byel','Elections BC')}）。"),
+    ("Abbotsford-Mission补选有哪些候选人？",
+     f"共五人：Pam Alexis（BC NDP）、Kerry-Lynne Findlay（保守党）、Stephen Fowler（BC绿党）、Lakhwinder Jhaj（CentreBC）和Jeff Monds（自由意志党）（{a('byel_cands','Elections BC候选人名单')}）。"),
+    ("为什么Abbotsford-Mission要补选？",
+     f"Elections BC 表示，议员Reann Gasper于2026年8月24日辞职（{a('byel_writ','Elections BC')}）。她在2024年代表保守党赢得该选区。"),
+    ("补选结果什么时候公布？",
+     f"Elections BC 表示，初步结果在选举日晚上8点后公布，最终结果于10月1日宣布（{a('byel','Elections BC')}）。官方结果公布后本页会更新。"),
+    ("谁可以在补选投票？",
+     "根据 Elections BC，投票人须为18岁或以上的加拿大公民，居住在Abbotsford-Mission选区，并自2026年3月25日起为BC省居民。合资格选民可在线、电话或在投票日亲自登记或更新资料。"),
+]
+BYEL_NOTES_ZH = {
+    "Pam Alexis": "2024年该选区的NDP候选人（得票44.62%，官方结果）。",
+    "Kerry-Lynne Findlay": "自2026年5月30日起担任BC保守党党魁；目前不是省议员。",
+}
+
+
+def page_byel_zh(lang):
+    L = lambda s: conv(lang, s)
+    zparty = {"BC NDP": "BC NDP", "Conservative Party": "保守党", "BC Green Party": "BC绿党", "CentreBC": "CentreBC", "Libertarian": "自由意志党"}
+    rows = "".join(
+        f"<tr><td><strong>{n}</strong></td><td>{zparty[p_]}</td><td>{BYEL_NOTES_ZH.get(n, '')}</td></tr>" for n, p_, _ in BYEL_CANDS
+    )
+    body = (
+        hero("补选", L("Abbotsford-Mission补选 2026"),
+             L("Abbotsford-Mission选民将于2026年9月26日（星期六）选出新省议员。选票上有五名候选人，包括目前没有省议会议席的保守党党魁Kerry-Lynne Findlay。"))
+        + f'<section class="section"><div class="wrap"><h2>{L("关键信息")}</h2><div class="tablewrap"><table><tbody>'
+        + L(f"<tr><th>选举日</th><td>2026年9月26日（星期六），上午8点至晚上8点（{a('byel','Elections BC')}）</td></tr>")
+        + L("<tr><th>提前投票</th><td>2026年9月18至23日，上午8点至晚上8点</td></tr>")
+        + L(f"<tr><th>为什么补选</th><td>议员Reann Gasper于2026年8月24日辞职（{a('byel_writ','Elections BC')}）。</td></tr>")
+        + L("<tr><th>提名截止</th><td>2026年9月5日下午1点</td></tr>")
+        + L("<tr><th>登记</th><td>网上登记于9月14日午夜截止，电话登记于当天晚上8点截止；Elections BC 表示合资格选民也可在投票日亲自登记或更新资料。</td></tr>")
+        + L("<tr><th>邮寄投票</th><td>申请选票包的截止时间为9月20日晚上8点。</td></tr>")
+        + L("<tr><th>结果</th><td>初步结果在9月26日晚上8点后公布；最终结果于10月1日宣布。</td></tr>")
+        + "</tbody></table></div></div></section>"
+        + f'<section class="section soft"><div class="wrap"><h2>{L("候选人")}</h2><div class="tablewrap"><table><thead><tr><th>{L("候选人")}</th><th>{L("政党")}</th><th>{L("备注")}</th></tr></thead><tbody>'
+        + L(rows)
+        + f'</tbody></table></div><p class="source-note">{L("候选人名单：")}{a("byel_cands","Elections BC")}。</p></div></section>'
+        + f'<section class="section"><div class="wrap"><h2>{L("Abbotsford-Mission在2024年怎么投")}</h2>'
+        + L(f"<p>2024年10月19日省选中，保守党的Reann Gasper以<strong>13,523票（55.38%）</strong>赢得Abbotsford-Mission，NDP候选人Pam Alexis得<strong>10,894票（44.62%）</strong>。来源：{a('sov','Elections BC投票统计报告')}。另见全省<a href=\"{url_for(lang,'bc-election-results-2024')}\">2024年选举结果</a>。</p>")
+        + L("<p>这只是背景，不是预测：补选的投票率和竞选焦点常与大选不同，BC Vote Watch不发布选区层面的预测。</p>")
+        + "</div></section>"
+        + L(faq_html(BYEL_FAQ_ZH, "Abbotsford-Mission补选常见问题"))
+    )
+    title = L("Abbotsford-Mission补选 2026：候选人与日期")
+    desc = L("Abbotsford-Mission补选（2026年9月26日）：五名候选人包括保守党党魁Kerry-Lynne Findlay，附投票日期、截止时间和2024年结果。")
+    path = url_for(lang, "abbotsford-mission-by-election-2026")
+    schemas = [article_schema(title, desc, lang, path),
+               breadcrumb(lang, [(L("首页"), "/"), (L("补选"), path)]),
+               faq_schema([(L(q), L(a_)) for q, a_ in BYEL_FAQ_ZH])]
+    return render(lang, "abbotsford-mission-by-election-2026", title, desc, body, GROUPS["byel"], schemas)
+
+
+# ================================================================ 2024 RESULTS
+RES_ROWS = [
+    ("BC NDP", 944579, "44.87%", 47),
+    ("Conservative Party", 911153, "43.28%", 44),
+    ("BC Green Party", 173377, "8.24%", 2),
+    ("Independent", 47117, "2.24%", 0),
+    ("Unaffiliated", 25464, "1.21%", 0),
+    ("Libertarian", 1380, "0.07%", 0),
+    ("Freedom Party of BC", 1267, "0.06%", 0),
+    ("Communist Party of BC", 639, "0.03%", 0),
+    ("Christian Heritage Party of B.C.", 365, "0.02%", 0),
+]
+RES_ZH = {"BC NDP": "BC NDP", "Conservative Party": "保守党", "BC Green Party": "BC绿党", "Independent": "无党派候选人（Independent）",
+          "Unaffiliated": "无所属（Unaffiliated）", "Libertarian": "自由意志党", "Freedom Party of BC": "BC自由党（Freedom Party）",
+          "Communist Party of BC": "BC共产党", "Christian Heritage Party of B.C.": "BC基督教遗产党"}
+RES_FAQ_EN = [
+    ("Who won the 2024 BC election?",
+     f"The BC NDP under David Eby won 47 of 93 seats, a one-seat majority, with 44.87% of the vote. The Conservative Party won 44 seats (43.28%) and the BC Greens 2 seats (8.24%) ({a('sov','Elections BC Statement of Votes')})."),
+    ("What was voter turnout in the 2024 BC election?",
+     "2,109,658 votes were cast, 58.45% of the 3,609,288 registered voters, according to Elections BC."),
+    ("How close was the 2024 BC election?",
+     "The NDP finished 33,426 votes and 1.59 percentage points ahead of the Conservatives province-wide. It won exactly the 47 seats needed for a majority in the 93-seat Legislature."),
+    ("When did people vote in the 2024 BC election?",
+     "About 47.5% of votes were cast at advance voting, 44.0% on Final Voting Day and 3.7% by mail; the rest came from district electoral office, special and assisted telephone voting."),
+    ("Are these the current seats in the Legislature?",
+     f"No. These are the results on election night in 2024. Party standings have since changed; see <a href=\"/bc-party-leaders\">BC party leaders</a> and the {a('leg','Legislative Assembly of BC')}."),
+]
+RES_FAQ_ZH = [
+    ("谁赢得了2024年BC省选？",
+     f"David Eby领导的BC NDP以44.87%的得票赢得93个议席中的47席，以一席优势组成多数政府。保守党赢得44席（43.28%），BC绿党2席（8.24%）（{a('sov','Elections BC投票统计报告')}）。"),
+    ("2024年BC省选的投票率是多少？",
+     "根据 Elections BC，共有2,109,658张选票，占3,609,288名登记选民的58.45%。"),
+    ("2024年BC省选有多接近？",
+     "NDP在全省得票上领先保守党33,426票、1.59个百分点，恰好赢得93席立法会中组成多数所需的47席。"),
+    ("2024年大家什么时候投票？",
+     "约47.5%的选票在提前投票期间投出，44.0%在最终投票日投出，3.7%为邮寄投票；其余来自选区选举办事处、特别投票和电话协助投票。"),
+    ("这是立法会目前的议席吗？",
+     f"不是。这是2024年选举夜的结果，此后政党构成已有变化。见<a href=\"{{PBL}}\">BC党魁</a>和{a('leg','BC省立法会')}。"),
+]
+
+
+def page_results_en():
+    rows = "".join(f"<tr><td>{n}</td><td>{v:,}</td><td>{pc}</td><td>{seats}</td></tr>" for n, v, pc, seats in RES_ROWS)
+    body = (
+        hero("Results", "BC 2024 election results: seats, votes and turnout",
+             "Official results of the October 19, 2024 BC provincial general election from Elections BC. The NDP won 47 of 93 seats with 44.87% of the vote, a one-seat majority; the Conservatives won 44 seats with 43.28%; the Greens won 2.")
+        + '<section class="section"><div class="wrap"><h2>Results by party</h2><div class="tablewrap"><table><thead><tr><th>Party</th><th>Valid votes</th><th>% of total</th><th>Seats</th></tr></thead><tbody>'
+        + rows
+        + '<tr><td><strong>Total</strong></td><td><strong>2,105,341</strong></td><td><strong>100.00%</strong></td><td><strong>93</strong></td></tr></tbody></table></div>'
+        f"<p class=\"source-note\">Source: {a('sov','Elections BC — Statement of Votes, 43rd Provincial General Election (October 19, 2024)')}, presented to the Speaker on April 17, 2025. Official results by riding and candidate are in the same document and at {a('ebc_results','Elections BC results')}.</p></div></section>"
+        '<section class="section soft"><div class="wrap"><h2>Turnout</h2><div class="grid">'
+        '<div class="card"><div class="kicker">Votes cast</div><div class="big">2,109,658</div><p class="muted">Including 4,317 rejected ballots.</p></div>'
+        '<div class="card"><div class="kicker">Registered voters</div><div class="big">3,609,288</div><p class="muted">As of the close of voting.</p></div>'
+        '<div class="card"><div class="kicker">Turnout</div><div class="big">58.45%</div><p class="muted">Of registered voters.</p></div></div></div></section>'
+        '<section class="section"><div class="wrap"><h2>How close it was</h2>'
+        "<p>Province-wide the NDP led the Conservatives by <strong>33,426 votes (1.59 percentage points)</strong>. The NDP won exactly the 47 seats needed for a majority in a 93-seat Legislature. Seats are won riding by riding, so a small vote lead can produce a very different seat margin. See <a href=\"/bc-election-ridings\">how ridings work</a>.</p>"
+        "<h2>When British Columbians voted</h2><ul>"
+        "<li><strong>Advance voting:</strong> 47.5% of votes (45.17% in district, 2.32% out of district)</li>"
+        "<li><strong>Final Voting Day:</strong> 44.0% (42.33% in district, 1.71% out of district)</li>"
+        "<li><strong>Vote by mail:</strong> 3.7% (3.24% at headquarters, 0.48% at district offices)</li>"
+        "<li><strong>District electoral office voting:</strong> 3.0%; <strong>special voting:</strong> 1.6%; <strong>assisted telephone voting:</strong> 0.2%</li></ul>"
+        f"<p class=\"source-note\">Shares are of votes considered (including rejected ballots); source {a('sov','Elections BC')}. Ways to vote today: <a href=\"/how-to-vote-bc\">how to vote in BC</a>.</p></div></section>"
+        + faq_html(RES_FAQ_EN, "2024 BC election results FAQ")
+        + '<section class="section"><div class="wrap"><p class="source-note">These are 2024 election-night results, not the current standings of the Legislature. What has changed since: <a href="/bc-election-2026">BC election 2026 guide</a> · <a href="/bc-party-leaders">party leaders</a> · <a href="/abbotsford-mission-by-election-2026">Abbotsford-Mission by-election</a>.</p></div></section>'
+    )
+    title = "BC 2024 Election Results: Seats and Votes"
+    desc = "Official BC 2024 election results: NDP 47 seats (44.87%), Conservatives 44 (43.28%), Greens 2. Turnout 58.45%. Source: Elections BC Statement of Votes."
+    path = "/bc-election-results-2024"
+    schemas = [article_schema(title, desc, "en", path),
+               breadcrumb("en", [("Home", "/"), ("BC 2024 Election Results", path)]),
+               faq_schema(RES_FAQ_EN)]
+    return render("en", "bc-election-results-2024", title, desc, body, GROUPS["results"], schemas)
+
+
+def page_results_zh(lang):
+    L = lambda s: conv(lang, s)
+    rows = "".join(f"<tr><td>{RES_ZH[n]}</td><td>{v:,}</td><td>{pc}</td><td>{seats}</td></tr>" for n, v, pc, seats in RES_ROWS)
+    faq = [(q, ans.replace("{PBL}", url_for(lang, "bc-party-leaders"))) for q, ans in RES_FAQ_ZH]
+    body = (
+        hero("选举结果", L("BC省2024年选举结果：议席、得票与投票率"),
+             L("BC省2024年10月19日省选的官方结果，来自 Elections BC。NDP以44.87%的得票赢得93席中的47席，以一席优势组成多数政府；保守党赢得44席（43.28%）；绿党2席。"))
+        + f'<section class="section"><div class="wrap"><h2>{L("各党结果")}</h2><div class="tablewrap"><table><thead><tr><th>{L("政党")}</th><th>{L("有效票")}</th><th>{L("得票率")}</th><th>{L("议席")}</th></tr></thead><tbody>'
+        + L(rows)
+        + f'<tr><td><strong>{L("合计")}</strong></td><td><strong>2,105,341</strong></td><td><strong>100.00%</strong></td><td><strong>93</strong></td></tr></tbody></table></div>'
+        + L(f"<p class=\"source-note\">来源：{a('sov','Elections BC——第43届省选投票统计报告（2024年10月19日）')}，于2025年4月17日提交议长。分选区、分候选人的官方结果见同一文件及{a('ebc_results','Elections BC结果页')}。</p></div></section>")
+        + f'<section class="section soft"><div class="wrap"><h2>{L("投票率")}</h2><div class="grid">'
+        + L('<div class="card"><div class="kicker">投出选票</div><div class="big">2,109,658</div><p class="muted">含4,317张废票。</p></div>')
+        + L('<div class="card"><div class="kicker">登记选民</div><div class="big">3,609,288</div><p class="muted">截至投票结束时。</p></div>')
+        + L('<div class="card"><div class="kicker">投票率</div><div class="big">58.45%</div><p class="muted">占登记选民比例。</p></div>')
+        + "</div></div></section>"
+        + f'<section class="section"><div class="wrap"><h2>{L("结果有多接近")}</h2>'
+        + L(f"<p>全省得票上，NDP领先保守党<strong>33,426票（1.59个百分点）</strong>，恰好赢得93席立法会中组成多数所需的47席。议席是按选区逐个决定的，所以小幅的得票领先可能造成很不同的议席差距。</p>")
+        + f"<h2>{L('大家什么时候投票')}</h2><ul>"
+        + L("<li><strong>提前投票：</strong>47.5%的选票（选区内45.17%，选区外2.32%）</li>")
+        + L("<li><strong>最终投票日：</strong>44.0%（选区内42.33%，选区外1.71%）</li>")
+        + L("<li><strong>邮寄投票：</strong>3.7%（总部处理3.24%，选区办事处0.48%）</li>")
+        + L("<li><strong>选区选举办事处投票：</strong>3.0%；<strong>特别投票：</strong>1.6%；<strong>电话协助投票：</strong>0.2%</li></ul>")
+        + L(f"<p class=\"source-note\">比例为计入废票在内的“考虑票数”占比；来源{a('sov','Elections BC')}。目前的投票方式见<a href=\"{url_for(lang,'how-to-vote-bc')}\">BC省如何投票</a>。</p></div></section>")
+        + L(faq_html(faq, "2024年BC省选结果常见问题"))
+    )
+    title = L("BC省2024年选举结果：议席、得票与投票率")
+    desc = L("BC省2024年官方选举结果：NDP 47席（44.87%），保守党44席（43.28%），绿党2席，投票率58.45%。来源：Elections BC。")
+    path = url_for(lang, "bc-election-results-2024")
+    schemas = [article_schema(title, desc, lang, path),
+               breadcrumb(lang, [(L("首页"), "/"), (L("2024年结果"), path)]),
+               faq_schema([(L(q), L(a_)) for q, a_ in faq])]
+    return render(lang, "bc-election-results-2024", title, desc, body, GROUPS["results"], schemas)
+
+
+# ================================================================ LEADERS (zh)
+def page_leaders_zh(lang):
+    L = lambda s: conv(lang, s)
+    body = (
+        hero("政党党魁", L("BC省政党党魁 2026"), L("随着提前省选的可能临近，BC省各政党目前由谁领导，每项说明都附有来源。"))
+        + f'<section class="section"><div class="wrap"><div class="tablewrap"><table><thead><tr><th>{L("政党")}</th><th>{L("党魁")}</th><th>{L("说明")}</th></tr></thead><tbody>'
+        + L(f"<tr><td><strong>BC NDP</strong></td><td>David Eby</td><td>省长。2024年10月以一席优势（93席中的47席）赢得多数政府（{a('sov','Elections BC官方结果')}）。</td></tr>")
+        + L(f"<tr><td><strong>BC保守党</strong></td><td>Kerry-Lynne Findlay</td><td>2026年5月30日当选党魁，第四轮以51.0%的加权得分击败Caroline Elliott（49.0%）。目前不是省议员（{a('wiki_lead','摘要')}）；她是9月26日<a href=\"{url_for(lang,'abbotsford-mission-by-election-2026')}\">Abbotsford-Mission补选</a>的保守党候选人。</td></tr>")
+        + L(f"<tr><td><strong>BC绿党</strong></td><td>Emily Lowan</td><td>在{a('ipsos','Ipsos')}和{a('research','Research Co.')}民调中被列为绿党党魁。2024年赢得2席。</td></tr>")
+        + L("<tr><td><strong>CentreBC</strong></td><td>Mike Bernier</td><td>新政党，现已出现在民调中（Ipsos 4%，Research Co. 5%）。</td></tr>")
+        + L("<tr><td><strong>OneBC</strong></td><td>Dallas Brodie</td><td>新政党，现已出现在民调中（Ipsos 2%，Research Co. 1%）。</td></tr>")
+        + "</tbody></table></div>"
+        + L(f"<p class=\"source-note\">2024年以来第43届立法会的构成已有变化，有议员转党或成为无党派议员（{a('wiki_43','概述')}）。最新议席分布请查看{a('leg','BC省立法会')}；BC Vote Watch会在与立法会和权威报道核对一致后再发布议席数字。</p></div></section>")
+        + f'<section class="section soft"><div class="wrap"><h2>{L("选民如何评价他们")}</h2>'
+        + L(f"<p>Ipsos（9月8至14日）显示Eby好感度41%、反感30%，Findlay好感17%、反感46%。Research Co.（8月12至14日）显示Eby支持率49%，Lowan 38%，Findlay 34%。完整数字与方法见<a href=\"{url_for(lang,'bc-election-polls')}\">BC省选民调</a>。</p>")
+        + L(f"<p>选举会来吗？见<a href=\"{url_for(lang,'bc-election-2026')}\">BC省选2026指南</a>。</p></div></section>")
+    )
+    title = L("BC省政党党魁 2026：Eby、Findlay、Lowan")
+    desc = L("2026年BC NDP、BC保守党、BC绿党、CentreBC和OneBC的党魁。Kerry-Lynne Findlay于2026年5月30日当选保守党党魁；附民调评价。")
+    path = url_for(lang, "bc-party-leaders")
+    schemas = [article_schema(title, desc, lang, path), breadcrumb(lang, [(L("首页"), "/"), (L("BC党魁"), path)])]
+    return render(lang, "bc-party-leaders", title, desc, body, GROUPS["leaders"], schemas)
+
+
 # ---------------------------------------------------------------- groups + sitemap
 GROUPS = {
     "hub": {"en": "bc-election-2026", "zh-cn": "bc-election-2026", "zh-tw": "bc-election-2026"},
     "polls": {"en": "bc-election-polls", "zh-cn": "bc-election-polls", "zh-tw": "bc-election-polls"},
     "how": {"en": "how-to-vote-bc", "zh-cn": "how-to-vote-bc", "zh-tw": "how-to-vote-bc"},
+    "leaders": {"en": "bc-party-leaders", "zh-cn": "bc-party-leaders", "zh-tw": "bc-party-leaders"},
+    "byel": {"en": "abbotsford-mission-by-election-2026", "zh-cn": "abbotsford-mission-by-election-2026", "zh-tw": "abbotsford-mission-by-election-2026"},
+    "results": {"en": "bc-election-results-2024", "zh-cn": "bc-election-results-2024", "zh-tw": "bc-election-results-2024"},
 }
-EN_ONLY = ["", "bc-party-leaders", "bc-election-candidates-2026", "bc-election-ridings", "sources"]
+EN_ONLY = ["", "bc-election-candidates-2026", "bc-election-ridings", "sources"]
 
 
 def sitemap():
@@ -603,14 +868,13 @@ def sitemap():
 
 
 def patch_static():
-    """sources.html and 404.html keep their body; only the nav gets the new link."""
-    nav_old = '<a href="/bc-election-polls">Polls</a><a href="/how-to-vote-bc">How to Vote</a>'
+    """sources.html and 404.html keep their body; only the nav is refreshed."""
+    nav = "<nav>" + "".join(f'<a href="{h}">{t}</a>' for h, t in NAV_EN) + "</nav>"
     for name in ("sources.html", "404.html"):
         p = os.path.join(ROOT, name)
         s = open(p, encoding="utf8").read()
-        if "/bc-party-leaders" not in s and '<a href="/bc-election-polls">Polls</a>' in s:
-            s = s.replace('<a href="/bc-election-polls">Polls</a>', '<a href="/bc-election-polls">Polls</a><a href="/bc-party-leaders">Party Leaders</a>')
-            open(p, "w", encoding="utf8").write(s)
+        s = re.sub(r"<nav>.*?</nav>", nav, s, count=1, flags=re.S)
+        open(p, "w", encoding="utf8").write(s)
 
 
 if __name__ == "__main__":
@@ -621,9 +885,14 @@ if __name__ == "__main__":
     page_leaders_en()
     page_candidates_en()
     page_ridings_en()
+    page_byel_en()
+    page_results_en()
     for lang in ("zh-cn", "zh-tw"):
         page_hub_zh(lang)
         page_polls_zh(lang)
         page_how_zh(lang)
+        page_leaders_zh(lang)
+        page_byel_zh(lang)
+        page_results_zh(lang)
     patch_static()
     print("sitemap urls:", sitemap())
