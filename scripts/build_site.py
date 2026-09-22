@@ -297,7 +297,7 @@ def page_hub_en():
         '<a class="linkcard" href="/bc-election-candidates-2026"><strong>BC election candidates 2026</strong><span>How nominations work and where official records will appear.</span></a>'
         "</div></div></section>"
     )
-    title = "BC Election 2026: Is There an Early Election?"
+    title = "BC Election 2026: Is There an Early One?"
     desc = "Has a BC provincial election been called for 2026? Official status, possible Fall 2026 election dates, latest Eby news and polls, sourced to Elections BC."
     schemas = [article_schema(title, desc, "en", "/bc-election-2026"),
                breadcrumb("en", [("Home", "/"), ("BC Election 2026", "/bc-election-2026")]),
@@ -372,7 +372,7 @@ def page_how_en():
         f"<p class=\"source-note\">Source: {a('ebc_ways','Elections BC — Ways to vote')}. Possible Fall 2026 dates are on the <a href=\"/bc-election-2026\">BC election 2026 guide</a>.</p></div></section>"
         + faq_html(HOW_FAQ_EN, "Voting FAQ")
     )
-    title = "How to Vote in BC: ID, Advance and Mail Voting"
+    title = "How to Vote in BC: ID, Advance, Mail Voting"
     desc = "How to vote in a BC provincial election: who can vote, how to register, what ID to bring, advance voting, vote by mail and voting hours, from Elections BC."
     schemas = [article_schema(title, desc, "en", "/how-to-vote-bc"),
                breadcrumb("en", [("Home", "/"), ("How to Vote in BC", "/how-to-vote-bc")]),
@@ -414,7 +414,7 @@ def page_candidates_en():
         "<p>The party leaders are the people voters will see on every ballot campaign. See <a href=\"/bc-party-leaders\">BC party leaders 2026</a>. For polling see <a href=\"/bc-election-polls\">BC election polls</a>, and for how a 2026 election could unfold see the <a href=\"/bc-election-2026\">BC election 2026 guide</a>.</p>"
         f"<p class=\"source-note\">There are 93 electoral districts in BC; each elects one MLA. Riding information is on the <a href=\"/bc-election-ridings\">BC ridings page</a>.</p></div></section>"
     )
-    title = "BC Election Candidates 2026: Nominations and List"
+    title = "BC Election Candidates 2026: Nominations"
     desc = "BC election candidates 2026: no official list exists until an election is called. How nominations work and where official Elections BC candidate records appear."
     schemas = [article_schema(title, desc, "en", "/bc-election-candidates-2026"),
                breadcrumb("en", [("Home", "/"), ("BC Election Candidates 2026", "/bc-election-candidates-2026")])]
@@ -446,7 +446,7 @@ def page_home_en():
         "<p>Election timing is not treated as confirmed until the writ is issued. Candidate status is not treated as final until it appears in the relevant Elections BC record. Polls are presented as measurements at the field dates, not as election results.</p>"
         f"<p class=\"source-note\">Primary source: {a('ebc_next','Elections BC — B.C.’s Next Election')}. Fall 2026 scenario calendar: {a('ebc_cal','Elections BC PDF')}. 中文：<a href=\"/zh-cn/bc-election-2026\" hreflang=\"zh-Hans\">简体</a> · <a href=\"/zh-tw/bc-election-2026\" hreflang=\"zh-Hant\">繁體</a></p></div></section>"
     )
-    title = "BC Election 2026: Early Election Watch and Polls"
+    title = "BC Election 2026: Early Election and Polls"
     desc = "Independent tracking of a possible 2026 BC provincial election: status and dates, latest polls, party leaders, candidates, ridings and voting information."
     schemas = [
         {"@context": "https://schema.org", "@type": "WebSite", "name": "BC Vote Watch", "url": SITE + "/", "inLanguage": ["en-CA", "zh-Hans", "zh-Hant"]},
@@ -670,7 +670,7 @@ def page_byel_en():
         + faq_html(BYEL_FAQ_EN, "Abbotsford-Mission by-election FAQ")
         + '<section class="section"><div class="wrap"><p class="source-note">Results will be added here after Elections BC publishes them. Next: <a href="/bc-election-2026">is there a BC election in 2026?</a> · <a href="/bc-election-polls">BC election polls</a> · <a href="/how-to-vote-bc">how to vote in BC</a>.</p></div></section>'
     )
-    title = "Abbotsford-Mission By-election Sept 26: Candidates, Results"
+    title = "Abbotsford-Mission By-election Results 2026"
     desc = "Abbotsford-Mission by-election Sept 26, 2026: candidates incl. Kerry-Lynne Findlay, polls close 8 p.m., where to vote, results and 2024 background."
     path = "/abbotsford-mission-by-election-2026"
     schemas = [article_schema(title, desc, "en", path),
@@ -969,7 +969,7 @@ def page_riding(lang, r):
             f'<p>More: <a href="{hub}">all 93 BC ridings</a> · <a href="/bc-election-results-2024">2024 results</a> · <a href="/bc-election-polls">BC election polls</a> · <a href="/how-to-vote-bc">how to vote</a>.</p></div></section>'
             + faq_html(faq, f"{n} FAQ")
         )
-        title = f"{n} 2024 BC Election Results" if len(n) <= 24 else f"{n}: 2024 Results"
+        title = f"{n} 2024 BC Election Results" if len(n) <= 17 else f"{n}: 2024 Results"
         desc = f"{w['name']} ({wp}) won {n} in 2024 with {w['pct']:.2f}%. Riding results, turnout ({r['turnout']:.2f}%), margin ({r['margin']:,} votes) and how it compares."
         if len(desc) > 160:
             desc = f"{w['name']} ({wp}) won {n} in 2024 with {w['pct']:.2f}%. Results, turnout ({r['turnout']:.2f}%) and margin ({r['margin']:,} votes)."
@@ -1051,7 +1051,7 @@ def page_ridings_hub(lang):
             f'<div class="tablewrap"><table id="riding-table"><thead><tr>{th_all}</tr></thead><tbody>{all_rows}</tbody></table></div>'
             '<p class="source-note">Next: <a href="/bc-election-2026">BC election 2026 guide</a> · <a href="/bc-election-results-2024">2024 results</a> · <a href="/how-to-vote-bc">how to vote</a>.</p></div></section>'
         )
-        title = "BC Ridings: All 93 Electoral Districts and Results"
+        title = "BC Ridings: All 93 Districts and Results"
         desc = "All 93 BC provincial ridings with official 2024 election results, winners, turnout and the 10 closest races. Find your riding."
     else:
         th_all = "<th>选区</th><th>2024年当选者</th><th>政党</th><th>差距：票数（百分点）</th><th>投票率</th>"
@@ -1110,7 +1110,7 @@ ISSUES = {
  "housing": {
   "slug": "housing",
   "en": dict(
-    title="BC Housing and Rent 2026: Facts and Party Positions",
+    title="BC Housing and Rent 2026: Party Positions",
     desc="BC housing and rent in the 2026 election: what voters say, what the government reports on rents and BC Builds, and what each party has published.",
     eyebrow="Election issue", h1="Housing and rent in British Columbia",
     lede="Housing is the top concern in two recent BC polls. Here is what voters say, what the government reports, and what each party has published, with a source for every claim.",
@@ -1159,7 +1159,7 @@ ISSUES = {
  "health-care": {
   "slug": "health-care",
   "en": dict(
-    title="BC Health Care 2026: Facts and Party Positions",
+    title="BC Health Care 2026: Party Positions",
     desc="BC health care and family doctors in the 2026 election: voter concern, government and Health Minister figures on primary care, and each party's published position.",
     eyebrow="Election issue", h1="Health care and family doctors in British Columbia",
     lede="Health care ranks with housing as a top voter concern. The government and its critics cite different numbers about family doctors; here are both, with sources, and what each party has published.",
@@ -1204,7 +1204,7 @@ ISSUES = {
  "budget-deficit": {
   "slug": "budget-deficit",
   "en": dict(
-    title="BC Budget Deficit and Debt 2026: Party Positions",
+    title="BC Budget Deficit 2026: Party Positions",
     desc="BC's 2026 budget: deficits of $9.6B, $13.3B, $12.2B and $11.4B, debt and debt-to-GDP, what voters say, and the tax and spending positions parties have published.",
     eyebrow="Election issue", h1="BC's budget, deficit and debt",
     lede="BC's Budget 2026 forecasts deficits of $13.3 billion this fiscal year, declining to $11.4 billion by 2028-29. Here are the government's figures, how voters see the budget, and what each party has published on taxes and spending.",
@@ -1261,7 +1261,7 @@ ISSUES = {
  "us-tariffs": {
   "slug": "us-tariffs",
   "en": dict(
-    title="BC and U.S. Tariffs 2026: Facts and Party Positions",
+    title="BC and U.S. Tariffs 2026: Party Positions",
     desc="U.S. tariffs and BC softwood lumber in 2026: the government's budget assumptions, the softwood duty review and its October 2026 final determination, and party positions.",
     eyebrow="Election issue", h1="U.S. tariffs, softwood lumber and BC's economy",
     lede="Asked about an early election, the premier has pointed to disruption from the U.S. trade war while saying he has no announcement to make. This page sets out what the government's budget says about tariffs, where the softwood lumber duty review stands, and what each party has published.",
@@ -1374,7 +1374,7 @@ def page_issues_hub(lang):
             f'<section class="section soft"><div class="wrap"><h2>Issue guides</h2><div class="linkgrid">{cards}</div>{issue_method_note(lang)}</div></section>'
             '<section class="section"><div class="wrap"><p class="source-note">Next: <a href="/bc-election-polls">BC election polls</a> · <a href="/bc-party-leaders">party leaders</a> · <a href="/bc-election-2026">is there a BC election in 2026?</a> · <a href="/bc-election-ridings">all 93 ridings</a></p></div></section>'
         )
-        title = "BC Election Issues 2026: What Voters Care About"
+        title = "BC Election Issues 2026: Voter Concerns"
         desc = "BC election issues 2026: housing, health care, the budget and U.S. tariffs, with what voters say, the official numbers and each party's published position."
     else:
         body = (
