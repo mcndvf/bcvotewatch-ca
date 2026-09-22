@@ -19,9 +19,9 @@ from opencc import OpenCC
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = "https://bcvotewatch.ca"
-TODAY = "2026-09-20"
-TODAY_EN = "September 20, 2026"
-TODAY_ZH = "2026年9月20日"
+TODAY = "2026-09-21"
+TODAY_EN = "September 21, 2026"
+TODAY_ZH = "2026年9月21日"
 S2HK = OpenCC("s2hk")
 
 # ---------------------------------------------------------------- sources
@@ -88,6 +88,7 @@ NAV_ZH = [
     ("how-to-vote-bc", "如何投票"),
 ]
 HREFLANG = {"en": "en-CA", "zh-cn": "zh-Hans", "zh-tw": "zh-Hant"}
+OG_LOCALE = {"en": "en_CA", "zh-cn": "zh_CN", "zh-tw": "zh_TW"}
 HTML_LANG = {"en": "en-CA", "zh-cn": "zh-Hans-CA", "zh-tw": "zh-Hant-CA"}
 
 
@@ -165,6 +166,9 @@ def render(lang, slug, title, desc, body, group=None, schemas=(), og_image=None)
         f'<link rel="canonical" href="{canonical}">{alt}'
         f'<meta property="og:title" content="{html.escape(title)}"><meta property="og:description" content="{html.escape(desc)}">'
         f'<meta property="og:type" content="website"><meta property="og:url" content="{canonical}"><meta property="og:site_name" content="{site_name}">'
+        f'<meta property="og:locale" content="{OG_LOCALE[lang]}">'
+        f'<meta property="og:image" content="{SITE}/assets/og-image.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">'
+        f'<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="{html.escape(title)}"><meta name="twitter:description" content="{html.escape(desc)}"><meta name="twitter:image" content="{SITE}/assets/og-image.png">'
         + ICONS +
         '<link rel="stylesheet" href="/assets/site.css"><script defer src="/assets/site.js"></script>'
         f"{schema_html}</head><body>"
@@ -446,7 +450,7 @@ def page_home_en():
     desc = "Independent tracking of a possible 2026 BC provincial election: status and dates, latest polls, party leaders, candidates, ridings and voting information."
     schemas = [
         {"@context": "https://schema.org", "@type": "WebSite", "name": "BC Vote Watch", "url": SITE + "/", "inLanguage": ["en-CA", "zh-Hans", "zh-Hant"]},
-        {"@context": "https://schema.org", "@type": "Organization", "name": "BC Vote Watch", "url": SITE + "/"},
+        {"@context": "https://schema.org", "@type": "Organization", "name": "BC Vote Watch", "url": SITE + "/", "logo": SITE + "/icon-512.png"},
     ]
     return render("en", "", title, desc, body, None, schemas)
 
@@ -609,6 +613,23 @@ BYEL_FAQ_EN = [
 ]
 
 
+def byel_event(lang):
+    return {
+        "@context": "https://schema.org",
+        "@type": "Event",
+        "name": "Abbotsford-Mission by-election" if lang == "en" else conv(lang, "Abbotsford-Mission补选"),
+        "startDate": "2026-09-26T08:00-07:00",
+        "endDate": "2026-09-26T20:00-07:00",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "location": {"@type": "Place", "name": "Abbotsford-Mission electoral district, British Columbia",
+                     "address": {"@type": "PostalAddress", "addressRegion": "BC", "addressCountry": "CA"}},
+        "organizer": {"@type": "Organization", "name": "Elections BC", "url": "https://elections.bc.ca/"},
+        "description": "Provincial by-election in Abbotsford-Mission, British Columbia.",
+        "image": SITE + "/assets/og-image.png",
+    }
+
+
 def page_byel_en():
     rows = "".join(
         f"<tr><td><strong>{n}</strong></td><td>{p_}</td><td>{note}</td></tr>" for n, p_, note in BYEL_CANDS
@@ -639,7 +660,7 @@ def page_byel_en():
     path = "/abbotsford-mission-by-election-2026"
     schemas = [article_schema(title, desc, "en", path),
                breadcrumb("en", [("Home", "/"), ("Abbotsford-Mission By-election", path)]),
-               faq_schema(BYEL_FAQ_EN)]
+               faq_schema(BYEL_FAQ_EN), byel_event("en")]
     return render("en", "abbotsford-mission-by-election-2026", title, desc, body, GROUPS["byel"], schemas)
 
 
@@ -693,7 +714,7 @@ def page_byel_zh(lang):
     path = url_for(lang, "abbotsford-mission-by-election-2026")
     schemas = [article_schema(title, desc, lang, path),
                breadcrumb(lang, [(L("首页"), "/"), (L("补选"), path)]),
-               faq_schema([(L(q), L(a_)) for q, a_ in BYEL_FAQ_ZH])]
+               faq_schema([(L(q), L(a_)) for q, a_ in BYEL_FAQ_ZH]), byel_event(lang)]
     return render(lang, "abbotsford-mission-by-election-2026", title, desc, body, GROUPS["byel"], schemas)
 
 
