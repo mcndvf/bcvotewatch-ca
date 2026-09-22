@@ -688,6 +688,14 @@ BYEL_FAQ_ZH = [
      f"Elections BC 表示，议员Reann Gasper于2026年8月24日辞职（{a('byel_writ','Elections BC')}）。她在2024年代表保守党赢得该选区。"),
     ("补选结果什么时候公布？",
      f"Elections BC 表示，初步结果在选举日晚上8点后公布，最终结果于10月1日宣布（{a('byel','Elections BC')}）。官方结果公布后本页会更新。"),
+    ("Abbotsford-Mission补选几点截止投票？",
+     f"投票站在2026年9月26日（星期六）太平洋时间晚上8点关闭，之后公布初步结果（{a('byel','Elections BC')}）。"),
+    ("Abbotsford-Mission补选在哪里投票？",
+     f"请使用{a('byel','Elections BC补选页面')}上的投票地点查询，会显示按你的地址分配的投票站。只有居住在Abbotsford-Mission选区的人才能在本次补选投票。"),
+    ("Abbotsford-Mission补选谁占优势？",
+     "BC Vote Watch 不预测选区结果。2024年保守党的Reann Gasper以55.38%对44.62%击败NDP赢得该选区；补选的投票率和竞选焦点可能与大选不同。"),
+    ("如果Kerry-Lynne Findlay当选会怎样？",
+     "补选只填补一个空缺议席。如果保守党党魁当选，Findlay将在省议会获得议席；正式结果由Elections BC公布。"),
     ("谁可以在补选投票？",
      "根据 Elections BC，投票人须为18岁或以上的加拿大公民，居住在Abbotsford-Mission选区，并自2026年3月25日起为BC省居民。合资格选民可在线、电话或在投票日亲自登记或更新资料。"),
 ]
@@ -706,6 +714,11 @@ def page_byel_zh(lang):
     body = (
         hero("补选", L("Abbotsford-Mission补选 2026"),
              L("Abbotsford-Mission选民将于2026年9月26日（星期六）选出新省议员。选票上有五名候选人，包括目前没有省议会议席的保守党党魁Kerry-Lynne Findlay。"))
+        + f'<section class="section"><div class="wrap"><h2>{L("快速答案")}</h2><ul>'
+        + L("<li><strong>时间：</strong>2026年9月26日（星期六）；<strong>投票站关闭：</strong>晚上8点。</li>")
+        + L("<li><strong>候选人：</strong>Pam Alexis（NDP）、Kerry-Lynne Findlay（保守党）、Stephen Fowler（绿党）、Lakhwinder Jhaj（CentreBC）、Jeff Monds（自由意志党）。</li>")
+        + L('<li><strong>结果：</strong><a href="#results">见下方结果板块</a>；初步结果在晚上8点后公布，最终结果10月1日宣布。</li>')
+        + L(f"<li><strong>在哪投票：</strong>使用{a('byel','Elections BC补选页面')}上的投票地点查询。</li></ul></div></section>")
         + f'<section class="section"><div class="wrap"><h2>{L("关键信息")}</h2><div class="tablewrap"><table><tbody>'
         + L(f"<tr><th>选举日</th><td>2026年9月26日（星期六），上午8点至晚上8点（{a('byel','Elections BC')}）</td></tr>")
         + L("<tr><th>提前投票</th><td>2026年9月18至23日，上午8点至晚上8点</td></tr>")
@@ -722,10 +735,13 @@ def page_byel_zh(lang):
         + L(f"<p>2024年10月19日省选中，保守党的Reann Gasper以<strong>13,523票（55.38%）</strong>赢得Abbotsford-Mission，NDP候选人Pam Alexis得<strong>10,894票（44.62%）</strong>。来源：{a('sov','Elections BC投票统计报告')}。另见全省<a href=\"{url_for(lang,'bc-election-results-2024')}\">2024年选举结果</a>。</p>")
         + L("<p>这只是背景，不是预测：补选的投票率和竞选焦点常与大选不同，BC Vote Watch不发布选区层面的预测。</p>")
         + "</div></section>"
+        + f'<section class="section soft" id="results"><div class="wrap"><h2>{L("Abbotsford-Mission补选结果")}</h2>'
+        + L(f"<p>结果尚未公布。Elections BC 将在9月26日晚上8点后公布初步结果，并于10月1日宣布最终结果（{a('byel','Elections BC结果')}）。官方数字公布后，本板块将更新当选者、得票数和投票率。</p>")
+        + "</div></section>"
         + L(faq_html(BYEL_FAQ_ZH, "Abbotsford-Mission补选常见问题"))
     )
-    title = L("Abbotsford-Mission补选 2026：候选人与日期")
-    desc = L("Abbotsford-Mission补选（2026年9月26日）：五名候选人包括保守党党魁Kerry-Lynne Findlay，附投票日期、截止时间和2024年结果。")
+    title = L("Abbotsford-Mission补选 9月26日：候选人、结果")
+    desc = L("Abbotsford-Mission补选（2026年9月26日）：候选人包括Kerry-Lynne Findlay，晚上8点截止投票，投票地点、结果与2024年背景。")
     path = url_for(lang, "abbotsford-mission-by-election-2026")
     schemas = [article_schema(title, desc, lang, path),
                breadcrumb(lang, [(L("首页"), "/"), (L("补选"), path)]),
