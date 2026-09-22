@@ -608,6 +608,14 @@ BYEL_FAQ_EN = [
      f"Elections BC says MLA Reann Gasper resigned on August 24, 2026 ({a('byel_writ','Elections BC')}). She had won the seat for the Conservatives in 2024."),
     ("When will results be available?",
      f"Elections BC says preliminary results are published after 8 p.m. on election day and the final count is announced October 1 ({a('byel','Elections BC')}). This page will be updated after the results are official."),
+    ("What time do polls close in the Abbotsford-Mission by-election?",
+     f"Voting places close at 8 p.m. Pacific time on Saturday, September 26, 2026, and preliminary results follow after that ({a('byel','Elections BC')})."),
+    ("Where do I vote in Abbotsford-Mission?",
+     f"Use the voting place look-up on the {a('byel','Elections BC by-election page')}; it lists the place assigned to your address. Only people who live in the Abbotsford-Mission district can vote in this by-election."),
+    ("Who is favoured to win the Abbotsford-Mission by-election?",
+     "BC Vote Watch does not forecast riding results. In 2024 Conservative Reann Gasper won the seat 55.38% to 44.62% over the NDP; by-elections can differ in turnout and campaign focus."),
+    ("What happens if Kerry-Lynne Findlay wins?",
+     "A by-election fills one vacant seat. If the Conservative leader wins, Findlay would take a seat in the Legislature; the official result is announced by Elections BC."),
     ("Who can vote in the by-election?",
      "Canadian citizens aged 18 or older who live in the Abbotsford-Mission electoral district and have been BC residents since March 25, 2026, according to Elections BC. Eligible voters can register or update information online, by phone or in person on voting day."),
 ]
@@ -637,6 +645,11 @@ def page_byel_en():
     body = (
         hero("By-election", "Abbotsford-Mission by-election 2026",
              "Voters in Abbotsford-Mission choose a new MLA on Saturday, September 26, 2026. Five candidates are on the ballot, including Conservative Party leader Kerry-Lynne Findlay, who does not currently hold a seat in the Legislature.")
+        + '<section class="section"><div class="wrap"><h2>Quick answers</h2><ul>'
+        "<li><strong>When:</strong> Saturday, September 26, 2026. <strong>Polls close:</strong> 8 p.m.</li>"
+        "<li><strong>Candidates:</strong> Pam Alexis (NDP), Kerry-Lynne Findlay (Conservative), Stephen Fowler (Green), Lakhwinder Jhaj (CentreBC), Jeff Monds (Libertarian).</li>"
+        '<li><strong>Results:</strong> <a href="#results">see the results section below</a>; preliminary results come after 8 p.m., final count October 1.</li>'
+        f"<li><strong>Where to vote:</strong> use the look-up on the {a('byel','Elections BC by-election page')}.</li></ul></div></section>"
         + '<section class="section"><div class="wrap"><h2>Key facts</h2><div class="tablewrap"><table><tbody>'
         f"<tr><th>Election day</th><td>Saturday, September 26, 2026, 8 a.m. to 8 p.m. ({a('byel','Elections BC')})</td></tr>"
         "<tr><th>Advance voting</th><td>September 18–23, 2026, 8 a.m. to 8 p.m.</td></tr>"
@@ -652,11 +665,13 @@ def page_byel_en():
         + '<section class="section"><div class="wrap"><h2>How Abbotsford-Mission voted in 2024</h2>'
         f"<p>At the October 19, 2024 general election, Conservative Reann Gasper won Abbotsford-Mission with <strong>13,523 votes (55.38%)</strong>, ahead of NDP candidate Pam Alexis with <strong>10,894 votes (44.62%)</strong>. Source: {a('sov','Elections BC Statement of Votes')}. See also the province-wide <a href=\"/bc-election-results-2024\">2024 results</a>.</p>"
         "<p>This is background, not a forecast: by-elections often differ from general elections in turnout and campaign focus, and BC Vote Watch does not publish riding-level predictions.</p></div></section>"
+        + '<section class="section soft" id="results"><div class="wrap"><h2>Abbotsford-Mission by-election results</h2>'
+        f"<p>Results are not yet available. Elections BC publishes preliminary results after 8 p.m. on September 26 and announces the final count on October 1 ({a('byel','Elections BC results')}). This section will be updated with the winner, vote totals and turnout once official numbers are published.</p></div></section>"
         + faq_html(BYEL_FAQ_EN, "Abbotsford-Mission by-election FAQ")
         + '<section class="section"><div class="wrap"><p class="source-note">Results will be added here after Elections BC publishes them. Next: <a href="/bc-election-2026">is there a BC election in 2026?</a> · <a href="/bc-election-polls">BC election polls</a> · <a href="/how-to-vote-bc">how to vote in BC</a>.</p></div></section>'
     )
-    title = "Abbotsford-Mission By-election 2026: Candidates"
-    desc = "Abbotsford-Mission by-election Sept 26, 2026: five candidates including Conservative leader Kerry-Lynne Findlay, voting dates, deadlines and 2024 result."
+    title = "Abbotsford-Mission By-election Sept 26: Candidates, Results"
+    desc = "Abbotsford-Mission by-election Sept 26, 2026: candidates incl. Kerry-Lynne Findlay, polls close 8 p.m., where to vote, results and 2024 background."
     path = "/abbotsford-mission-by-election-2026"
     schemas = [article_schema(title, desc, "en", path),
                breadcrumb("en", [("Home", "/"), ("Abbotsford-Mission By-election", path)]),
