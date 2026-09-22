@@ -54,6 +54,7 @@ SRC = {
     "ctv_milobar": "https://www.ctvnews.ca/vancouver/article/peter-milobar-named-centrebc-party-leader-mike-bernier-stepping-down/",
     "ebc_2026": "https://elections.bc.ca/2026-provincial-election/",
     "ebc_2026_cands": "https://elections.bc.ca/2026-provincial-election/candidate-list/",
+    "ebc_2026_cand_pdf": "https://www.elections.bc.ca/docs/fin/GE-2026-10-24-Candidate-Website-Report.pdf",
     "infonews_call": "https://infonews.ca/news/7880776/bc-premier-eby-calls-early-election-for-oct-24-says-trump-is-existential-threat/",
     "ctv_findlay_resign": "https://www.ctvnews.ca/vancouver/article/kerry-lynne-findlay-resigns-as-bc-conservative-leader/",
     "comox_doerkson": "https://comoxvalleyrecord.com/2026/09/21/b-c-conservatives-appoint-lorne-doerkson-interim-leader/",
@@ -448,7 +449,7 @@ def page_leaders_en():
              "Who leads each party in British Columbia heading into the October 24, 2026 election, with the source for each claim.")
         + '<section class="section"><div class="wrap"><div class="tablewrap"><table><thead><tr><th>Party</th><th>Leader</th><th>Notes</th></tr></thead><tbody>'
         f"<tr><td><strong>BC NDP</strong></td><td>David Eby</td><td>Premier. Won a one-seat majority (47 of 93) in October 2024 ({a('wiki_2024','results summary')}). Called the October 24, 2026 election on September 22 ({a('infonews_call','iNFOnews')}).</td></tr>"
-        f"<tr><td><strong>Conservative Party of BC</strong></td><td>Lorne Doerkson <em>(interim)</em></td><td>Named interim leader September 21, 2026 by unanimous caucus vote ({a('comox_doerkson','Comox Valley Record')}); MLA for Cariboo-Chilcotin, elected as a Conservative in 2024. Kerry-Lynne Findlay, elected leader May 30, 2026, resigned September 20 after 14 MLAs left the caucus since August ({a('ctv_findlay_resign','CTV News')}). Her candidacy in the October 24 general election was not confirmed by Elections BC as of {TODAY_EN}; the by-election she had been running in was cancelled when the general election was called.</td></tr>"
+        f"<tr><td><strong>Conservative Party of BC</strong></td><td>Lorne Doerkson <em>(interim)</em></td><td>Named interim leader September 21, 2026 by unanimous caucus vote ({a('comox_doerkson','Comox Valley Record')}); MLA for Cariboo-Chilcotin, elected as a Conservative in 2024. Kerry-Lynne Findlay, elected leader May 30, 2026, resigned September 20 after 14 MLAs left the caucus since August ({a('ctv_findlay_resign','CTV News')}). She has not filed nomination papers for the October 24 general election: Elections BC's official candidate list, generated {TODAY_EN}, shows no registered candidates in any riding yet, since nominations stay open until October 3 ({a('ebc_2026_cand_pdf','Elections BC candidate list')}). The Abbotsford-Mission by-election she had been contesting was cancelled when the general election was called.</td></tr>"
         f"<tr><td><strong>BC Greens</strong></td><td>Emily Lowan</td><td>Named as Green leader in the {a('ipsos','Ipsos')} and {a('research','Research Co.')} polls. Two seats won in 2024.</td></tr>"
         f"<tr><td><strong>CentreBC</strong></td><td>Peter Milobar</td><td>Named leader on September 18, 2026, replacing Mike Bernier ({a('ctv_milobar','CTV News')}). CentreBC lists eight MLAs, with Milobar as leader and MLA for Kamloops Centre ({a('centrebc','CentreBC')}). New party that appears in polling (4% Ipsos, 5% Research Co., 8% Leger in June).</td></tr>"
         f"<tr><td><strong>OneBC</strong></td><td>Dallas Brodie</td><td>New party that now appears in polling (2% Ipsos, 1% Research Co.).</td></tr>"
@@ -470,7 +471,7 @@ def page_candidates_en():
         hero("Candidates", "BC election candidates 2026",
              f"Nominations for the October 24, 2026 general election close October 3 at 1 p.m. Elections BC publishes accepted nominations as they are confirmed; the list is not final until the deadline. See the {a('ebc_2026_cands','official candidate list')}.")
         + '<section class="section"><div class="wrap"><h2>Where things stand</h2>'
-        f"<p>Under Elections BC's process, a nomination is only official once Elections BC accepts it; see {a('ebc_nom','Elections BC candidate nominations')} and the {a('ebc_2026_cands','current candidate list')}, which Elections BC says “does not show all candidates that have declared publicly that they are running” — only those it has accepted.</p>"
+        f"<p>Under Elections BC's process, a nomination is only official once Elections BC accepts it; see {a('ebc_nom','Elections BC candidate nominations')} and the {a('ebc_2026_cands','current candidate list')}, which Elections BC says “does not show all candidates that have declared publicly that they are running” — only those it has accepted. Its official report, generated {TODAY_EN}, shows no registered candidates in any of the 93 ridings yet ({a('ebc_2026_cand_pdf','Elections BC candidate list')}); that includes party leaders such as Lorne Doerkson (Conservative, interim) and Kerry-Lynne Findlay, whose Abbotsford-Mission by-election candidacy was cancelled when the general election was called.</p>"
         "<p>BC Vote Watch will keep the two apart: <strong>official candidates</strong> (Elections BC record, dated) and <strong>announced or expected candidates</strong> (party or candidate statement, dated and linked). The Abbotsford-Mission by-election, which had five confirmed candidates, was cancelled September 22 when the general election was called; see the <a href=\"/abbotsford-mission-by-election-2026\">Abbotsford-Mission page</a>.</p></div></section>"
         '<section class="section soft"><div class="wrap"><h2>Who is leading the parties</h2>'
         "<p>The party leaders are the people voters will see across the campaign. See <a href=\"/bc-party-leaders\">BC party leaders 2026</a>. For polling see <a href=\"/bc-election-polls\">BC election polls</a>, and for key dates see the <a href=\"/bc-election-2026\">BC election 2026 guide</a>.</p>"
@@ -685,7 +686,7 @@ BYEL_FAQ_EN = [
     ("Why was there going to be a by-election in Abbotsford-Mission?",
      f"Elections BC said MLA Reann Gasper resigned on August 24, 2026 ({a('byel_writ','Elections BC')}). She had won the seat for the Conservatives in 2024."),
     ("Is Kerry-Lynne Findlay running in the October 24 general election?",
-     f"BC Vote Watch could not confirm this from Elections BC as of {TODAY_EN}. Findlay resigned as Conservative leader on September 20, 2026; the by-election she had been contesting in Abbotsford-Mission was cancelled two days later. See <a href=\"/bc-party-leaders\">BC party leaders</a>."),
+     f"Not confirmed. As of {TODAY_EN}, Elections BC's official candidate list shows no registered candidates in any riding yet — nominations stay open until October 3 ({a('ebc_2026_cand_pdf','Elections BC candidate list')}). Findlay resigned as Conservative leader on September 20, 2026; the by-election she had been contesting in Abbotsford-Mission was cancelled two days later. See <a href=\"/bc-party-leaders\">BC party leaders</a>."),
     ("Who can vote in Abbotsford-Mission on October 24?",
      f"Canadian citizens aged 18 or older who are BC residents; see <a href=\"/how-to-vote-bc\">how to vote in BC</a> for the general rules and ID requirements ({a('ebc_who','Elections BC')})."),
 ]
@@ -755,7 +756,7 @@ def byel_faq_zh(lang):
     ("Abbotsford-Mission为什么原本要补选？",
      f"Elections BC表示，保守党议员Reann Gasper于2026年8月24日辞职（{a('byel_writ','Elections BC')}）。她在2024年代表保守党赢得该选区。"),
     ("Kerry-Lynne Findlay会参加10月24日的省选吗？",
-     f"截至{TODAY_ZH}，BC Vote Watch未能从Elections BC确认这一点。Findlay于2026年9月20日辞去保守党党魁职务；她原本在Abbotsford-Mission参选的补选两天后被取消。见<a href=\"{url_for(lang,'bc-party-leaders')}\">BC省党魁</a>。"),
+     f"尚未确认。截至{TODAY_ZH}，Elections BC的官方候选人名单显示全省所有选区都还没有已登记的候选人——提名截止日为10月3日（{a('ebc_2026_cand_pdf','Elections BC候选人名单')}）。Findlay于2026年9月20日辞去保守党党魁职务；她原本在Abbotsford-Mission参选的补选两天后被取消。见<a href=\"{url_for(lang,'bc-party-leaders')}\">BC省党魁</a>。"),
     ("10月24日谁可以在Abbotsford-Mission投票？",
      f"年满18岁的加拿大公民，且为BC省居民；一般规则和证件要求见<a href=\"{url_for(lang,'how-to-vote-bc')}\">BC省如何投票</a>（{a('ebc_who','Elections BC')}）。"),
 ]
@@ -916,7 +917,7 @@ def page_leaders_zh(lang):
         hero("政党党魁", L("BC省政党党魁 2026"), L("2026年10月24日省选前，BC省各政党目前由谁领导，每项说明都附有来源。"))
         + f'<section class="section"><div class="wrap"><div class="tablewrap"><table><thead><tr><th>{L("政党")}</th><th>{L("党魁")}</th><th>{L("说明")}</th></tr></thead><tbody>'
         + L(f"<tr><td><strong>BC NDP</strong></td><td>David Eby</td><td>省长。2024年10月以一席优势（93席中的47席）赢得多数政府（{a('sov','Elections BC官方结果')}）。于9月22日宣布10月24日省选（{a('infonews_call','iNFOnews')}）。</td></tr>")
-        + L(f"<tr><td><strong>BC保守党</strong></td><td>Lorne Doerkson（临时党魁）</td><td>2026年9月21日经党团一致投票被任命为临时党魁（{a('comox_doerkson','Comox Valley Record')}）；为Cariboo-Chilcotin省议员，2024年以保守党身份当选。Kerry-Lynne Findlay于2026年5月30日当选党魁，在8月以来已有14名议员离开党团后，于9月20日辞职（{a('ctv_findlay_resign','CTV News')}）。截至{TODAY_ZH}，Elections BC尚未确认她是否为10月24日大选的候选人；她此前参选的补选已因大选宣布而取消。</td></tr>")
+        + L(f"<tr><td><strong>BC保守党</strong></td><td>Lorne Doerkson（临时党魁）</td><td>2026年9月21日经党团一致投票被任命为临时党魁（{a('comox_doerkson','Comox Valley Record')}）；为Cariboo-Chilcotin省议员，2024年以保守党身份当选。Kerry-Lynne Findlay于2026年5月30日当选党魁，在8月以来已有14名议员离开党团后，于9月20日辞职（{a('ctv_findlay_resign','CTV News')}）。她尚未为10月24日大选提交提名文件：Elections BC于{TODAY_ZH}生成的官方候选人名单显示，全省所有选区都还没有已登记的候选人，因为提名截止日为10月3日（{a('ebc_2026_cand_pdf','Elections BC候选人名单')}）。她此前参选的Abbotsford-Mission补选已因大选宣布而取消。</td></tr>")
         + L(f"<tr><td><strong>BC绿党</strong></td><td>Emily Lowan</td><td>在{a('ipsos','Ipsos')}和{a('research','Research Co.')}民调中被列为绿党党魁。2024年赢得2席。</td></tr>")
         + L(f"<tr><td><strong>CentreBC</strong></td><td>Peter Milobar</td><td>2026年9月18日被任命为党魁，接替Mike Bernier（{a('ctv_milobar','CTV News')}）。CentreBC列出八名议员，Milobar为党魁及Kamloops Centre议员（{a('centrebc','CentreBC官网')}）。新政党，已出现在民调中（Ipsos 4%，Research Co. 5%，6月Leger 8%）。</td></tr>")
         + L("<tr><td><strong>OneBC</strong></td><td>Dallas Brodie</td><td>新政党，现已出现在民调中（Ipsos 2%，Research Co. 1%）。</td></tr>")
