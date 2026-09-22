@@ -19,9 +19,9 @@ from opencc import OpenCC
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = "https://bcvotewatch.ca"
-TODAY = "2026-09-21"
-TODAY_EN = "September 21, 2026"
-TODAY_ZH = "2026年9月21日"
+TODAY = "2026-09-22"
+TODAY_EN = "September 22, 2026"
+TODAY_ZH = "2026年9月22日"
 S2HK = OpenCC("s2hk")
 
 # ---------------------------------------------------------------- sources
@@ -52,6 +52,13 @@ SRC = {
     "leger": "https://leger360.com/in-the-news-bc-politics-ndp-narrow-lead-april-2026-leger/",
     "centrebc": "https://www.centrebc.ca/",
     "ctv_milobar": "https://www.ctvnews.ca/vancouver/article/peter-milobar-named-centrebc-party-leader-mike-bernier-stepping-down/",
+    "ebc_2026": "https://elections.bc.ca/2026-provincial-election/",
+    "ebc_2026_cands": "https://elections.bc.ca/2026-provincial-election/candidate-list/",
+    "infonews_call": "https://infonews.ca/news/7880776/bc-premier-eby-calls-early-election-for-oct-24-says-trump-is-existential-threat/",
+    "ctv_findlay_resign": "https://www.ctvnews.ca/vancouver/article/kerry-lynne-findlay-resigns-as-bc-conservative-leader/",
+    "comox_doerkson": "https://comoxvalleyrecord.com/2026/09/21/b-c-conservatives-appoint-lorne-doerkson-interim-leader/",
+    "wiki_byel_cancel": "https://en.wikipedia.org/wiki/2026_Abbotsford-Mission_provincial_by-election",
+    "leger_jun": "https://leger360.com/in-the-news-bc-conservatives-take-narrow-lead/",
 }
 
 
@@ -70,7 +77,7 @@ NAV_EN = [
     ("/bc-election-polls", "Polls"),
     ("/bc-party-leaders", "Party Leaders"),
     ("/bc-election-issues", "Issues"),
-    ("/abbotsford-mission-by-election-2026", "By-election"),
+    ("/abbotsford-mission-by-election-2026", "Abbotsford-Mission"),
     ("/bc-election-results-2024", "2024 Results"),
     ("/bc-election-candidates-2026", "Candidates"),
     ("/bc-election-ridings", "Ridings"),
@@ -82,7 +89,7 @@ NAV_ZH = [
     ("bc-election-polls", "民调"),
     ("bc-party-leaders", "党魁"),
     ("bc-election-issues", "议题"),
-    ("abbotsford-mission-by-election-2026", "补选"),
+    ("abbotsford-mission-by-election-2026", "Abbotsford-Mission"),
     ("bc-election-results-2024", "2024结果"),
     ("bc-election-ridings", "选区"),
     ("how-to-vote-bc", "如何投票"),
@@ -204,12 +211,14 @@ def article_schema(headline, desc, lang, path):
 
 
 STATUS_BOX_EN = (
-    '<div class="status" data-election-status><span class="badge" data-status-label>Possible early election — not yet called</span>'
-    "<strong>Current official status</strong><span data-status-detail></span><small data-status-checked></small></div>"
+    '<div class="status" data-election-status><span class="badge" data-status-label>Provincial election called — vote October 24, 2026</span>'
+    '<strong>Current official status</strong><span data-status-detail>Premier David Eby called the election on September 22, 2026. '
+    'Voting day is Saturday, October 24, 2026.</span><small data-status-checked>Last checked September 22, 2026</small></div>'
 )
 STATUS_BOX_ZH = (
-    '<div class="status" data-election-status><span class="badge" data-status-label>可能提前省选 · 尚未正式宣布</span>'
-    "<strong>目前官方状态</strong><span data-status-detail></span><small data-status-checked></small></div>"
+    '<div class="status" data-election-status><span class="badge" data-status-label>省选已宣布 · 2026年10月24日投票</span>'
+    '<strong>目前官方状态</strong><span data-status-detail>省长David Eby于2026年9月22日宣布举行省选，投票日为2026年10月24日（星期六）。'
+    '</span><small data-status-checked>最后核对 2026年9月22日</small></div>'
 )
 
 # ---------------------------------------------------------------- shared data
@@ -242,66 +251,118 @@ def calendar_table_zh():
     )
 
 
+KEY_DATES = [
+    ("Writ Day (campaign begins)", "September 22, 2026"),
+    ("Nomination deadline", "October 3, 2026, 1 p.m."),
+    ("Advance voting", "October 16\u201321, 2026, 8 a.m.\u20138 p.m."),
+    ("Vote-by-mail request deadline (online/phone)", "October 18, 2026"),
+    ("Final Voting Day", "Saturday, October 24, 2026, 8 a.m.\u20138 p.m."),
+    ("Final count", "November 6\u201310, 2026"),
+    ("Return Day (result becomes official)", "November 18, 2026"),
+]
+KEY_DATES_ZH = [
+    ("提名令状日（竞选期开始）", "2026年9月22日"),
+    ("提名截止", "2026年10月3日下午1点"),
+    ("提前投票", "2026年10月16至21日，上午8点至晚上8点"),
+    ("邮寄选票申请截止（网上／电话）", "2026年10月18日"),
+    ("最终投票日", "2026年10月24日（星期六），上午8点至晚上8点"),
+    ("最终点票", "2026年11月6至10日"),
+    ("结果确认日（Return Day）", "2026年11月18日"),
+]
+
+
+def key_dates_table_en():
+    rows = "".join(f"<tr><th>{k}</th><td>{v}</td></tr>" for k, v in KEY_DATES)
+    return f'<div class="tablewrap"><table><tbody>{rows}</tbody></table></div>'
+
+
+def key_dates_table_zh():
+    rows = "".join(f"<tr><th>{k}</th><td>{v}</td></tr>" for k, v in KEY_DATES_ZH)
+    return f'<div class="tablewrap"><table><tbody>{rows}</tbody></table></div>'
+
+
+def general_election_event(lang):
+    return {
+        "@context": "https://schema.org",
+        "@type": "Event",
+        "name": "British Columbia 2026 provincial general election" if lang == "en" else conv(lang, "2026年BC省省选"),
+        "startDate": "2026-10-24T08:00-07:00",
+        "endDate": "2026-10-24T20:00-07:00",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "location": {"@type": "Place", "name": "British Columbia, Canada",
+                     "address": {"@type": "PostalAddress", "addressRegion": "BC", "addressCountry": "CA"}},
+        "organizer": {"@type": "Organization", "name": "Elections BC", "url": "https://elections.bc.ca/"},
+        "description": "British Columbia provincial general election, called September 22, 2026.",
+        "image": SITE + "/assets/og-image.png",
+    }
+
+
 POLL_ROWS = [
     # pollster key, name, field, sample, ndp, con, grn, ctr, one, note
+    ("angus", "Angus Reid", "Sep 8–15, 2026 (released Sep 17)", "749 adults, online; comparable probability sample ±4.0", 41, 37, None, None, None, "Only the NDP/Conservative vote-intention figures found in the release; see the full report for other parties. 51% said they feel like a “political orphan.”"),
     ("ipsos", "Ipsos", "Sep 8–14, 2026 (released Sep 15)", "800 adults, online panel; ±4.0 credibility interval", 45, 35, 10, 4, 2, "Other 4%. 28% undecided or no preference."),
     ("research", "Research Co.", "Aug 12–14, 2026 (published Aug 18)", "801 adults, online; ±3.5", 44, 39, 10, 5, 1, "Decided voters. NDP regained the lead after trailing in June."),
+    ("leger_jun", "Leger", "Jun 1–2, 2026 (published Jun 5)", "1,002 adults, online panel; comparable probability sample ±3.1", 41, 45, 8, None, None, "Conservatives led just after Findlay became leader; only 26% said they were familiar with her."),
     ("leger", "Leger", "Apr 3–6, 2026 (published May 4)", "1,003 adults, online panel; comparable probability sample ±3.1", 44, 40, None, None, None, "Only NDP and Conservative figures shown here; see the release for other parties. 54% said the province is on the wrong track."),
 ]
 
 # =============================================================== ENGLISH PAGES
 HUB_FAQ_EN = [
     ("Is there a BC election in 2026?",
-     f"Not yet. As of {TODAY_EN}, no BC provincial general election has been called. Elections BC still lists October 21, 2028 as the next scheduled election, while it has published calendars for an unscheduled Fall 2026 election. See the {a('ebc_next', 'Elections BC page')}."),
-    ("When is the next BC provincial election?",
-     "The next scheduled BC provincial election is Saturday, October 21, 2028, according to Elections BC. It could happen earlier if the government decides to call one or loses the confidence of the Legislative Assembly."),
-    ("Can Premier Eby call an early election?",
-     f"Elections BC says an early election can happen if the government decides to call one. On September 17, 2026 Premier David Eby said he had no election announcement to make, and that the NDP and Elections BC have been told to be “election ready” ({a('tyee', 'The Tyee')}; {a('ctv', 'CTV News')})."),
-    ("What would the 2026 BC election dates be?",
-     f"They depend on the day the election is called. Elections BC's scenarios put Final Voting Day on October 24 if called September 16–22, October 31 if called September 23–29, and later Saturdays after that. Full table below, and the {a('ebc_cal', 'official calendar PDF')}."),
+     f"Yes. Premier David Eby called a provincial general election on September 22, 2026. Voting day is Saturday, October 24, 2026 ({a('infonews_call', 'iNFOnews')}; {a('ebc_2026', 'Elections BC')})."),
+    ("When is the BC election?",
+     "Saturday, October 24, 2026. Advance voting runs October 16–21, and the nomination deadline for candidates is October 3 at 1 p.m., according to Elections BC."),
+    ("Why did Eby call an early election?",
+     f"Eby cited the trade war with the United States, calling it an “existential” issue for BC that voters should have a say on ({a('infonews_call', 'iNFOnews')}). BC's fixed election date was not due until October 21, 2028; the {a('ebc_next', 'Election Act')} lets the government call one earlier."),
+    ("Does the BC election overlap with municipal elections?",
+     "Yes. BC municipal elections are October 17, 2026, one week before the October 24 provincial vote. Some municipal leaders raised concerns about the two campaigns overlapping."),
     ("Who leads in BC election polls?",
-     "In the two most recent polls with published methodology, the BC NDP leads the BC Conservatives: 45% to 35% in Ipsos (Sept 8–14) and 44% to 39% in Research Co. (Aug 12–14). See the <a href=\"/bc-election-polls\">BC election polls page</a>."),
+     "The most recent pre-writ polls (Ipsos, Sept 8–14, and Angus Reid, Sept 8–15) had the NDP ahead of the Conservatives, 45%–35% and 41%–37%. Earlier in the campaign year Leger had the Conservatives ahead in June. See the <a href=\"/bc-election-polls\">BC election polls page</a>."),
     ("Who are the BC party leaders?",
-     "David Eby leads the BC NDP, Kerry-Lynne Findlay the BC Conservatives, Emily Lowan the BC Greens, Peter Milobar CentreBC (named leader on September 18, 2026) and Dallas Brodie OneBC. See <a href=\"/bc-party-leaders\">BC party leaders</a>."),
+     "David Eby leads the BC NDP, Lorne Doerkson is interim leader of the BC Conservatives (after Kerry-Lynne Findlay resigned September 20, 2026), Emily Lowan leads the BC Greens, Peter Milobar leads CentreBC and Dallas Brodie leads OneBC. See <a href=\"/bc-party-leaders\">BC party leaders</a>."),
+    ("What happened to the Abbotsford-Mission by-election?",
+     f"It was cancelled. Elections BC says the general election call on September 22 cancelled the by-election that had been scheduled for September 26, and folded the riding into the province-wide vote; ballots already cast do not count ({a('byel', 'Elections BC')}; {a('wiki_byel_cancel', 'Wikipedia summary')})."),
 ]
 
 
 def page_hub_en():
     latest = (
         "<ul>"
-        f"<li><strong>Sep 17, 2026</strong> — Premier David Eby said he had no election announcement to make, while saying the NDP and Elections BC have been told to be “election ready” ({a('tyee','The Tyee')}; {a('ctv','CTV News')}).</li>"
-        f"<li><strong>Sep 15–17, 2026</strong> — New polls: Ipsos has the NDP at 45% and the Conservatives at 35% (Sept 8–14). {a('angus','Angus Reid')} published a survey on Sept 17. <a href=\"/bc-election-polls\">All polls</a>.</li>"
-        f"<li><strong>Sep 26, 2026</strong> — Abbotsford-Mission by-election, with five candidates including Conservative leader Kerry-Lynne Findlay ({a('byel','Elections BC')}). Advance voting was Sept 18–23. <a href=\"/abbotsford-mission-by-election-2026\">Candidates and details</a>.</li>"
-        f"<li><strong>May 30, 2026</strong> — Kerry-Lynne Findlay elected leader of the BC Conservatives ({a('wiki_lead','summary of the result')}). <a href=\"/bc-party-leaders\">Party leaders</a>.</li>"
+        f"<li><strong>Sep 22, 2026</strong> — Premier David Eby called a provincial election, citing the U.S. trade war as an “existential” issue for BC. Voting day is Saturday, October 24, 2026 ({a('infonews_call','iNFOnews')}). The pending Abbotsford-Mission by-election was cancelled and folded into the general vote ({a('byel','Elections BC')}).</li>"
+        f"<li><strong>Sep 21, 2026</strong> — The Conservative caucus named Lorne Doerkson (Cariboo-Chilcotin) interim leader by unanimous vote, after Findlay's resignation ({a('comox_doerkson','Comox Valley Record')}).</li>"
+        f"<li><strong>Sep 20, 2026</strong> — Kerry-Lynne Findlay resigned as Conservative leader after 14 MLAs left the caucus since August ({a('ctv_findlay_resign','CTV News')}).</li>"
+        f"<li><strong>Sep 15–17, 2026</strong> — Pre-writ polls: Ipsos had the NDP at 45% and the Conservatives at 35% (Sept 8–14); {a('angus','Angus Reid')} had the NDP at 41% and the Conservatives at 37% (Sept 8–15). <a href=\"/bc-election-polls\">All polls</a>.</li>"
         "</ul>"
     )
     body = (
-        hero("BC Election 2026", "Is there a BC election in 2026?",
-             "No election has been called as of September 20, 2026, but an early election is possible. Elections BC still lists October 21, 2028 as the next scheduled provincial election and has published calendars for an unscheduled Fall 2026 vote.",
+        hero("BC Election 2026", "BC votes October 24, 2026",
+             f"Premier David Eby called a provincial general election on September 22, 2026. British Columbians elect all 93 MLAs on Saturday, October 24, 2026. See the {a('ebc_2026','official Elections BC election page')} for the current, authoritative record.",
              STATUS_BOX_EN)
-        + f'<section class="section"><div class="wrap"><h2>Latest developments</h2>{latest}<p class="source-note">Each item links to its source. Nothing here is a confirmed election call; this site treats timing as confirmed only when the writ is issued.</p></div></section>'
-        + '<section class="section soft"><div class="wrap"><h2>How an early BC election would happen</h2>'
-        f"<p>BC has a fixed election date, but {a('ebc_next','Elections BC explains')} that an election can come earlier if the government decides to call one or loses the confidence of the Legislative Assembly. Elections BC also says a Fall 2026 election would run slightly longer than a scheduled one, to allow more time for nominations, voter registration and office setup, while keeping voting day on a Saturday. It has promised an updated calendar in early 2027.</p>"
-        f"<p>At the 2024 general election (October 19, 2024) the NDP won 47 of 93 seats, a one-seat majority, ({a('wiki_2024','results summary')}). Party standings in the Legislature have changed since, and two new parties, CentreBC and OneBC, now appear in polling. For current seat standings use the {a('leg','Legislative Assembly of BC')}.</p></div></section>"
-        + '<section class="section"><div class="wrap"><h2>Possible Fall 2026 BC election dates</h2><p>These are Elections BC scenarios, not an announcement that an election has been called. Advance voting is six days.</p>'
-        + calendar_table_en()
-        + f'<p class="source-note">For later scenarios and notes use the {a("ebc_cal","Elections BC Fall 2026 calendar")}.</p></div></section>'
+        + f'<section class="section"><div class="wrap"><h2>Latest developments</h2>{latest}<p class="source-note">Each item links to its source. Party standings and candidates are changing quickly during the campaign; see <a href="/bc-party-leaders">party leaders</a> and <a href="/bc-election-candidates-2026">candidates</a>.</p></div></section>'
+        + '<section class="section soft"><div class="wrap"><h2>Key dates for the October 24 election</h2>'
+        + key_dates_table_en()
+        + f'<p class="source-note">Source: {a("ebc_2026","Elections BC — 2026 Provincial Election")}. This matches the Sept 16–22 call-window scenario Elections BC had already published in its {a("ebc_cal","Fall 2026 calendar")}: advance voting Oct 16–21, Final Voting Day Oct 24.</p></div></section>'
+        + '<section class="section"><div class="wrap"><h2>Why now</h2>'
+        f"<p>Elections BC's fixed-date law lets an election come early if the government decides to call one or loses the confidence of the Legislative Assembly ({a('ebc_next','Elections BC')}). Eby cited the trade war with the United States, calling it an “existential” issue for BC that voters should have a say on ({a('infonews_call','iNFOnews')}).</p>"
+        f"<p>At the 2024 general election (October 19, 2024) the NDP won 47 of 93 seats, a one-seat majority ({a('wiki_2024','results summary')}). Since then the Conservative caucus has splintered: eight members left to form CentreBC, others to OneBC or as independents, and leader Kerry-Lynne Findlay resigned September 20 after 14 MLAs departed since August. See <a href=\"/bc-party-leaders\">current party leaders</a> and <a href=\"/bc-election-results-2024\">the 2024 results</a>.</p></div></section>"
         + faq_html(HUB_FAQ_EN, "BC election 2026 FAQ")
         + '<section class="section"><div class="wrap"><h2>Keep going</h2><div class="linkgrid">'
         '<a class="linkcard" href="/bc-election-polls"><strong>BC election polls 2026</strong><span>NDP vs Conservatives with field dates and sample sizes.</span></a>'
-        '<a class="linkcard" href="/bc-party-leaders"><strong>BC party leaders</strong><span>Who leads each party heading into a possible election.</span></a>'
+        '<a class="linkcard" href="/bc-party-leaders"><strong>BC party leaders</strong><span>Who leads each party as the campaign starts.</span></a>'
         '<a class="linkcard" href="/bc-election-issues"><strong>BC election issues</strong><span>Housing, health care, the budget and tariffs: facts and party positions.</span></a>'
-        '<a class="linkcard" href="/abbotsford-mission-by-election-2026"><strong>Abbotsford-Mission by-election</strong><span>Sept 26: five candidates, dates and deadlines.</span></a>'
+        '<a class="linkcard" href="/bc-election-candidates-2026"><strong>BC election candidates 2026</strong><span>Nomination deadline October 3; where the official list appears.</span></a>'
+        '<a class="linkcard" href="/abbotsford-mission-by-election-2026"><strong>Abbotsford-Mission by-election</strong><span>Cancelled Sept 22 and folded into the general election.</span></a>'
         '<a class="linkcard" href="/bc-election-results-2024"><strong>BC 2024 election results</strong><span>Official seats, votes and turnout.</span></a>'
         '<a class="linkcard" href="/how-to-vote-bc"><strong>How to vote in BC</strong><span>Eligibility, ID, advance voting and vote by mail.</span></a>'
-        '<a class="linkcard" href="/bc-election-candidates-2026"><strong>BC election candidates 2026</strong><span>How nominations work and where official records will appear.</span></a>'
+        '<a class="linkcard" href="/bc-election-ridings"><strong>BC ridings</strong><span>Find your riding and its 2024 result.</span></a>'
         "</div></div></section>"
     )
-    title = "BC Election 2026: Is There an Early One?"
-    desc = "Has a BC provincial election been called for 2026? Official status, possible Fall 2026 election dates, latest Eby news and polls, sourced to Elections BC."
+    title = "BC Election 2026: Vote October 24"
+    desc = "BC's provincial election was called Sept 22, 2026. Voting day is October 24. Key dates, why Eby called it, party leaders and polls, sourced to Elections BC."
     schemas = [article_schema(title, desc, "en", "/bc-election-2026"),
                breadcrumb("en", [("Home", "/"), ("BC Election 2026", "/bc-election-2026")]),
-               faq_schema(HUB_FAQ_EN)]
+               faq_schema(HUB_FAQ_EN), general_election_event("en")]
     return render("en", "bc-election-2026", title, desc, body, GROUPS["hub"], schemas)
 
 
@@ -313,25 +374,26 @@ def page_polls_en():
 
     rows = "".join(row(p) for p in POLL_ROWS)
     body = (
-        hero("Polling monitor", "BC election polls 2026: NDP vs Conservatives",
-             "Latest published BC provincial polls with field dates, sample sizes and methods. In the two most recent polls with full method details, the BC NDP leads the BC Conservatives by 5 to 10 points. A poll measures respondents at one point in time; it is not a forecast or a result.")
+        hero("Polling monitor", "BC election polls 2026: before the October 24 vote",
+             "Five published BC polls show a swing: the Conservatives led in June, but every poll since mid-August has put the NDP ahead, as the Conservative caucus lost 14 MLAs and its leader resigned. A poll measures respondents at one point in time; it is not a forecast or a result.")
         + '<section class="section"><div class="wrap"><h2>Vote intention (decided voters)</h2><div class="tablewrap"><table><thead><tr><th>Pollster</th><th>Field dates</th><th>Sample</th><th>NDP</th><th>Cons.</th><th>Green</th><th>CentreBC</th><th>OneBC</th><th>Notes</th></tr></thead><tbody>'
         + rows
-        + f'</tbody></table></div><p class="source-note">Sources: {a("ipsos","Ipsos")}, {a("research","Research Co.")} and {a("leger","Leger")}. Ipsos reports the Conservatives down 8 points from their 2024 result (43.3% in 2024).</p></div></section>'
+        + f'</tbody></table></div><p class="source-note">Sources: {a("angus","Angus Reid")}, {a("ipsos","Ipsos")}, {a("research","Research Co.")} and {a("leger_jun","Leger (June)")} and {a("leger","Leger (April)")}. Ipsos reports the Conservatives down 8 points from their 2024 result (43.3% in 2024). All five polls were taken before the election was called on September 22, 2026.</p></div></section>'
         + '<section class="section soft"><div class="wrap"><h2>Leader ratings</h2><div class="grid">'
         '<div class="card"><div class="kicker">Ipsos · favourable / unfavourable</div><p>David Eby (NDP): <strong>41% / 30%</strong><br>Kerry-Lynne Findlay (Cons.): <strong>17% / 46%</strong><br>Emily Lowan (Green): 12% / 15%<br>Dallas Brodie (OneBC): 10% / 24%<br>Mike Bernier (then CentreBC leader): 9% / 19%</p></div>'
         '<div class="card"><div class="kicker">Research Co. · approval</div><p>Eby: <strong>49%</strong><br>Lowan: 38%<br>Findlay: 34%<br>Bernier (then CentreBC leader): 24%<br>Brodie: 18%</p></div>'
-        f'<div class="card"><div class="kicker">Angus Reid · published Sep 17</div><p>Eby approval <strong>41%</strong>. 51% say they feel like a “political orphan” with no party to enthusiastically support. Field dates, sample and vote-intention tables are in the {a("angus","Angus Reid release")}.</p></div>'
-        "</div><p class=\"source-note\">These are three different measures (favourability, approval, and a party-support sentiment) from different firms; they are not directly comparable. Both polls were taken before CentreBC named Peter Milobar leader on September 18, so its rating refers to Mike Bernier.</p></div></section>"
+        f'<div class="card"><div class="kicker">Angus Reid · Sep 8–15, released Sep 17</div><p>Eby approval <strong>41%</strong>. 51% say they feel like a “political orphan” with no party to enthusiastically support. Full tables in the {a("angus","Angus Reid release")}.</p></div>'
+        "</div><p class=\"source-note\">These are three different measures (favourability, approval, and a party-support sentiment) from different firms; they are not directly comparable. All were taken before CentreBC named Peter Milobar leader (Sept 18), before Kerry-Lynne Findlay resigned as Conservative leader (Sept 20) and before Lorne Doerkson became interim Conservative leader (Sept 21); their ratings refer to Bernier and Findlay respectively. See <a href=\"/bc-party-leaders\">current party leaders</a>.</p></div></section>"
         + '<section class="section"><div class="wrap"><h2>How to read these polls</h2><ul>'
+        "<li><strong>The Conservative number moved fast.</strong> Leger had the Conservatives ahead 45–41 in June; by September, Ipsos had the NDP ahead 45–35. In between, 14 Conservative MLAs left caucus, Findlay resigned as leader, and Lorne Doerkson was named interim leader. See <a href=\"/bc-party-leaders\">party leaders</a>.</li>"
         "<li><strong>Undecided voters matter.</strong> Ipsos reports 28% undecided or with no preference; the table shows decided voters only.</li>"
         "<li><strong>Regions matter more than the provincial number.</strong> Research Co. found the Conservatives dominant in Northern BC and the Fraser Valley and Metro Vancouver tight, while the NDP leads on Vancouver Island. BC uses first-past-the-post in 93 ridings, so seats depend on where votes fall.</li>"
         "<li><strong>New parties can split the vote.</strong> CentreBC and OneBC are new parties that now appear alongside the Greens in polling (Ipsos describes them as two new parties).</li>"
-        "<li><strong>Margins of error.</strong> A ±3.5 to ±4.0 point margin means a 5-point gap can be within combined uncertainty for a single poll.</li></ul>"
-        '<p class="source-note">Polls are added only with pollster, field dates, sample and source link. Ridings, candidates and seat projections are not covered here. See <a href="/bc-election-2026">the election guide</a> for status and <a href="/sources">our sourcing rules</a>.</p></div></section>'
+        "<li><strong>Margins of error.</strong> A ±3.1 to ±4.0 point margin means a close race can be within combined uncertainty for a single poll.</li></ul>"
+        '<p class="source-note">Polls are added only with pollster, field dates, sample and source link. No poll has been published with field dates after the September 22 election call as of this writing. Ridings, candidates and seat projections are not covered here. See <a href="/bc-election-2026">the election guide</a> for status and <a href="/sources">our sourcing rules</a>.</p></div></section>'
     )
-    title = "BC Election Polls 2026: NDP vs Conservatives"
-    desc = "Latest BC polls: Ipsos NDP 45, Conservatives 35; Research Co. 44–39; Leger 44–40. Field dates, samples, margins and leader ratings."
+    title = "BC Election Polls 2026: Before the Oct 24 Vote"
+    desc = "BC election polls ahead of the Oct 24, 2026 vote: Conservatives led in June (45–41), NDP led by September (45–35). Field dates, samples and margins."
     schemas = [article_schema(title, desc, "en", "/bc-election-polls"),
                breadcrumb("en", [("Home", "/"), ("BC Election Polls", "/bc-election-polls")])]
     return render("en", "bc-election-polls", title, desc, body, GROUPS["polls"], schemas)
@@ -353,8 +415,8 @@ HOW_FAQ_EN = [
 
 def page_how_en():
     body = (
-        hero("Voting information", "How to vote in a BC provincial election",
-             "Who can vote, how to register, what ID to bring and the ways to vote, summarised from Elections BC. No BC election has been called yet, so dates depend on when one is; rules below are Elections BC's current published rules.")
+        hero("Voting information", "How to vote in the BC provincial election",
+             f"Who can vote, how to register, what ID to bring and the ways to vote, for the October 24, 2026 general election. Advance voting is October 16–21; the nomination deadline is October 3. Rules below are Elections BC's current published rules ({a('ebc_2026','official election page')}).")
         + '<section class="section"><div class="wrap"><h2>Who can vote</h2>'
         f"<p>To vote in a BC provincial election you must be a Canadian citizen, 18 or older, and a BC resident for at least six months ({a('ebc_who','Elections BC')}).</p>"
         f"<h2>Register to vote</h2><p>Check or update your registration online at {a('ebc_reg','Elections BC online voter registration')}, or phone Elections BC at 1-800-661-8683.</p></div></section>"
@@ -383,21 +445,21 @@ def page_how_en():
 def page_leaders_en():
     body = (
         hero("Party leaders", "BC party leaders 2026",
-             "Who leads each party in British Columbia as a possible early election approaches, with the source for each claim.")
+             "Who leads each party in British Columbia heading into the October 24, 2026 election, with the source for each claim.")
         + '<section class="section"><div class="wrap"><div class="tablewrap"><table><thead><tr><th>Party</th><th>Leader</th><th>Notes</th></tr></thead><tbody>'
-        f"<tr><td><strong>BC NDP</strong></td><td>David Eby</td><td>Premier. Won a one-seat majority (47 of 93) in October 2024 ({a('wiki_2024','results summary')}).</td></tr>"
-        f"<tr><td><strong>Conservative Party of BC</strong></td><td>Kerry-Lynne Findlay</td><td>Elected leader on May 30, 2026 with 51.0% of weighted points in the fourth round over Caroline Elliott (49.0%). Not currently an MLA ({a('wiki_lead','summary')}); she is the Conservative candidate in the Sept 26 <a href=\"/abbotsford-mission-by-election-2026\">Abbotsford-Mission by-election</a>.</td></tr>"
+        f"<tr><td><strong>BC NDP</strong></td><td>David Eby</td><td>Premier. Won a one-seat majority (47 of 93) in October 2024 ({a('wiki_2024','results summary')}). Called the October 24, 2026 election on September 22 ({a('infonews_call','iNFOnews')}).</td></tr>"
+        f"<tr><td><strong>Conservative Party of BC</strong></td><td>Lorne Doerkson <em>(interim)</em></td><td>Named interim leader September 21, 2026 by unanimous caucus vote ({a('comox_doerkson','Comox Valley Record')}); MLA for Cariboo-Chilcotin, elected as a Conservative in 2024. Kerry-Lynne Findlay, elected leader May 30, 2026, resigned September 20 after 14 MLAs left the caucus since August ({a('ctv_findlay_resign','CTV News')}). Her candidacy in the October 24 general election was not confirmed by Elections BC as of {TODAY_EN}; the by-election she had been running in was cancelled when the general election was called.</td></tr>"
         f"<tr><td><strong>BC Greens</strong></td><td>Emily Lowan</td><td>Named as Green leader in the {a('ipsos','Ipsos')} and {a('research','Research Co.')} polls. Two seats won in 2024.</td></tr>"
-        f"<tr><td><strong>CentreBC</strong></td><td>Peter Milobar</td><td>Named leader on September 18, 2026, replacing Mike Bernier ({a('ctv_milobar','CTV News')}). CentreBC lists eight MLAs, with Milobar as leader and MLA for Kamloops Centre ({a('centrebc','CentreBC')}). New party that appears in polling (4% Ipsos, 5% Research Co.).</td></tr>"
+        f"<tr><td><strong>CentreBC</strong></td><td>Peter Milobar</td><td>Named leader on September 18, 2026, replacing Mike Bernier ({a('ctv_milobar','CTV News')}). CentreBC lists eight MLAs, with Milobar as leader and MLA for Kamloops Centre ({a('centrebc','CentreBC')}). New party that appears in polling (4% Ipsos, 5% Research Co., 8% Leger in June).</td></tr>"
         f"<tr><td><strong>OneBC</strong></td><td>Dallas Brodie</td><td>New party that now appears in polling (2% Ipsos, 1% Research Co.).</td></tr>"
         "</tbody></table></div>"
-        f"<p class=\"source-note\">The composition of the 43rd Parliament has shifted since 2024 as members changed parties or sat as independents ({a('wiki_43','overview')}). For current standings use the {a('leg','Legislative Assembly of BC')}; BC Vote Watch will publish seat standings once each figure is confirmed against the Assembly.</p></div></section>"
-        '<section class="section soft"><div class="wrap"><h2>How voters rate them</h2>'
-        "<p>Ipsos (Sept 8–14, 2026) found Eby 41% favourable / 30% unfavourable and Findlay 17% / 46%. Research Co. (Aug 12–14) recorded approval of 49% for Eby, 38% for Lowan and 34% for Findlay. Full numbers and methods are on the <a href=\"/bc-election-polls\">BC election polls page</a>.</p>"
-        '<p>Is an election coming? See the <a href="/bc-election-2026">BC election 2026 guide</a>.</p></div></section>'
+        f"<p class=\"source-note\">The composition of the 43rd Parliament shifted repeatedly through 2025–26 as members changed parties or sat as independents ({a('wiki_43','overview')}), and the Legislature has now been dissolved for the election. For the pre-dissolution record use the {a('leg','Legislative Assembly of BC')}; BC Vote Watch will publish seat standings once each figure is confirmed against the Assembly.</p></div></section>"
+        '<section class="section soft"><div class="wrap"><h2>How voters rated them before the writ</h2>'
+        "<p>Ipsos (Sept 8–14, 2026) found Eby 41% favourable / 30% unfavourable and Findlay 17% / 46%. Research Co. (Aug 12–14) recorded approval of 49% for Eby, 38% for Lowan and 34% for Findlay. These ratings predate Findlay's resignation and Doerkson's appointment. Full numbers and methods are on the <a href=\"/bc-election-polls\">BC election polls page</a>.</p>"
+        '<p>See the <a href="/bc-election-2026">BC election 2026 guide</a> for key dates.</p></div></section>'
     )
-    title = "BC Party Leaders 2026: Eby, Findlay, Lowan"
-    desc = "Who leads the BC NDP, BC Conservatives, BC Greens, CentreBC and OneBC in 2026. Kerry-Lynne Findlay elected Conservative leader May 30, 2026; poll ratings."
+    title = "BC Party Leaders 2026: Eby, Doerkson, Lowan"
+    desc = "Who leads the BC NDP, BC Conservatives, BC Greens, CentreBC and OneBC ahead of the Oct 24, 2026 election. Doerkson interim Conservative leader since Sept 21."
     schemas = [article_schema(title, desc, "en", "/bc-party-leaders"),
                breadcrumb("en", [("Home", "/"), ("BC Party Leaders", "/bc-party-leaders")])]
     return render("en", "bc-party-leaders", title, desc, body, GROUPS["leaders"], schemas)
@@ -406,16 +468,16 @@ def page_leaders_en():
 def page_candidates_en():
     body = (
         hero("Candidates", "BC election candidates 2026",
-             "There is no official candidate list yet because no BC provincial election has been called. Official candidates appear only after nominations close. Here is how the process works and where the record will be.")
+             f"Nominations for the October 24, 2026 general election close October 3 at 1 p.m. Elections BC publishes accepted nominations as they are confirmed; the list is not final until the deadline. See the {a('ebc_2026_cands','official candidate list')}.")
         + '<section class="section"><div class="wrap"><h2>Where things stand</h2>'
-        f"<p>Under Elections BC's process, candidates are nominated once an election is called and confirmed against the official record; see {a('ebc_nom','Elections BC candidate nominations')}. Until then, parties may announce or nominate people, but those are party announcements and not Elections BC records.</p>"
-        "<p>BC Vote Watch will keep the two apart: <strong>official candidates</strong> (Elections BC record, dated) and <strong>announced or expected candidates</strong> (party or candidate statement, dated and linked).</p></div></section>"
+        f"<p>Under Elections BC's process, a nomination is only official once Elections BC accepts it; see {a('ebc_nom','Elections BC candidate nominations')} and the {a('ebc_2026_cands','current candidate list')}, which Elections BC says “does not show all candidates that have declared publicly that they are running” — only those it has accepted.</p>"
+        "<p>BC Vote Watch will keep the two apart: <strong>official candidates</strong> (Elections BC record, dated) and <strong>announced or expected candidates</strong> (party or candidate statement, dated and linked). The Abbotsford-Mission by-election, which had five confirmed candidates, was cancelled September 22 when the general election was called; see the <a href=\"/abbotsford-mission-by-election-2026\">Abbotsford-Mission page</a>.</p></div></section>"
         '<section class="section soft"><div class="wrap"><h2>Who is leading the parties</h2>'
-        "<p>The party leaders are the people voters will see on every ballot campaign. See <a href=\"/bc-party-leaders\">BC party leaders 2026</a>. For polling see <a href=\"/bc-election-polls\">BC election polls</a>, and for how a 2026 election could unfold see the <a href=\"/bc-election-2026\">BC election 2026 guide</a>.</p>"
-        f"<p class=\"source-note\">There are 93 electoral districts in BC; each elects one MLA. Riding information is on the <a href=\"/bc-election-ridings\">BC ridings page</a>.</p></div></section>"
+        "<p>The party leaders are the people voters will see across the campaign. See <a href=\"/bc-party-leaders\">BC party leaders 2026</a>. For polling see <a href=\"/bc-election-polls\">BC election polls</a>, and for key dates see the <a href=\"/bc-election-2026\">BC election 2026 guide</a>.</p>"
+        f"<p class=\"source-note\">There are 93 electoral districts in BC; each elects one MLA. Riding information, including the 2024 result for each seat, is on the <a href=\"/bc-election-ridings\">BC ridings page</a>.</p></div></section>"
     )
     title = "BC Election Candidates 2026: Nominations"
-    desc = "BC election candidates 2026: no official list exists until an election is called. How nominations work and where official Elections BC candidate records appear."
+    desc = "BC election candidates 2026: nominations close October 3 at 1 p.m. How the official Elections BC candidate list works and where to find it."
     schemas = [article_schema(title, desc, "en", "/bc-election-candidates-2026"),
                breadcrumb("en", [("Home", "/"), ("BC Election Candidates 2026", "/bc-election-candidates-2026")])]
     return render("en", "bc-election-candidates-2026", title, desc, body, None, schemas)
@@ -423,50 +485,56 @@ def page_candidates_en():
 
 def page_home_en():
     body = (
-        hero("British Columbia · Provincial election", "BC election 2026: early election watch, polls and how to vote",
-             "Independent, source-backed tracking of a possible early BC provincial election: official status and dates, polls, party leaders, candidates, ridings and voting information. Official records, reported developments and analysis are labelled separately.",
-             STATUS_BOX_EN.replace("Current official status", "Fall 2026 election watch"))
+        hero("British Columbia · Provincial election", "BC election 2026: vote October 24",
+             "Independent, source-backed tracking of BC's 2026 provincial election: key dates, polls, party leaders, candidates, ridings and voting information. Official records, reported developments and analysis are labelled separately.",
+             STATUS_BOX_EN.replace("Current official status", "Election watch"))
         + '<section class="section"><div class="wrap"><div class="grid">'
-        '<div class="card"><div class="kicker">Official scheduled date</div><div class="big">Oct 21, 2028</div><p class="muted">The fixed date currently published by Elections BC.</p></div>'
-        '<div class="card"><div class="kicker">Latest poll (Ipsos, Sep 8–14)</div><div class="big">NDP 45 · Cons. 35</div><p class="muted">Decided voters; Research Co. (Aug 12–14) has 44–39. <a href="/bc-election-polls">All polls</a></p></div>'
-        '<div class="card"><div class="kicker">Fall 2026 status</div><div class="big">Not called</div><p class="muted">Premier Eby says the NDP is “election ready”; no announcement as of Sept 17.</p></div>'
+        '<div class="card"><div class="kicker">Election called</div><div class="big">Sep 22, 2026</div><p class="muted">Premier Eby called the election, citing the U.S. trade war.</p></div>'
+        '<div class="card"><div class="kicker">Voting day</div><div class="big">Oct 24, 2026</div><p class="muted">Advance voting Oct 16–21; nominations close Oct 3. <a href="/bc-election-2026">Key dates</a></p></div>'
+        '<div class="card"><div class="kicker">Latest pre-writ poll (Ipsos, Sep 8–14)</div><div class="big">NDP 45 · Cons. 35</div><p class="muted">Decided voters; Angus Reid (Sep 8–15) has 41–37. <a href="/bc-election-polls">All polls</a></p></div>'
         "</div></div></section>"
-        '<section class="section soft"><div class="wrap"><h2>Track the possible 2026 BC election</h2><div class="linkgrid">'
-        '<a class="linkcard" href="/bc-election-2026"><strong>BC Election 2026 Guide</strong><span>Is there an early election? Status, possible dates and latest news.</span></a>'
+        '<section class="section soft"><div class="wrap"><h2>Track the 2026 BC election</h2><div class="linkgrid">'
+        '<a class="linkcard" href="/bc-election-2026"><strong>BC Election 2026 Guide</strong><span>Key dates, why Eby called it, and the latest news.</span></a>'
         '<a class="linkcard" href="/bc-election-polls"><strong>BC Election Polls</strong><span>NDP vs Conservatives with field dates, samples and margins.</span></a>'
-        '<a class="linkcard" href="/bc-party-leaders"><strong>BC Party Leaders</strong><span>Eby, Findlay, Lowan, Milobar and Brodie.</span></a>'
+        '<a class="linkcard" href="/bc-party-leaders"><strong>BC Party Leaders</strong><span>Eby, Doerkson (interim), Lowan, Milobar and Brodie.</span></a>'
         '<a class="linkcard" href="/bc-election-issues"><strong>BC Election Issues</strong><span>Housing, health care, budget and tariffs with sourced party positions.</span></a>'
-        '<a class="linkcard" href="/abbotsford-mission-by-election-2026"><strong>Abbotsford-Mission By-election</strong><span>Sept 26 vote with Conservative leader Findlay on the ballot.</span></a>'
+        '<a class="linkcard" href="/bc-election-candidates-2026"><strong>BC Election Candidates 2026</strong><span>Nomination deadline October 3; where the official list appears.</span></a>'
+        '<a class="linkcard" href="/abbotsford-mission-by-election-2026"><strong>Abbotsford-Mission By-election</strong><span>Cancelled Sept 22 and folded into the general election.</span></a>'
         '<a class="linkcard" href="/bc-election-results-2024"><strong>BC 2024 Election Results</strong><span>Official seats, votes and turnout from Elections BC.</span></a>'
         '<a class="linkcard" href="/how-to-vote-bc"><strong>How to Vote in BC</strong><span>Eligibility, ID, advance voting and vote by mail.</span></a>'
-        '<a class="linkcard" href="/bc-election-candidates-2026"><strong>BC Election Candidates 2026</strong><span>How nominations work and where official records appear.</span></a>'
         '<a class="linkcard" href="/bc-election-ridings"><strong>BC Ridings</strong><span>Official 2024 results for all 93 ridings, and the closest races.</span></a>'
         "</div></div></section>"
         '<section class="section"><div class="wrap"><h2>Official-source first</h2>'
-        "<p>Election timing is not treated as confirmed until the writ is issued. Candidate status is not treated as final until it appears in the relevant Elections BC record. Polls are presented as measurements at the field dates, not as election results.</p>"
-        f"<p class=\"source-note\">Primary source: {a('ebc_next','Elections BC — B.C.’s Next Election')}. Fall 2026 scenario calendar: {a('ebc_cal','Elections BC PDF')}. 中文：<a href=\"/zh-cn/bc-election-2026\" hreflang=\"zh-Hans\">简体</a> · <a href=\"/zh-tw/bc-election-2026\" hreflang=\"zh-Hant\">繁體</a></p></div></section>"
+        "<p>Election dates and rules follow Elections BC's official record. Candidate status is not treated as final until it appears in the relevant Elections BC record. Polls are presented as measurements at the field dates, not as election results or forecasts.</p>"
+        f"<p class=\"source-note\">Primary source: {a('ebc_2026','Elections BC — 2026 Provincial Election')}. 中文：<a href=\"/zh-cn/bc-election-2026\" hreflang=\"zh-Hans\">简体</a> · <a href=\"/zh-tw/bc-election-2026\" hreflang=\"zh-Hant\">繁體</a></p></div></section>"
     )
-    title = "BC Election 2026: Early Election and Polls"
-    desc = "Independent tracking of a possible 2026 BC provincial election: status and dates, latest polls, party leaders, candidates, ridings and voting information."
+    title = "BC Election 2026: Vote October 24"
+    desc = "Independent tracking of BC's 2026 provincial election, called Sept 22: key dates, polls, party leaders, candidates, ridings and voting information."
     schemas = [
         {"@context": "https://schema.org", "@type": "WebSite", "name": "BC Vote Watch", "url": SITE + "/", "inLanguage": ["en-CA", "zh-Hans", "zh-Hant"]},
         {"@context": "https://schema.org", "@type": "Organization", "name": "BC Vote Watch", "url": SITE + "/", "logo": SITE + "/icon-512.png"},
+        general_election_event("en"),
     ]
     return render("en", "", title, desc, body, None, schemas)
 
 
 # ================================================================ CHINESE PAGES
-HUB_FAQ_ZH = [
+def hub_faq_zh(lang):
+    return [
     ("2026年BC省有省选吗？",
-     f"目前没有。截至{TODAY_ZH}，BC省尚未宣布举行省选。Elections BC 仍列明下一次固定省选日期为2028年10月21日，同时已发布2026年秋季提前省选的日期情景表。详见{a('ebc_next', 'Elections BC官方页面')}。"),
-    ("BC省下一次省选是什么时候？",
-     "Elections BC 列明，下一次定期省选为2028年10月21日（星期六）。如果政府决定提前宣布，或政府失去立法会信任，选举可能提前举行。"),
-    ("Eby可以提前宣布省选吗？",
-     f"Elections BC 表示，政府决定宣布时可以提前举行选举。2026年9月17日，省长David Eby表示没有选举公告要宣布，同时表示已告知NDP和Elections BC要做好选举准备（“election ready”）（{a('tyee','The Tyee')}；{a('ctv','CTV News')}）。"),
-    ("2026年提前省选可能是哪几天？",
-     f"取决于选举宣布的日期。按 Elections BC 的情景：9月16至22日宣布，最终投票日为10月24日；9月23至29日宣布，则为10月31日；再晚则顺延至后面的星期六。完整表格见下方及{a('ebc_cal','官方日历PDF')}。"),
+     f"有。省长David Eby于2026年9月22日宣布举行省选，投票日为2026年10月24日（星期六）（{a('infonews_call','iNFOnews')}；{a('ebc_2026','Elections BC')}）。"),
+    ("BC省省选是什么时候？",
+     "2026年10月24日（星期六）。根据 Elections BC，提前投票为10月16至21日，候选人提名截止日为10月3日下午1点。"),
+    ("Eby为什么提前宣布省选？",
+     f"Eby表示与美国的贸易战对BC省是“生死攸关”（existential）的问题，选民应该有发言权（{a('infonews_call','iNFOnews')}）。BC省原定的固定选举日期是2028年10月21日；{a('ebc_next','选举法')}允许政府提前宣布。"),
+    ("BC省选和市选时间重叠吗？",
+     "重叠。BC省市选定于2026年10月17日，比10月24日的省选早一周。部分市政官员对两场选举时间相近表示担忧。"),
     ("目前民调谁领先？",
-     "在两项公开方法细节的最新民调中，BC NDP 领先BC保守党：Ipsos（9月8至14日）为45%对35%，Research Co.（8月12至14日）为44%对39%。见<a href=\"/zh-cn/bc-election-polls\">BC省选民调</a>。"),
+     f"最新的选前民调（Ipsos，9月8至14日；Angus Reid，9月8至15日）都显示NDP领先保守党，分别为45%对35%和41%对37%。更早的6月，Leger曾显示保守党领先。见<a href=\"{url_for(lang,'bc-election-polls')}\">BC省选民调</a>。"),
+    ("BC省各党党魁是谁？",
+     f"David Eby领导BC NDP；Lorne Doerkson自Kerry-Lynne Findlay于2026年9月20日辞职后出任BC保守党临时党魁；Emily Lowan领导BC绿党；Peter Milobar领导CentreBC；Dallas Brodie领导OneBC。见<a href=\"{url_for(lang,'bc-party-leaders')}\">BC省党魁</a>。"),
+    ("Abbotsford-Mission补选怎么样了？",
+     f"已取消。Elections BC表示，9月22日宣布的省选取消了原定9月26日举行的补选，该选区并入全省投票；已经投出的选票不计入省选（{a('byel','Elections BC')}；{a('wiki_byel_cancel','维基百科摘要')}）。"),
 ]
 
 
@@ -474,71 +542,77 @@ def page_hub_zh(lang):
     L = lambda s: conv(lang, s)
     latest = (
         "<ul>"
-        f"<li><strong>2026年9月17日</strong> — 省长David Eby表示没有选举公告要宣布，同时说NDP和Elections BC已被告知要做好选举准备（{a('tyee','The Tyee')}；{a('ctv','CTV News')}）。</li>"
-        f"<li><strong>2026年9月15至17日</strong> — 新民调：Ipsos显示NDP 45%、保守党35%（9月8至14日）；{a('angus','Angus Reid')}于9月17日发布调查。<a href=\"{url_for(lang,'bc-election-polls')}\">查看全部民调</a>。</li>"
-        f"<li><strong>2026年9月26日</strong> — Abbotsford-Mission补选，五名候选人包括保守党党魁Kerry-Lynne Findlay（{a('byel','Elections BC')}）；提前投票为9月18至23日。<a href=\"{url_for(lang,'abbotsford-mission-by-election-2026')}\">候选人与详情</a>。</li>"
-        f"<li><strong>2026年5月30日</strong> — Kerry-Lynne Findlay当选BC保守党党魁（{a('wiki_lead','结果摘要')}）。</li>"
+        f"<li><strong>2026年9月22日</strong> — 省长David Eby宣布举行省选，并称与美国的贸易战对BC是“生死攸关”的问题；投票日为2026年10月24日（星期六）（{a('infonews_call','iNFOnews')}）。原定的Abbotsford-Mission补选被取消，并入省选（{a('byel','Elections BC')}）。</li>"
+        f"<li><strong>2026年9月21日</strong> — 保守党团一致投票，任命Lorne Doerkson（Cariboo-Chilcotin）为临时党魁（{a('comox_doerkson','Comox Valley Record')}）。</li>"
+        f"<li><strong>2026年9月20日</strong> — Kerry-Lynne Findlay辞去保守党党魁职务；此前8月以来已有14名议员离开该党团（{a('ctv_findlay_resign','CTV News')}）。</li>"
+        f"<li><strong>2026年9月15至17日</strong> — 选前民调：Ipsos显示NDP 45%、保守党35%（9月8至14日）；{a('angus','Angus Reid')}显示NDP 41%、保守党37%（9月8至15日）。<a href=\"{url_for(lang,'bc-election-polls')}\">查看全部民调</a>。</li>"
         "</ul>"
     )
     body = (
-        hero("BC省选 2026", L("2026年BC省会提前省选吗？"),
-             L("截至2026年9月20日尚未宣布省选，但有可能提前举行。Elections BC 目前列出的下一次固定省选日期仍是2028年10月21日，同时已经发布2026年秋季提前省选的日期情景表。"),
+        hero("BC省选 2026", L("BC省将于2026年10月24日投票"),
+             L(f"省长David Eby于2026年9月22日宣布举行省选。BC省居民将于2026年10月24日（星期六）选出全部93名省议员。详见{a('ebc_2026','Elections BC官方选举页面')}。"),
              STATUS_BOX_ZH)
-        + f'<section class="section"><div class="wrap"><h2>{L("最新动态")}</h2>{L(latest)}<p class="source-note">{L("每一条都附有来源。这里没有任何一项是已确认的选举公告；本站只在选举令状正式发出后才把状态改为“已宣布”。")}</p></div></section>'
-        + f'<section class="section soft"><div class="wrap"><h2>{L("提前省选会怎样发生")}</h2>'
-        + L(f"<p>BC省有固定选举日期，但{a('ebc_next','Elections BC说明')}，如果政府决定提前宣布，或政府失去立法会信任，选举可以提前。Elections BC 还表示，2026年秋季的选举会比定期选举稍长，以便有更多时间处理提名、选民登记和办事处设置，投票日仍安排在星期六；更新后的日历预计2027年初发布。</p>")
-        + L(f"<p>2024年10月19日省选中，NDP在93个议席中赢得47席，以一席优势组成多数政府（{a('wiki_2024','结果摘要')}）。此后立法会的政党构成已有变化，民调中也出现了两个新政党 CentreBC 和 OneBC。最新议席分布请查看{a('leg','BC省立法会')}。</p>")
-        + "</div></section>"
-        + f'<section class="section"><div class="wrap"><h2>{L("2026年秋季省选可能的日期")}</h2><p>{L("以下是 Elections BC 的情景表，并非选举已宣布。提前投票为六天。")}</p>'
-        + L(calendar_table_zh())
-        + f'<p class="source-note">{L("更后期的情景与说明请见")}{a("ebc_cal", L("Elections BC 2026年秋季日历"))}。</p></div></section>'
-        + L(faq_html(HUB_FAQ_ZH, "BC省选2026常见问题"))
+        + f'<section class="section"><div class="wrap"><h2>{L("最新动态")}</h2>{L(latest)}<p class="source-note">{L("每一条都附有来源。竞选期间政党构成和候选人变化很快，见")}<a href="{url_for(lang,"bc-party-leaders")}">{L("党魁")}</a>{L("和")}<a href="/bc-election-candidates-2026">{L("候选人")}</a>{L("（英文）")}。</p></div></section>'
+        + f'<section class="section soft"><div class="wrap"><h2>{L("2026年10月24日省选关键日期")}</h2>'
+        + L(key_dates_table_zh())
+        + f'<p class="source-note">{L("来源：")}{a("ebc_2026", L("Elections BC——2026年省选"))}。{L("这与 Elections BC 此前公布的“9月16至22日宣布”情景吻合：提前投票10月16至21日，最终投票日10月24日，见")}{a("ebc_cal", L("2026年秋季日历"))}。</p></div></section>'
+        + f'<section class="section"><div class="wrap"><h2>{L("为什么是现在")}</h2>'
+        + L(f"<p>BC省实行固定选举日期，但{a('ebc_next','Elections BC说明')}，如果政府决定提前宣布，或政府失去立法会信任，选举可以提前。Eby称与美国的贸易战对BC是“生死攸关”的问题，选民应该有发言权（{a('infonews_call','iNFOnews')}）。</p>")
+        + L(f"<p>2024年10月19日省选中，NDP在93个议席中赢得47席，以一席优势组成多数政府（{a('wiki_2024','结果摘要')}）。此后保守党团出现分裂：八名议员另组CentreBC，另有议员转投OneBC或成为无党派议员，党魁Kerry-Lynne Findlay于9月20日辞职，此前8月以来已有14名议员离开。见<a href=\"{url_for(lang,'bc-party-leaders')}\">现任党魁</a>和<a href=\"{url_for(lang,'bc-election-results-2024')}\">2024年结果</a>。</p></div></section>")
+        + L(faq_html(hub_faq_zh(lang), "BC省选2026常见问题"))
         + f'<section class="section"><div class="wrap"><h2>{L("继续了解")}</h2><div class="linkgrid">'
         f'<a class="linkcard" href="{url_for(lang,"bc-election-polls")}"><strong>{L("BC省选民调")}</strong><span>{L("NDP与保守党，附调查日期和样本量。")}</span></a>'
+        f'<a class="linkcard" href="{url_for(lang,"bc-party-leaders")}"><strong>{L("BC省党魁")}</strong><span>{L("竞选开始时各党由谁领导。")}</span></a>'
+        f'<a class="linkcard" href="{url_for(lang,"abbotsford-mission-by-election-2026")}"><strong>{L("Abbotsford-Mission")}</strong><span>{L("9月22日取消的补选，并入省选。")}</span></a>'
         f'<a class="linkcard" href="{url_for(lang,"how-to-vote-bc")}"><strong>{L("BC省如何投票")}</strong><span>{L("资格、身份证明、提前投票和邮寄投票。")}</span></a>'
         "</div></div></section>"
     )
-    title = L("BC省选2026：会提前选举吗？日期与最新状态")
-    desc = L("2026年BC省是否已宣布省选？官方状态、可能的秋季投票日期、Eby最新表态和民调，来源均为Elections BC及公开报道。")
+    title = L("BC省选2026：10月24日投票")
+    desc = L("BC省省选已于2026年9月22日宣布，投票日为10月24日。关键日期、Eby为何提前宣布、党魁与民调，来源均为Elections BC及公开报道。")
     path = url_for(lang, "bc-election-2026")
     schemas = [article_schema(title, desc, lang, path),
                breadcrumb(lang, [(L("首页"), "/"), (L("BC省选2026"), path)]),
-               faq_schema([(L(q), L(a_)) for q, a_ in HUB_FAQ_ZH])]
+               faq_schema([(L(q), L(a_)) for q, a_ in hub_faq_zh(lang)]), general_election_event(lang)]
     return render(lang, "bc-election-2026", title, desc, body, GROUPS["hub"], schemas)
+
+
+POLL_ZH_META = {
+    "angus": ("2026年9月8至15日（9月17日发布）", "749名成年人，线上；相当于概率样本±4.0", "此处仅列NDP和保守党的投票意向数字；其他政党见完整报告。51%表示自己是“政治孤儿”。"),
+    "ipsos": ("2026年9月8至14日（9月15日发布）", "800名成年人，线上样本；可信区间±4.0", "其他4%；28%未决定或无偏好。"),
+    "research": ("2026年8月12至14日（8月18日发布）", "801名成年人，线上；误差±3.5", "已决定选民；NDP在6月落后后重新领先。"),
+    "leger_jun": ("2026年6月1至2日（6月5日发布）", "1,002名成年人，线上样本；相当于概率样本±3.1", "保守党在Findlay刚当选党魁后一度领先；当时只有26%的人认识她。"),
+    "leger": ("2026年4月3至6日（5月4日发布）", "1,003名成年人，线上样本；相当于概率样本±3.1", "此处仅列NDP和保守党；其他政党见原报告。54%认为省份走错方向。"),
+}
 
 
 def page_polls_zh(lang):
     L = lambda s: conv(lang, s)
     rows = ""
-    for _, name, field, sample, n, c, g, ct, o, note in POLL_ROWS:
-        if name == "Ipsos":
-            f_, s_, nt = "2026年9月8至14日（9月15日发布）", "800名成年人，线上样本；可信区间±4.0", "其他4%；28%未决定或无偏好。"
-        elif name == "Leger":
-            f_, s_, nt = "2026年4月3至6日（5月4日发布）", "1,003名成年人，线上样本；相当于概率样本±3.1", "此处仅列NDP和保守党；其他政党见原报告。54%认为省份走错方向。"
-        else:
-            f_, s_, nt = "2026年8月12至14日（8月18日发布）", "801名成年人，线上；误差±3.5", "已决定选民；NDP在6月落后后重新领先。"
+    for key, name, field, sample, n, c, g, ct, o, note in POLL_ROWS:
+        f_, s_, nt = POLL_ZH_META[key]
         pc = lambda v: f"{v}%" if v is not None else "—"
         rows += f"<tr><td><strong>{name}</strong></td><td>{f_}</td><td>{s_}</td><td>{pc(n)}</td><td>{pc(c)}</td><td>{pc(g)}</td><td>{pc(ct)}</td><td>{pc(o)}</td><td>{nt}</td></tr>"
     body = (
-        hero("民调追踪", L("BC省选民调 2026：NDP对保守党"),
-             L("最新公开的BC省民调，附调查日期、样本量和方法。在两项方法细节完整的最新民调中，BC NDP领先BC保守党5至10个百分点。民调只反映某一时间点的受访者意见，不是预测，也不是选举结果。"))
+        hero("民调追踪", L("BC省选民调 2026：2026年10月24日投票前"),
+             L("五项公开的BC省民调显示了一次逆转：保守党在6月领先，但从8月中起的每一项民调都是NDP领先，同期保守党团有14名议员离开、党魁辞职。民调只反映某一时间点的受访者意见，不是预测，也不是选举结果。"))
         + f'<section class="section"><div class="wrap"><h2>{L("政党支持度（已决定选民）")}</h2><div class="tablewrap"><table><thead><tr><th>{L("调查机构")}</th><th>{L("调查日期")}</th><th>{L("样本")}</th><th>NDP</th><th>{L("保守党")}</th><th>{L("绿党")}</th><th>CentreBC</th><th>OneBC</th><th>{L("备注")}</th></tr></thead><tbody>'
         + L(rows)
-        + f'</tbody></table></div><p class="source-note">{L("来源：")}{a("ipsos","Ipsos")}、{a("research","Research Co.")}、{a("leger","Leger")}。{L("Ipsos指出保守党较2024年结果（43.3%）下降8个百分点。")}</p></div></section>'
+        + f'</tbody></table></div><p class="source-note">{L("来源：")}{a("angus","Angus Reid")}、{a("ipsos","Ipsos")}、{a("research","Research Co.")}、{a("leger_jun","Leger（6月）")}、{a("leger","Leger（4月）")}。{L("Ipsos指出保守党较2024年结果（43.3%）下降8个百分点。以上五项民调均在2026年9月22日宣布选举之前进行。")}</p></div></section>'
         + f'<section class="section soft"><div class="wrap"><h2>{L("党魁评价")}</h2><div class="grid">'
         + L('<div class="card"><div class="kicker">Ipsos · 好感／反感</div><p>David Eby（NDP）：<strong>41%／30%</strong><br>Kerry-Lynne Findlay（保守党）：<strong>17%／46%</strong><br>Emily Lowan（绿党）：12%／15%<br>Dallas Brodie（OneBC）：10%／24%<br>Mike Bernier（当时的CentreBC党魁）：9%／19%</p></div>')
         + L('<div class="card"><div class="kicker">Research Co. · 支持率</div><p>Eby：<strong>49%</strong><br>Lowan：38%<br>Findlay：34%<br>Bernier（当时的CentreBC党魁）：24%<br>Brodie：18%</p></div>')
-        + L(f'<div class="card"><div class="kicker">Angus Reid · 9月17日发布</div><p>Eby支持率<strong>41%</strong>。51%的人表示自己是“政治孤儿”，没有能热情支持的政党。调查日期、样本和政党支持表见{a("angus","Angus Reid报告")}。</p></div>')
-        + f'</div><p class="source-note">{L("这是不同机构的三种不同指标（好感度、支持率和政治情绪），不能直接互相比较。两项民调都在CentreBC于9月18日任命Peter Milobar为党魁之前进行，因此其评价对象是Mike Bernier。")}</p></div></section>'
+        + L(f'<div class="card"><div class="kicker">Angus Reid · 9月8至15日，9月17日发布</div><p>Eby支持率<strong>41%</strong>。51%的人表示自己是“政治孤儿”，没有能热情支持的政党。完整数据见{a("angus","Angus Reid报告")}。</p></div>')
+        + f'</div><p class="source-note">{L("这是不同机构的三种不同指标（好感度、支持率和政治情绪），不能直接互相比较。三项都在CentreBC于9月18日任命Peter Milobar为党魁、Findlay于9月20日辞去保守党党魁、Doerkson于9月21日出任临时党魁之前进行，因此评价对象分别是Bernier和Findlay。见")}<a href="{url_for(lang,"bc-party-leaders")}">{L("现任党魁")}</a>。</p></div></section>'
         + f'<section class="section"><div class="wrap"><h2>{L("如何解读这些民调")}</h2><ul>'
+        + L(f'<li><strong>保守党的数字变化很快。</strong>Leger在6月显示保守党以45%对41%领先；到9月，Ipsos显示NDP以45%对35%领先。其间保守党团有14名议员离开、Findlay辞去党魁、Lorne Doerkson出任临时党魁。见<a href="{url_for(lang,"bc-party-leaders")}">党魁</a>。</li>')
         + L("<li><strong>未决定选民很重要。</strong>Ipsos显示28%未决定或无偏好；上表只列已决定选民。</li>")
         + L("<li><strong>地区比全省数字更重要。</strong>Research Co.发现保守党在北部BC占优，菲沙河谷和大温哥华竞争激烈，NDP则在温哥华岛领先。BC采用单一选区得票最多者当选（first-past-the-post）的93个选区，所以议席取决于选票分布。</li>")
         + L("<li><strong>新政党可能分流选票。</strong>CentreBC和OneBC是新政党，现在与绿党一起出现在民调中（Ipsos称之为两个新政党）。</li>")
-        + L("<li><strong>误差范围。</strong>±3.5至±4.0个百分点的误差意味着单项民调中5个百分点的差距可能仍在综合不确定性之内。</li></ul>")
-        + f'<p class="source-note">{L("民调只有在附上调查机构、调查日期、样本和来源链接后才会收录。查看")}<a href="{url_for(lang,"bc-election-2026")}">{L("省选指南")}</a>{L("了解选举状态。")}</p></div></section>'
+        + L("<li><strong>误差范围。</strong>±3.1至±4.0个百分点的误差意味着接近的差距可能仍在综合不确定性之内。</li></ul>")
+        + f'<p class="source-note">{L("民调只有在附上调查机构、调查日期、样本和来源链接后才会收录。截至发稿，尚无调查日期在9月22日选举宣布之后的民调发布。查看")}<a href="{url_for(lang,"bc-election-2026")}">{L("省选指南")}</a>{L("了解选举状态。")}</p></div></section>'
     )
-    title = L("BC省选民调 2026：NDP对保守党最新民调")
-    desc = L("BC省最新民调：Ipsos显示NDP 45%、保守党35%；Research Co. 44%对39%；Leger 44%对40%。附调查日期、样本、误差和党魁评价。")
+    title = L("BC省选民调 2026：10月24日投票前")
+    desc = L("BC省选前民调：保守党6月一度领先（45%对41%），NDP到9月领先（45%对35%）。附调查日期、样本、误差与党魁评价。")
     path = url_for(lang, "bc-election-polls")
     schemas = [article_schema(title, desc, lang, path), breadcrumb(lang, [(L("首页"), "/"), (L("BC省选民调"), path)])]
     return render(lang, "bc-election-polls", title, desc, body, GROUPS["polls"], schemas)
@@ -562,7 +636,7 @@ def page_how_zh(lang):
     L = lambda s: conv(lang, s)
     body = (
         hero("投票资讯", L("如何在BC省省选投票"),
-             L("谁可以投票、如何登记、需要带什么证件以及投票方式，均摘自 Elections BC。BC省目前尚未宣布省选，所以日期取决于宣布的时间；以下是 Elections BC 目前公布的规则。"))
+             L(f"谁可以投票、如何登记、需要带什么证件以及投票方式，适用于2026年10月24日的省选。提前投票为10月16至21日，提名截止日为10月3日。以下是 Elections BC 目前公布的规则（{a('ebc_2026','官方选举页面')}）。"))
         + f'<section class="section"><div class="wrap"><h2>{L("谁可以投票")}</h2>'
         + L(f"<p>要在BC省省选投票，你必须是加拿大公民、年满18岁，并在BC省居住至少六个月（{a('ebc_who','Elections BC')}）。</p>")
         + f"<h2>{L('登记投票')}</h2>"
@@ -594,30 +668,26 @@ def page_how_zh(lang):
 # ================================================================ BY-ELECTION
 BYEL_CANDS = [
     ("Pam Alexis", "BC NDP", "NDP candidate in this riding in 2024 (44.62%, official result)."),
-    ("Kerry-Lynne Findlay", "Conservative Party", "Leader of the BC Conservatives since May 30, 2026; not currently an MLA."),
+    ("Kerry-Lynne Findlay", "Conservative Party", "Elected leader of the BC Conservatives May 30, 2026; resigned as leader September 20."),
     ("Stephen Fowler", "BC Green Party", ""),
     ("Lakhwinder Jhaj", "CentreBC", ""),
     ("Jeff Monds", "Libertarian", ""),
 ]
 BYEL_FAQ_EN = [
-    ("When is the Abbotsford-Mission by-election?",
-     f"Saturday, September 26, 2026, with voting places open 8 a.m. to 8 p.m. Advance voting ran September 18–23 ({a('byel','Elections BC')})."),
-    ("Who is running in the Abbotsford-Mission by-election?",
-     f"Five candidates: Pam Alexis (BC NDP), Kerry-Lynne Findlay (Conservative Party), Stephen Fowler (BC Green Party), Lakhwinder Jhaj (CentreBC) and Jeff Monds (Libertarian) ({a('byel_cands','Elections BC candidate list')})."),
-    ("Why is there a by-election in Abbotsford-Mission?",
-     f"Elections BC says MLA Reann Gasper resigned on August 24, 2026 ({a('byel_writ','Elections BC')}). She had won the seat for the Conservatives in 2024."),
-    ("When will results be available?",
-     f"Elections BC says preliminary results are published after 8 p.m. on election day and the final count is announced October 1 ({a('byel','Elections BC')}). This page will be updated after the results are official."),
-    ("What time do polls close in the Abbotsford-Mission by-election?",
-     f"Voting places close at 8 p.m. Pacific time on Saturday, September 26, 2026, and preliminary results follow after that ({a('byel','Elections BC')})."),
-    ("Where do I vote in Abbotsford-Mission?",
-     f"Use the voting place look-up on the {a('byel','Elections BC by-election page')}; it lists the place assigned to your address. Only people who live in the Abbotsford-Mission district can vote in this by-election."),
-    ("Who is favoured to win the Abbotsford-Mission by-election?",
-     "BC Vote Watch does not forecast riding results. In 2024 Conservative Reann Gasper won the seat 55.38% to 44.62% over the NDP; by-elections can differ in turnout and campaign focus."),
-    ("What happens if Kerry-Lynne Findlay wins?",
-     "A by-election fills one vacant seat. If the Conservative leader wins, Findlay would take a seat in the Legislature; the official result is announced by Elections BC."),
-    ("Who can vote in the by-election?",
-     "Canadian citizens aged 18 or older who live in the Abbotsford-Mission electoral district and have been BC residents since March 25, 2026, according to Elections BC. Eligible voters can register or update information online, by phone or in person on voting day."),
+    ("Is the Abbotsford-Mission by-election still happening?",
+     f"No. Elections BC cancelled it on September 22, 2026, when Premier Eby called the provincial general election. Abbotsford-Mission voters now take part in the October 24 general election instead ({a('byel','Elections BC')})."),
+    ("Why was the by-election cancelled?",
+     f"Under the Election Act, calling a general election dissolves the Legislature and cancels any pending by-election; the riding is folded into the province-wide vote ({a('wiki_byel_cancel','Wikipedia summary')})."),
+    ("Do votes already cast in the by-election count?",
+     f"No. Elections BC says voting in the by-election ended and any ballots cast will not count toward the general election; anyone who voted in the by-election must vote again on October 24 ({a('byel','Elections BC')})."),
+    ("Who was running in the cancelled by-election?",
+     f"Five candidates had been confirmed: Pam Alexis (BC NDP), Kerry-Lynne Findlay (Conservative Party), Stephen Fowler (BC Green Party), Lakhwinder Jhaj (CentreBC) and Jeff Monds (Libertarian) ({a('byel_cands','Elections BC candidate list')}). The general-election candidate list for Abbotsford-Mission may differ; nominations close October 3."),
+    ("Why was there going to be a by-election in Abbotsford-Mission?",
+     f"Elections BC said MLA Reann Gasper resigned on August 24, 2026 ({a('byel_writ','Elections BC')}). She had won the seat for the Conservatives in 2024."),
+    ("Is Kerry-Lynne Findlay running in the October 24 general election?",
+     f"BC Vote Watch could not confirm this from Elections BC as of {TODAY_EN}. Findlay resigned as Conservative leader on September 20, 2026; the by-election she had been contesting in Abbotsford-Mission was cancelled two days later. See <a href=\"/bc-party-leaders\">BC party leaders</a>."),
+    ("Who can vote in Abbotsford-Mission on October 24?",
+     f"Canadian citizens aged 18 or older who are BC residents; see <a href=\"/how-to-vote-bc\">how to vote in BC</a> for the general rules and ID requirements ({a('ebc_who','Elections BC')})."),
 ]
 
 
@@ -625,53 +695,46 @@ def byel_event(lang):
     return {
         "@context": "https://schema.org",
         "@type": "Event",
-        "name": "Abbotsford-Mission by-election" if lang == "en" else conv(lang, "Abbotsford-Mission补选"),
+        "name": "Abbotsford-Mission by-election (cancelled)" if lang == "en" else conv(lang, "Abbotsford-Mission补选（已取消）"),
         "startDate": "2026-09-26T08:00-07:00",
         "endDate": "2026-09-26T20:00-07:00",
-        "eventStatus": "https://schema.org/EventScheduled",
+        "eventStatus": "https://schema.org/EventCancelled",
         "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
         "location": {"@type": "Place", "name": "Abbotsford-Mission electoral district, British Columbia",
                      "address": {"@type": "PostalAddress", "addressRegion": "BC", "addressCountry": "CA"}},
         "organizer": {"@type": "Organization", "name": "Elections BC", "url": "https://elections.bc.ca/"},
-        "description": "Provincial by-election in Abbotsford-Mission, British Columbia.",
+        "description": "Provincial by-election in Abbotsford-Mission, British Columbia, cancelled September 22, 2026 when a general election was called.",
         "image": SITE + "/assets/og-image.png",
     }
 
 
 def page_byel_en():
+    zparty = {"BC NDP": "BC NDP", "Conservative Party": "Conservative", "BC Green Party": "Green", "CentreBC": "CentreBC", "Libertarian": "Libertarian"}
     rows = "".join(
-        f"<tr><td><strong>{n}</strong></td><td>{p_}</td><td>{note}</td></tr>" for n, p_, note in BYEL_CANDS
+        f"<tr><td><strong>{n}</strong></td><td>{zparty[p_]}</td><td>{note}</td></tr>" for n, p_, note in BYEL_CANDS
     )
     body = (
-        hero("By-election", "Abbotsford-Mission by-election 2026",
-             "Voters in Abbotsford-Mission choose a new MLA on Saturday, September 26, 2026. Five candidates are on the ballot, including Conservative Party leader Kerry-Lynne Findlay, who does not currently hold a seat in the Legislature.")
+        hero("By-election cancelled", "Abbotsford-Mission by-election: cancelled",
+             f"Elections BC cancelled the September 26, 2026 by-election on September 22, when Premier Eby called a provincial general election. Abbotsford-Mission voters choose their MLA on October 24, along with the rest of the province ({a('byel','Elections BC')}).")
         + '<section class="section"><div class="wrap"><h2>Quick answers</h2><ul>'
-        "<li><strong>When:</strong> Saturday, September 26, 2026. <strong>Polls close:</strong> 8 p.m.</li>"
-        "<li><strong>Candidates:</strong> Pam Alexis (NDP), Kerry-Lynne Findlay (Conservative), Stephen Fowler (Green), Lakhwinder Jhaj (CentreBC), Jeff Monds (Libertarian).</li>"
-        '<li><strong>Results:</strong> <a href="#results">see the results section below</a>; preliminary results come after 8 p.m., final count October 1.</li>'
-        f"<li><strong>Where to vote:</strong> use the look-up on the {a('byel','Elections BC by-election page')}.</li></ul></div></section>"
-        + '<section class="section"><div class="wrap"><h2>Key facts</h2><div class="tablewrap"><table><tbody>'
-        f"<tr><th>Election day</th><td>Saturday, September 26, 2026, 8 a.m. to 8 p.m. ({a('byel','Elections BC')})</td></tr>"
-        "<tr><th>Advance voting</th><td>September 18–23, 2026, 8 a.m. to 8 p.m.</td></tr>"
-        f"<tr><th>Why it is being held</th><td>MLA Reann Gasper resigned on August 24, 2026 ({a('byel_writ','Elections BC')}).</td></tr>"
-        "<tr><th>Nominations closed</th><td>September 5, 2026, 1 p.m.</td></tr>"
-        "<tr><th>Registration</th><td>Online registration closed at midnight September 14 and phone registration at 8 p.m. that day; Elections BC says eligible voters can also register or update information in person on voting day.</td></tr>"
-        "<tr><th>Vote by mail</th><td>The deadline to request a voting package was September 20, 8 p.m.</td></tr>"
-        "<tr><th>Results</th><td>Preliminary results after 8 p.m. on September 26; final results announced October 1.</td></tr>"
-        "</tbody></table></div></div></section>"
-        '<section class="section soft"><div class="wrap"><h2>Candidates</h2><div class="tablewrap"><table><thead><tr><th>Candidate</th><th>Party</th><th>Notes</th></tr></thead><tbody>'
+        "<li><strong>Status:</strong> Cancelled September 22, 2026, when the general election was called.</li>"
+        "<li><strong>Ballots already cast:</strong> Do not count. Anyone who voted in the by-election must vote again.</li>"
+        "<li><strong>What happens now:</strong> Abbotsford-Mission is part of the October 24, 2026 general election; the nomination deadline is October 3.</li>"
+        f"<li><strong>By-election candidates (for reference):</strong> Pam Alexis (NDP), Kerry-Lynne Findlay (Conservative), Stephen Fowler (Green), Lakhwinder Jhaj (CentreBC), Jeff Monds (Libertarian); the general-election list may differ ({a('ebc_2026_cands','official candidate list')}).</li></ul></div></section>"
+        + '<section class="section"><div class="wrap"><h2>What happened</h2>'
+        f"<p>Elections BC says: “A provincial general election has been called. The 2026 Abbotsford-Mission by-election has been cancelled.” Voting in the by-election ended and any ballots cast will not count toward the general election ({a('byel','Elections BC')}). The by-election had been called after Conservative MLA Reann Gasper resigned on August 24, 2026 ({a('byel_writ','Elections BC')}); nominations for it had closed September 5 with five candidates confirmed ({a('byel_cands','Elections BC')}), and advance voting was already under way when the general election was called.</p>"
+        f"<p>See <a href=\"/bc-election-2026\">why Eby called the October 24 election</a> and <a href=\"/bc-party-leaders\">current party leaders</a>, including the status of Conservative leader Kerry-Lynne Findlay, who had been the Conservative candidate in this by-election.</p></div></section>"
+        + '<section class="section soft"><div class="wrap"><h2>Background: by-election candidates</h2><div class="tablewrap"><table><thead><tr><th>Candidate</th><th>Party</th><th>Notes</th></tr></thead><tbody>'
         + rows
-        + f'</tbody></table></div><p class="source-note">Candidate list: {a("byel_cands","Elections BC")}. Notes on Findlay are from {a("wiki_lead","this summary")} and <a href="/bc-party-leaders">BC party leaders</a>.</p></div></section>'
+        + f'</tbody></table></div><p class="source-note">This was the confirmed candidate list for the cancelled by-election ({a("byel_cands","Elections BC")}). It is not the general-election ballot; see the {a("ebc_2026_cands","official 2026 candidate list")} once nominations close October 3.</p></div></section>'
         + '<section class="section"><div class="wrap"><h2>How Abbotsford-Mission voted in 2024</h2>'
-        f"<p>At the October 19, 2024 general election, Conservative Reann Gasper won Abbotsford-Mission with <strong>13,523 votes (55.38%)</strong>, ahead of NDP candidate Pam Alexis with <strong>10,894 votes (44.62%)</strong>. Source: {a('sov','Elections BC Statement of Votes')}. See also the province-wide <a href=\"/bc-election-results-2024\">2024 results</a>.</p>"
-        "<p>This is background, not a forecast: by-elections often differ from general elections in turnout and campaign focus, and BC Vote Watch does not publish riding-level predictions.</p></div></section>"
-        + '<section class="section soft" id="results"><div class="wrap"><h2>Abbotsford-Mission by-election results</h2>'
-        f"<p>Results are not yet available. Elections BC publishes preliminary results after 8 p.m. on September 26 and announces the final count on October 1 ({a('byel','Elections BC results')}). This section will be updated with the winner, vote totals and turnout once official numbers are published.</p></div></section>"
-        + faq_html(BYEL_FAQ_EN, "Abbotsford-Mission by-election FAQ")
-        + '<section class="section"><div class="wrap"><p class="source-note">Results will be added here after Elections BC publishes them. Next: <a href="/bc-election-2026">is there a BC election in 2026?</a> · <a href="/bc-election-polls">BC election polls</a> · <a href="/how-to-vote-bc">how to vote in BC</a>.</p></div></section>'
+        f"<p>At the October 19, 2024 general election, Conservative Reann Gasper won Abbotsford-Mission with <strong>13,523 votes (55.38%)</strong>, ahead of NDP candidate Pam Alexis with <strong>10,894 votes (44.62%)</strong>. Source: {a('sov','Elections BC Statement of Votes')}. See the <a href=\"/ridings/abbotsford-mission\">Abbotsford-Mission riding page</a> and the province-wide <a href=\"/bc-election-results-2024\">2024 results</a>.</p>"
+        "<p>This is background, not a forecast: general elections often differ from by-elections in turnout and campaign focus, and BC Vote Watch does not publish riding-level predictions.</p></div></section>"
+        + faq_html(BYEL_FAQ_EN, "Abbotsford-Mission FAQ")
+        + '<section class="section"><div class="wrap"><p class="source-note">Next: <a href="/bc-election-2026">BC election 2026: key dates</a> · <a href="/bc-election-candidates-2026">BC election candidates 2026</a> · <a href="/bc-election-polls">BC election polls</a> · <a href="/how-to-vote-bc">how to vote in BC</a>.</p></div></section>'
     )
-    title = "Abbotsford-Mission By-election Results 2026"
-    desc = "Abbotsford-Mission by-election Sept 26, 2026: candidates incl. Kerry-Lynne Findlay, polls close 8 p.m., where to vote, results and 2024 background."
+    title = "Abbotsford-Mission By-election: Cancelled"
+    desc = "The Sept 26, 2026 Abbotsford-Mission by-election was cancelled Sept 22 when a general election was called. What happened, and how the riding votes Oct 24."
     path = "/abbotsford-mission-by-election-2026"
     schemas = [article_schema(title, desc, "en", path),
                breadcrumb("en", [("Home", "/"), ("Abbotsford-Mission By-election", path)]),
@@ -679,73 +742,61 @@ def page_byel_en():
     return render("en", "abbotsford-mission-by-election-2026", title, desc, body, GROUPS["byel"], schemas)
 
 
-BYEL_FAQ_ZH = [
-    ("Abbotsford-Mission补选是什么时候？",
-     f"2026年9月26日（星期六），投票站开放时间为上午8点至晚上8点。提前投票为9月18至23日（{a('byel','Elections BC')}）。"),
-    ("Abbotsford-Mission补选有哪些候选人？",
-     f"共五人：Pam Alexis（BC NDP）、Kerry-Lynne Findlay（保守党）、Stephen Fowler（BC绿党）、Lakhwinder Jhaj（CentreBC）和Jeff Monds（自由意志党）（{a('byel_cands','Elections BC候选人名单')}）。"),
-    ("为什么Abbotsford-Mission要补选？",
-     f"Elections BC 表示，议员Reann Gasper于2026年8月24日辞职（{a('byel_writ','Elections BC')}）。她在2024年代表保守党赢得该选区。"),
-    ("补选结果什么时候公布？",
-     f"Elections BC 表示，初步结果在选举日晚上8点后公布，最终结果于10月1日宣布（{a('byel','Elections BC')}）。官方结果公布后本页会更新。"),
-    ("Abbotsford-Mission补选几点截止投票？",
-     f"投票站在2026年9月26日（星期六）太平洋时间晚上8点关闭，之后公布初步结果（{a('byel','Elections BC')}）。"),
-    ("Abbotsford-Mission补选在哪里投票？",
-     f"请使用{a('byel','Elections BC补选页面')}上的投票地点查询，会显示按你的地址分配的投票站。只有居住在Abbotsford-Mission选区的人才能在本次补选投票。"),
-    ("Abbotsford-Mission补选谁占优势？",
-     "BC Vote Watch 不预测选区结果。2024年保守党的Reann Gasper以55.38%对44.62%击败NDP赢得该选区；补选的投票率和竞选焦点可能与大选不同。"),
-    ("如果Kerry-Lynne Findlay当选会怎样？",
-     "补选只填补一个空缺议席。如果保守党党魁当选，Findlay将在省议会获得议席；正式结果由Elections BC公布。"),
-    ("谁可以在补选投票？",
-     "根据 Elections BC，投票人须为18岁或以上的加拿大公民，居住在Abbotsford-Mission选区，并自2026年3月25日起为BC省居民。合资格选民可在线、电话或在投票日亲自登记或更新资料。"),
+def byel_faq_zh(lang):
+    return [
+    ("Abbotsford-Mission补选还会举行吗？",
+     f"不会。Elections BC于2026年9月22日在省长Eby宣布举行省选后取消了这次补选。Abbotsford-Mission选民改为参加10月24日的省选（{a('byel','Elections BC')}）。"),
+    ("为什么补选被取消？",
+     f"根据选举法，宣布省选会解散立法会，任何待举行的补选都会被取消，该选区并入全省投票（{a('wiki_byel_cancel','维基百科摘要')}）。"),
+    ("补选中已经投出的选票算数吗？",
+     f"不算。Elections BC表示，补选的投票已经结束，任何已投出的选票都不计入省选；曾在补选中投票的人须在10月24日重新投票（{a('byel','Elections BC')}）。"),
+    ("被取消的补选原本有哪些候选人？",
+     f"原定五名候选人：Pam Alexis（BC NDP）、Kerry-Lynne Findlay（保守党）、Stephen Fowler（BC绿党）、Lakhwinder Jhaj（CentreBC）和Jeff Monds（自由意志党）（{a('byel_cands','Elections BC候选人名单')}）。省选中Abbotsford-Mission的候选人名单可能不同；提名截止日为10月3日。"),
+    ("Abbotsford-Mission为什么原本要补选？",
+     f"Elections BC表示，保守党议员Reann Gasper于2026年8月24日辞职（{a('byel_writ','Elections BC')}）。她在2024年代表保守党赢得该选区。"),
+    ("Kerry-Lynne Findlay会参加10月24日的省选吗？",
+     f"截至{TODAY_ZH}，BC Vote Watch未能从Elections BC确认这一点。Findlay于2026年9月20日辞去保守党党魁职务；她原本在Abbotsford-Mission参选的补选两天后被取消。见<a href=\"{url_for(lang,'bc-party-leaders')}\">BC省党魁</a>。"),
+    ("10月24日谁可以在Abbotsford-Mission投票？",
+     f"年满18岁的加拿大公民，且为BC省居民；一般规则和证件要求见<a href=\"{url_for(lang,'how-to-vote-bc')}\">BC省如何投票</a>（{a('ebc_who','Elections BC')}）。"),
 ]
-BYEL_NOTES_ZH = {
-    "Pam Alexis": "2024年该选区的NDP候选人（得票44.62%，官方结果）。",
-    "Kerry-Lynne Findlay": "自2026年5月30日起担任BC保守党党魁；目前不是省议员。",
-}
 
 
 def page_byel_zh(lang):
     L = lambda s: conv(lang, s)
     zparty = {"BC NDP": "BC NDP", "Conservative Party": "保守党", "BC Green Party": "BC绿党", "CentreBC": "CentreBC", "Libertarian": "自由意志党"}
+    notes_zh = {
+        "Pam Alexis": "2024年该选区的NDP候选人（得票44.62%，官方结果）。",
+        "Kerry-Lynne Findlay": "2026年5月30日当选保守党党魁；9月20日辞去党魁职务。",
+    }
     rows = "".join(
-        f"<tr><td><strong>{n}</strong></td><td>{zparty[p_]}</td><td>{BYEL_NOTES_ZH.get(n, '')}</td></tr>" for n, p_, _ in BYEL_CANDS
+        f"<tr><td><strong>{n}</strong></td><td>{zparty[p_]}</td><td>{notes_zh.get(n, '')}</td></tr>" for n, p_, _ in BYEL_CANDS
     )
     body = (
-        hero("补选", L("Abbotsford-Mission补选 2026"),
-             L("Abbotsford-Mission选民将于2026年9月26日（星期六）选出新省议员。选票上有五名候选人，包括目前没有省议会议席的保守党党魁Kerry-Lynne Findlay。"))
+        hero("补选已取消", L("Abbotsford-Mission补选：已取消"),
+             L(f"Elections BC于2026年9月22日取消了原定9月26日举行的补选，原因是省长Eby宣布举行省选。Abbotsford-Mission选民将与全省一起在10月24日选出省议员（{a('byel','Elections BC')}）。"))
         + f'<section class="section"><div class="wrap"><h2>{L("快速答案")}</h2><ul>'
-        + L("<li><strong>时间：</strong>2026年9月26日（星期六）；<strong>投票站关闭：</strong>晚上8点。</li>")
-        + L("<li><strong>候选人：</strong>Pam Alexis（NDP）、Kerry-Lynne Findlay（保守党）、Stephen Fowler（绿党）、Lakhwinder Jhaj（CentreBC）、Jeff Monds（自由意志党）。</li>")
-        + L('<li><strong>结果：</strong><a href="#results">见下方结果板块</a>；初步结果在晚上8点后公布，最终结果10月1日宣布。</li>')
-        + L(f"<li><strong>在哪投票：</strong>使用{a('byel','Elections BC补选页面')}上的投票地点查询。</li></ul></div></section>")
-        + f'<section class="section"><div class="wrap"><h2>{L("关键信息")}</h2><div class="tablewrap"><table><tbody>'
-        + L(f"<tr><th>选举日</th><td>2026年9月26日（星期六），上午8点至晚上8点（{a('byel','Elections BC')}）</td></tr>")
-        + L("<tr><th>提前投票</th><td>2026年9月18至23日，上午8点至晚上8点</td></tr>")
-        + L(f"<tr><th>为什么补选</th><td>议员Reann Gasper于2026年8月24日辞职（{a('byel_writ','Elections BC')}）。</td></tr>")
-        + L("<tr><th>提名截止</th><td>2026年9月5日下午1点</td></tr>")
-        + L("<tr><th>登记</th><td>网上登记于9月14日午夜截止，电话登记于当天晚上8点截止；Elections BC 表示合资格选民也可在投票日亲自登记或更新资料。</td></tr>")
-        + L("<tr><th>邮寄投票</th><td>申请选票包的截止时间为9月20日晚上8点。</td></tr>")
-        + L("<tr><th>结果</th><td>初步结果在9月26日晚上8点后公布；最终结果于10月1日宣布。</td></tr>")
-        + "</tbody></table></div></div></section>"
-        + f'<section class="section soft"><div class="wrap"><h2>{L("候选人")}</h2><div class="tablewrap"><table><thead><tr><th>{L("候选人")}</th><th>{L("政党")}</th><th>{L("备注")}</th></tr></thead><tbody>'
+        + L("<li><strong>状态：</strong>2026年9月22日因省选宣布而取消。</li>")
+        + L("<li><strong>已投出的选票：</strong>不计入省选。曾在补选中投票的人须重新投票。</li>")
+        + L("<li><strong>现状：</strong>Abbotsford-Mission并入2026年10月24日的省选；提名截止日为10月3日。</li>")
+        + L(f"<li><strong>补选候选人（仅供参考）：</strong>Pam Alexis（NDP）、Kerry-Lynne Findlay（保守党）、Stephen Fowler（绿党）、Lakhwinder Jhaj（CentreBC）、Jeff Monds（自由意志党）；省选名单可能不同（{a('ebc_2026_cands','官方候选人名单')}）。</li></ul></div></section>")
+        + f'<section class="section"><div class="wrap"><h2>{L("发生了什么")}</h2>'
+        + L(f"<p>Elections BC表示：“已宣布举行省选，2026年Abbotsford-Mission补选已被取消。”补选的投票已经结束，任何已投出的选票都不计入省选（{a('byel','Elections BC')}）。这次补选原因是保守党议员Reann Gasper于2026年8月24日辞职（{a('byel_writ','Elections BC')}）；提名已于9月5日截止，确认了五名候选人（{a('byel_cands','Elections BC')}），省选宣布时提前投票已经开始。</p>")
+        + L(f"<p>见<a href=\"{url_for(lang,'bc-election-2026')}\">Eby为何宣布10月24日的省选</a>和<a href=\"{url_for(lang,'bc-party-leaders')}\">现任党魁</a>，包括曾是本次补选保守党候选人的党魁Kerry-Lynne Findlay目前的情况。</p></div></section>")
+        + f'<section class="section soft"><div class="wrap"><h2>{L("背景：补选候选人")}</h2><div class="tablewrap"><table><thead><tr><th>{L("候选人")}</th><th>{L("政党")}</th><th>{L("备注")}</th></tr></thead><tbody>'
         + L(rows)
-        + f'</tbody></table></div><p class="source-note">{L("候选人名单：")}{a("byel_cands","Elections BC")}。</p></div></section>'
+        + L(f'</tbody></table></div><p class="source-note">这是已取消补选的确认候选人名单（{a("byel_cands","Elections BC")}）。这不是省选的选票名单；提名于10月3日截止后见{a("ebc_2026_cands","官方2026年候选人名单")}。</p></div></section>')
         + f'<section class="section"><div class="wrap"><h2>{L("Abbotsford-Mission在2024年怎么投")}</h2>'
-        + L(f"<p>2024年10月19日省选中，保守党的Reann Gasper以<strong>13,523票（55.38%）</strong>赢得Abbotsford-Mission，NDP候选人Pam Alexis得<strong>10,894票（44.62%）</strong>。来源：{a('sov','Elections BC投票统计报告')}。另见全省<a href=\"{url_for(lang,'bc-election-results-2024')}\">2024年选举结果</a>。</p>")
-        + L("<p>这只是背景，不是预测：补选的投票率和竞选焦点常与大选不同，BC Vote Watch不发布选区层面的预测。</p>")
+        + L(f"<p>2024年10月19日省选中，保守党的Reann Gasper以<strong>13,523票（55.38%）</strong>赢得Abbotsford-Mission，NDP候选人Pam Alexis得<strong>10,894票（44.62%）</strong>。来源：{a('sov','Elections BC投票统计报告')}。见<a href=\"{url_for(lang,'ridings/abbotsford-mission')}\">Abbotsford-Mission选区页</a>和全省<a href=\"{url_for(lang,'bc-election-results-2024')}\">2024年选举结果</a>。</p>")
+        + L("<p>这只是背景，不是预测：大选的投票率和竞选焦点常与补选不同，BC Vote Watch不发布选区层面的预测。</p>")
         + "</div></section>"
-        + f'<section class="section soft" id="results"><div class="wrap"><h2>{L("Abbotsford-Mission补选结果")}</h2>'
-        + L(f"<p>结果尚未公布。Elections BC 将在9月26日晚上8点后公布初步结果，并于10月1日宣布最终结果（{a('byel','Elections BC结果')}）。官方数字公布后，本板块将更新当选者、得票数和投票率。</p>")
-        + "</div></section>"
-        + L(faq_html(BYEL_FAQ_ZH, "Abbotsford-Mission补选常见问题"))
+        + L(faq_html(byel_faq_zh(lang), "Abbotsford-Mission常见问题"))
     )
-    title = L("Abbotsford-Mission补选 9月26日：候选人、结果")
-    desc = L("Abbotsford-Mission补选（2026年9月26日）：候选人包括Kerry-Lynne Findlay，晚上8点截止投票，投票地点、结果与2024年背景。")
+    title = L("Abbotsford-Mission补选：已取消")
+    desc = L("原定2026年9月26日的Abbotsford-Mission补选已于9月22日因省选宣布而取消。发生了什么，以及该选区如何在10月24日投票。")
     path = url_for(lang, "abbotsford-mission-by-election-2026")
     schemas = [article_schema(title, desc, lang, path),
                breadcrumb(lang, [(L("首页"), "/"), (L("补选"), path)]),
-               faq_schema([(L(q), L(a_)) for q, a_ in BYEL_FAQ_ZH]), byel_event(lang)]
+               faq_schema([(L(q), L(a_)) for q, a_ in byel_faq_zh(lang)]), byel_event(lang)]
     return render(lang, "abbotsford-mission-by-election-2026", title, desc, body, GROUPS["byel"], schemas)
 
 
@@ -862,21 +913,21 @@ def page_results_zh(lang):
 def page_leaders_zh(lang):
     L = lambda s: conv(lang, s)
     body = (
-        hero("政党党魁", L("BC省政党党魁 2026"), L("随着提前省选的可能临近，BC省各政党目前由谁领导，每项说明都附有来源。"))
+        hero("政党党魁", L("BC省政党党魁 2026"), L("2026年10月24日省选前，BC省各政党目前由谁领导，每项说明都附有来源。"))
         + f'<section class="section"><div class="wrap"><div class="tablewrap"><table><thead><tr><th>{L("政党")}</th><th>{L("党魁")}</th><th>{L("说明")}</th></tr></thead><tbody>'
-        + L(f"<tr><td><strong>BC NDP</strong></td><td>David Eby</td><td>省长。2024年10月以一席优势（93席中的47席）赢得多数政府（{a('sov','Elections BC官方结果')}）。</td></tr>")
-        + L(f"<tr><td><strong>BC保守党</strong></td><td>Kerry-Lynne Findlay</td><td>2026年5月30日当选党魁，第四轮以51.0%的加权得分击败Caroline Elliott（49.0%）。目前不是省议员（{a('wiki_lead','摘要')}）；她是9月26日<a href=\"{url_for(lang,'abbotsford-mission-by-election-2026')}\">Abbotsford-Mission补选</a>的保守党候选人。</td></tr>")
+        + L(f"<tr><td><strong>BC NDP</strong></td><td>David Eby</td><td>省长。2024年10月以一席优势（93席中的47席）赢得多数政府（{a('sov','Elections BC官方结果')}）。于9月22日宣布10月24日省选（{a('infonews_call','iNFOnews')}）。</td></tr>")
+        + L(f"<tr><td><strong>BC保守党</strong></td><td>Lorne Doerkson（临时党魁）</td><td>2026年9月21日经党团一致投票被任命为临时党魁（{a('comox_doerkson','Comox Valley Record')}）；为Cariboo-Chilcotin省议员，2024年以保守党身份当选。Kerry-Lynne Findlay于2026年5月30日当选党魁，在8月以来已有14名议员离开党团后，于9月20日辞职（{a('ctv_findlay_resign','CTV News')}）。截至{TODAY_ZH}，Elections BC尚未确认她是否为10月24日大选的候选人；她此前参选的补选已因大选宣布而取消。</td></tr>")
         + L(f"<tr><td><strong>BC绿党</strong></td><td>Emily Lowan</td><td>在{a('ipsos','Ipsos')}和{a('research','Research Co.')}民调中被列为绿党党魁。2024年赢得2席。</td></tr>")
-        + L(f"<tr><td><strong>CentreBC</strong></td><td>Peter Milobar</td><td>2026年9月18日被任命为党魁，接替Mike Bernier（{a('ctv_milobar','CTV News')}）。CentreBC列出八名议员，Milobar为党魁及Kamloops Centre议员（{a('centrebc','CentreBC官网')}）。新政党，已出现在民调中（Ipsos 4%，Research Co. 5%）。</td></tr>")
+        + L(f"<tr><td><strong>CentreBC</strong></td><td>Peter Milobar</td><td>2026年9月18日被任命为党魁，接替Mike Bernier（{a('ctv_milobar','CTV News')}）。CentreBC列出八名议员，Milobar为党魁及Kamloops Centre议员（{a('centrebc','CentreBC官网')}）。新政党，已出现在民调中（Ipsos 4%，Research Co. 5%，6月Leger 8%）。</td></tr>")
         + L("<tr><td><strong>OneBC</strong></td><td>Dallas Brodie</td><td>新政党，现已出现在民调中（Ipsos 2%，Research Co. 1%）。</td></tr>")
         + "</tbody></table></div>"
-        + L(f"<p class=\"source-note\">2024年以来第43届立法会的构成已有变化，有议员转党或成为无党派议员（{a('wiki_43','概述')}）。最新议席分布请查看{a('leg','BC省立法会')}；BC Vote Watch会在与立法会和权威报道核对一致后再发布议席数字。</p></div></section>")
-        + f'<section class="section soft"><div class="wrap"><h2>{L("选民如何评价他们")}</h2>'
-        + L(f"<p>Ipsos（9月8至14日）显示Eby好感度41%、反感30%，Findlay好感17%、反感46%。Research Co.（8月12至14日）显示Eby支持率49%，Lowan 38%，Findlay 34%。完整数字与方法见<a href=\"{url_for(lang,'bc-election-polls')}\">BC省选民调</a>。</p>")
-        + L(f"<p>选举会来吗？见<a href=\"{url_for(lang,'bc-election-2026')}\">BC省选2026指南</a>。</p></div></section>")
+        + L(f"<p class=\"source-note\">2024年以来第43届立法会的构成反复变化，有议员转党或成为无党派议员（{a('wiki_43','概述')}），立法会现已因选举而解散。解散前的记录请查看{a('leg','BC省立法会')}；BC Vote Watch会在与立法会和权威报道核对一致后再发布议席数字。</p></div></section>")
+        + f'<section class="section soft"><div class="wrap"><h2>{L("选举令状前选民如何评价他们")}</h2>'
+        + L(f"<p>Ipsos（9月8至14日）显示Eby好感度41%、反感30%，Findlay好感17%、反感46%。Research Co.（8月12至14日）显示Eby支持率49%，Lowan 38%，Findlay 34%。这些评价均早于Findlay辞职和Doerkson出任党魁。完整数字与方法见<a href=\"{url_for(lang,'bc-election-polls')}\">BC省选民调</a>。</p>")
+        + L(f"<p>关键日期见<a href=\"{url_for(lang,'bc-election-2026')}\">BC省选2026指南</a>。</p></div></section>")
     )
-    title = L("BC省政党党魁 2026：Eby、Findlay、Lowan")
-    desc = L("2026年BC NDP、BC保守党、BC绿党、CentreBC和OneBC的党魁。Kerry-Lynne Findlay于2026年5月30日当选保守党党魁；附民调评价。")
+    title = L("BC省政党党魁 2026：Eby、Doerkson、Lowan")
+    desc = L("2026年10月24日省选前，BC NDP、BC保守党、BC绿党、CentreBC和OneBC的党魁。Doerkson自9月21日起任保守党临时党魁；附民调评价。")
     path = url_for(lang, "bc-party-leaders")
     schemas = [article_schema(title, desc, lang, path), breadcrumb(lang, [(L("首页"), "/"), (L("BC党魁"), path)])]
     return render(lang, "bc-party-leaders", title, desc, body, GROUPS["leaders"], schemas)
@@ -949,7 +1000,7 @@ def page_riding(lang, r):
         seat = ("<p>These are 2024 election results. The person who holds a seat can change between general elections through resignations, by-elections or a change of party, "
                 f"so use the Legislative Assembly’s {a('leg','member directory')} for the current MLA. ")
         if n == "Abbotsford-Mission":
-            seat += "This seat has a by-election on September 26, 2026: see the <a href=\"/abbotsford-mission-by-election-2026\">Abbotsford-Mission by-election page</a>."
+            seat += "This seat was due for a by-election on September 26, 2026, which was cancelled when the general election was called; voters here choose their MLA on October 24 instead. See the <a href=\"/abbotsford-mission-by-election-2026\">Abbotsford-Mission page</a>."
         seat += "</p>"
         faq = [
             (f"Who won {n} in the 2024 BC election?", f"{w['name']} ({wp}) won {n} with {w['votes']:,} votes ({w['pct']:.2f}%), ahead of {ru['name']} ({rp}) with {ru['votes']:,} ({ru['pct']:.2f}%). Source: Elections BC Statement of Votes."),
@@ -985,7 +1036,7 @@ def page_riding(lang, r):
         seat = ("<p>这是2024年的选举结果。议席持有人可能因辞职、补选或转党在两次大选之间发生变化，"
                 f"请查看立法会的{a('leg','议员名录')}了解现任议员。")
         if n == "Abbotsford-Mission":
-            seat += f"该选区将于2026年9月26日举行补选：见<a href=\"{url_for(lang,'abbotsford-mission-by-election-2026')}\">Abbotsford-Mission补选页</a>。"
+            seat += f"该选区原定于2026年9月26日举行补选，但在省选宣布后已被取消；选民改为在10月24日选出省议员。见<a href=\"{url_for(lang,'abbotsford-mission-by-election-2026')}\">Abbotsford-Mission页</a>。"
         seat += "</p>"
         faq = [
             (f"2024年BC省选谁赢得了{n}？", f"{w['name']}（{wp}）以{w['votes']:,}票（{w['pct']:.2f}%）赢得{n}，领先{ru['name']}（{rp}）的{ru['votes']:,}票（{ru['pct']:.2f}%）。来源：Elections BC投票统计报告。"),
@@ -1264,7 +1315,7 @@ ISSUES = {
     title="BC and U.S. Tariffs 2026: Party Positions",
     desc="U.S. tariffs and BC softwood lumber in 2026: the government's budget assumptions, the softwood duty review and its October 2026 final determination, and party positions.",
     eyebrow="Election issue", h1="U.S. tariffs, softwood lumber and BC's economy",
-    lede="Asked about an early election, the premier has pointed to disruption from the U.S. trade war while saying he has no announcement to make. This page sets out what the government's budget says about tariffs, where the softwood lumber duty review stands, and what each party has published.",
+    lede="Premier Eby called the October 24, 2026 election citing the trade war with the United States as an “existential” issue for BC. This page sets out what the government's budget says about tariffs, where the softwood lumber duty review stands, and what each party has published.",
     voters=f"<ul><li><strong>Research Co. (Aug 12–14, 2026):</strong> 24% name the economy and jobs as the most important issue facing BC, second to housing, poverty and homelessness (29%) ({a('research','Research Co.')}). The poll does not report a separate tariff question.</li></ul>",
     facts=f"<ul><li><strong>Budget assumptions.</strong> The government says its revenue outlook “incorporates trade-related uncertainty due to U.S. tariffs” ({a('bud_fiscal','Budget 2026 fiscal plan')}). To help the forestry sector through sustained international tariffs, it announced $50 million in new provincial and reallocated federal funding ({a('bud_rel','budget release')}).</li>"
           f"<li><strong>Softwood lumber duty review.</strong> On June 30, 2026 the U.S. Department of Commerce published post-preliminary results in its seventh administrative review of the countervailing duty order on Canadian softwood lumber. The BC government says these do not change current duties or cash deposit rates, which will not change until Commerce issues its final determination, expected October 2026. The post-preliminary combined rates it lists are 31.37% for Canfor, 20.92% for West Fraser, 25.49% for Resolute and 25.18% for all others; it notes these are not in effect and may change ({a('softwood','BC government softwood page')}).</li>"
@@ -1279,13 +1330,13 @@ ISSUES = {
     ],
     faq=[("How do U.S. tariffs affect BC's budget?", f"The government says its revenue outlook incorporates trade-related uncertainty due to U.S. tariffs, and that it is putting $50 million into forestry-sector support ({a('bud_fiscal','fiscal plan')}; {a('bud_rel','release')})."),
          ("When will the U.S. softwood lumber duty rates be final?", f"The BC government says Commerce's final determination in the current administrative review is expected in October 2026; until then current duties and cash deposit rates do not change ({a('softwood','BC government')})."),
-         ("Has the premier said an election is tied to the trade war?", f"He has said British Columbians should have a say given disruption from the trade war, while saying he has no election announcement to make ({a('tyee','The Tyee, Sept 17, 2026')}). No election has been called.")],
+         ("Did the premier tie the election call to the trade war?", f"Yes. Premier Eby called the October 24, 2026 election citing the U.S. trade war as an “existential” issue for BC that voters should have a say on ({a('infonews_call','iNFOnews, Sept 22, 2026')}).")],
     watch="The expected October 2026 final softwood determination, any federal tariff relief for lumber, and whether other parties publish trade positions."),
   "zh": dict(
     title="BC省与美国关税 2026：事实与各党立场",
     desc="2026年美国关税与BC省软木材：政府预算的假设、软木材反补贴税复审及预计2026年10月的最终裁定，以及各党立场。",
     eyebrow="选举议题", h1="美国关税、软木材与BC省经济",
-    lede="被问及提前选举时，省长曾提到美国贸易战带来的冲击，同时表示没有公告要宣布。本页列出政府预算对关税的说法、软木材税复审目前进展，以及各党已发布的立场。",
+    lede="省长Eby宣布2026年10月24日举行省选时，称与美国的贸易战对BC是“生死攸关”的问题。本页列出政府预算对关税的说法、软木材税复审目前进展，以及各党已发布的立场。",
     voters=f"<ul><li><strong>Research Co.（2026年8月12至14日）：</strong>24%认为经济与就业是BC省最重要的问题，仅次于住房、贫困和无家可归（29%）（{a('research','Research Co.')}）。该民调没有单独的关税问题。</li></ul>",
     facts=f"<ul><li><strong>预算假设。</strong>政府称其收入预测“纳入了美国关税带来的贸易不确定性”（{a('bud_fiscal','2026年预算财政计划')}）。为帮助林业行业应对持续的国际关税，政府宣布投入5,000万元新增省府资金和重新分配的联邦资金（{a('bud_rel','预算新闻稿')}）。</li>"
           f"<li><strong>软木材税复审。</strong>2026年6月30日，美国商务部公布了对加拿大软木材反补贴税令第七次行政复审的补充初步结果。BC政府称，这不会改变现行关税和现金保证金税率，税率要到商务部作出最终裁定（预计2026年10月）后才会变动。政府列出的补充初步合计税率为：Canfor 31.37%、West Fraser 20.92%、Resolute 25.49%、其他公司25.18%；并注明这些税率尚未生效，可能改变（{a('softwood','BC政府软木材页面')}）。</li>"
@@ -1300,7 +1351,7 @@ ISSUES = {
     ],
     faq=[("美国关税如何影响BC省预算？", f"政府称其收入预测纳入了美国关税带来的贸易不确定性，并投入5,000万元支持林业行业（{a('bud_fiscal','财政计划')}；{a('bud_rel','新闻稿')}）。"),
          ("美国软木材税率什么时候最终确定？", f"BC政府称，商务部在本轮行政复审中的最终裁定预计在2026年10月；在此之前，现行关税和现金保证金税率不变（{a('softwood','BC政府')}）。"),
-         ("省长有没有说选举与贸易战有关？", f"他曾表示，鉴于贸易战带来的冲击，BC居民应有发言权，同时表示没有选举公告要宣布（{a('tyee','The Tyee，2026年9月17日')}）。目前尚未宣布选举。")],
+         ("省长有没有把选举与贸易战联系起来？", f"有。省长Eby宣布2026年10月24日举行省选时，称与美国的贸易战对BC是“生死攸关”的问题，选民应该有发言权（{a('infonews_call','iNFOnews，2026年9月22日')}）。")],
     watch="预计2026年10月的软木材最终裁定、联邦对木材行业的关税援助，以及其他政党是否发布贸易立场。"),
  },
 }
