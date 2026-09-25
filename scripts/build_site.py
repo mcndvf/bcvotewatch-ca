@@ -289,23 +289,6 @@ def key_dates_table_zh():
     return f'<div class="tablewrap"><table><tbody>{rows}</tbody></table></div>'
 
 
-def general_election_event(lang):
-    return {
-        "@context": "https://schema.org",
-        "@type": "Event",
-        "name": "British Columbia 2026 provincial general election" if lang == "en" else conv(lang, "2026年BC省省选"),
-        "startDate": "2026-10-24T08:00-07:00",
-        "endDate": "2026-10-24T20:00-07:00",
-        "eventStatus": "https://schema.org/EventScheduled",
-        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-        "location": {"@type": "Place", "name": "British Columbia, Canada",
-                     "address": {"@type": "PostalAddress", "addressRegion": "BC", "addressCountry": "CA"}},
-        "organizer": {"@type": "Organization", "name": "Elections BC", "url": "https://elections.bc.ca/"},
-        "description": "British Columbia provincial general election, called September 22, 2026.",
-        "image": SITE + "/assets/og-image.png",
-    }
-
-
 POLL_ROWS = [
     # pollster key, name, field, sample, ndp, con, grn, ctr, one, note
     ("angus_sep24", "Angus Reid", "Sep 22–24, 2026 (released Sep 24)", "801 adults online; 682 decided/leaning", 35, 43, None, None, None, "Decided and leaning voters; 20% of all respondents undecided. See report for other parties."),
@@ -371,11 +354,11 @@ def page_hub_en():
         '<a class="linkcard" href="/bc-election-ridings"><strong>BC ridings</strong><span>Find your riding and its 2024 result.</span></a>'
         "</div></div></section>"
     )
-    title = "BC Election 2026: Vote October 24"
-    desc = "BC's provincial election was called Sept 22, 2026. Voting day is October 24. Key dates, why Eby called it, party leaders and polls, sourced to Elections BC."
+    title = "BC Election 2026 Date and Voting Schedule"
+    desc = "BC votes October 24, 2026. See the official election timeline, advance voting dates, candidate deadline and the latest campaign developments."
     schemas = [article_schema(title, desc, "en", "/bc-election-2026"),
                breadcrumb("en", [("Home", "/"), ("BC Election 2026", "/bc-election-2026")]),
-               faq_schema(HUB_FAQ_EN), general_election_event("en")]
+               faq_schema(HUB_FAQ_EN)]
     return render("en", "bc-election-2026", title, desc, body, GROUPS["hub"], schemas)
 
 
@@ -498,7 +481,7 @@ def page_candidates_en():
 
 def page_home_en():
     body = (
-        hero("British Columbia · Provincial election", "BC election 2026: vote October 24",
+        hero("British Columbia · Provincial election", "BC election 2026: polls, candidates and ridings",
              "Independent, source-backed tracking of BC's 2026 provincial election: key dates, polls, party leaders, candidates, ridings and voting information. Official records, reported developments and analysis are labelled separately.",
              STATUS_BOX_EN.replace("Current official status", "Election watch"))
         + '<section class="section"><div class="wrap"><div class="grid">'
@@ -521,12 +504,11 @@ def page_home_en():
         "<p>Election dates and rules follow Elections BC's official record. Candidate status is not treated as final until it appears in the relevant Elections BC record. Polls are presented as measurements at the field dates, not as election results or forecasts.</p>"
         f"<p class=\"source-note\">Primary source: {a('ebc_2026','Elections BC — 2026 Provincial Election')}. 中文：<a href=\"/zh-cn/bc-election-2026\" hreflang=\"zh-Hans\">简体</a> · <a href=\"/zh-tw/bc-election-2026\" hreflang=\"zh-Hant\">繁體</a></p></div></section>"
     )
-    title = "BC Election 2026: Vote October 24"
+    title = "BC Election 2026 Tracker: Polls, Candidates, Ridings"
     desc = "Independent tracking of BC's 2026 provincial election, called Sept 22: key dates, polls, party leaders, candidates, ridings and voting information."
     schemas = [
         {"@context": "https://schema.org", "@type": "WebSite", "name": "BC Vote Watch", "url": SITE + "/", "inLanguage": ["en-CA", "zh-Hans", "zh-Hant"]},
         {"@context": "https://schema.org", "@type": "Organization", "name": "BC Vote Watch", "url": SITE + "/", "logo": SITE + "/icon-512.png"},
-        general_election_event("en"),
     ]
     return render("en", "", title, desc, body, None, schemas)
 
@@ -588,7 +570,7 @@ def page_hub_zh(lang):
     path = url_for(lang, "bc-election-2026")
     schemas = [article_schema(title, desc, lang, path),
                breadcrumb(lang, [(L("首页"), "/"), (L("BC省选2026"), path)]),
-               faq_schema([(L(q), L(a_)) for q, a_ in hub_faq_zh(lang)]), general_election_event(lang)]
+               faq_schema([(L(q), L(a_)) for q, a_ in hub_faq_zh(lang)])]
     return render(lang, "bc-election-2026", title, desc, body, GROUPS["hub"], schemas)
 
 
@@ -709,23 +691,6 @@ BYEL_FAQ_EN = [
 ]
 
 
-def byel_event(lang):
-    return {
-        "@context": "https://schema.org",
-        "@type": "Event",
-        "name": "Abbotsford-Mission by-election (cancelled)" if lang == "en" else conv(lang, "Abbotsford-Mission补选（已取消）"),
-        "startDate": "2026-09-26T08:00-07:00",
-        "endDate": "2026-09-26T20:00-07:00",
-        "eventStatus": "https://schema.org/EventCancelled",
-        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-        "location": {"@type": "Place", "name": "Abbotsford-Mission electoral district, British Columbia",
-                     "address": {"@type": "PostalAddress", "addressRegion": "BC", "addressCountry": "CA"}},
-        "organizer": {"@type": "Organization", "name": "Elections BC", "url": "https://elections.bc.ca/"},
-        "description": "Provincial by-election in Abbotsford-Mission, British Columbia, cancelled September 22, 2026 when a general election was called.",
-        "image": SITE + "/assets/og-image.png",
-    }
-
-
 def page_byel_en():
     zparty = {"BC NDP": "BC NDP", "Conservative Party": "Conservative", "BC Green Party": "Green", "CentreBC": "CentreBC", "Libertarian": "Libertarian"}
     rows = "".join(
@@ -756,7 +721,7 @@ def page_byel_en():
     path = "/abbotsford-mission-by-election-2026"
     schemas = [article_schema(title, desc, "en", path),
                breadcrumb("en", [("Home", "/"), ("Abbotsford-Mission By-election", path)]),
-               faq_schema(BYEL_FAQ_EN), byel_event("en")]
+               faq_schema(BYEL_FAQ_EN)]
     return render("en", "abbotsford-mission-by-election-2026", title, desc, body, GROUPS["byel"], schemas)
 
 
@@ -814,7 +779,7 @@ def page_byel_zh(lang):
     path = url_for(lang, "abbotsford-mission-by-election-2026")
     schemas = [article_schema(title, desc, lang, path),
                breadcrumb(lang, [(L("首页"), "/"), (L("补选"), path)]),
-               faq_schema([(L(q), L(a_)) for q, a_ in byel_faq_zh(lang)]), byel_event(lang)]
+               faq_schema([(L(q), L(a_)) for q, a_ in byel_faq_zh(lang)])]
     return render(lang, "abbotsford-mission-by-election-2026", title, desc, body, GROUPS["byel"], schemas)
 
 
