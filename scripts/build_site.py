@@ -19,9 +19,9 @@ from opencc import OpenCC
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = "https://bcvotewatch.ca"
-TODAY = "2026-09-22"
-TODAY_EN = "September 22, 2026"
-TODAY_ZH = "2026年9月22日"
+TODAY = "2026-09-25"
+TODAY_EN = "September 25, 2026"
+TODAY_ZH = "2026年9月25日"
 S2HK = OpenCC("s2hk")
 
 # ---------------------------------------------------------------- sources
@@ -60,6 +60,11 @@ SRC = {
     "comox_doerkson": "https://comoxvalleyrecord.com/2026/09/21/b-c-conservatives-appoint-lorne-doerkson-interim-leader/",
     "wiki_byel_cancel": "https://en.wikipedia.org/wiki/2026_Abbotsford-Mission_provincial_by-election",
     "leger_jun": "https://leger360.com/in-the-news-bc-conservatives-take-narrow-lead/",
+    "angus_sep24": "https://angusreid.org/ballot-backlash-bc-conservatives-open-8-point-lead-after-snap-election-call-but-electorate-far-from-locked-in/",
+    "liaison_sep23": "https://press.liaisonstrategies.ca/bc-ndp-leads-conservatives-41-to-36-as-election-begins/",
+    "centrebc_leader": "https://www.centrebc.ca/",
+    "centrebc_return": "https://globalnews.ca/news/12069095/centrebc-mlas-rejoin-conservatives/",
+    "ebc_2026_ways": "https://elections.bc.ca/2026-provincial-election/ways-to-vote/",
 }
 
 
@@ -214,12 +219,12 @@ def article_schema(headline, desc, lang, path):
 STATUS_BOX_EN = (
     '<div class="status" data-election-status><span class="badge" data-status-label>Provincial election called — vote October 24, 2026</span>'
     '<strong>Current official status</strong><span data-status-detail>Premier David Eby called the election on September 22, 2026. '
-    'Voting day is Saturday, October 24, 2026.</span><small data-status-checked>Last checked September 22, 2026</small></div>'
+    'Voting day is Saturday, October 24, 2026.</span><small data-status-checked>Last checked September 25, 2026</small></div>'
 )
 STATUS_BOX_ZH = (
     '<div class="status" data-election-status><span class="badge" data-status-label>省选已宣布 · 2026年10月24日投票</span>'
     '<strong>目前官方状态</strong><span data-status-detail>省长David Eby于2026年9月22日宣布举行省选，投票日为2026年10月24日（星期六）。'
-    '</span><small data-status-checked>最后核对 2026年9月22日</small></div>'
+    '</span><small data-status-checked>最后核对 2026年9月25日</small></div>'
 )
 
 # ---------------------------------------------------------------- shared data
@@ -254,6 +259,7 @@ def calendar_table_zh():
 
 KEY_DATES = [
     ("Writ Day (campaign begins)", "September 22, 2026"),
+    ("Register or update details for a Where to Vote card", "October 1, 2026"),
     ("Nomination deadline", "October 3, 2026, 1 p.m."),
     ("Advance voting", "October 16\u201321, 2026, 8 a.m.\u20138 p.m."),
     ("Vote-by-mail request deadline (online/phone)", "October 18, 2026"),
@@ -263,6 +269,7 @@ KEY_DATES = [
 ]
 KEY_DATES_ZH = [
     ("提名令状日（竞选期开始）", "2026年9月22日"),
+    ("登记或更新选民资料以收取投票地点卡", "2026年10月1日"),
     ("提名截止", "2026年10月3日下午1点"),
     ("提前投票", "2026年10月16至21日，上午8点至晚上8点"),
     ("邮寄选票申请截止（网上／电话）", "2026年10月18日"),
@@ -301,6 +308,8 @@ def general_election_event(lang):
 
 POLL_ROWS = [
     # pollster key, name, field, sample, ndp, con, grn, ctr, one, note
+    ("angus_sep24", "Angus Reid", "Sep 22–24, 2026 (released Sep 24)", "801 adults online; 682 decided/leaning", 35, 43, None, None, None, "Decided and leaning voters; 20% of all respondents undecided. See report for other parties."),
+    ("liaison_sep23", "Liaison Strategies", "Sep 21–22, 2026 (released Sep 23)", "1,000 adults, IVR; ±3.1 for total sample", 41, 36, 12, 4, 4, "Decided and leaning voters; other parties 3%. Fieldwork overlapped election call."),
     ("angus", "Angus Reid", "Sep 8–15, 2026 (released Sep 17)", "749 adults, online; comparable probability sample ±4.0", 41, 37, None, None, None, "Only the NDP/Conservative vote-intention figures found in the release; see the full report for other parties. 51% said they feel like a “political orphan.”"),
     ("ipsos", "Ipsos", "Sep 8–14, 2026 (released Sep 15)", "800 adults, online panel; ±4.0 credibility interval", 45, 35, 10, 4, 2, "Other 4%. 28% undecided or no preference."),
     ("research", "Research Co.", "Aug 12–14, 2026 (published Aug 18)", "801 adults, online; ±3.5", 44, 39, 10, 5, 1, "Decided voters. NDP regained the lead after trailing in June."),
@@ -319,9 +328,9 @@ HUB_FAQ_EN = [
     ("Does the BC election overlap with municipal elections?",
      "Yes. BC municipal elections are October 17, 2026, one week before the October 24 provincial vote. Some municipal leaders raised concerns about the two campaigns overlapping."),
     ("Who leads in BC election polls?",
-     "The most recent pre-writ polls (Ipsos, Sept 8–14, and Angus Reid, Sept 8–15) had the NDP ahead of the Conservatives, 45%–35% and 41%–37%. Earlier in the campaign year Leger had the Conservatives ahead in June. See the <a href=\"/bc-election-polls\">BC election polls page</a>."),
+     f"Recent polls differ: Angus Reid's Sept 22–24 survey has Conservatives 43% and NDP 35% among decided/leaning voters ({a('angus_sep24','source')}); Liaison's Sept 21–22 survey has NDP 41% and Conservatives 36% ({a('liaison_sep23','source')}). See <a href=\"/bc-election-polls\">poll details</a>."),
     ("Who are the BC party leaders?",
-     "David Eby leads the BC NDP, Lorne Doerkson is interim leader of the BC Conservatives (after Kerry-Lynne Findlay resigned September 20, 2026), Emily Lowan leads the BC Greens, Peter Milobar leads CentreBC and Dallas Brodie leads OneBC. See <a href=\"/bc-party-leaders\">BC party leaders</a>."),
+     "David Eby leads the BC NDP, Lorne Doerkson is interim leader of the BC Conservatives, Emily Lowan leads the BC Greens, Elenore Sturko leads CentreBC and Dallas Brodie leads OneBC. See <a href=\"/bc-party-leaders\">BC party leaders</a>."),
     ("What happened to the Abbotsford-Mission by-election?",
      f"It was cancelled. Elections BC says the general election call on September 22 cancelled the by-election that had been scheduled for September 26, and folded the riding into the province-wide vote; ballots already cast do not count ({a('byel', 'Elections BC')}; {a('wiki_byel_cancel', 'Wikipedia summary')})."),
 ]
@@ -330,6 +339,9 @@ HUB_FAQ_EN = [
 def page_hub_en():
     latest = (
         "<ul>"
+        f"<li><strong>Sep 24, 2026</strong> — {a('angus_sep24','Angus Reid')} reported Conservatives 43%, NDP 35% among decided and leaning voters (surveyed Sept 22–24). {a('liaison_sep23','Liaison Strategies')} reported NDP 41%, Conservatives 36% (surveyed Sept 21–22). These are separate surveys, not election results. <a href=\"/bc-election-polls\">Poll details</a>.</li>"
+        f"<li><strong>Sep 24, 2026</strong> — {a('ebc_2026_cands','Elections BC')} now lists accepted candidate nominations. The list remains provisional until nominations close October 3.</li>"
+        f"<li><strong>Sep 22, 2026</strong> — Seven CentreBC MLAs, including Peter Milobar, returned to the Conservatives ({a('centrebc_return','Global News')}); {a('centrebc_leader','CentreBC')} now names Elenore Sturko as leader.</li>"
         f"<li><strong>Sep 22, 2026</strong> — Premier David Eby called a provincial election, citing the U.S. trade war as an “existential” issue for BC. Voting day is Saturday, October 24, 2026 ({a('infonews_call','iNFOnews')}). The pending Abbotsford-Mission by-election was cancelled and folded into the general vote ({a('byel','Elections BC')}).</li>"
         f"<li><strong>Sep 21, 2026</strong> — The Conservative caucus named Lorne Doerkson (Cariboo-Chilcotin) interim leader by unanimous vote, after Findlay's resignation ({a('comox_doerkson','Comox Valley Record')}).</li>"
         f"<li><strong>Sep 20, 2026</strong> — Kerry-Lynne Findlay resigned as Conservative leader after 14 MLAs left the caucus since August ({a('ctv_findlay_resign','CTV News')}).</li>"
@@ -346,7 +358,7 @@ def page_hub_en():
         + f'<p class="source-note">Source: {a("ebc_2026","Elections BC — 2026 Provincial Election")}. This matches the Sept 16–22 call-window scenario Elections BC had already published in its {a("ebc_cal","Fall 2026 calendar")}: advance voting Oct 16–21, Final Voting Day Oct 24.</p></div></section>'
         + '<section class="section"><div class="wrap"><h2>Why now</h2>'
         f"<p>Elections BC's fixed-date law lets an election come early if the government decides to call one or loses the confidence of the Legislative Assembly ({a('ebc_next','Elections BC')}). Eby cited the trade war with the United States, calling it an “existential” issue for BC that voters should have a say on ({a('infonews_call','iNFOnews')}).</p>"
-        f"<p>At the 2024 general election (October 19, 2024) the NDP won 47 of 93 seats, a one-seat majority ({a('wiki_2024','results summary')}). Since then the Conservative caucus has splintered: eight members left to form CentreBC, others to OneBC or as independents, and leader Kerry-Lynne Findlay resigned September 20 after 14 MLAs departed since August. See <a href=\"/bc-party-leaders\">current party leaders</a> and <a href=\"/bc-election-results-2024\">the 2024 results</a>.</p></div></section>"
+        f"<p>At the 2024 general election (October 19, 2024) the NDP won 47 of 93 seats, a one-seat majority ({a('wiki_2024','results summary')}). The Conservative caucus split in 2026 and Kerry-Lynne Findlay resigned as leader on September 20. Seven CentreBC MLAs, including Peter Milobar, rejoined the Conservatives on September 22 ({a('centrebc_return','Global News')}). See <a href=\"/bc-party-leaders\">current party leaders</a> and <a href=\"/bc-election-results-2024\">the 2024 results</a>.</p></div></section>"
         + faq_html(HUB_FAQ_EN, "BC election 2026 FAQ")
         + '<section class="section"><div class="wrap"><h2>Keep going</h2><div class="linkgrid">'
         '<a class="linkcard" href="/bc-election-polls"><strong>BC election polls 2026</strong><span>NDP vs Conservatives with field dates and sample sizes.</span></a>'
@@ -376,25 +388,25 @@ def page_polls_en():
     rows = "".join(row(p) for p in POLL_ROWS)
     body = (
         hero("Polling monitor", "BC election polls 2026: before the October 24 vote",
-             "Five published BC polls show a swing: the Conservatives led in June, but every poll since mid-August has put the NDP ahead, as the Conservative caucus lost 14 MLAs and its leader resigned. A poll measures respondents at one point in time; it is not a forecast or a result.")
-        + '<section class="section"><div class="wrap"><h2>Vote intention (decided voters)</h2><div class="tablewrap"><table><thead><tr><th>Pollster</th><th>Field dates</th><th>Sample</th><th>NDP</th><th>Cons.</th><th>Green</th><th>CentreBC</th><th>OneBC</th><th>Notes</th></tr></thead><tbody>'
+             "Recent polls differ: Angus Reid's September 22–24 survey shows a Conservative lead, while Liaison's September 21–22 survey shows an NDP lead. Field dates, methods and voter groups matter. Polls measure opinion at one point in time; they are not forecasts or election results.")
+        + '<section class="section"><div class="wrap"><h2>Vote intention (decided or decided and leaning voters)</h2><div class="tablewrap"><table><thead><tr><th>Pollster</th><th>Field dates</th><th>Sample</th><th>NDP</th><th>Cons.</th><th>Green</th><th>CentreBC</th><th>OneBC</th><th>Notes</th></tr></thead><tbody>'
         + rows
-        + f'</tbody></table></div><p class="source-note">Sources: {a("angus","Angus Reid")}, {a("ipsos","Ipsos")}, {a("research","Research Co.")} and {a("leger_jun","Leger (June)")} and {a("leger","Leger (April)")}. Ipsos reports the Conservatives down 8 points from their 2024 result (43.3% in 2024). All five polls were taken before the election was called on September 22, 2026.</p></div></section>'
+        + f'</tbody></table></div><p class="source-note">Sources: {a("angus_sep24","Angus Reid (Sept 24)")}, {a("liaison_sep23","Liaison Strategies")}, {a("angus","Angus Reid (Sept 17)")}, {a("ipsos","Ipsos")}, {a("research","Research Co.")}, {a("leger_jun","Leger (June)")} and {a("leger","Leger (April)")}. The first two surveys cover the start of the campaign; the older polls predate the September 22 call. Party figures are for decided or decided and leaning voters as noted in each row.</p></div></section>'
         + '<section class="section soft"><div class="wrap"><h2>Leader ratings</h2><div class="grid">'
         '<div class="card"><div class="kicker">Ipsos · favourable / unfavourable</div><p>David Eby (NDP): <strong>41% / 30%</strong><br>Kerry-Lynne Findlay (Cons.): <strong>17% / 46%</strong><br>Emily Lowan (Green): 12% / 15%<br>Dallas Brodie (OneBC): 10% / 24%<br>Mike Bernier (then CentreBC leader): 9% / 19%</p></div>'
         '<div class="card"><div class="kicker">Research Co. · approval</div><p>Eby: <strong>49%</strong><br>Lowan: 38%<br>Findlay: 34%<br>Bernier (then CentreBC leader): 24%<br>Brodie: 18%</p></div>'
         f'<div class="card"><div class="kicker">Angus Reid · Sep 8–15, released Sep 17</div><p>Eby approval <strong>41%</strong>. 51% say they feel like a “political orphan” with no party to enthusiastically support. Full tables in the {a("angus","Angus Reid release")}.</p></div>'
         "</div><p class=\"source-note\">These are three different measures (favourability, approval, and a party-support sentiment) from different firms; they are not directly comparable. All were taken before CentreBC named Peter Milobar leader (Sept 18), before Kerry-Lynne Findlay resigned as Conservative leader (Sept 20) and before Lorne Doerkson became interim Conservative leader (Sept 21); their ratings refer to Bernier and Findlay respectively. See <a href=\"/bc-party-leaders\">current party leaders</a>.</p></div></section>"
         + '<section class="section"><div class="wrap"><h2>How to read these polls</h2><ul>'
-        "<li><strong>The Conservative number moved fast.</strong> Leger had the Conservatives ahead 45–41 in June; by September, Ipsos had the NDP ahead 45–35. In between, 14 Conservative MLAs left caucus, Findlay resigned as leader, and Lorne Doerkson was named interim leader. See <a href=\"/bc-party-leaders\">party leaders</a>.</li>"
+        "<li><strong>Recent results differ.</strong> Angus Reid (Sept 22–24) has the Conservatives ahead 43–35; Liaison (Sept 21–22) has the NDP ahead 41–36. The polls used different methods and were fielded as the parties changed leadership and caucus affiliations. See <a href=\"/bc-party-leaders\">party leaders</a>.</li>"
         "<li><strong>Undecided voters matter.</strong> Ipsos reports 28% undecided or with no preference; the table shows decided voters only.</li>"
         "<li><strong>Regions matter more than the provincial number.</strong> Research Co. found the Conservatives dominant in Northern BC and the Fraser Valley and Metro Vancouver tight, while the NDP leads on Vancouver Island. BC uses first-past-the-post in 93 ridings, so seats depend on where votes fall.</li>"
         "<li><strong>New parties can split the vote.</strong> CentreBC and OneBC are new parties that now appear alongside the Greens in polling (Ipsos describes them as two new parties).</li>"
         "<li><strong>Margins of error.</strong> A ±3.1 to ±4.0 point margin means a close race can be within combined uncertainty for a single poll.</li></ul>"
-        '<p class="source-note">Polls are added only with pollster, field dates, sample and source link. No poll has been published with field dates after the September 22 election call as of this writing. Ridings, candidates and seat projections are not covered here. See <a href="/bc-election-2026">the election guide</a> for status and <a href="/sources">our sourcing rules</a>.</p></div></section>'
+        '<p class="source-note">Polls are added with pollster, field dates, sample and source link. Different surveys can disagree; none is an election result. See <a href="/bc-election-2026">the election guide</a> for status and <a href="/sources">our sourcing rules</a>.</p></div></section>'
     )
-    title = "BC Election Polls 2026: Before the Oct 24 Vote"
-    desc = "BC election polls ahead of the Oct 24, 2026 vote: Conservatives led in June (45–41), NDP led by September (45–35). Field dates, samples and margins."
+    title = "BC Election Polls 2026: September 24 Update"
+    desc = "Latest BC election polls: Angus Reid (Sept 22–24) shows Conservatives 43%, NDP 35%; Liaison (Sept 21–22) shows NDP 41%, Conservatives 36%. Sources and methods."
     schemas = [article_schema(title, desc, "en", "/bc-election-polls"),
                breadcrumb("en", [("Home", "/"), ("BC Election Polls", "/bc-election-polls")])]
     return render("en", "bc-election-polls", title, desc, body, GROUPS["polls"], schemas)
@@ -420,7 +432,7 @@ def page_how_en():
              f"Who can vote, how to register, what ID to bring and the ways to vote, for the October 24, 2026 general election. Advance voting is October 16–21; the nomination deadline is October 3. Rules below are Elections BC's current published rules ({a('ebc_2026','official election page')}).")
         + '<section class="section"><div class="wrap"><h2>Who can vote</h2>'
         f"<p>To vote in a BC provincial election you must be a Canadian citizen, 18 or older, and a BC resident for at least six months ({a('ebc_who','Elections BC')}).</p>"
-        f"<h2>Register to vote</h2><p>Check or update your registration online at {a('ebc_reg','Elections BC online voter registration')}, or phone Elections BC at 1-800-661-8683.</p></div></section>"
+        f"<h2>Register to vote</h2><p>Register or update your details by October 1 to receive a Where to Vote card. Use {a('ebc_reg','Elections BC online voter registration')} or call 1-800-661-8683. Voting places are still being confirmed; check the {a('ebc_2026','official election page')} for updates.</p></div></section>"
         '<section class="section soft"><div class="wrap"><h2>What ID do I need?</h2>'
         f"<p>Elections BC accepts any one of three approaches ({a('ebc_id','full rules')}):</p><ol>"
         "<li><strong>One document</strong> showing your name, photo and address: for example a BC driver’s licence, BC Identification Card, or BC Services Card with photo.</li>"
@@ -429,10 +441,10 @@ def page_how_en():
         '<section class="section"><div class="wrap"><h2>Ways to vote</h2><ul>'
         "<li><strong>Final Voting Day:</strong> 8 a.m. to 8 p.m. Pacific time.</li>"
         "<li><strong>Advance voting:</strong> six days, 8 a.m. to 8 p.m. local time, open to all eligible voters.</li>"
-        "<li><strong>Vote by mail:</strong> available to all voters; the package must reach Elections BC before 8 p.m. Pacific time on Final Voting Day.</li>"
+        "<li><strong>Vote by mail:</strong> request online or by phone by October 18. Elections BC must receive the completed package by 8 p.m. Pacific time October 24.</li>"
         "<li><strong>District electoral office:</strong> from when an election is called until 4 p.m. on Final Voting Day.</li>"
         "<li><strong>Assisted telephone voting</strong> and <strong>mobile or special voting</strong> (hospitals, long-term care) for those who qualify.</li></ul>"
-        f"<p class=\"source-note\">Source: {a('ebc_ways','Elections BC — Ways to vote')}. Possible Fall 2026 dates are on the <a href=\"/bc-election-2026\">BC election 2026 guide</a>.</p></div></section>"
+        f"<p class=\"source-note\">Source: {a('ebc_2026_ways','Elections BC — 2026 ways to vote')}. Key dates are on the <a href=\"/bc-election-2026\">BC election 2026 guide</a>.</p></div></section>"
         + faq_html(HOW_FAQ_EN, "Voting FAQ")
     )
     title = "How to Vote in BC: ID, Advance, Mail Voting"
@@ -449,9 +461,9 @@ def page_leaders_en():
              "Who leads each party in British Columbia heading into the October 24, 2026 election, with the source for each claim.")
         + '<section class="section"><div class="wrap"><div class="tablewrap"><table><thead><tr><th>Party</th><th>Leader</th><th>Notes</th></tr></thead><tbody>'
         f"<tr><td><strong>BC NDP</strong></td><td>David Eby</td><td>Premier. Won a one-seat majority (47 of 93) in October 2024 ({a('wiki_2024','results summary')}). Called the October 24, 2026 election on September 22 ({a('infonews_call','iNFOnews')}).</td></tr>"
-        f"<tr><td><strong>Conservative Party of BC</strong></td><td>Lorne Doerkson <em>(interim)</em></td><td>Named interim leader September 21, 2026 by unanimous caucus vote ({a('comox_doerkson','Comox Valley Record')}); MLA for Cariboo-Chilcotin, elected as a Conservative in 2024. Kerry-Lynne Findlay, elected leader May 30, 2026, resigned September 20 after 14 MLAs left the caucus since August ({a('ctv_findlay_resign','CTV News')}). She has not filed nomination papers for the October 24 general election: Elections BC's official candidate list, generated {TODAY_EN}, shows no registered candidates in any riding yet, since nominations stay open until October 3 ({a('ebc_2026_cand_pdf','Elections BC candidate list')}). The Abbotsford-Mission by-election she had been contesting was cancelled when the general election was called.</td></tr>"
+        f"<tr><td><strong>Conservative Party of BC</strong></td><td>Lorne Doerkson <em>(interim)</em></td><td>Named interim leader September 21, 2026 by unanimous caucus vote ({a('comox_doerkson','Comox Valley Record')}); MLA for Cariboo-Chilcotin. Kerry-Lynne Findlay resigned as leader September 20 ({a('ctv_findlay_resign','CTV News')}). Seven CentreBC MLAs, including Peter Milobar, rejoined the party September 22 ({a('centrebc_return','Global News')}). Candidate nominations remain open until October 3; check the {a('ebc_2026_cands','Elections BC list')} for accepted filings.</td></tr>"
         f"<tr><td><strong>BC Greens</strong></td><td>Emily Lowan</td><td>Named as Green leader in the {a('ipsos','Ipsos')} and {a('research','Research Co.')} polls. Two seats won in 2024.</td></tr>"
-        f"<tr><td><strong>CentreBC</strong></td><td>Peter Milobar</td><td>Named leader on September 18, 2026, replacing Mike Bernier ({a('ctv_milobar','CTV News')}). CentreBC lists eight MLAs, with Milobar as leader and MLA for Kamloops Centre ({a('centrebc','CentreBC')}). New party that appears in polling (4% Ipsos, 5% Research Co., 8% Leger in June).</td></tr>"
+        f"<tr><td><strong>CentreBC</strong></td><td>Elenore Sturko</td><td>After Peter Milobar and six other MLAs rejoined the Conservatives September 22 ({a('centrebc_return','Global News')}), the {a('centrebc_leader','CentreBC website')} names Sturko as leader. CentreBC remains a registered party; pre-September 22 poll figures reflect its earlier leadership.</td></tr>"
         f"<tr><td><strong>OneBC</strong></td><td>Dallas Brodie</td><td>New party that now appears in polling (2% Ipsos, 1% Research Co.).</td></tr>"
         "</tbody></table></div>"
         f"<p class=\"source-note\">The composition of the 43rd Parliament shifted repeatedly through 2025–26 as members changed parties or sat as independents ({a('wiki_43','overview')}), and the Legislature has now been dissolved for the election. For the pre-dissolution record use the {a('leg','Legislative Assembly of BC')}; BC Vote Watch will publish seat standings once each figure is confirmed against the Assembly.</p></div></section>"
@@ -471,7 +483,7 @@ def page_candidates_en():
         hero("Candidates", "BC election candidates 2026",
              f"Nominations for the October 24, 2026 general election close October 3 at 1 p.m. Elections BC publishes accepted nominations as they are confirmed; the list is not final until the deadline. See the {a('ebc_2026_cands','official candidate list')}.")
         + '<section class="section"><div class="wrap"><h2>Where things stand</h2>'
-        f"<p>Under Elections BC's process, a nomination is only official once Elections BC accepts it; see {a('ebc_nom','Elections BC candidate nominations')} and the {a('ebc_2026_cands','current candidate list')}, which Elections BC says “does not show all candidates that have declared publicly that they are running” — only those it has accepted. Its official report, generated {TODAY_EN}, shows no registered candidates in any of the 93 ridings yet ({a('ebc_2026_cand_pdf','Elections BC candidate list')}); that includes party leaders such as Lorne Doerkson (Conservative, interim) and Kerry-Lynne Findlay, whose Abbotsford-Mission by-election candidacy was cancelled when the general election was called.</p>"
+        f"<p>Under Elections BC's process, a nomination is official once Elections BC accepts it; see {a('ebc_nom','candidate nominations')} and the {a('ebc_2026_cands','current candidate list')}. Elections BC says the list excludes people who have declared publicly but have not yet had a nomination accepted. Its report dated September 24 lists Spencer Chandra Herbert (BC NDP, Vancouver-West End) as an accepted candidate ({a('ebc_2026_cand_pdf','official report')}). Check the live list for additions through the October 3 deadline.</p>"
         "<p>BC Vote Watch will keep the two apart: <strong>official candidates</strong> (Elections BC record, dated) and <strong>announced or expected candidates</strong> (party or candidate statement, dated and linked). The Abbotsford-Mission by-election, which had five confirmed candidates, was cancelled September 22 when the general election was called; see the <a href=\"/abbotsford-mission-by-election-2026\">Abbotsford-Mission page</a>.</p></div></section>"
         '<section class="section soft"><div class="wrap"><h2>Who is leading the parties</h2>'
         "<p>The party leaders are the people voters will see across the campaign. See <a href=\"/bc-party-leaders\">BC party leaders 2026</a>. For polling see <a href=\"/bc-election-polls\">BC election polls</a>, and for key dates see the <a href=\"/bc-election-2026\">BC election 2026 guide</a>.</p>"
@@ -492,12 +504,12 @@ def page_home_en():
         + '<section class="section"><div class="wrap"><div class="grid">'
         '<div class="card"><div class="kicker">Election called</div><div class="big">Sep 22, 2026</div><p class="muted">Premier Eby called the election, citing the U.S. trade war.</p></div>'
         '<div class="card"><div class="kicker">Voting day</div><div class="big">Oct 24, 2026</div><p class="muted">Advance voting Oct 16–21; nominations close Oct 3. <a href="/bc-election-2026">Key dates</a></p></div>'
-        '<div class="card"><div class="kicker">Latest pre-writ poll (Ipsos, Sep 8–14)</div><div class="big">NDP 45 · Cons. 35</div><p class="muted">Decided voters; Angus Reid (Sep 8–15) has 41–37. <a href="/bc-election-polls">All polls</a></p></div>'
+        '<div class="card"><div class="kicker">Latest poll · Angus Reid, Sep 22–24</div><div class="big">Cons. 43 · NDP 35</div><p class="muted">Decided/leaning voters. Liaison (Sep 21–22) found NDP 41 · Cons. 36. <a href="/bc-election-polls">Compare polls</a></p></div>'
         "</div></div></section>"
         '<section class="section soft"><div class="wrap"><h2>Track the 2026 BC election</h2><div class="linkgrid">'
         '<a class="linkcard" href="/bc-election-2026"><strong>BC Election 2026 Guide</strong><span>Key dates, why Eby called it, and the latest news.</span></a>'
         '<a class="linkcard" href="/bc-election-polls"><strong>BC Election Polls</strong><span>NDP vs Conservatives with field dates, samples and margins.</span></a>'
-        '<a class="linkcard" href="/bc-party-leaders"><strong>BC Party Leaders</strong><span>Eby, Doerkson (interim), Lowan, Milobar and Brodie.</span></a>'
+        '<a class="linkcard" href="/bc-party-leaders"><strong>BC Party Leaders</strong><span>Eby, Doerkson (interim), Lowan, Sturko and Brodie.</span></a>'
         '<a class="linkcard" href="/bc-election-issues"><strong>BC Election Issues</strong><span>Housing, health care, budget and tariffs with sourced party positions.</span></a>'
         '<a class="linkcard" href="/bc-election-candidates-2026"><strong>BC Election Candidates 2026</strong><span>Nomination deadline October 3; where the official list appears.</span></a>'
         '<a class="linkcard" href="/abbotsford-mission-by-election-2026"><strong>Abbotsford-Mission By-election</strong><span>Cancelled Sept 22 and folded into the general election.</span></a>'
@@ -531,9 +543,9 @@ def hub_faq_zh(lang):
     ("BC省选和市选时间重叠吗？",
      "重叠。BC省市选定于2026年10月17日，比10月24日的省选早一周。部分市政官员对两场选举时间相近表示担忧。"),
     ("目前民调谁领先？",
-     f"最新的选前民调（Ipsos，9月8至14日；Angus Reid，9月8至15日）都显示NDP领先保守党，分别为45%对35%和41%对37%。更早的6月，Leger曾显示保守党领先。见<a href=\"{url_for(lang,'bc-election-polls')}\">BC省选民调</a>。"),
+     f"最新两项民调结果不同：{a('angus_sep24','Angus Reid')}（9月22至24日）显示保守党43%、NDP 35%；{a('liaison_sep23','Liaison')}（9月21至22日）显示NDP 41%、保守党36%。均为已决定或倾向某党的选民。见<a href=\"{url_for(lang,'bc-election-polls')}\">BC省选民调</a>。"),
     ("BC省各党党魁是谁？",
-     f"David Eby领导BC NDP；Lorne Doerkson自Kerry-Lynne Findlay于2026年9月20日辞职后出任BC保守党临时党魁；Emily Lowan领导BC绿党；Peter Milobar领导CentreBC；Dallas Brodie领导OneBC。见<a href=\"{url_for(lang,'bc-party-leaders')}\">BC省党魁</a>。"),
+     f"David Eby领导BC NDP；Lorne Doerkson出任BC保守党临时党魁；Emily Lowan领导BC绿党；Elenore Sturko领导CentreBC；Dallas Brodie领导OneBC。见<a href=\"{url_for(lang,'bc-party-leaders')}\">BC省党魁</a>。"),
     ("Abbotsford-Mission补选怎么样了？",
      f"已取消。Elections BC表示，9月22日宣布的省选取消了原定9月26日举行的补选，该选区并入全省投票；已经投出的选票不计入省选（{a('byel','Elections BC')}；{a('wiki_byel_cancel','维基百科摘要')}）。"),
 ]
@@ -543,6 +555,9 @@ def page_hub_zh(lang):
     L = lambda s: conv(lang, s)
     latest = (
         "<ul>"
+        f"<li><strong>2026年9月24日</strong> — {a('angus_sep24','Angus Reid')}调查显示保守党43%、NDP 35%；{a('liaison_sep23','Liaison')}的9月21至22日调查则显示NDP 41%、保守党36%。两项调查并非选举结果，详见<a href=\"{url_for(lang,'bc-election-polls')}\">民调说明</a>。</li>"
+        f"<li><strong>2026年9月24日</strong> — {a('ebc_2026_cands','Elections BC')}已列出获受理提名的候选人；10月3日提名截止前名单仍会更新。</li>"
+        f"<li><strong>2026年9月22日</strong> — Peter Milobar等七名CentreBC议员重返保守党（{a('centrebc_return','Global News')}）；{a('centrebc_leader','CentreBC官网')}现列Elenore Sturko为党魁。</li>"
         f"<li><strong>2026年9月22日</strong> — 省长David Eby宣布举行省选，并称与美国的贸易战对BC是“生死攸关”的问题；投票日为2026年10月24日（星期六）（{a('infonews_call','iNFOnews')}）。原定的Abbotsford-Mission补选被取消，并入省选（{a('byel','Elections BC')}）。</li>"
         f"<li><strong>2026年9月21日</strong> — 保守党团一致投票，任命Lorne Doerkson（Cariboo-Chilcotin）为临时党魁（{a('comox_doerkson','Comox Valley Record')}）。</li>"
         f"<li><strong>2026年9月20日</strong> — Kerry-Lynne Findlay辞去保守党党魁职务；此前8月以来已有14名议员离开该党团（{a('ctv_findlay_resign','CTV News')}）。</li>"
@@ -559,7 +574,7 @@ def page_hub_zh(lang):
         + f'<p class="source-note">{L("来源：")}{a("ebc_2026", L("Elections BC——2026年省选"))}。{L("这与 Elections BC 此前公布的“9月16至22日宣布”情景吻合：提前投票10月16至21日，最终投票日10月24日，见")}{a("ebc_cal", L("2026年秋季日历"))}。</p></div></section>'
         + f'<section class="section"><div class="wrap"><h2>{L("为什么是现在")}</h2>'
         + L(f"<p>BC省实行固定选举日期，但{a('ebc_next','Elections BC说明')}，如果政府决定提前宣布，或政府失去立法会信任，选举可以提前。Eby称与美国的贸易战对BC是“生死攸关”的问题，选民应该有发言权（{a('infonews_call','iNFOnews')}）。</p>")
-        + L(f"<p>2024年10月19日省选中，NDP在93个议席中赢得47席，以一席优势组成多数政府（{a('wiki_2024','结果摘要')}）。此后保守党团出现分裂：八名议员另组CentreBC，另有议员转投OneBC或成为无党派议员，党魁Kerry-Lynne Findlay于9月20日辞职，此前8月以来已有14名议员离开。见<a href=\"{url_for(lang,'bc-party-leaders')}\">现任党魁</a>和<a href=\"{url_for(lang,'bc-election-results-2024')}\">2024年结果</a>。</p></div></section>")
+        + L(f"<p>2024年10月19日省选中，NDP在93个议席中赢得47席，以一席优势组成多数政府（{a('wiki_2024','结果摘要')}）。2026年保守党团一度分裂，Kerry-Lynne Findlay于9月20日辞去党魁职务；9月22日，Peter Milobar等七名CentreBC议员重返保守党（{a('centrebc_return','Global News')}）。见<a href=\"{url_for(lang,'bc-party-leaders')}\">现任党魁</a>和<a href=\"{url_for(lang,'bc-election-results-2024')}\">2024年结果</a>。</p></div></section>")
         + L(faq_html(hub_faq_zh(lang), "BC省选2026常见问题"))
         + f'<section class="section"><div class="wrap"><h2>{L("继续了解")}</h2><div class="linkgrid">'
         f'<a class="linkcard" href="{url_for(lang,"bc-election-polls")}"><strong>{L("BC省选民调")}</strong><span>{L("NDP与保守党，附调查日期和样本量。")}</span></a>'
@@ -578,6 +593,8 @@ def page_hub_zh(lang):
 
 
 POLL_ZH_META = {
+    "angus_sep24": ("2026年9月22至24日（9月24日发布）", "801名成年人，线上；其中682名已决定或倾向某党的选民", "已决定或倾向某党的选民；全样本20%未决定。其他政党见原报告。"),
+    "liaison_sep23": ("2026年9月21至22日（9月23日发布）", "1,000名成年人，自动电话调查；全样本误差±3.1", "已决定或倾向某党的选民；其他政党3%。调查日期与宣布选举的日期重叠。"),
     "angus": ("2026年9月8至15日（9月17日发布）", "749名成年人，线上；相当于概率样本±4.0", "此处仅列NDP和保守党的投票意向数字；其他政党见完整报告。51%表示自己是“政治孤儿”。"),
     "ipsos": ("2026年9月8至14日（9月15日发布）", "800名成年人，线上样本；可信区间±4.0", "其他4%；28%未决定或无偏好。"),
     "research": ("2026年8月12至14日（8月18日发布）", "801名成年人，线上；误差±3.5", "已决定选民；NDP在6月落后后重新领先。"),
@@ -595,25 +612,25 @@ def page_polls_zh(lang):
         rows += f"<tr><td><strong>{name}</strong></td><td>{f_}</td><td>{s_}</td><td>{pc(n)}</td><td>{pc(c)}</td><td>{pc(g)}</td><td>{pc(ct)}</td><td>{pc(o)}</td><td>{nt}</td></tr>"
     body = (
         hero("民调追踪", L("BC省选民调 2026：2026年10月24日投票前"),
-             L("五项公开的BC省民调显示了一次逆转：保守党在6月领先，但从8月中起的每一项民调都是NDP领先，同期保守党团有14名议员离开、党魁辞职。民调只反映某一时间点的受访者意见，不是预测，也不是选举结果。"))
-        + f'<section class="section"><div class="wrap"><h2>{L("政党支持度（已决定选民）")}</h2><div class="tablewrap"><table><thead><tr><th>{L("调查机构")}</th><th>{L("调查日期")}</th><th>{L("样本")}</th><th>NDP</th><th>{L("保守党")}</th><th>{L("绿党")}</th><th>CentreBC</th><th>OneBC</th><th>{L("备注")}</th></tr></thead><tbody>'
+             L("最新民调结论不同：Angus Reid的9月22至24日调查显示保守党领先，Liaison的9月21至22日调查显示NDP领先。应同时看调查日期、方法和统计对象。民调是某一时间点的意见测量，不是预测或选举结果。"))
+        + f'<section class="section"><div class="wrap"><h2>{L("政党支持度（已决定或倾向某党选民）")}</h2><div class="tablewrap"><table><thead><tr><th>{L("调查机构")}</th><th>{L("调查日期")}</th><th>{L("样本")}</th><th>NDP</th><th>{L("保守党")}</th><th>{L("绿党")}</th><th>CentreBC</th><th>OneBC</th><th>{L("备注")}</th></tr></thead><tbody>'
         + L(rows)
-        + f'</tbody></table></div><p class="source-note">{L("来源：")}{a("angus","Angus Reid")}、{a("ipsos","Ipsos")}、{a("research","Research Co.")}、{a("leger_jun","Leger（6月）")}、{a("leger","Leger（4月）")}。{L("Ipsos指出保守党较2024年结果（43.3%）下降8个百分点。以上五项民调均在2026年9月22日宣布选举之前进行。")}</p></div></section>'
+        + f'</tbody></table></div><p class="source-note">{L("来源：")}{a("angus_sep24","Angus Reid（9月24日）")}、{a("liaison_sep23","Liaison Strategies")}、{a("angus","Angus Reid（9月17日）")}、{a("ipsos","Ipsos")}、{a("research","Research Co.")}、{a("leger_jun","Leger（6月）")}、{a("leger","Leger（4月）")}。{L("前两项调查覆盖竞选开始时段；其他民调在9月22日宣布选举前进行。各行备注说明统计对象。")}</p></div></section>'
         + f'<section class="section soft"><div class="wrap"><h2>{L("党魁评价")}</h2><div class="grid">'
         + L('<div class="card"><div class="kicker">Ipsos · 好感／反感</div><p>David Eby（NDP）：<strong>41%／30%</strong><br>Kerry-Lynne Findlay（保守党）：<strong>17%／46%</strong><br>Emily Lowan（绿党）：12%／15%<br>Dallas Brodie（OneBC）：10%／24%<br>Mike Bernier（当时的CentreBC党魁）：9%／19%</p></div>')
         + L('<div class="card"><div class="kicker">Research Co. · 支持率</div><p>Eby：<strong>49%</strong><br>Lowan：38%<br>Findlay：34%<br>Bernier（当时的CentreBC党魁）：24%<br>Brodie：18%</p></div>')
         + L(f'<div class="card"><div class="kicker">Angus Reid · 9月8至15日，9月17日发布</div><p>Eby支持率<strong>41%</strong>。51%的人表示自己是“政治孤儿”，没有能热情支持的政党。完整数据见{a("angus","Angus Reid报告")}。</p></div>')
         + f'</div><p class="source-note">{L("这是不同机构的三种不同指标（好感度、支持率和政治情绪），不能直接互相比较。三项都在CentreBC于9月18日任命Peter Milobar为党魁、Findlay于9月20日辞去保守党党魁、Doerkson于9月21日出任临时党魁之前进行，因此评价对象分别是Bernier和Findlay。见")}<a href="{url_for(lang,"bc-party-leaders")}">{L("现任党魁")}</a>。</p></div></section>'
         + f'<section class="section"><div class="wrap"><h2>{L("如何解读这些民调")}</h2><ul>'
-        + L(f'<li><strong>保守党的数字变化很快。</strong>Leger在6月显示保守党以45%对41%领先；到9月，Ipsos显示NDP以45%对35%领先。其间保守党团有14名议员离开、Findlay辞去党魁、Lorne Doerkson出任临时党魁。见<a href="{url_for(lang,"bc-party-leaders")}">党魁</a>。</li>')
+        + L(f'<li><strong>近期结果不同。</strong>Angus Reid（9月22至24日）显示保守党43%、NDP 35%；Liaison（9月21至22日）显示NDP 41%、保守党36%。两项调查方法不同，且进行时各党领导层和党团组成正发生变化。见<a href="{url_for(lang,"bc-party-leaders")}">党魁</a>。</li>')
         + L("<li><strong>未决定选民很重要。</strong>Ipsos显示28%未决定或无偏好；上表只列已决定选民。</li>")
         + L("<li><strong>地区比全省数字更重要。</strong>Research Co.发现保守党在北部BC占优，菲沙河谷和大温哥华竞争激烈，NDP则在温哥华岛领先。BC采用单一选区得票最多者当选（first-past-the-post）的93个选区，所以议席取决于选票分布。</li>")
         + L("<li><strong>新政党可能分流选票。</strong>CentreBC和OneBC是新政党，现在与绿党一起出现在民调中（Ipsos称之为两个新政党）。</li>")
         + L("<li><strong>误差范围。</strong>±3.1至±4.0个百分点的误差意味着接近的差距可能仍在综合不确定性之内。</li></ul>")
-        + f'<p class="source-note">{L("民调只有在附上调查机构、调查日期、样本和来源链接后才会收录。截至发稿，尚无调查日期在9月22日选举宣布之后的民调发布。查看")}<a href="{url_for(lang,"bc-election-2026")}">{L("省选指南")}</a>{L("了解选举状态。")}</p></div></section>'
+        + f'<p class="source-note">{L("民调收录时附调查机构、日期、样本和来源链接。不同调查可能得出不同结果；民调不是选举结果。查看")}<a href="{url_for(lang,"bc-election-2026")}">{L("省选指南")}</a>{L("了解选举状态。")}</p></div></section>'
     )
-    title = L("BC省选民调 2026：10月24日投票前")
-    desc = L("BC省选前民调：保守党6月一度领先（45%对41%），NDP到9月领先（45%对35%）。附调查日期、样本、误差与党魁评价。")
+    title = L("BC省选民调 2026：9月24日更新")
+    desc = L("最新BC省选民调：Angus Reid显示保守党43%、NDP 35%；Liaison显示NDP 41%、保守党36%。附调查日期、样本与来源。")
     path = url_for(lang, "bc-election-polls")
     schemas = [article_schema(title, desc, lang, path), breadcrumb(lang, [(L("首页"), "/"), (L("BC省选民调"), path)])]
     return render(lang, "bc-election-polls", title, desc, body, GROUPS["polls"], schemas)
@@ -641,7 +658,7 @@ def page_how_zh(lang):
         + f'<section class="section"><div class="wrap"><h2>{L("谁可以投票")}</h2>'
         + L(f"<p>要在BC省省选投票，你必须是加拿大公民、年满18岁，并在BC省居住至少六个月（{a('ebc_who','Elections BC')}）。</p>")
         + f"<h2>{L('登记投票')}</h2>"
-        + L(f"<p>可在{a('ebc_reg','Elections BC网上选民登记')}查看或更新登记，也可致电 Elections BC：1-800-661-8683。</p>")
+        + L(f"<p>如需收取投票地点卡，请在10月1日前登记或更新资料。可使用{a('ebc_reg','Elections BC网上选民登记')}，或致电1-800-661-8683。投票地点仍在确认中，请查看{a('ebc_2026','官方选举页面')}。</p>")
         + "</div></section>"
         + f'<section class="section soft"><div class="wrap"><h2>{L("需要什么身份证明？")}</h2>'
         + L(f"<p>Elections BC 接受以下三种方式之一（{a('ebc_id','完整规则')}）：</p><ol>")
@@ -651,10 +668,10 @@ def page_how_zh(lang):
         + f'<section class="section"><div class="wrap"><h2>{L("投票方式")}</h2><ul>'
         + L("<li><strong>最终投票日：</strong>太平洋时间上午8点至晚上8点。</li>")
         + L("<li><strong>提前投票：</strong>六天，当地时间上午8点至晚上8点，对所有合资格选民开放。</li>")
-        + L("<li><strong>邮寄投票：</strong>对所有选民开放；选票包须在最终投票日太平洋时间晚上8点前送达 Elections BC。</li>")
+        + L("<li><strong>邮寄投票：</strong>网上或电话申请截止日为10月18日；填妥选票包须在10月24日太平洋时间晚上8点前送达 Elections BC。</li>")
         + L("<li><strong>选区选举办事处：</strong>从选举宣布之日起至最终投票日下午4点。</li>")
         + L("<li><strong>电话协助投票</strong>以及<strong>流动或特别投票</strong>（医院、长期护理院），供符合条件者使用。</li></ul>")
-        + f'<p class="source-note">{L("来源：")}{a("ebc_ways",L("Elections BC — 投票方式"))}。{L("2026年秋季可能的日期见")}<a href="{url_for(lang,"bc-election-2026")}">{L("BC省选2026指南")}</a>。</p></div></section>'
+        + f'<p class="source-note">{L("来源：")}{a("ebc_2026_ways",L("Elections BC — 2026年投票方式"))}。{L("关键日期见")}<a href="{url_for(lang,"bc-election-2026")}">{L("BC省选2026指南")}</a>。</p></div></section>'
         + L(faq_html(HOW_FAQ_ZH, "投票常见问题"))
     )
     title = L("BC省如何投票：资格、身份证明、提前投票与邮寄")
@@ -686,7 +703,7 @@ BYEL_FAQ_EN = [
     ("Why was there going to be a by-election in Abbotsford-Mission?",
      f"Elections BC said MLA Reann Gasper resigned on August 24, 2026 ({a('byel_writ','Elections BC')}). She had won the seat for the Conservatives in 2024."),
     ("Is Kerry-Lynne Findlay running in the October 24 general election?",
-     f"Not confirmed. As of {TODAY_EN}, Elections BC's official candidate list shows no registered candidates in any riding yet — nominations stay open until October 3 ({a('ebc_2026_cand_pdf','Elections BC candidate list')}). Findlay resigned as Conservative leader on September 20, 2026; the by-election she had been contesting in Abbotsford-Mission was cancelled two days later. See <a href=\"/bc-party-leaders\">BC party leaders</a>."),
+     f"Check the {a('ebc_2026_cands','live Elections BC candidate list')} for her current nomination status. The list contains accepted nominations and remains provisional until October 3. Findlay resigned as Conservative leader on September 20; the Abbotsford-Mission by-election she had been contesting was cancelled two days later."),
     ("Who can vote in Abbotsford-Mission on October 24?",
      f"Canadian citizens aged 18 or older who are BC residents; see <a href=\"/how-to-vote-bc\">how to vote in BC</a> for the general rules and ID requirements ({a('ebc_who','Elections BC')})."),
 ]
@@ -756,7 +773,7 @@ def byel_faq_zh(lang):
     ("Abbotsford-Mission为什么原本要补选？",
      f"Elections BC表示，保守党议员Reann Gasper于2026年8月24日辞职（{a('byel_writ','Elections BC')}）。她在2024年代表保守党赢得该选区。"),
     ("Kerry-Lynne Findlay会参加10月24日的省选吗？",
-     f"尚未确认。截至{TODAY_ZH}，Elections BC的官方候选人名单显示全省所有选区都还没有已登记的候选人——提名截止日为10月3日（{a('ebc_2026_cand_pdf','Elections BC候选人名单')}）。Findlay于2026年9月20日辞去保守党党魁职务；她原本在Abbotsford-Mission参选的补选两天后被取消。见<a href=\"{url_for(lang,'bc-party-leaders')}\">BC省党魁</a>。"),
+     f"请查看{a('ebc_2026_cands','Elections BC实时候选人名单')}确认她的最新提名状态。该名单只列获受理的提名，10月3日截止前仍会更新。Findlay于9月20日辞去保守党党魁；她原本参选的Abbotsford-Mission补选于两天后取消。"),
     ("10月24日谁可以在Abbotsford-Mission投票？",
      f"年满18岁的加拿大公民，且为BC省居民；一般规则和证件要求见<a href=\"{url_for(lang,'how-to-vote-bc')}\">BC省如何投票</a>（{a('ebc_who','Elections BC')}）。"),
 ]
@@ -917,9 +934,9 @@ def page_leaders_zh(lang):
         hero("政党党魁", L("BC省政党党魁 2026"), L("2026年10月24日省选前，BC省各政党目前由谁领导，每项说明都附有来源。"))
         + f'<section class="section"><div class="wrap"><div class="tablewrap"><table><thead><tr><th>{L("政党")}</th><th>{L("党魁")}</th><th>{L("说明")}</th></tr></thead><tbody>'
         + L(f"<tr><td><strong>BC NDP</strong></td><td>David Eby</td><td>省长。2024年10月以一席优势（93席中的47席）赢得多数政府（{a('sov','Elections BC官方结果')}）。于9月22日宣布10月24日省选（{a('infonews_call','iNFOnews')}）。</td></tr>")
-        + L(f"<tr><td><strong>BC保守党</strong></td><td>Lorne Doerkson（临时党魁）</td><td>2026年9月21日经党团一致投票被任命为临时党魁（{a('comox_doerkson','Comox Valley Record')}）；为Cariboo-Chilcotin省议员，2024年以保守党身份当选。Kerry-Lynne Findlay于2026年5月30日当选党魁，在8月以来已有14名议员离开党团后，于9月20日辞职（{a('ctv_findlay_resign','CTV News')}）。她尚未为10月24日大选提交提名文件：Elections BC于{TODAY_ZH}生成的官方候选人名单显示，全省所有选区都还没有已登记的候选人，因为提名截止日为10月3日（{a('ebc_2026_cand_pdf','Elections BC候选人名单')}）。她此前参选的Abbotsford-Mission补选已因大选宣布而取消。</td></tr>")
+        + L(f"<tr><td><strong>BC保守党</strong></td><td>Lorne Doerkson（临时党魁）</td><td>2026年9月21日经党团一致投票被任命为临时党魁（{a('comox_doerkson','Comox Valley Record')}）。Kerry-Lynne Findlay于9月20日辞职（{a('ctv_findlay_resign','CTV News')}）。9月22日，Peter Milobar等七名CentreBC议员重返保守党（{a('centrebc_return','Global News')}）。候选人提名至10月3日仍开放，获受理的提名见{a('ebc_2026_cands','Elections BC名单')}。</td></tr>")
         + L(f"<tr><td><strong>BC绿党</strong></td><td>Emily Lowan</td><td>在{a('ipsos','Ipsos')}和{a('research','Research Co.')}民调中被列为绿党党魁。2024年赢得2席。</td></tr>")
-        + L(f"<tr><td><strong>CentreBC</strong></td><td>Peter Milobar</td><td>2026年9月18日被任命为党魁，接替Mike Bernier（{a('ctv_milobar','CTV News')}）。CentreBC列出八名议员，Milobar为党魁及Kamloops Centre议员（{a('centrebc','CentreBC官网')}）。新政党，已出现在民调中（Ipsos 4%，Research Co. 5%，6月Leger 8%）。</td></tr>")
+        + L(f"<tr><td><strong>CentreBC</strong></td><td>Elenore Sturko</td><td>Peter Milobar等七名议员于9月22日重返保守党（{a('centrebc_return','Global News')}）。{a('centrebc_leader','CentreBC官网')}现列Sturko为党魁。9月22日前的民调反映当时的领导层。</td></tr>")
         + L("<tr><td><strong>OneBC</strong></td><td>Dallas Brodie</td><td>新政党，现已出现在民调中（Ipsos 2%，Research Co. 1%）。</td></tr>")
         + "</tbody></table></div>"
         + L(f"<p class=\"source-note\">2024年以来第43届立法会的构成反复变化，有议员转党或成为无党派议员（{a('wiki_43','概述')}），立法会现已因选举而解散。解散前的记录请查看{a('leg','BC省立法会')}；BC Vote Watch会在与立法会和权威报道核对一致后再发布议席数字。</p></div></section>")

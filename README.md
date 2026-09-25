@@ -23,8 +23,7 @@ Update `data/election-status.json` when Elections BC formally changes the status
 4. At Porkbun, add the exact DNS records Cloudflare Pages requests. Do not guess the target before Cloudflare creates the project hostname.
 5. Verify HTTPS, canonical URLs, `robots.txt`, `sitemap.xml`, and submit the property/sitemap in Google Search Console.
 
-## Current factual status at bootstrap
-As of 2026-09-20, Elections BC lists the next scheduled provincial election as 2028-10-21 and publishes Fall 2026 possible-date scenarios for an unscheduled election.
+## Current election status
+As of 2026-09-25, Elections BC confirms a provincial general election for October 24, 2026. Candidate nominations close October 3. Update the source in `scripts/build_site.py`, then regenerate the HTML pages whenever election information changes.
 
-Official source: https://elections.bc.ca/voting/bcs-next-election/
-Scenario PDF: https://elections.bc.ca/docs/fall-2026-election-calendars.pdf
+Official source: https://elections.bc.ca/2026-provincial-election/
