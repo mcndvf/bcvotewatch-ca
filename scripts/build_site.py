@@ -81,6 +81,7 @@ ICONS = (
 NAV_EN = [
     ("/bc-election-2026", "BC Election"),
     ("/bc-election-polls", "Polls"),
+    ("/bc-election-party-poll-2026", "Reader Poll"),
     ("/bc-party-leaders", "Party Leaders"),
     ("/bc-election-issues", "Issues"),
     ("/abbotsford-mission-by-election-2026", "Abbotsford-Mission"),
@@ -345,6 +346,7 @@ def page_hub_en():
         + faq_html(HUB_FAQ_EN, "BC election 2026 FAQ")
         + '<section class="section"><div class="wrap"><h2>Keep going</h2><div class="linkgrid">'
         '<a class="linkcard" href="/bc-election-polls"><strong>BC election polls 2026</strong><span>NDP vs Conservatives with field dates and sample sizes.</span></a>'
+        '<a class="linkcard" href="/bc-election-party-poll-2026"><strong>Reader poll</strong><span>Vote for your party and see live results from BC Vote Watch readers.</span></a>'
         '<a class="linkcard" href="/bc-party-leaders"><strong>BC party leaders</strong><span>Who leads each party as the campaign starts.</span></a>'
         '<a class="linkcard" href="/bc-election-issues"><strong>BC election issues</strong><span>Housing, health care, the budget and tariffs: facts and party positions.</span></a>'
         '<a class="linkcard" href="/bc-election-candidates-2026"><strong>BC election candidates 2026</strong><span>Nomination deadline October 3; where the official list appears.</span></a>'
@@ -479,6 +481,70 @@ def page_candidates_en():
     return render("en", "bc-election-candidates-2026", title, desc, body, None, schemas)
 
 
+PARTY_POLL_FAQ_EN = [
+    ("What is the BC Vote Watch reader poll?",
+     "It's BC Vote Watch's informal reader poll for the 2026 BC provincial election. Visitors pick one party, then see live poll results."),
+    ("Is this an official BC election poll?",
+     "No. This is an informal, unscientific reader poll of BC Vote Watch visitors. It is not conducted by Elections BC, does not use a scientific sample, and differs from the professional polls tracked on the BC election polls page."),
+    ("How many times can I vote in this poll?",
+     "One vote per person. Votes are tied to your browser and IP address to discourage repeat voting; results are stored on the server so they stay consistent across visitors."),
+    ("Why does the poll ask about parties instead of candidates?",
+     "Candidate nominations for the October 24, 2026 election close October 3, and the official candidate list is not final until then. Asking about party choice avoids polling on an incomplete ballot."),
+    ("Can I see results from BC voters only?",
+     "Yes. Results can be filtered to \"BC voters only\" using approximate IP-based geolocation, alongside the all-voters total. This location detection is approximate, not verified identity, and is used only to label the two result sets — never to block a vote."),
+]
+
+
+def page_partypoll_en():
+    poll_section = (
+        '<section class="section white" id="poll"><div class="wrap"><div class="poll-card">'
+        '<form id="poll-form"><fieldset class="poll-fieldset">'
+        '<legend class="poll-legend">Which party would you vote for today?</legend>'
+        '<p class="poll-hint">Choose one.</p>'
+        '<div class="party-list" id="party-options" role="radiogroup" aria-label="Party"></div>'
+        '</fieldset>'
+        '<button type="submit" class="poll-submit" id="poll-submit" disabled>Submit my pick &amp; see results →</button>'
+        '<p class="poll-msg" id="poll-msg" hidden></p>'
+        '<p class="poll-note">One vote per person (enforced by browser and IP checks). This poll reflects BC Vote Watch readers only — it is not a scientific survey, is not affiliated with Elections BC, and does not endorse any party.</p>'
+        '</form>'
+        '<div id="poll-results" class="results-section" hidden>'
+        '<p class="vote-banner" id="vote-banner" hidden>🎉 Your vote is in — here’s how BC Vote Watch readers are voting so far.</p>'
+        '<div class="scope-tabs" role="tablist" aria-label="Filter results by voter location">'
+        '<button type="button" class="scope-tab" data-scope="all" aria-pressed="true">All voters</button>'
+        '<button type="button" class="scope-tab" data-scope="bc" aria-pressed="false">BC voters only</button>'
+        '</div>'
+        '<p class="results-total" id="results-total"></p>'
+        '<div id="party-leader"></div>'
+        '<div id="party-results"></div>'
+        '<p class="poll-note">Results update as more readers vote — refresh this page to see the latest totals. Informal reader poll only; not a scientific survey or an official result.</p>'
+        '<div class="share-panel"><span class="share-label">Share this poll</span><div class="share-links">'
+        '<a class="share-x" href="#" target="_blank" rel="noopener">X (Twitter)</a>'
+        '<a class="share-facebook" href="#" target="_blank" rel="noopener">Facebook</a>'
+        '<a class="share-whatsapp" href="#" target="_blank" rel="noopener">WhatsApp</a>'
+        '<a class="share-weibo" href="#" target="_blank" rel="noopener">Weibo</a>'
+        '<button type="button" class="share-native" id="share-native" hidden>Share…</button>'
+        '<button type="button" class="share-copy" id="share-copy">Copy link</button>'
+        '</div><span class="share-status" id="share-status" role="status"></span></div>'
+        '</div></div></div></section>'
+    )
+    body = (
+        hero("Reader poll", "BC election 2026 reader poll",
+             "Cast your pick for which party you'd vote for today, then see live results from other BC Vote Watch readers. This is an informal straw poll, not a scientific survey or an official result.",
+             '<p><a href="#poll">Vote now ↓</a> · <a href="/bc-election-polls">See the professional polls →</a></p>')
+        + poll_section
+        + '<section class="section soft"><div class="wrap"><h2>Why party, not candidates?</h2>'
+        '<p>Elections BC candidate nominations for the October 24, 2026 general election do not close until October 3, and the official list stays provisional until then (see <a href="/bc-election-candidates-2026">candidates</a>). Most ridings do not yet have a final slate, so this reader poll asks which party you would vote for — the same level the professional surveys on <a href="/bc-election-polls">BC election polls</a> and the roster on <a href="/bc-party-leaders">party leaders</a> use.</p></div></section>'
+        + faq_html(PARTY_POLL_FAQ_EN, "Reader poll FAQ")
+        + '<script defer src="/assets/party-poll.js"></script>'
+    )
+    title = "BC Election Reader Poll 2026: Vote & See Results"
+    desc = "Vote in BC Vote Watch's reader poll for the 2026 BC election: pick your party, then see live results. Candidate nominations aren't final until Oct 3. Not an official or scientific survey."
+    schemas = [article_schema(title, desc, "en", "/bc-election-party-poll-2026"),
+               breadcrumb("en", [("Home", "/"), ("Reader Poll", "/bc-election-party-poll-2026")]),
+               faq_schema(PARTY_POLL_FAQ_EN)]
+    return render("en", "bc-election-party-poll-2026", title, desc, body, None, schemas)
+
+
 def page_home_en():
     body = (
         hero("British Columbia · Provincial election", "BC election 2026: polls, candidates and ridings",
@@ -492,6 +558,7 @@ def page_home_en():
         '<section class="section soft"><div class="wrap"><h2>Track the 2026 BC election</h2><div class="linkgrid">'
         '<a class="linkcard" href="/bc-election-2026"><strong>BC Election 2026 Guide</strong><span>Key dates, why Eby called it, and the latest news.</span></a>'
         '<a class="linkcard" href="/bc-election-polls"><strong>BC Election Polls</strong><span>NDP vs Conservatives with field dates, samples and margins.</span></a>'
+        '<a class="linkcard" href="/bc-election-party-poll-2026"><strong>Reader Poll</strong><span>Vote for your party and see live results from BC Vote Watch readers.</span></a>'
         '<a class="linkcard" href="/bc-party-leaders"><strong>BC Party Leaders</strong><span>Eby, Doerkson (interim), Lowan, Sturko and Brodie.</span></a>'
         '<a class="linkcard" href="/bc-election-issues"><strong>BC Election Issues</strong><span>Housing, health care, budget and tariffs with sourced party positions.</span></a>'
         '<a class="linkcard" href="/bc-election-candidates-2026"><strong>BC Election Candidates 2026</strong><span>Nomination deadline October 3; where the official list appears.</span></a>'
@@ -1440,7 +1507,7 @@ GROUPS = {
     "issues": {"en": "bc-election-issues", "zh-cn": "bc-election-issues", "zh-tw": "bc-election-issues"},
     "results": {"en": "bc-election-results-2024", "zh-cn": "bc-election-results-2024", "zh-tw": "bc-election-results-2024"},
 }
-EN_ONLY = ["", "bc-election-candidates-2026", "sources"]
+EN_ONLY = ["", "bc-election-candidates-2026", "bc-election-party-poll-2026", "sources"]
 
 
 def sitemap():
@@ -1484,6 +1551,7 @@ if __name__ == "__main__":
     page_how_en()
     page_leaders_en()
     page_candidates_en()
+    page_partypoll_en()
     page_byel_en()
     page_results_en()
     page_ridings_hub("en")
