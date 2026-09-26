@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
-"""Build BC Vote Watch pages, hreflang groups and sitemap.
+"""Build the English BC Vote Watch pages and sitemap.
 
-Run with a Python that has opencc-python-reimplemented installed (used only for
-the Traditional Chinese versions):
+Run with Python 3:
 
     python3 scripts/build_site.py
 
@@ -15,14 +14,11 @@ import json
 import os
 import re
 
-from opencc import OpenCC
-
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = "https://bcvotewatch.ca"
 TODAY = "2026-09-25"
 TODAY_EN = "September 25, 2026"
 TODAY_ZH = "2026年9月25日"
-S2HK = OpenCC("s2hk")
 
 # ---------------------------------------------------------------- sources
 SRC = {
@@ -101,19 +97,19 @@ NAV_ZH = [
     ("bc-election-ridings", "选区"),
     ("how-to-vote-bc", "如何投票"),
 ]
-HREFLANG = {"en": "en-CA", "zh-cn": "zh-Hans", "zh-tw": "zh-Hant"}
-OG_LOCALE = {"en": "en_CA", "zh-cn": "zh_CN", "zh-tw": "zh_TW"}
-HTML_LANG = {"en": "en-CA", "zh-cn": "zh-Hans-CA", "zh-tw": "zh-Hant-CA"}
+HREFLANG = {"en": "en-CA"}
+OG_LOCALE = {"en": "en_CA"}
+HTML_LANG = {"en": "en-CA"}
 
 
 def url_for(lang, slug):
     if slug == "":
         return "/"
-    return f"/{slug}" if lang == "en" else f"/{lang}/{slug}"
+    return f"/{slug}"
 
 
 def conv(lang, s):
-    return S2HK.convert(s) if lang == "zh-tw" else s
+    return s
 
 
 def jsonld(obj):
@@ -154,24 +150,12 @@ def render(lang, slug, title, desc, body, group=None, schemas=(), og_image=None)
     path = url_for(lang, slug)
     canonical = SITE + (path if path != "/" else "/")
     alt = ""
-    if group:
-        for l, sl in group.items():
-            alt += f'<link rel="alternate" hreflang="{HREFLANG[l]}" href="{SITE}{url_for(l, sl)}">'
-        alt += f'<link rel="alternate" hreflang="x-default" href="{SITE}{url_for("en", group["en"])}">'
+    if group and "en" in group:
+        alt = f'<link rel="alternate" hreflang="x-default" href="{SITE}{url_for("en", group["en"])}">'
     schema_html = "".join(jsonld(s) for s in schemas)
-    if lang == "en":
-        nav = "".join(f'<a href="{h}">{t}</a>' for h, t in NAV_EN)
-        if group and "zh-cn" in group:
-            nav += f'<a class="lang" href="{url_for("zh-cn", group["zh-cn"])}" hreflang="zh-Hans">简体</a><a class="lang" href="{url_for("zh-tw", group["zh-tw"])}" hreflang="zh-Hant">繁體</a>'
-        footer = f"Primary source: Elections BC. Last reviewed {TODAY_EN}. BC Vote Watch is independent and not affiliated with Elections BC, any party or any campaign."
-        site_name = "BC Vote Watch"
-    else:
-        nav = "".join(f'<a href="{url_for(lang, s)}">{conv(lang, t)}</a>' for s, t in NAV_ZH)
-        nav += f'<a class="lang" href="{url_for("en", group["en"])}" hreflang="en-CA">English</a>'
-        other = "zh-tw" if lang == "zh-cn" else "zh-cn"
-        nav += f'<a class="lang" href="{url_for(other, group[other])}" hreflang="{HREFLANG[other]}">{"繁體" if other == "zh-tw" else "简体"}</a>'
-        footer = conv(lang, f"主要来源：Elections BC。最后核对：{TODAY_ZH}。BC Vote Watch 为独立网站，与 Elections BC、任何政党或竞选团队无隶属关系。")
-        site_name = "BC Vote Watch"
+    nav = "".join(f'<a href="{h}">{t}</a>' for h, t in NAV_EN)
+    footer = f"Primary source: Elections BC. Last reviewed {TODAY_EN}. BC Vote Watch is independent and not affiliated with Elections BC, any party or any campaign."
+    site_name = "BC Vote Watch"
     page = (
         f'<!DOCTYPE html><html lang="{HTML_LANG[lang]}"><head><meta charset="utf-8">'
         '<meta name="viewport" content="width=device-width,initial-scale=1">'
@@ -194,7 +178,7 @@ def render(lang, slug, title, desc, body, group=None, schemas=(), og_image=None)
     out = out + ".html" if path != "/" else os.path.join(ROOT, "index.html")
     os.makedirs(os.path.dirname(out), exist_ok=True)
     with open(out, "w", encoding="utf8") as f:
-        f.write(conv(lang, page) if lang == "zh-tw" else page)
+        f.write(page)
     return path
 
 
@@ -569,12 +553,12 @@ def page_home_en():
         "</div></div></section>"
         '<section class="section"><div class="wrap"><h2>Official-source first</h2>'
         "<p>Election dates and rules follow Elections BC's official record. Candidate status is not treated as final until it appears in the relevant Elections BC record. Polls are presented as measurements at the field dates, not as election results or forecasts.</p>"
-        f"<p class=\"source-note\">Primary source: {a('ebc_2026','Elections BC — 2026 Provincial Election')}. 中文：<a href=\"/zh-cn/bc-election-2026\" hreflang=\"zh-Hans\">简体</a> · <a href=\"/zh-tw/bc-election-2026\" hreflang=\"zh-Hant\">繁體</a></p></div></section>"
+        f"<p class=\"source-note\">Primary source: {a('ebc_2026','Elections BC — 2026 Provincial Election')}.</p></div></section>"
     )
     title = "BC Election 2026 Tracker: Polls, Candidates, Ridings"
     desc = "Independent tracking of BC's 2026 provincial election, called Sept 22: key dates, polls, party leaders, candidates, ridings and voting information."
     schemas = [
-        {"@context": "https://schema.org", "@type": "WebSite", "name": "BC Vote Watch", "url": SITE + "/", "inLanguage": ["en-CA", "zh-Hans", "zh-Hant"]},
+        {"@context": "https://schema.org", "@type": "WebSite", "name": "BC Vote Watch", "url": SITE + "/", "inLanguage": "en-CA"},
         {"@context": "https://schema.org", "@type": "Organization", "name": "BC Vote Watch", "url": SITE + "/", "logo": SITE + "/icon-512.png"},
     ]
     return render("en", "", title, desc, body, None, schemas)
@@ -1118,7 +1102,7 @@ def ordinal(n):
 
 
 def riding_group(slug):
-    return {"en": "ridings/" + slug, "zh-cn": "ridings/" + slug, "zh-tw": "ridings/" + slug}
+    return {"en": "ridings/" + slug}
 
 
 def page_ridings_hub(lang):
@@ -1493,19 +1477,19 @@ def page_issues_hub(lang):
     return render(lang, "bc-election-issues", title, desc, body, GROUPS["issues"], schemas)
 
 
-ISSUE_GROUPS = {k: {"en": "issues/" + k, "zh-cn": "issues/" + k, "zh-tw": "issues/" + k} for k in ISSUE_ORDER}
+ISSUE_GROUPS = {k: {"en": "issues/" + k} for k in ISSUE_ORDER}
 
 
 # ---------------------------------------------------------------- groups + sitemap
 GROUPS = {
-    "hub": {"en": "bc-election-2026", "zh-cn": "bc-election-2026", "zh-tw": "bc-election-2026"},
-    "polls": {"en": "bc-election-polls", "zh-cn": "bc-election-polls", "zh-tw": "bc-election-polls"},
-    "how": {"en": "how-to-vote-bc", "zh-cn": "how-to-vote-bc", "zh-tw": "how-to-vote-bc"},
-    "leaders": {"en": "bc-party-leaders", "zh-cn": "bc-party-leaders", "zh-tw": "bc-party-leaders"},
-    "byel": {"en": "abbotsford-mission-by-election-2026", "zh-cn": "abbotsford-mission-by-election-2026", "zh-tw": "abbotsford-mission-by-election-2026"},
-    "ridings": {"en": "bc-election-ridings", "zh-cn": "bc-election-ridings", "zh-tw": "bc-election-ridings"},
-    "issues": {"en": "bc-election-issues", "zh-cn": "bc-election-issues", "zh-tw": "bc-election-issues"},
-    "results": {"en": "bc-election-results-2024", "zh-cn": "bc-election-results-2024", "zh-tw": "bc-election-results-2024"},
+    "hub": {"en": "bc-election-2026"},
+    "polls": {"en": "bc-election-polls"},
+    "how": {"en": "how-to-vote-bc"},
+    "leaders": {"en": "bc-party-leaders"},
+    "byel": {"en": "abbotsford-mission-by-election-2026"},
+    "ridings": {"en": "bc-election-ridings"},
+    "issues": {"en": "bc-election-issues"},
+    "results": {"en": "bc-election-results-2024"},
 }
 EN_ONLY = ["", "bc-election-candidates-2026", "bc-election-party-poll-2026", "sources"]
 
@@ -1517,12 +1501,9 @@ def sitemap():
     entries = []
     for s in EN_ONLY:
         entries.append(f"<url><loc>{loc('en', s)}</loc><lastmod>{TODAY}</lastmod></url>")
-    for g in list(GROUPS.values()) + list(ISSUE_GROUPS.values()) + [riding_group(r["slug"]) for r in RIDINGS]:
-        for l, s in g.items():
-            links = "".join(
-                f'<xhtml:link rel="alternate" hreflang="{HREFLANG[ll]}" href="{loc(ll, ss)}"/>' for ll, ss in g.items()
-            ) + f'<xhtml:link rel="alternate" hreflang="x-default" href="{loc("en", g["en"])}"/>'
-            entries.append(f"<url><loc>{loc(l, s)}</loc><lastmod>{TODAY}</lastmod>{links}</url>")
+    for g in list(GROUPS.values()) + list(ISSUE_GROUPS.values()) + [{"en": "ridings/" + r["slug"]} for r in RIDINGS]:
+        s = g["en"]
+        entries.append(f'<url><loc>{loc("en", s)}</loc><lastmod>{TODAY}</lastmod></url>')
     xml = (
         '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
         'xmlns:xhtml="http://www.w3.org/1999/xhtml">\n' + "\n".join(entries) + "\n</urlset>\n"
@@ -1560,18 +1541,5 @@ if __name__ == "__main__":
         page_issue("en", k)
     for r in RIDINGS:
         page_riding("en", r)
-    for lang in ("zh-cn", "zh-tw"):
-        page_ridings_hub(lang)
-        page_issues_hub(lang)
-        for k in ISSUE_ORDER:
-            page_issue(lang, k)
-        for r in RIDINGS:
-            page_riding(lang, r)
-        page_hub_zh(lang)
-        page_polls_zh(lang)
-        page_how_zh(lang)
-        page_leaders_zh(lang)
-        page_byel_zh(lang)
-        page_results_zh(lang)
     patch_static()
     print("sitemap urls:", sitemap())

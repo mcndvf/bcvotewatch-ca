@@ -38,6 +38,9 @@ function renderOptions() {
 function updateSubmitState() {
   const picked = document.querySelector('input[name="party"]:checked');
   document.querySelector("#poll-submit").disabled = !picked;
+  document.querySelectorAll(".pick-card").forEach(card => {
+    card.classList.toggle("is-selected", card.querySelector(".ballot-mark").checked);
+  });
 }
 
 function rankRows(counts) {
@@ -125,10 +128,12 @@ function renderScope(scope) {
 }
 
 function showResults(results, opts = {}) {
-  document.querySelector("#poll-form").hidden = true;
+  form.hidden = true;
   const panel = document.querySelector("#poll-results");
   panel.hidden = false;
-  document.querySelector("#vote-banner").hidden = !opts.justVoted;
+  const banner = document.querySelector("#vote-banner");
+  banner.hidden = !opts.justVoted;
+  if (opts.justVoted) banner.textContent = `🎉 Your vote is in — here’s how BC Vote Watch readers are voting so far. You picked ${opts.pickedPartyName}.`;
   latestResults = results;
   renderScope(activeScope);
   wireShare(opts.pickedPartyName);
@@ -179,6 +184,7 @@ async function submitVote(e) {
 function init() {
   renderOptions();
   document.querySelectorAll('input[name="party"]').forEach(r => r.addEventListener("change", updateSubmitState));
+  updateSubmitState();
   form.addEventListener("submit", submitVote);
   document.querySelectorAll(".scope-tab").forEach(btn => btn.addEventListener("click", () => renderScope(btn.dataset.scope)));
 
@@ -187,6 +193,8 @@ function init() {
   if (alreadyVoted) {
     form.hidden = true;
     loadResultsOnly();
+  } else {
+    form.hidden = false;
   }
 }
 

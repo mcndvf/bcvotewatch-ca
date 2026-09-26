@@ -11,8 +11,6 @@ Static, no-build HTML/CSS/JS starter designed for the same simple deployment mod
 - `/bc-election-party-poll-2026` — reader poll (party choice, not candidates — nominations aren't final until Oct 3)
 - `/how-to-vote-bc` — official-source voting links
 - `/sources` — evidence/source rules
-- `/zh-cn/bc-election-2026`
-- `/zh-tw/bc-election-2026`
 
 ## Election status switch
 Update `data/election-status.json` when Elections BC formally changes the status. Do not mark the election called based only on media speculation.

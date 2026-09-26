@@ -7,7 +7,7 @@ Goal: deploy BCVoteWatch.ca using the same GitHub + Cloudflare Pages/static-site
 1. Inspect the local SmartRichmond repository only to identify its exact static-site deployment conventions (repo layout, Cloudflare Pages build/output settings, reusable shared header/footer implementation, Search Console verification pattern). Do not change SmartRichmond.
 2. Create or use a dedicated `bcvotewatch-ca` Git repository under the same GitHub account used for SmartRichmond.
 3. Copy the BCVoteWatch bootstrap release into that repository. If SmartRichmond uses a specific static directory/layout, make the minimum path-only adaptation required; do not change the published URL contract.
-4. Preserve these SEO URLs exactly: `/`, `/bc-election-2026.html`, `/bc-election-candidates-2026.html`, `/bc-election-ridings.html`, `/bc-election-polls.html`, `/how-to-vote-bc.html`, `/sources.html`, `/zh-cn/bc-election-2026.html`, `/zh-tw/bc-election-2026.html`.
+4. Preserve these SEO URLs exactly: `/`, `/bc-election-2026.html`, `/bc-election-candidates-2026.html`, `/bc-election-ridings.html`, `/bc-election-polls.html`, `/how-to-vote-bc.html`, `/sources.html`.
 5. Deploy through Cloudflare Pages using the same account/settings pattern as SmartRichmond. Configure `bcvotewatch.ca` as primary and `www.bcvotewatch.ca` consistently with SmartRichmond's canonical-host convention.
 6. In the already logged-in Porkbun account, apply only the DNS records explicitly requested by Cloudflare for BCVoteWatch.ca. Do not alter nameservers or unrelated DNS records unless the existing SmartRichmond architecture demonstrably requires it.
 7. Verify HTTPS and HTTP 200 for the homepage and all listed SEO pages; verify `/robots.txt` and `/sitemap.xml`.
