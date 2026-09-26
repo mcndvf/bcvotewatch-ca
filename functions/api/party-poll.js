@@ -184,7 +184,9 @@ const SECOND = new Set([...PARTY_IDS, "none"]);
 
 function emptyBucket() {
   return { total: 0, initialChoice: {}, decidedLeaning: {}, certainty: {}, turnout: {}, turnoutSum: 0,
-    secondChoice: {}, issues: {}, pastVote: {}, region: {}, age: {}, gender: {}, education: {} };
+    secondChoice: {}, issues: {}, pastVote: {}, region: {}, age: {}, gender: {}, education: {},
+    answered: { lean: 0, secondChoice: 0, issues: 0, region: 0, age: 0, gender: 0, education: 0 },
+    answeredKnown: { issues: true } };
 }
 function emptySurvey() {
   return { version: 1, totalRespondents: 0, eligibleRespondents: 0, likelyVoters: 0,
@@ -195,29 +197,57 @@ async function loadSurvey(env) {
   if (!raw) return emptySurvey();
   try {
     const value = JSON.parse(raw);
-    return value && value.version === 1 && value.scopes ? value : emptySurvey();
+    return value && value.version === 1 && value.scopes ? normalizeSurvey(value) : emptySurvey();
   } catch (_) { return emptySurvey(); }
 }
 function increment(obj, key) { obj[key] = (obj[key] || 0) + 1; }
+function countValues(obj) { return Object.values(obj || {}).reduce((sum, value) => sum + (Number.isFinite(Number(value)) ? Number(value) : 0), 0); }
+function normalizeBucket(old = {}) {
+  const base = emptyBucket();
+  const bucket = { ...base, ...old };
+  const saved = old.answered || {};
+  bucket.answered = {
+    lean: saved.lean ?? Number(old.initialChoice?.und || 0),
+    secondChoice: saved.secondChoice ?? countValues(old.secondChoice),
+    issues: saved.issues ?? 0,
+    region: saved.region ?? countValues(old.region),
+    age: saved.age ?? countValues(old.age),
+    gender: saved.gender ?? countValues(old.gender),
+    education: saved.education ?? countValues(old.education)
+  };
+  bucket.answeredKnown = { issues: saved.issues !== undefined ? (old.answeredKnown?.issues !== false) : Number(old.total || 0) === 0 };
+  return bucket;
+}
+function normalizeSurvey(value) {
+  const empty = emptySurvey();
+  return { ...empty, ...value, scopes: Object.fromEntries(["all", "eligible", "likely"].map(name => [name, normalizeBucket(value.scopes?.[name])])) };
+}
 function addResponse(bucket, answer) {
   bucket.total++;
   increment(bucket.initialChoice, answer.choice);
-  increment(bucket.decidedLeaning, answer.choice === "und" ? answer.lean : answer.choice);
+  increment(bucket.decidedLeaning, answer.choice === "und" ? (answer.lean || "und") : answer.choice);
   increment(bucket.certainty, answer.certainty);
   increment(bucket.turnout, String(answer.turnout));
   bucket.turnoutSum += answer.turnout;
-  increment(bucket.secondChoice, answer.secondChoice);
-  for (const issue of answer.issues) increment(bucket.issues, issue);
-  for (const field of ["pastVote", "region", "age", "gender", "education"]) increment(bucket[field], answer[field]);
+  if (answer.lean) increment(bucket.answered, "lean");
+  if (answer.secondChoice) { increment(bucket.secondChoice, answer.secondChoice); increment(bucket.answered, "secondChoice"); }
+  if (Array.isArray(answer.issues)) increment(bucket.answered, "issues");
+  for (const issue of answer.issues || []) increment(bucket.issues, issue);
+  increment(bucket.pastVote, answer.pastVote);
+  for (const field of ["region", "age", "gender", "education"]) {
+    if (answer[field]) { increment(bucket[field], answer[field]); increment(bucket.answered, field); }
+  }
 }
+function optionalEnumValid(value, whitelist) { return value === undefined || value === null || value === "" || whitelist.has(value); }
 function validSurvey(a) {
   if (!a || typeof a !== "object" || Array.isArray(a)) return false;
   if (!ELIGIBILITY.has(a.eligibility) || !PARTY_IDS.has(a.choice)) return false;
-  if (a.choice === "und" ? !PARTY_IDS.has(a.lean) : a.lean !== null) return false;
+  if (!optionalEnumValid(a.lean, PARTY_IDS)) return false;
   if (!CERTAINTY.has(a.certainty) || !Number.isInteger(a.turnout) || a.turnout < 0 || a.turnout > 10) return false;
-  if (!SECOND.has(a.secondChoice) || a.secondChoice === a.choice || (a.choice === "und" && a.secondChoice === a.lean && a.lean !== "und")) return false;
-  if (!Array.isArray(a.issues) || a.issues.length < 1 || a.issues.length > 3 || new Set(a.issues).size !== a.issues.length || a.issues.some(i => !ISSUES.has(i))) return false;
-  return PAST_VOTE.has(a.pastVote) && REGIONS.has(a.region) && AGES.has(a.age) && GENDERS.has(a.gender) && EDUCATION.has(a.education);
+  if (!optionalEnumValid(a.secondChoice, SECOND)) return false;
+  if (a.secondChoice && (a.secondChoice === a.choice || (a.choice === "und" && a.secondChoice === a.lean && a.secondChoice !== "und"))) return false;
+  if (a.issues !== undefined && a.issues !== null && a.issues !== "" && (!Array.isArray(a.issues) || a.issues.length > 3 || new Set(a.issues).size !== a.issues.length || a.issues.some(i => !ISSUES.has(i)))) return false;
+  return PAST_VOTE.has(a.pastVote) && optionalEnumValid(a.region, REGIONS) && optionalEnumValid(a.age, AGES) && optionalEnumValid(a.gender, GENDERS) && optionalEnumValid(a.education, EDUCATION);
 }
 async function surveyDedupKey(request, env) {
   const ip = request.headers.get("CF-Connecting-IP");
@@ -239,10 +269,12 @@ async function submitSurvey(request, env, answer) {
   if (!dedupKey) return jsonResponse({ ok: false, error: "survey_unavailable" }, 503);
   if (await surveySubmitted(request, env)) return jsonResponse({ ok: true, alreadySubmitted: true, survey: await loadSurvey(env) });
   const submittedAt = new Date().toISOString();
-  const record = { eligibility: answer.eligibility, choice: answer.choice, lean: answer.lean,
-    certainty: answer.certainty, turnout: answer.turnout, secondChoice: answer.secondChoice,
-    issues: answer.issues, pastVote: answer.pastVote, region: answer.region, age: answer.age,
-    gender: answer.gender, education: answer.education, submittedAt, wave: surveyWave(submittedAt) };
+  const record = { eligibility: answer.eligibility, choice: answer.choice,
+    lean: answer.choice === "und" ? (answer.lean || null) : null,
+    certainty: answer.certainty, turnout: answer.turnout, secondChoice: answer.secondChoice || null,
+    issues: Array.isArray(answer.issues) ? answer.issues : null, pastVote: answer.pastVote,
+    region: answer.region || null, age: answer.age || null, gender: answer.gender || null,
+    education: answer.education || null, submittedAt, wave: surveyWave(submittedAt) };
   const survey = await loadSurvey(env);
   addResponse(survey.scopes.all, record);
   survey.totalRespondents++;
