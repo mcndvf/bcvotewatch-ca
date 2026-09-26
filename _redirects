@@ -1,0 +1,3 @@
+# Preserve links to the retired Chinese translations after the English-only migration.
+/zh-cn/* /:splat 301
+/zh-tw/* /:splat 301
