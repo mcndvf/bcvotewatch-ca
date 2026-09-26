@@ -145,7 +145,7 @@ def faq_html(items, heading):
     return out + "</div></section>"
 
 
-def render(lang, slug, title, desc, body, group=None, schemas=(), og_image=None):
+def render(lang, slug, title, desc, body, group=None, schemas=(), og_image=None, css_href="/assets/site.css"):
     """group: dict lang->slug of the same page in other languages (for hreflang)."""
     path = url_for(lang, slug)
     canonical = SITE + (path if path != "/" else "/")
@@ -168,7 +168,7 @@ def render(lang, slug, title, desc, body, group=None, schemas=(), og_image=None)
         f'<meta property="og:image" content="{SITE}/assets/og-image.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">'
         f'<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="{html.escape(title)}"><meta name="twitter:description" content="{html.escape(desc)}"><meta name="twitter:image" content="{SITE}/assets/og-image.png">'
         + ICONS +
-        '<link rel="stylesheet" href="/assets/site.css"><script defer src="/assets/site.js"></script>'
+        f'<link rel="stylesheet" href="{css_href}"><script defer src="/assets/site.js"></script>'
         f"{schema_html}</head><body>"
         '<div class="topline"></div><header><div class="wrap nav"><a class="brand" href="/"><b>BC</b> VOTE WATCH</a>'
         f"<nav>{nav}</nav></div></header><main>{body}</main>"
@@ -519,14 +519,15 @@ def page_partypoll_en():
         + '<section class="section soft"><div class="wrap"><h2>Why party, not candidates?</h2>'
         '<p>Elections BC candidate nominations for the October 24, 2026 general election do not close until October 3, and the official list stays provisional until then (see <a href="/bc-election-candidates-2026">candidates</a>). Most ridings do not yet have a final slate, so this reader poll asks which party you would vote for — the same level the professional surveys on <a href="/bc-election-polls">BC election polls</a> and the roster on <a href="/bc-party-leaders">party leaders</a> use.</p></div></section>'
         + faq_html(PARTY_POLL_FAQ_EN, "Reader poll FAQ")
-        + '<script defer src="/assets/party-poll.js"></script>'
+        + '<script defer src="/assets/party-poll.js?v=20260926"></script>'
     )
     title = "BC Election Reader Poll 2026: Vote & See Results"
     desc = "Vote in BC Vote Watch's reader poll for the 2026 BC election: pick your party, then see live results. Candidate nominations aren't final until Oct 3. Not an official or scientific survey."
     schemas = [article_schema(title, desc, "en", "/bc-election-party-poll-2026"),
                breadcrumb("en", [("Home", "/"), ("Reader Poll", "/bc-election-party-poll-2026")]),
                faq_schema(PARTY_POLL_FAQ_EN)]
-    return render("en", "bc-election-party-poll-2026", title, desc, body, None, schemas)
+    return render("en", "bc-election-party-poll-2026", title, desc, body, None, schemas,
+                  css_href="/assets/site.css?v=20260926")
 
 
 def page_home_en():
