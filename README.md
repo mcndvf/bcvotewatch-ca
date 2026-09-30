@@ -31,6 +31,6 @@ Without this KV binding the poll page loads but voting will fail with a server e
 5. Verify HTTPS, canonical URLs, `robots.txt`, `sitemap.xml`, and submit the property/sitemap in Google Search Console.
 
 ## Current election status
-As of 2026-09-25, Elections BC confirms a provincial general election for October 24, 2026. Candidate nominations close October 3. Update the source in `scripts/build_site.py`, then regenerate the HTML pages whenever election information changes.
+As of 2026-09-29, Elections BC confirms a provincial general election for October 24, 2026. Candidate nominations close October 3. Update the source in `scripts/build_site.py`, then regenerate affected HTML pages and their sitemap `lastmod` dates whenever election information changes.
 
 Official source: https://elections.bc.ca/2026-provincial-election/

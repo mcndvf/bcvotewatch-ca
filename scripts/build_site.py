@@ -5,9 +5,9 @@ Run with Python 3:
 
     python3 scripts/build_site.py
 
-Every factual claim below carries a dated source. Update FACTS and the page copy
-together, and bump TODAY so the visible date, JSON-LD dateModified and sitemap
-lastmod all move at once.
+Every factual claim below carries a dated source. Update the page copy and sources
+together. Bump each changed page's sitemap lastmod, and keep the visible review date
+and JSON-LD dateModified consistent for generated pages.
 """
 import html
 import json
@@ -16,9 +16,16 @@ import re
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = "https://bcvotewatch.ca"
-TODAY = "2026-09-25"
-TODAY_EN = "September 25, 2026"
+TODAY = "2026-09-29"
+TODAY_EN = "September 29, 2026"
 TODAY_ZH = "2026年9月25日"
+LAST_REVIEW = {"": TODAY, "bc-election-2026": TODAY,
+               "bc-election-polls": TODAY, "how-to-vote-bc": TODAY,
+               "bc-election-party-poll-2026": "2026-09-26"}
+
+
+def reviewed(slug):
+    return LAST_REVIEW.get(slug.lstrip("/"), "2026-09-25")
 
 # ---------------------------------------------------------------- sources
 SRC = {
@@ -58,9 +65,11 @@ SRC = {
     "leger_jun": "https://leger360.com/in-the-news-bc-conservatives-take-narrow-lead/",
     "angus_sep24": "https://angusreid.org/ballot-backlash-bc-conservatives-open-8-point-lead-after-snap-election-call-but-electorate-far-from-locked-in/",
     "liaison_sep23": "https://press.liaisonstrategies.ca/bc-ndp-leads-conservatives-41-to-36-as-election-begins/",
+    "liaison_sep29": "https://press.liaisonstrategies.ca/bc-conservatives-40-ndp-39-housing-frustration-runs-deep/",
     "centrebc_leader": "https://www.centrebc.ca/",
     "centrebc_return": "https://globalnews.ca/news/12069095/centrebc-mlas-rejoin-conservatives/",
     "ebc_2026_ways": "https://elections.bc.ca/2026-provincial-election/ways-to-vote/",
+    "ebc_2026_id": "https://elections.bc.ca/2026-provincial-election/voter-id/",
 }
 
 
@@ -154,7 +163,10 @@ def render(lang, slug, title, desc, body, group=None, schemas=(), og_image=None,
         alt = f'<link rel="alternate" hreflang="x-default" href="{SITE}{url_for("en", group["en"])}">'
     schema_html = "".join(jsonld(s) for s in schemas)
     nav = "".join(f'<a href="{h}">{t}</a>' for h, t in NAV_EN)
-    footer = f"Primary source: Elections BC. Last reviewed {TODAY_EN}. BC Vote Watch is independent and not affiliated with Elections BC, any party or any campaign."
+    from datetime import date
+    review_date = date.fromisoformat(reviewed(slug))
+    review_en = f"{review_date.strftime('%B')} {review_date.day}, {review_date.year}"
+    footer = f"Primary source: Elections BC. Last reviewed {review_en}. BC Vote Watch is independent and not affiliated with Elections BC, any party or any campaign."
     site_name = "BC Vote Watch"
     page = (
         f'<!DOCTYPE html><html lang="{HTML_LANG[lang]}"><head><meta charset="utf-8">'
@@ -194,7 +206,7 @@ def article_schema(headline, desc, lang, path):
         "description": desc,
         "inLanguage": HTML_LANG[lang],
         "datePublished": "2026-09-20",
-        "dateModified": TODAY,
+        "dateModified": reviewed(path),
         "mainEntityOfPage": SITE + path,
         "author": {"@type": "Organization", "name": "BC Vote Watch", "url": SITE + "/"},
         "publisher": {"@type": "Organization", "name": "BC Vote Watch", "url": SITE + "/"},
@@ -204,7 +216,7 @@ def article_schema(headline, desc, lang, path):
 STATUS_BOX_EN = (
     '<div class="status" data-election-status><span class="badge" data-status-label>Provincial election called — vote October 24, 2026</span>'
     '<strong>Current official status</strong><span data-status-detail>Premier David Eby called the election on September 22, 2026. '
-    'Voting day is Saturday, October 24, 2026.</span><small data-status-checked>Last checked September 25, 2026</small></div>'
+    'Voting day is Saturday, October 24, 2026.</span><small data-status-checked>Last checked September 29, 2026</small></div>'
 )
 STATUS_BOX_ZH = (
     '<div class="status" data-election-status><span class="badge" data-status-label>省选已宣布 · 2026年10月24日投票</span>'
@@ -276,6 +288,7 @@ def key_dates_table_zh():
 
 POLL_ROWS = [
     # pollster key, name, field, sample, ndp, con, grn, ctr, one, note
+    ("liaison_sep29", "Liaison Strategies", "Sep 26–27, 2026 (released Sep 29)", "1,000 adults, IVR; ±3.1 for total sample", 39, 40, None, None, None, "Decided and leaning voters. The margin of error is higher for this subgroup; see full report for other parties."),
     ("angus_sep24", "Angus Reid", "Sep 22–24, 2026 (released Sep 24)", "801 adults online; 682 decided/leaning", 35, 43, None, None, None, "Decided and leaning voters; 20% of all respondents undecided. See report for other parties."),
     ("liaison_sep23", "Liaison Strategies", "Sep 21–22, 2026 (released Sep 23)", "1,000 adults, IVR; ±3.1 for total sample", 41, 36, 12, 4, 4, "Decided and leaning voters; other parties 3%. Fieldwork overlapped election call."),
     ("angus", "Angus Reid", "Sep 8–15, 2026 (released Sep 17)", "749 adults, online; comparable probability sample ±4.0", 41, 37, None, None, None, "Only the NDP/Conservative vote-intention figures found in the release; see the full report for other parties. 51% said they feel like a “political orphan.”"),
@@ -296,7 +309,7 @@ HUB_FAQ_EN = [
     ("Does the BC election overlap with municipal elections?",
      "Yes. BC municipal elections are October 17, 2026, one week before the October 24 provincial vote. Some municipal leaders raised concerns about the two campaigns overlapping."),
     ("Who leads in BC election polls?",
-     f"Recent polls differ: Angus Reid's Sept 22–24 survey has Conservatives 43% and NDP 35% among decided/leaning voters ({a('angus_sep24','source')}); Liaison's Sept 21–22 survey has NDP 41% and Conservatives 36% ({a('liaison_sep23','source')}). See <a href=\"/bc-election-polls\">poll details</a>."),
+     f"Liaison's Sept 26–27 survey has Conservatives 40% and NDP 39% among decided/leaning voters ({a('liaison_sep29','source')}). Angus Reid's Sept 22–24 survey had Conservatives 43% and NDP 35% ({a('angus_sep24','source')}). See <a href=\"/bc-election-polls\">poll details</a>."),
     ("Who are the BC party leaders?",
      "David Eby leads the BC NDP, Lorne Doerkson is interim leader of the BC Conservatives, Emily Lowan leads the BC Greens, Elenore Sturko leads CentreBC and Dallas Brodie leads OneBC. See <a href=\"/bc-party-leaders\">BC party leaders</a>."),
     ("What happened to the Abbotsford-Mission by-election?",
@@ -307,7 +320,8 @@ HUB_FAQ_EN = [
 def page_hub_en():
     latest = (
         "<ul>"
-        f"<li><strong>Sep 24, 2026</strong> — {a('angus_sep24','Angus Reid')} reported Conservatives 43%, NDP 35% among decided and leaning voters (surveyed Sept 22–24). {a('liaison_sep23','Liaison Strategies')} reported NDP 41%, Conservatives 36% (surveyed Sept 21–22). These are separate surveys, not election results. <a href=\"/bc-election-polls\">Poll details</a>.</li>"
+        f"<li><strong>Sep 29, 2026</strong> — {a('liaison_sep29','Liaison Strategies')} found Conservatives 40% and NDP 39% among decided and leaning voters (surveyed Sept 26–27). This is a survey, not an election result. <a href=\"/bc-election-polls\">Poll details</a>.</li>"
+        f"<li><strong>Sep 24, 2026</strong> — {a('angus_sep24','Angus Reid')} reported Conservatives 43%, NDP 35% among decided and leaning voters (surveyed Sept 22–24). {a('liaison_sep23','Liaison Strategies')} reported NDP 41%, Conservatives 36% (surveyed Sept 21–22). These are separate surveys, not election results.</li>"
         f"<li><strong>Sep 24, 2026</strong> — {a('ebc_2026_cands','Elections BC')} now lists accepted candidate nominations. The list remains provisional until nominations close October 3.</li>"
         f"<li><strong>Sep 22, 2026</strong> — Seven CentreBC MLAs, including Peter Milobar, returned to the Conservatives ({a('centrebc_return','Global News')}); {a('centrebc_leader','CentreBC')} now names Elenore Sturko as leader.</li>"
         f"<li><strong>Sep 22, 2026</strong> — Premier David Eby called a provincial election, citing the U.S. trade war as an “existential” issue for BC. Voting day is Saturday, October 24, 2026 ({a('infonews_call','iNFOnews')}). The pending Abbotsford-Mission by-election was cancelled and folded into the general vote ({a('byel','Elections BC')}).</li>"
@@ -357,25 +371,25 @@ def page_polls_en():
     rows = "".join(row(p) for p in POLL_ROWS)
     body = (
         hero("Polling monitor", "BC election polls 2026: before the October 24 vote",
-             "Recent polls differ: Angus Reid's September 22–24 survey shows a Conservative lead, while Liaison's September 21–22 survey shows an NDP lead. Field dates, methods and voter groups matter. Polls measure opinion at one point in time; they are not forecasts or election results.")
+             "Liaison's September 26–27 survey puts the Conservatives at 40% and NDP at 39% among decided and leaning voters. Angus Reid's September 22–24 survey had the Conservatives ahead 43% to 35%. Field dates and methods matter; polls are not forecasts or election results.")
         + '<section class="section"><div class="wrap"><h2>Vote intention (decided or decided and leaning voters)</h2><div class="tablewrap"><table><thead><tr><th>Pollster</th><th>Field dates</th><th>Sample</th><th>NDP</th><th>Cons.</th><th>Green</th><th>CentreBC</th><th>OneBC</th><th>Notes</th></tr></thead><tbody>'
         + rows
-        + f'</tbody></table></div><p class="source-note">Sources: {a("angus_sep24","Angus Reid (Sept 24)")}, {a("liaison_sep23","Liaison Strategies")}, {a("angus","Angus Reid (Sept 17)")}, {a("ipsos","Ipsos")}, {a("research","Research Co.")}, {a("leger_jun","Leger (June)")} and {a("leger","Leger (April)")}. The first two surveys cover the start of the campaign; the older polls predate the September 22 call. Party figures are for decided or decided and leaning voters as noted in each row.</p></div></section>'
+        + f'</tbody></table></div><p class="source-note">Sources: {a("liaison_sep29","Liaison Strategies (Sept 29)")}, {a("angus_sep24","Angus Reid (Sept 24)")}, {a("liaison_sep23","Liaison Strategies (Sept 23)")}, {a("angus","Angus Reid (Sept 17)")}, {a("ipsos","Ipsos")}, {a("research","Research Co.")}, {a("leger_jun","Leger (June)")} and {a("leger","Leger (April)")}. Party figures are for decided or decided and leaning voters as noted in each row. Earlier surveys are retained for context.</p></div></section>'
         + '<section class="section soft"><div class="wrap"><h2>Leader ratings</h2><div class="grid">'
         '<div class="card"><div class="kicker">Ipsos · favourable / unfavourable</div><p>David Eby (NDP): <strong>41% / 30%</strong><br>Kerry-Lynne Findlay (Cons.): <strong>17% / 46%</strong><br>Emily Lowan (Green): 12% / 15%<br>Dallas Brodie (OneBC): 10% / 24%<br>Mike Bernier (then CentreBC leader): 9% / 19%</p></div>'
         '<div class="card"><div class="kicker">Research Co. · approval</div><p>Eby: <strong>49%</strong><br>Lowan: 38%<br>Findlay: 34%<br>Bernier (then CentreBC leader): 24%<br>Brodie: 18%</p></div>'
         f'<div class="card"><div class="kicker">Angus Reid · Sep 8–15, released Sep 17</div><p>Eby approval <strong>41%</strong>. 51% say they feel like a “political orphan” with no party to enthusiastically support. Full tables in the {a("angus","Angus Reid release")}.</p></div>'
         "</div><p class=\"source-note\">These are three different measures (favourability, approval, and a party-support sentiment) from different firms; they are not directly comparable. All were taken before CentreBC named Peter Milobar leader (Sept 18), before Kerry-Lynne Findlay resigned as Conservative leader (Sept 20) and before Lorne Doerkson became interim Conservative leader (Sept 21); their ratings refer to Bernier and Findlay respectively. See <a href=\"/bc-party-leaders\">current party leaders</a>.</p></div></section>"
         + '<section class="section"><div class="wrap"><h2>How to read these polls</h2><ul>'
-        "<li><strong>Recent results differ.</strong> Angus Reid (Sept 22–24) has the Conservatives ahead 43–35; Liaison (Sept 21–22) has the NDP ahead 41–36. The polls used different methods and were fielded as the parties changed leadership and caucus affiliations. See <a href=\"/bc-party-leaders\">party leaders</a>.</li>"
+        "<li><strong>Results change over time.</strong> Liaison (Sept 26–27) has Conservatives 40% and NDP 39%, after reporting NDP 41% and Conservatives 36% (Sept 21–22). Angus Reid (Sept 22–24) reported Conservatives 43% and NDP 35%. The surveys used different methods and were fielded as party leadership and caucus affiliations changed. See <a href=\"/bc-party-leaders\">party leaders</a>.</li>"
         "<li><strong>Undecided voters matter.</strong> Ipsos reports 28% undecided or with no preference; the table shows decided voters only.</li>"
         "<li><strong>Regions matter more than the provincial number.</strong> Research Co. found the Conservatives dominant in Northern BC and the Fraser Valley and Metro Vancouver tight, while the NDP leads on Vancouver Island. BC uses first-past-the-post in 93 ridings, so seats depend on where votes fall.</li>"
         "<li><strong>New parties can split the vote.</strong> CentreBC and OneBC are new parties that now appear alongside the Greens in polling (Ipsos describes them as two new parties).</li>"
         "<li><strong>Margins of error.</strong> A ±3.1 to ±4.0 point margin means a close race can be within combined uncertainty for a single poll.</li></ul>"
         '<p class="source-note">Polls are added with pollster, field dates, sample and source link. Different surveys can disagree; none is an election result. See <a href="/bc-election-2026">the election guide</a> for status and <a href="/sources">our sourcing rules</a>.</p></div></section>'
     )
-    title = "BC Election Polls 2026: September 24 Update"
-    desc = "Latest BC election polls: Angus Reid (Sept 22–24) shows Conservatives 43%, NDP 35%; Liaison (Sept 21–22) shows NDP 41%, Conservatives 36%. Sources and methods."
+    title = "BC Election Polls 2026: September 29 Update"
+    desc = "Latest BC election poll: Liaison (Sept 26–27) shows Conservatives 40%, NDP 39%. Compare Angus Reid and earlier surveys with field dates and methods."
     schemas = [article_schema(title, desc, "en", "/bc-election-polls"),
                breadcrumb("en", [("Home", "/"), ("BC Election Polls", "/bc-election-polls")])]
     return render("en", "bc-election-polls", title, desc, body, GROUPS["polls"], schemas)
@@ -387,9 +401,9 @@ HOW_FAQ_EN = [
     ("Do I need ID to vote in BC?",
      f"Yes. You show one document with your name, photo and address, or two documents with your name (at least one with your current address), or have someone vouch for you. See the full list at {a('ebc_id','Elections BC voter ID')}."),
     ("Can I vote by mail in BC?",
-     f"Yes. Elections BC says vote by mail is available to all voters. The package must reach Elections BC before 8 p.m. Pacific time on Final Voting Day ({a('ebc_ways','ways to vote')})."),
+     f"Yes. Request a package online or by phone by October 18. The package must reach Elections BC before 8 p.m. Pacific time on October 24 ({a('ebc_2026_ways','ways to vote')})."),
     ("Can I vote before voting day in BC?",
-     f"Yes. Elections BC provides six days of advance voting (8 a.m. to 8 p.m. local time), and you can vote at any district electoral office from the day an election is called until 4 p.m. on Final Voting Day ({a('ebc_ways','ways to vote')})."),
+     f"Yes. Advance voting is October 16–21 (8 a.m. to 8 p.m. local time). District electoral offices accept votes after opening until 4 p.m. Pacific time on October 24 ({a('ebc_2026_ways','ways to vote')})."),
     ("What are the voting hours on Final Voting Day?",
      "Voting places are open from 8 a.m. to 8 p.m. Pacific time on Final Voting Day, according to Elections BC."),
 ]
@@ -403,7 +417,7 @@ def page_how_en():
         f"<p>To vote in a BC provincial election you must be a Canadian citizen, 18 or older, and a BC resident for at least six months ({a('ebc_who','Elections BC')}).</p>"
         f"<h2>Register to vote</h2><p>Register or update your details by October 1 to receive a Where to Vote card. Use {a('ebc_reg','Elections BC online voter registration')} or call 1-800-661-8683. Voting places are still being confirmed; check the {a('ebc_2026','official election page')} for updates.</p></div></section>"
         '<section class="section soft"><div class="wrap"><h2>What ID do I need?</h2>'
-        f"<p>Elections BC accepts any one of three approaches ({a('ebc_id','full rules')}):</p><ol>"
+        f"<p>Elections BC accepts any one of three approaches ({a('ebc_2026_id','full rules')}):</p><ol>"
         "<li><strong>One document</strong> showing your name, photo and address: for example a BC driver’s licence, BC Identification Card, or BC Services Card with photo.</li>"
         "<li><strong>Two documents</strong> showing your name, with at least one showing your current address: for example a passport, birth certificate, utility bill, bank statement or lease. Electronic versions such as e-bills are acceptable.</li>"
         "<li><strong>Voter vouching</strong>: a registered voter or approved authority can vouch for your identity, with the required declarations.</li></ol></div></section>"
@@ -411,7 +425,7 @@ def page_how_en():
         "<li><strong>Final Voting Day:</strong> 8 a.m. to 8 p.m. Pacific time.</li>"
         "<li><strong>Advance voting:</strong> six days, 8 a.m. to 8 p.m. local time, open to all eligible voters.</li>"
         "<li><strong>Vote by mail:</strong> request online or by phone by October 18. Elections BC must receive the completed package by 8 p.m. Pacific time October 24.</li>"
-        "<li><strong>District electoral office:</strong> from when an election is called until 4 p.m. on Final Voting Day.</li>"
+        "<li><strong>District electoral office:</strong> from when an office opens until 4 p.m. Pacific time on October 24; offices are closed September 30 and October 12.</li>"
         "<li><strong>Assisted telephone voting</strong> and <strong>mobile or special voting</strong> (hospitals, long-term care) for those who qualify.</li></ul>"
         f"<p class=\"source-note\">Source: {a('ebc_2026_ways','Elections BC — 2026 ways to vote')}. Key dates are on the <a href=\"/bc-election-2026\">BC election 2026 guide</a>.</p></div></section>"
         + faq_html(HOW_FAQ_EN, "Voting FAQ")
@@ -538,7 +552,7 @@ def page_home_en():
         + '<section class="section"><div class="wrap"><div class="grid">'
         '<div class="card"><div class="kicker">Election called</div><div class="big">Sep 22, 2026</div><p class="muted">Premier Eby called the election, citing the U.S. trade war.</p></div>'
         '<div class="card"><div class="kicker">Voting day</div><div class="big">Oct 24, 2026</div><p class="muted">Advance voting Oct 16–21; nominations close Oct 3. <a href="/bc-election-2026">Key dates</a></p></div>'
-        '<div class="card"><div class="kicker">Latest poll · Angus Reid, Sep 22–24</div><div class="big">Cons. 43 · NDP 35</div><p class="muted">Decided/leaning voters. Liaison (Sep 21–22) found NDP 41 · Cons. 36. <a href="/bc-election-polls">Compare polls</a></p></div>'
+        '<div class="card"><div class="kicker">Latest poll · Liaison, Sep 26–27</div><div class="big">Cons. 40 · NDP 39</div><p class="muted">Decided/leaning voters. Angus Reid (Sep 22–24) found Cons. 43 · NDP 35. <a href="/bc-election-polls">Compare polls</a></p></div>'
         "</div></div></section>"
         '<section class="section soft"><div class="wrap"><h2>Track the 2026 BC election</h2><div class="linkgrid">'
         '<a class="linkcard" href="/bc-election-2026"><strong>BC Election 2026 Guide</strong><span>Key dates, why Eby called it, and the latest news.</span></a>'
@@ -1499,12 +1513,13 @@ def sitemap():
     def loc(l, s):
         return SITE + (url_for(l, s) if s else "/")
 
+    # Only advance lastmod for pages whose visible content was reviewed or changed.
     entries = []
     for s in EN_ONLY:
-        entries.append(f"<url><loc>{loc('en', s)}</loc><lastmod>{TODAY}</lastmod></url>")
+        entries.append(f"<url><loc>{loc('en', s)}</loc><lastmod>{reviewed(s)}</lastmod></url>")
     for g in list(GROUPS.values()) + list(ISSUE_GROUPS.values()) + [{"en": "ridings/" + r["slug"]} for r in RIDINGS]:
         s = g["en"]
-        entries.append(f'<url><loc>{loc("en", s)}</loc><lastmod>{TODAY}</lastmod></url>')
+        entries.append(f'<url><loc>{loc("en", s)}</loc><lastmod>{reviewed(s)}</lastmod></url>')
     xml = (
         '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
         'xmlns:xhtml="http://www.w3.org/1999/xhtml">\n' + "\n".join(entries) + "\n</urlset>\n"
