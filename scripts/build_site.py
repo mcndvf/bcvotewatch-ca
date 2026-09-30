@@ -21,7 +21,9 @@ TODAY_EN = "September 29, 2026"
 TODAY_ZH = "2026年9月25日"
 LAST_REVIEW = {"": TODAY, "bc-election-2026": TODAY,
                "bc-election-polls": TODAY, "how-to-vote-bc": TODAY,
-               "bc-election-party-poll-2026": "2026-09-26"}
+               "bc-election-party-poll-2026": "2026-09-26",
+               "bc-election-ridings": TODAY,
+               **{f"ridings/{slug}": TODAY for slug in ("vancouver", "surrey", "burnaby", "richmond", "greater-victoria", "kelowna")}}
 
 
 def reviewed(slug):
@@ -1019,6 +1021,70 @@ def pname(lang, party):
     return PARTY_EN.get(party, party) if lang == "en" else PARTY_ZH.get(party, party)
 
 
+# City hubs: BC's electoral districts are named for the city/area they sit in, so grouping
+# by name prefix (plus a few well-known Greater Victoria ridings) needs no data beyond
+# data/ridings-2024.json. Covers the six largest population centres only; add more once
+# there is a reliable riding-to-city source for the rest of the province.
+CITIES = [
+    ("vancouver", "Vancouver", None,
+     ["Vancouver-Fraserview", "Vancouver-Hastings", "Vancouver-Kensington", "Vancouver-Langara",
+      "Vancouver-Little Mountain", "Vancouver-Point Grey", "Vancouver-Quilchena", "Vancouver-Renfrew",
+      "Vancouver-South Granville", "Vancouver-Strathcona", "Vancouver-West End", "Vancouver-Yaletown"]),
+    ("surrey", "Surrey", None,
+     ["Surrey City Centre", "Surrey-Cloverdale", "Surrey-Fleetwood", "Surrey-Guildford", "Surrey-Newton",
+      "Surrey North", "Surrey-Panorama", "Surrey-Serpentine River", "Surrey South", "Surrey-White Rock"]),
+    ("burnaby", "Burnaby", "Burnaby-New Westminster spans both Burnaby and New Westminster; it is included here.",
+     ["Burnaby Centre", "Burnaby East", "Burnaby-New Westminster", "Burnaby North", "Burnaby South-Metrotown"]),
+    ("richmond", "Richmond", None,
+     ["Richmond-Bridgeport", "Richmond Centre", "Richmond-Queensborough", "Richmond-Steveston"]),
+    ("greater-victoria", "Greater Victoria", None,
+     ["Esquimalt-Colwood", "Juan de Fuca-Malahat", "Langford-Highlands", "Oak Bay-Gordon Head",
+      "Saanich North and the Islands", "Saanich South", "Victoria-Beacon Hill", "Victoria-Swan Lake"]),
+    ("kelowna", "Kelowna", "West Kelowna-Peachland is included here; it covers West Kelowna and Peachland.",
+     ["Kelowna Centre", "Kelowna-Lake Country-Coldstream", "Kelowna-Mission", "West Kelowna-Peachland"]),
+]
+CITY_OF = {n: (slug, name) for slug, name, _note, names in CITIES for n in names}
+
+
+def page_city(lang, slug, name, note, riding_names):
+    en = lang == "en"
+    members = [r for r in RIDINGS if r["name"] in riding_names]
+    assert len(members) == len(riding_names), (slug, len(members), len(riding_names))
+    seats = {}
+    for r in members:
+        seats[r["winner"]["party"]] = seats.get(r["winner"]["party"], 0) + 1
+    closest = min(members, key=lambda r: r["margin_pts"])
+    seat_bits = ", ".join(f"{pname(lang, p)} {c}" for p, c in sorted(seats.items(), key=lambda kv: -kv[1]))
+    rows = ""
+    for r in sorted(members, key=lambda r: r["name"]):
+        w = r["winner"]
+        rows += (f'<tr><td><a href="{url_for(lang, "ridings/" + r["slug"])}">{r["name"]}</a></td><td>{html.escape(w["name"])}</td>'
+                 f'<td>{pname(lang, w["party"])}</td><td>{r["margin"]:,} ({r["margin_pts"]:.2f})</td><td>{r["turnout"]:.2f}%</td></tr>')
+    th = "<th>Riding</th><th>2024 winner</th><th>Party</th><th>Margin: votes (pts)</th><th>Turnout</th>"
+    n = len(members)
+    lede = (f"{name} has {n} BC provincial ridings. In the October 19, 2024 election they split {seat_bits}. "
+            f"The closest of the {n} was {closest['name']}, decided by {closest['margin']:,} votes ({closest['margin_pts']:.2f} points). "
+            "Each riding below links to its full 2024 result and how it fits into the October 24, 2026 election.")
+    faq = [
+        (f"How many BC provincial ridings are in {name}?", f"{name} has {n} provincial electoral districts. {note or ''}".strip()),
+        (f"Which party won the most seats in {name} in 2024?", f"{seat_bits} in the October 19, 2024 BC election. Source: Elections BC Statement of Votes."),
+        (f"What was the closest riding in {name} in 2024?", f"{closest['name']}, where {closest['winner']['name']} ({pname(lang, closest['winner']['party'])}) won by {closest['margin']:,} votes ({closest['margin_pts']:.2f} percentage points)."),
+    ]
+    body = (
+        hero("BC provincial ridings", f"{name} ridings: 2024 results", lede)
+        + f'<section class="section"><div class="wrap"><h2>{name}\'s {n} ridings</h2><div class="tablewrap"><table><thead><tr>{th}</tr></thead><tbody>{rows}</tbody></table></div>'
+        + f"<p class=\"source-note\">Source: {a('sov','Elections BC Statement of Votes')}, October 19, 2024. {note or ''}</p></div></section>"
+        + '<section class="section"><div class="wrap"><p class="source-note">More: <a href="/bc-election-ridings">all 93 BC ridings</a> · <a href="/bc-election-results-2024">2024 results</a> · <a href="/bc-election-2026">BC election 2026 guide</a> · <a href="/how-to-vote-bc">how to vote</a>.</p></div></section>'
+        + faq_html(faq, f"{name} ridings FAQ")
+    )
+    title = f"{name} Ridings: 2024 BC Election Results"
+    desc = f"{name}'s {n} BC provincial ridings: 2024 winners, party, margin and turnout for each, with links to full riding results."
+    path = url_for(lang, "ridings/" + slug)
+    crumbs = [("Home", "/"), ("BC Ridings", url_for(lang, "bc-election-ridings")), (name, path)]
+    schemas = [article_schema(title, desc, lang, path), breadcrumb(lang, crumbs), faq_schema(faq)]
+    return render(lang, "ridings/" + slug, title, desc, body, {"en": "ridings/" + slug}, schemas)
+
+
 def page_riding(lang, r):
     L = lambda s: conv(lang, s)
     en = lang == "en"
@@ -1056,6 +1122,8 @@ def page_riding(lang, r):
             (f"What was voter turnout in {n} in 2024?", f"{r['voted']:,} of {r['registered']:,} registered voters voted in {n}, a turnout of {r['turnout']:.2f}%, compared with {PROV_TURNOUT}% province-wide."),
             (f"How close was the race in {n}?", f"The winning margin was {r['margin']:,} votes ({r['margin_pts']:.2f} percentage points), the {ordinal(rank)} closest of BC's 93 ridings."),
         ]
+        city = CITY_OF.get(n)
+        city_link = f' · <a href="{url_for(lang, "ridings/" + city[0])}">{city[1]} ridings</a>' if city else ""
         body = (
             hero("BC provincial riding", f"{n}", lede)
             + f'<section class="section"><div class="wrap"><h2>2024 election results in {n}</h2><div class="tablewrap"><table><thead><tr>{head_th}</tr></thead><tbody>{rows}</tbody></table></div>'
@@ -1066,7 +1134,7 @@ def page_riding(lang, r):
             f'<div class="card"><div class="kicker">Turnout</div><div class="big">{r["turnout"]:.2f}%</div><p class="muted">{abs(diff):.2f} points {"above" if diff >= 0 else "below"} the province-wide {PROV_TURNOUT}%.</p></div>'
             "</div></div></section>"
             f'<section class="section"><div class="wrap"><h2>How close was it?</h2>{close}<h2>The seat after 2024</h2>{seat}'
-            f'<p>More: <a href="{hub}">all 93 BC ridings</a> · <a href="/bc-election-results-2024">2024 results</a> · <a href="/bc-election-polls">BC election polls</a> · <a href="/how-to-vote-bc">how to vote</a>.</p></div></section>'
+            f'<p>More: <a href="{hub}">all 93 BC ridings</a>{city_link} · <a href="/bc-election-results-2024">2024 results</a> · <a href="/bc-election-polls">BC election polls</a> · <a href="/how-to-vote-bc">how to vote</a>.</p></div></section>'
             + faq_html(faq, f"{n} FAQ")
         )
         title = f"{n} 2024 BC Election Results" if len(n) <= 17 else f"{n}: 2024 Results"
@@ -1146,6 +1214,9 @@ def page_ridings_hub(lang):
             f"<p class=\"source-note\">Election-night 2024 results from {a('sov','Elections BC')}; not the current standings of the Legislature (see <a href=\"/bc-party-leaders\">party leaders</a>). Maps and boundaries: {a('ebc_maps','Elections BC')}.</p></div></section>"
             '<section class="section soft"><div class="wrap"><h2>The 10 closest ridings in 2024</h2><p>These are the ridings a small shift in votes would have changed.</p>'
             f'<div class="tablewrap"><table><thead><tr>{th_close}</tr></thead><tbody>{close_rows}</tbody></table></div></div></section>'
+            '<section class="section"><div class="wrap"><h2>Ridings by city</h2><div class="linkgrid">'
+            + "".join(f'<a class="linkcard" href="/ridings/{slug}"><strong>{cname}</strong><span>{len(names)} ridings</span></a>' for slug, cname, _note, names in CITIES)
+            + '</div></div></section>'
             '<section class="section"><div class="wrap"><h2>All 93 BC ridings</h2>'
             '<p><input type="search" data-filter="#riding-table" placeholder="Filter by riding, candidate or party" aria-label="Filter ridings" style="width:100%;max-width:420px;padding:10px 12px;border:1px solid var(--line);border-radius:8px;font:inherit"></p>'
             f'<div class="tablewrap"><table id="riding-table"><thead><tr>{th_all}</tr></thead><tbody>{all_rows}</tbody></table></div>'
@@ -1517,7 +1588,7 @@ def sitemap():
     entries = []
     for s in EN_ONLY:
         entries.append(f"<url><loc>{loc('en', s)}</loc><lastmod>{reviewed(s)}</lastmod></url>")
-    for g in list(GROUPS.values()) + list(ISSUE_GROUPS.values()) + [{"en": "ridings/" + r["slug"]} for r in RIDINGS]:
+    for g in list(GROUPS.values()) + list(ISSUE_GROUPS.values()) + [{"en": "ridings/" + r["slug"]} for r in RIDINGS] + [{"en": "ridings/" + slug} for slug, _n, _note, _names in CITIES]:
         s = g["en"]
         entries.append(f'<url><loc>{loc("en", s)}</loc><lastmod>{reviewed(s)}</lastmod></url>')
     xml = (
@@ -1557,5 +1628,7 @@ if __name__ == "__main__":
         page_issue("en", k)
     for r in RIDINGS:
         page_riding("en", r)
+    for slug, name, note, names in CITIES:
+        page_city("en", slug, name, note, names)
     patch_static()
     print("sitemap urls:", sitemap())
