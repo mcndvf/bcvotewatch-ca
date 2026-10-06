@@ -51,8 +51,9 @@
   const field = (name, title, list, required = false) => `<fieldset class="survey-field"><legend>${escape(title)} <span class="survey-requirement">${required ? 'Required' : 'Optional'}</span></legend>${radios(name,list,required)}</fieldset>`;
   const issueField = `<fieldset class="survey-field"><legend>${richmond ? 'Which three Richmond issues are most important to you?':'Which three issues are most important to you when deciding how to vote?'}</legend><p>Optional — choose up to 3. <span id="issue-count">0</span>/3 selected.</p><div class="survey-options survey-issues">${shuffled(issues).map(([id,label]) => `<label class="survey-option"><input type="checkbox" name="issues" value="${id}"> ${escape(label)}</label>`).join('')}</div></fieldset>`;
   const method = `<details class="survey-method"><summary>Methodology</summary><p>Recruitment: self-selected website visitors. Sampling: a non-probability, self-selected reader sample. No demographic weighting is currently applied. Browser token/cookie and hashed IP checks discourage duplicate submissions; eligibility is self-reported. Five core fields are required for inclusion in the structured poll: eligibility, current choice, vote certainty, likelihood to vote, and past vote/turnout. All other questions are optional. Likely voters are eligible respondents with a turnout score of 8–10; this is a transparent subset, not a scientific model. The historical quick poll and structured survey are separate datasets. These results are not an official poll, a scientific poll, or an election forecast.</p></details>`;
-  root.innerHTML = `<h2>Help make the survey more informative — about 60 seconds</h2><p>5 core questions are required. The remaining questions are optional and help us understand the sample.</p>
+  root.innerHTML = `<div id="survey-results" tabindex="-1" hidden><h2>Structured survey results</h2><p id="survey-done" role="status"></p><div class="scope-tabs" role="tablist" aria-label="Structured survey respondent group"><button type="button" class="survey-tab" data-scope="all" aria-pressed="true">All respondents</button><button type="button" class="survey-tab" data-scope="eligible" aria-pressed="false">Eligible respondents</button><button type="button" class="survey-tab" data-scope="likely" aria-pressed="false">Likely voters</button></div><p id="survey-total"></p><div id="survey-breakdowns"></div><p>Likely voters means self-reported eligible respondents with a turnout score of 8–10. This is a transparent reader-sample subset, not a scientific likely-voter model.</p></div>
     <form id="structured-form">
+    <h2>Help make the survey more informative — about 60 seconds</h2><p>5 core questions are required. The remaining questions are optional and help us understand the sample.</p>
     <h3 class="survey-section-title">Core questions — required</h3>
     ${field('eligibility',richmond?'Are you eligible to vote in the Richmond municipal election?':'Are you eligible to vote in the October 24, 2026 BC provincial election?',eligibility,true)}
     ${field('choice',richmond?'If the Richmond election were held today, who would you choose for mayor?':"If the BC provincial election were held today, which party's candidate in your electoral district would you be most likely to support?",choices,true)}
@@ -67,8 +68,7 @@
     ${field('age','Your age group',ages)}${field('gender','Your gender',genders)}
     ${richmond?'':field('education','Your highest completed education',education)}
     ${richmond?'<div id="survey-turnstile"></div>':''}
-    <p id="survey-error" class="poll-msg" role="alert" hidden></p><button class="poll-submit" id="survey-submit" type="submit">Submit voter survey</button></form>
-    <div id="survey-results" hidden><p id="survey-done"></p><div class="scope-tabs" role="tablist" aria-label="Structured survey respondent group"><button type="button" class="survey-tab" data-scope="all" aria-pressed="true">All respondents</button><button type="button" class="survey-tab" data-scope="eligible" aria-pressed="false">Eligible respondents</button><button type="button" class="survey-tab" data-scope="likely" aria-pressed="false">Likely voters</button></div><p id="survey-total"></p><div id="survey-breakdowns"></div><p>Likely voters means self-reported eligible respondents with a turnout score of 8–10. This is a transparent reader-sample subset, not a scientific likely-voter model.</p></div>${method}`
+    <p id="survey-error" class="poll-msg" role="alert" hidden></p><button class="poll-submit" id="survey-submit" type="submit">Submit voter survey</button></form>${method}`
   translateStatic(root);
   if (localeIndex >= 0) root.querySelector('#survey-results .scope-tabs').setAttribute('aria-label', t('Structured survey respondent group'));
   const form = root.querySelector('#structured-form');
@@ -128,9 +128,14 @@
   root.querySelectorAll('.survey-tab').forEach(btn => btn.addEventListener('click', () => { activeScope=btn.dataset.scope;render(); }));
   function showSurveyResults(message) {
     form.hidden = true;
-    root.querySelector('#survey-results').hidden = false;
+    const results = root.querySelector('#survey-results');
+    results.hidden = false;
     root.querySelector('#survey-done').textContent = t(message);
     render();
+    requestAnimationFrame(() => {
+      results.focus({ preventScroll: true });
+      results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
   }
   let turnstileToken = '';
   let widgetId = null;
@@ -150,6 +155,8 @@
       const data = await response.json();
       if (data.ok) {
         survey = data.survey;
+        root.querySelector('#survey-results').hidden = false;
+        render();
         if (data.alreadySubmitted) { showSurveyResults('You have already submitted this structured survey.'); return; }
       }
     } catch (_) { /* The form remains available when a temporary GET fails. */ }
