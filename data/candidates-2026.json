@@ -1,0 +1,1781 @@
+{
+  "source": "https://elections.bc.ca/2026election/2026-provincial-general-election-candidates.csv",
+  "checked": "2026-10-07",
+  "candidates": [
+    {
+      "district": "Abbotsford-Mission",
+      "name": "Pam Alexis",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Abbotsford-Mission",
+      "name": "Virender Dass",
+      "party": "OneBC"
+    },
+    {
+      "district": "Abbotsford-Mission",
+      "name": "Lakhwinder Jhaj",
+      "party": "CentreBC"
+    },
+    {
+      "district": "Abbotsford-Mission",
+      "name": "Darryl Kropp",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Abbotsford-Mission",
+      "name": "Jeff Monds",
+      "party": "Libertarian"
+    },
+    {
+      "district": "Abbotsford South",
+      "name": "Leah Ballantyne",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Abbotsford South",
+      "name": "Bruce Banman",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Abbotsford South",
+      "name": "Robin Roy",
+      "party": "OneBC"
+    },
+    {
+      "district": "Abbotsford West",
+      "name": "Gurpreet Chahal",
+      "party": "CentreBC"
+    },
+    {
+      "district": "Abbotsford West",
+      "name": "Jules Côté",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Abbotsford West",
+      "name": "Korky Neufeld",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Boundary-Similkameen",
+      "name": "Keith Pomeroy",
+      "party": "OneBC"
+    },
+    {
+      "district": "Boundary-Similkameen",
+      "name": "Roly Russell",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Boundary-Similkameen",
+      "name": "Donegal Wilson",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Bulkley Valley-Stikine",
+      "name": "Frankie Abel",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Bulkley Valley-Stikine",
+      "name": "Ed Ewald",
+      "party": "Christian Heritage Party of BC"
+    },
+    {
+      "district": "Bulkley Valley-Stikine",
+      "name": "Sharon Hartwell",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Burnaby Centre",
+      "name": "Joshua Domnich",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Burnaby Centre",
+      "name": "Vikas Gautam",
+      "party": "CentreBC"
+    },
+    {
+      "district": "Burnaby Centre",
+      "name": "Anne Kang",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Burnaby Centre",
+      "name": "Shila Taheri",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Burnaby East",
+      "name": "Rohini Reah Arora",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Burnaby East",
+      "name": "De Ding",
+      "party": "OneBC"
+    },
+    {
+      "district": "Burnaby East",
+      "name": "Javad Shushtarian",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Burnaby East",
+      "name": "Peter Si",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Burnaby-New Westminster",
+      "name": "Raj Chouhan",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Burnaby-New Westminster",
+      "name": "Greg DePaco",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Burnaby-New Westminster",
+      "name": "Joe Latam",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Burnaby North",
+      "name": "Simon Chandler",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Burnaby North",
+      "name": "Maddy Kennedy-Parrott",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Burnaby North",
+      "name": "Janet Routledge",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Burnaby South-Metrotown",
+      "name": "Paul Choi",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Burnaby South-Metrotown",
+      "name": "Bryan Fockler",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Burnaby South-Metrotown",
+      "name": "Andrew Rose",
+      "party": "OneBC"
+    },
+    {
+      "district": "Burnaby South-Metrotown",
+      "name": "David Xie",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Cariboo-Chilcotin",
+      "name": "Kathryn Askew",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Cariboo-Chilcotin",
+      "name": "Lorne Doerkson",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Cariboo-Chilcotin",
+      "name": "Douglas Gook",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Chilliwack-Cultus Lake",
+      "name": "Kelli Paddon",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Chilliwack-Cultus Lake",
+      "name": "A'aliya Warbus",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Chilliwack North",
+      "name": "Dan Grice",
+      "party": "CentreBC"
+    },
+    {
+      "district": "Chilliwack North",
+      "name": "Heather Maahs",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Chilliwack North",
+      "name": "Adila Shaukat",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Columbia River-Revelstoke",
+      "name": "Andrea Dunlop",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Columbia River-Revelstoke",
+      "name": "Scott McInnis",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Columbia River-Revelstoke",
+      "name": "Rana Nelson",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Coquitlam-Burke Mountain",
+      "name": "Kaden Mann",
+      "party": "CentreBC"
+    },
+    {
+      "district": "Coquitlam-Burke Mountain",
+      "name": "Valerie Morrison",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Coquitlam-Burke Mountain",
+      "name": "Ryan Peterson",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Coquitlam-Burke Mountain",
+      "name": "Jodie Wickens",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Coquitlam-Maillardville",
+      "name": "Jennifer Blatherwick",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Coquitlam-Maillardville",
+      "name": "Matt Liang",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Coquitlam-Maillardville",
+      "name": "Nicola Spurling",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Courtenay-Comox",
+      "name": "Will Cole-Hamilton",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Courtenay-Comox",
+      "name": "Jason Cook",
+      "party": "CentreBC"
+    },
+    {
+      "district": "Courtenay-Comox",
+      "name": "Brennan Day",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Courtenay-Comox",
+      "name": "Jay Van Oostdam",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Cowichan Valley",
+      "name": "Bert Chen",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Cowichan Valley",
+      "name": "James Chumsa",
+      "party": "Communist Party of BC"
+    },
+    {
+      "district": "Cowichan Valley",
+      "name": "Justin Douglas",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Cowichan Valley",
+      "name": "Debra Toporowski",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Delta North",
+      "name": "Monica Mohan",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Delta North",
+      "name": "Kuldeep Rangi",
+      "party": "CentreBC"
+    },
+    {
+      "district": "Delta North",
+      "name": "Todd Schierling",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Delta South",
+      "name": "Skadi Green",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Delta South",
+      "name": "Jason McCormick",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Delta South",
+      "name": "Jim McMurtry",
+      "party": "OneBC"
+    },
+    {
+      "district": "Delta South",
+      "name": "Ian Paton",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Esquimalt-Colwood",
+      "name": "Sidney Coles",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Esquimalt-Colwood",
+      "name": "Dave Johnston",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Esquimalt-Colwood",
+      "name": "Darlene Rotchford",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Esquimalt-Colwood",
+      "name": "Sid Tobias",
+      "party": "CentreBC"
+    },
+    {
+      "district": "Fraser-Nicola",
+      "name": "Jason Leboe",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Fraser-Nicola",
+      "name": "Tony Luck",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Fraser-Nicola",
+      "name": "Patrick Michell",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Juan de Fuca-Malahat",
+      "name": "Jeff Brown",
+      "party": "Christian Heritage Party of BC"
+    },
+    {
+      "district": "Juan de Fuca-Malahat",
+      "name": "David Evans",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Juan de Fuca-Malahat",
+      "name": "Shane Friesen",
+      "party": "OneBC"
+    },
+    {
+      "district": "Juan de Fuca-Malahat",
+      "name": "Mike Hicks",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Juan de Fuca-Malahat",
+      "name": "Dana Lajeunesse",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Kamloops Centre",
+      "name": "Annelise Beach",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Kamloops Centre",
+      "name": "Rocky McAfee",
+      "party": "OneBC"
+    },
+    {
+      "district": "Kamloops Centre",
+      "name": "Peter Milobar",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Kamloops Centre",
+      "name": "Thaelo Proctor",
+      "party": "Independent"
+    },
+    {
+      "district": "Kamloops Centre",
+      "name": "Mike Wisla",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Kamloops-North Thompson",
+      "name": "Kory Clark",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Kamloops-North Thompson",
+      "name": "Deborah Friesen",
+      "party": "OneBC"
+    },
+    {
+      "district": "Kamloops-North Thompson",
+      "name": "Ward Stamer",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Kelowna Centre",
+      "name": "Bill Desrosiers",
+      "party": "OneBC"
+    },
+    {
+      "district": "Kelowna Centre",
+      "name": "Kristina Loewen",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Kelowna Centre",
+      "name": "Loyal Wooldridge",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Kelowna-Lake Country-Coldstream",
+      "name": "Binny Boparai",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Kelowna-Lake Country-Coldstream",
+      "name": "Carter Mochinski",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Kelowna-Lake Country-Coldstream",
+      "name": "Pavneet Singh",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Kelowna-Lake Country-Coldstream",
+      "name": "Alexandra Wright",
+      "party": "OneBC"
+    },
+    {
+      "district": "Kelowna-Mission",
+      "name": "Gavin Dew",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Kelowna-Mission",
+      "name": "Saoirse MacKinnon",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Kelowna-Mission",
+      "name": "Abraham Nordine",
+      "party": "OneBC"
+    },
+    {
+      "district": "Kelowna-Mission",
+      "name": "Miriam Rycroft",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Kootenay Central",
+      "name": "Brittny Anderson",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Kootenay Central",
+      "name": "Nicole Charlwood",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Kootenay Central",
+      "name": "Hunter Corrigal",
+      "party": "OneBC"
+    },
+    {
+      "district": "Kootenay Central",
+      "name": "Gordon Skulnec",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Kootenay-Monashee",
+      "name": "Stephen Hill",
+      "party": "OneBC"
+    },
+    {
+      "district": "Kootenay-Monashee",
+      "name": "Connie Larochelle",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Kootenay-Monashee",
+      "name": "Warren Mirko",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Kootenay-Monashee",
+      "name": "Steve Morissette",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Kootenay-Rockies",
+      "name": "Norma Blissett",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Kootenay-Rockies",
+      "name": "Pete Davis",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Kootenay-Rockies",
+      "name": "Keenan Dennehy",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Kootenay-Rockies",
+      "name": "Paul Heywood",
+      "party": "CentreBC"
+    },
+    {
+      "district": "Kootenay-Rockies",
+      "name": "AJ Wolfe",
+      "party": "OneBC"
+    },
+    {
+      "district": "Ladysmith-Oceanside",
+      "name": "Stephanie Higginson",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Ladysmith-Oceanside",
+      "name": "Kris McNichol",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Ladysmith-Oceanside",
+      "name": "Charlene Smylie",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Langford-Highlands",
+      "name": "Sean Flynn",
+      "party": "CentreBC"
+    },
+    {
+      "district": "Langford-Highlands",
+      "name": "Christian McCay",
+      "party": "Christian Heritage Party of BC"
+    },
+    {
+      "district": "Langford-Highlands",
+      "name": "Christopher Moon",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Langford-Highlands",
+      "name": "Ravi Parmar",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Langford-Highlands",
+      "name": "Cindy Scott",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Langford-Highlands",
+      "name": "Alex Thurlborn",
+      "party": "Independent"
+    },
+    {
+      "district": "Langley-Abbotsford",
+      "name": "Harman Bhangu",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Langley-Abbotsford",
+      "name": "Shelly Jan",
+      "party": "OneBC"
+    },
+    {
+      "district": "Langley-Abbotsford",
+      "name": "Alex Joehl",
+      "party": "Libertarian"
+    },
+    {
+      "district": "Langley-Abbotsford",
+      "name": "Erin Osborne",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Langley-Abbotsford",
+      "name": "Melissa Snazell",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Langley-Walnut Grove",
+      "name": "Holly Isaac",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Langley-Walnut Grove",
+      "name": "Sam Meyer",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Langley-Walnut Grove",
+      "name": "Kyle Stevenson",
+      "party": "CentreBC"
+    },
+    {
+      "district": "Langley-Walnut Grove",
+      "name": "Misty Van Popta",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Langley-Willowbrook",
+      "name": "Shubham Joshi",
+      "party": "OneBC"
+    },
+    {
+      "district": "Langley-Willowbrook",
+      "name": "Andrew Mercier",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Langley-Willowbrook",
+      "name": "Jody Toor",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Maple Ridge East",
+      "name": "Hudson Campbell",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Maple Ridge East",
+      "name": "Chris Hatchwell",
+      "party": "Independent"
+    },
+    {
+      "district": "Maple Ridge East",
+      "name": "Daniel Kite",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Maple Ridge East",
+      "name": "Lawrence Mok",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Maple Ridge-Pitt Meadows",
+      "name": "Lisa Beare",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Maple Ridge-Pitt Meadows",
+      "name": "Susan Einarsson",
+      "party": "OneBC"
+    },
+    {
+      "district": "Maple Ridge-Pitt Meadows",
+      "name": "Doug Morneau",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Maple Ridge-Pitt Meadows",
+      "name": "Jordan Simmons",
+      "party": "CentreBC"
+    },
+    {
+      "district": "Mid Island-Pacific Rim",
+      "name": "Joshua Dahling",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Mid Island-Pacific Rim",
+      "name": "Gracie MacDonald",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Mid Island-Pacific Rim",
+      "name": "Josie Osborne",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Nanaimo-Gabriola Island",
+      "name": "Mark MacDonald",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Nanaimo-Gabriola Island",
+      "name": "Sheila Malcolmson",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Nanaimo-Gabriola Island",
+      "name": "Anna Mary McKenzie",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Nanaimo-Lantzville",
+      "name": "George Anderson",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Nanaimo-Lantzville",
+      "name": "Kelsey Pringle",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Nanaimo-Lantzville",
+      "name": "Pepper Saltman",
+      "party": "Communist Party of BC"
+    },
+    {
+      "district": "Nanaimo-Lantzville",
+      "name": "Sharleen Weatherley",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Nechako Lakes",
+      "name": "Diane Black",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Nechako Lakes",
+      "name": "Jesse Gervais",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Nechako Lakes",
+      "name": "Clint Lambert",
+      "party": "Unaffiliated"
+    },
+    {
+      "district": "New Westminster-Coquitlam",
+      "name": "Maureen Curran",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "New Westminster-Coquitlam",
+      "name": "Michele Lau",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "New Westminster-Coquitlam",
+      "name": "Gerry Lenoski",
+      "party": "Unaffiliated"
+    },
+    {
+      "district": "New Westminster-Coquitlam",
+      "name": "Jennifer Whiteside",
+      "party": "BC NDP"
+    },
+    {
+      "district": "North Coast-Haida Gwaii",
+      "name": "Tamara Davidson",
+      "party": "BC NDP"
+    },
+    {
+      "district": "North Coast-Haida Gwaii",
+      "name": "Rodney Proskiw",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "North Coast-Haida Gwaii",
+      "name": "Francis Racy",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "North Island",
+      "name": "Anna Kindy",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "North Island",
+      "name": "Richard Lambert",
+      "party": "Independent"
+    },
+    {
+      "district": "North Island",
+      "name": "Sara Lopez",
+      "party": "BC NDP"
+    },
+    {
+      "district": "North Island",
+      "name": "Benjamin Olsson",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "North Vancouver-Lonsdale",
+      "name": "Joshua A Singer Johnson",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "North Vancouver-Lonsdale",
+      "name": "Bowinn Ma",
+      "party": "BC NDP"
+    },
+    {
+      "district": "North Vancouver-Lonsdale",
+      "name": "Trevor Withers",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "North Vancouver-Seymour",
+      "name": "Lynne Block",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "North Vancouver-Seymour",
+      "name": "Susie Chant",
+      "party": "BC NDP"
+    },
+    {
+      "district": "North Vancouver-Seymour",
+      "name": "Lori Climenhaga",
+      "party": "CentreBC"
+    },
+    {
+      "district": "North Vancouver-Seymour",
+      "name": "Ben Holt",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "North Vancouver-Seymour",
+      "name": "Frederick Thiele",
+      "party": "OneBC"
+    },
+    {
+      "district": "Oak Bay-Gordon Head",
+      "name": "Andrew Appleton",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Oak Bay-Gordon Head",
+      "name": "Diana Gibson",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Oak Bay-Gordon Head",
+      "name": "Stan Sipos",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Oak Bay-Gordon Head",
+      "name": "Andrew Weaver",
+      "party": "CentreBC"
+    },
+    {
+      "district": "Peace River North",
+      "name": "Jordan Kealy",
+      "party": "Independent"
+    },
+    {
+      "district": "Peace River North",
+      "name": "Curtis Whitford",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Peace River South",
+      "name": "Marsha Rose Dufresne",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Peace River South",
+      "name": "Larry Neufeld",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Peace River South",
+      "name": "Helen Scott",
+      "party": "Unaffiliated"
+    },
+    {
+      "district": "Penticton-Summerland",
+      "name": "Bradley Sean Bartsch",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Penticton-Summerland",
+      "name": "Warren Hamm",
+      "party": "OneBC"
+    },
+    {
+      "district": "Penticton-Summerland",
+      "name": "Tina Lee",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Penticton-Summerland",
+      "name": "Tracy St Claire",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Port Coquitlam",
+      "name": "Keenan Adams",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Port Coquitlam",
+      "name": "Lee-Ann Bates",
+      "party": "Unaffiliated"
+    },
+    {
+      "district": "Port Coquitlam",
+      "name": "Lewis C. Dahlby",
+      "party": "Libertarian"
+    },
+    {
+      "district": "Port Coquitlam",
+      "name": "Mike Farnworth",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Port Coquitlam",
+      "name": "Stephanie Hendy",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Port Moody-Burquitlam",
+      "name": "Wei Chou",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Port Moody-Burquitlam",
+      "name": "Rick Glumac",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Port Moody-Burquitlam",
+      "name": "John McEwen",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Port Moody-Burquitlam",
+      "name": "Freddy Rawji",
+      "party": "CentreBC"
+    },
+    {
+      "district": "Powell River-Sunshine Coast",
+      "name": "John Henderson",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Powell River-Sunshine Coast",
+      "name": "Griffin Leonard Lea",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Powell River-Sunshine Coast",
+      "name": "Randene Neill",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Prince George-Mackenzie",
+      "name": "Kiel Giddens",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Prince George-Mackenzie",
+      "name": "Ian McMahon",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Prince George-Mackenzie",
+      "name": "Teri Young",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Prince George-North Cariboo",
+      "name": "Denice Bardua",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Prince George-North Cariboo",
+      "name": "Sheldon Clare",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Prince George-North Cariboo",
+      "name": "Randy Thompson",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Prince George-Valemount",
+      "name": "Rosalyn Bird",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Prince George-Valemount",
+      "name": "Carol Bourque",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Prince George-Valemount",
+      "name": "Jodie Capling",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Prince George-Valemount",
+      "name": "Mitchell Lukoni",
+      "party": "OneBC"
+    },
+    {
+      "district": "Richmond-Bridgeport",
+      "name": "Linda Li",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Richmond-Bridgeport",
+      "name": "Teresa Wat",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Richmond Centre",
+      "name": "Lawrence Chen",
+      "party": "CWP"
+    },
+    {
+      "district": "Richmond Centre",
+      "name": "Calvin Dang",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Richmond Centre",
+      "name": "Sacha Peter",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Richmond Centre",
+      "name": "Henry Yao",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Richmond-Queensborough",
+      "name": "Luc Burns",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Richmond-Queensborough",
+      "name": "Dhar Grewal",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Richmond-Queensborough",
+      "name": "Steve Kooner",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Richmond-Steveston",
+      "name": "Robert Evans",
+      "party": "Independent"
+    },
+    {
+      "district": "Richmond-Steveston",
+      "name": "Bruce Kong",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Richmond-Steveston",
+      "name": "Barry Wosk",
+      "party": "CentreBC"
+    },
+    {
+      "district": "Richmond-Steveston",
+      "name": "Keenan Yang",
+      "party": "CWP"
+    },
+    {
+      "district": "Richmond-Steveston",
+      "name": "Gordon Zhang",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Saanich North and the Islands",
+      "name": "Kala Bryson",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Saanich North and the Islands",
+      "name": "Emily Lowan",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Saanich North and the Islands",
+      "name": "Richard Smith",
+      "party": "CentreBC"
+    },
+    {
+      "district": "Saanich North and the Islands",
+      "name": "Ryan Windsor",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Saanich South",
+      "name": "Lisa Lapointe",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Saanich South",
+      "name": "Cathie Ounsted",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Saanich South",
+      "name": "Richard Zussman",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Salmon Arm-Shuswap",
+      "name": "Gloria Morgan",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Salmon Arm-Shuswap",
+      "name": "Barbara Presch",
+      "party": "OneBC"
+    },
+    {
+      "district": "Salmon Arm-Shuswap",
+      "name": "Denise Reimer",
+      "party": "CentreBC"
+    },
+    {
+      "district": "Salmon Arm-Shuswap",
+      "name": "Jed Wiebe",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Salmon Arm-Shuswap",
+      "name": "David L Williams",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Skeena",
+      "name": "Nick Gottlieb",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Skeena",
+      "name": "Claire Rattée",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Skeena",
+      "name": "Larry Eugene Taylor",
+      "party": "OneBC"
+    },
+    {
+      "district": "Skeena",
+      "name": "Sarah Zimmerman",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Surrey City Centre",
+      "name": "Amna Shah",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Surrey City Centre",
+      "name": "Raman Sharma",
+      "party": "CentreBC"
+    },
+    {
+      "district": "Surrey City Centre",
+      "name": "Zeeshan Wahla",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Surrey City Centre",
+      "name": "Oliver Wildfong",
+      "party": "OneBC"
+    },
+    {
+      "district": "Surrey-Cloverdale",
+      "name": "Nicholas Cartmell",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Surrey-Cloverdale",
+      "name": "Sargy Chima",
+      "party": "CentreBC"
+    },
+    {
+      "district": "Surrey-Cloverdale",
+      "name": "Stephen Dooley",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Surrey-Cloverdale",
+      "name": "Travis Marchenski",
+      "party": "OneBC"
+    },
+    {
+      "district": "Surrey-Cloverdale",
+      "name": "Pat McCutcheon",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Surrey-Fleetwood",
+      "name": "Tim Binnema",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Surrey-Fleetwood",
+      "name": "Jagrup Brar",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Surrey-Fleetwood",
+      "name": "Paul Brar",
+      "party": "CentreBC"
+    },
+    {
+      "district": "Surrey-Fleetwood",
+      "name": "Carolyn Hofbauer",
+      "party": "OneBC"
+    },
+    {
+      "district": "Surrey-Fleetwood",
+      "name": "Garry Purewal",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Surrey-Guildford",
+      "name": "Garry Begg",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Surrey-Guildford",
+      "name": "Jodi Murphy",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Surrey-Guildford",
+      "name": "Garry Thind",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Surrey-Guildford",
+      "name": "James Yaroshuk",
+      "party": "Unaffiliated"
+    },
+    {
+      "district": "Surrey-Newton",
+      "name": "Harj Dhaliwal",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Surrey-Newton",
+      "name": "Harman Preet Singh",
+      "party": "CentreBC"
+    },
+    {
+      "district": "Surrey-Newton",
+      "name": "Jessie Sunner",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Surrey North",
+      "name": "Jag Bhandari",
+      "party": "Unaffiliated"
+    },
+    {
+      "district": "Surrey North",
+      "name": "Parm Bhandol",
+      "party": "CentreBC"
+    },
+    {
+      "district": "Surrey North",
+      "name": "Mandeep Singh Dhaliwal",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Surrey North",
+      "name": "Yudhbir Gill",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Surrey North",
+      "name": "Tanya Gupta",
+      "party": "OneBC"
+    },
+    {
+      "district": "Surrey North",
+      "name": "Sahib Thind",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Surrey-Panorama",
+      "name": "Manav Manro",
+      "party": "CentreBC"
+    },
+    {
+      "district": "Surrey-Panorama",
+      "name": "Nolen Scott",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Surrey-Panorama",
+      "name": "Jinny Sims",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Surrey-Panorama",
+      "name": "Bryan Tepper",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Surrey-Serpentine River",
+      "name": "Judy Higginbotham",
+      "party": "CentreBC"
+    },
+    {
+      "district": "Surrey-Serpentine River",
+      "name": "Todd Holowchak",
+      "party": "OneBC"
+    },
+    {
+      "district": "Surrey-Serpentine River",
+      "name": "Sikander Kang",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Surrey-Serpentine River",
+      "name": "Errol Povah",
+      "party": "Freedom Party of BC"
+    },
+    {
+      "district": "Surrey-Serpentine River",
+      "name": "Jessy Sahota",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Surrey South",
+      "name": "Denis R Hurtubise",
+      "party": "Unaffiliated"
+    },
+    {
+      "district": "Surrey South",
+      "name": "Megan Knight",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Surrey South",
+      "name": "Bill McConnell",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Surrey South",
+      "name": "Elenore Sturko",
+      "party": "CentreBC"
+    },
+    {
+      "district": "Surrey South",
+      "name": "Parik Tahlan",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Surrey-White Rock",
+      "name": "Kevin Diakiw",
+      "party": "Independent"
+    },
+    {
+      "district": "Surrey-White Rock",
+      "name": "Trevor Halford",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Surrey-White Rock",
+      "name": "Amanda James",
+      "party": "OneBC"
+    },
+    {
+      "district": "Surrey-White Rock",
+      "name": "Christine Kinnie",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Surrey-White Rock",
+      "name": "Waqas Rana",
+      "party": "CentreBC"
+    },
+    {
+      "district": "Surrey-White Rock",
+      "name": "Darryl Walker",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Vancouver-Fraserview",
+      "name": "Francoise Raunet",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Vancouver-Fraserview",
+      "name": "Deep Sandhu",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Vancouver-Fraserview",
+      "name": "Aman Singh",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Vancouver-Hastings",
+      "name": "Christian Bosio",
+      "party": "CentreBC"
+    },
+    {
+      "district": "Vancouver-Hastings",
+      "name": "Kimball Cariou",
+      "party": "Communist Party of BC"
+    },
+    {
+      "district": "Vancouver-Hastings",
+      "name": "Kyra Philbert",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Vancouver-Hastings",
+      "name": "Niki Sharma",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Vancouver-Hastings",
+      "name": "Phyllis Tang",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Vancouver-Hastings",
+      "name": "Phil Webb",
+      "party": "Libertarian"
+    },
+    {
+      "district": "Vancouver-Kensington",
+      "name": "Mable Elmore",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Vancouver-Kensington",
+      "name": "Adam Hawk",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Vancouver-Kensington",
+      "name": "Aron Lageri",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Vancouver-Langara",
+      "name": "John Atoyebi",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Vancouver-Langara",
+      "name": "Alan Beesley",
+      "party": "CentreBC"
+    },
+    {
+      "district": "Vancouver-Langara",
+      "name": "Sunita Dhir",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Vancouver-Langara",
+      "name": "Jaime Stein",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Vancouver-Little Mountain",
+      "name": "Christine Boyle",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Vancouver-Little Mountain",
+      "name": "Sarah MacLeod",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Vancouver-Little Mountain",
+      "name": "Alex Muir",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Vancouver-Point Grey",
+      "name": "Michael Davis",
+      "party": "CentreBC"
+    },
+    {
+      "district": "Vancouver-Point Grey",
+      "name": "David Eby",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Vancouver-Point Grey",
+      "name": "Alex McMillan",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Vancouver-Point Grey",
+      "name": "Beatrice Sharpe",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Vancouver-Quilchena",
+      "name": "Carson Binda",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Vancouver-Quilchena",
+      "name": "Dallas Brodie",
+      "party": "OneBC"
+    },
+    {
+      "district": "Vancouver-Quilchena",
+      "name": "Douglas Courtemanche",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Vancouver-Quilchena",
+      "name": "Petra Kuret",
+      "party": "CentreBC"
+    },
+    {
+      "district": "Vancouver-Quilchena",
+      "name": "Callista Ryan",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Vancouver-Renfrew",
+      "name": "Adrian Dix",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Vancouver-Renfrew",
+      "name": "Rebecca Haber",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Vancouver-Renfrew",
+      "name": "Tom Ikonomou",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Vancouver-Renfrew",
+      "name": "Lisa Prescott",
+      "party": "CentreBC"
+    },
+    {
+      "district": "Vancouver-South Granville",
+      "name": "Maria J Cruz",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Vancouver-South Granville",
+      "name": "Lara Honrado",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Vancouver-South Granville",
+      "name": "Lisa Phillips",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Vancouver-South Granville",
+      "name": "Colin Smith",
+      "party": "CentreBC"
+    },
+    {
+      "district": "Vancouver-South Granville",
+      "name": "Salvatore Vetro",
+      "party": "OneBC"
+    },
+    {
+      "district": "Vancouver-Strathcona",
+      "name": "Amanda Burrows",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Vancouver-Strathcona",
+      "name": "Robert Crooks",
+      "party": "Communist Party of BC"
+    },
+    {
+      "district": "Vancouver-Strathcona",
+      "name": "Jordan Zheng McIntosh",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Vancouver-Strathcona",
+      "name": "Tanya Webking",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Vancouver-West End",
+      "name": "Spencer Chandra Herbert",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Vancouver-West End",
+      "name": "Scott MacDonald",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Vancouver-West End",
+      "name": "Dion Weisner",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Vancouver-Yaletown",
+      "name": "Sam Chandola",
+      "party": "CentreBC"
+    },
+    {
+      "district": "Vancouver-Yaletown",
+      "name": "Margareta Dovgal",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Vancouver-Yaletown",
+      "name": "Priyan Samarakoone",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Vancouver-Yaletown",
+      "name": "Timothy Webster",
+      "party": "Unaffiliated"
+    },
+    {
+      "district": "Vancouver-Yaletown",
+      "name": "Terry Yung",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Vernon-Lumby",
+      "name": "Kevin Acton",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Vernon-Lumby",
+      "name": "Chantel Gibbs",
+      "party": "OneBC"
+    },
+    {
+      "district": "Vernon-Lumby",
+      "name": "Harwinder Sandhu",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Vernon-Lumby",
+      "name": "Blair Visscher",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Victoria-Beacon Hill",
+      "name": "Joachim Agou",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "Victoria-Beacon Hill",
+      "name": "Grace Lore",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Victoria-Beacon Hill",
+      "name": "Rajinder S. Sahota",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Victoria-Swan Lake",
+      "name": "Carolyn Howe",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "Victoria-Swan Lake",
+      "name": "Nina Krieger",
+      "party": "BC NDP"
+    },
+    {
+      "district": "Victoria-Swan Lake",
+      "name": "Tim Taylor",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "West Kelowna-Peachland",
+      "name": "Adam Frank",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "West Kelowna-Peachland",
+      "name": "Macklin McCall",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "West Kelowna-Peachland",
+      "name": "George Morgan",
+      "party": "BC NDP"
+    },
+    {
+      "district": "West Vancouver-Capilano",
+      "name": "Honieh Barzegari",
+      "party": "BC NDP"
+    },
+    {
+      "district": "West Vancouver-Capilano",
+      "name": "Naomi Chocyk",
+      "party": "OneBC"
+    },
+    {
+      "district": "West Vancouver-Capilano",
+      "name": "Caroline Elliott",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "West Vancouver-Capilano",
+      "name": "Arwa Shurab",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "West Vancouver-Sea to Sky",
+      "name": "Ayla Dumais",
+      "party": "Conservative Party"
+    },
+    {
+      "district": "West Vancouver-Sea to Sky",
+      "name": "Michelle Livaja",
+      "party": "BC NDP"
+    },
+    {
+      "district": "West Vancouver-Sea to Sky",
+      "name": "Jeremy Valeriote",
+      "party": "BC Green Party"
+    },
+    {
+      "district": "West Vancouver-Sea to Sky",
+      "name": "Dan Wood",
+      "party": "CentreBC"
+    }
+  ]
+}
